@@ -1,0 +1,20 @@
+measurement_id: https://example.org/essdive-sensor-data/doi:essdive-1:2:temp_water_1
+observed_property: bridge_property:water_temperature
+feature_of_interest: https://example.org/essdive-location/doi:essdive-1:sensor-1
+raw_value: '1.08'
+numeric_value: 1.08
+unit: Cel
+statistic: mean
+value_role: measured
+measurement_method: 'method_id: sensor-tw; method: hobo thermocouple tethered to flowrate
+  pole with 5cm wire tether. Batteries were replaced each spring.; material measured:
+  water; treatment_id: control; temporal representation: 15-minute; temporal statistic:
+  mean; method lower bound: -20; method upper bound: 50'
+treatment: control
+instrument: thermo-1 (thermocouple); thermo-6 (thermocouple)
+observed_start_time: '2020-01-01T00:00:00-06:00'
+observed_end_time: '2020-01-01T00:15:00-06:00'
+source_system: ber_registry:essdive-sensor-data
+source_record_id: doi=doi:essdive-1;file_pid=ess-dive-7181349edbd7b5b-20240130T002708988;source_row=2;source_column=3
+source_field: sensor_data.csv;temp_water_1
+quality_flag: 'A: approved value that has passed QA/QC checks'

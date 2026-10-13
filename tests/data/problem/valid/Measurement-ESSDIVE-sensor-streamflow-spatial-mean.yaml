@@ -1,0 +1,23 @@
+measurement_id: https://example.org/essdive-sensor-data/doi:essdive-1:2:flow_rate_avg
+observed_property: bridge_property:streamflow
+feature_of_interest: https://example.org/essdive-location/doi:essdive-1:stream-reach
+raw_value: '0.042499999999999996'
+numeric_value: 0.042499999999999996
+unit: m3/s
+statistic: mean
+sample_size: 2
+value_role: measured
+measurement_method: 'method_id: sensor-fr; method: campbell scientific flow meter attached
+  to metal pole driven into rock bottom of stream. Sensor placed 5 cm below lowest
+  historical record min stream height.; material measured: water; treatment_id: control;
+  temporal representation: 15-minute; temporal statistic: mean; method lower bound: 0.005;
+  method upper bound: 0.4; spatial statistic: mean; spatial sample size: 2; spatial
+  statistic detail: average of the 2 control treatments to represent the reach'
+treatment: control
+instrument: flow-a (flow meter); flow-e (flow meter)
+observed_start_time: '2020-01-01T00:00:00-06:00'
+observed_end_time: '2020-01-01T00:15:00-06:00'
+source_system: ber_registry:essdive-sensor-data
+source_record_id: doi=doi:essdive-1;file_pid=ess-dive-7181349edbd7b5b-20240130T002708988;source_row=2;source_column=25
+source_field: sensor_data.csv;flow_rate_avg
+quality_flag: 'A: approved value that has passed QA/QC checks'

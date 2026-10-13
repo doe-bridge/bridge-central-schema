@@ -1,0 +1,15 @@
+# ESS-DIVE sample_concentrations, repeated sample 5a, suspect nitrogen value.
+measurement_id: https://example.org/essdive-sample-data/doi:essdive-1:5a:2:n_tot
+observed_property: bridge_property:total_nitrogen_content
+feature_of_interest: https://example.org/essdive-sample/doi:essdive-1:5a
+raw_value: "49.9"
+numeric_value: 49.9
+unit: "%"
+unit_basis: per dry mass
+value_role: measured
+measurement_method: "perc-total-n: some method info; collection method: this is info on how the sample was collected"
+observed_time: "2021-06-05"
+source_system: ber_registry:essdive-sample-data
+source_record_id: doi=doi:essdive-1;file_pid=ess-dive-7181349edbd7b5b-20240130T002708988;source_row=86;source_column=9
+source_field: sample_concentrations.csv;n_tot
+quality_flag: suspect value

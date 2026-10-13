@@ -2,9 +2,12 @@ id	label	definition
 bridge_property:air_temperature	air temperature	Temperature of the air around the feature of interest, at the height where it was measured.
 bridge_property:cell_length	cell length	Length of a cell along its longest axis.
 bridge_property:cell_width	cell width	Width of a cell, measured at right angles to its length.
+bridge_property:cesium_dissolved	dissolved cesium concentration	Concentration of dissolved cesium in a sample.
 bridge_property:depth	depth	Distance below a reference surface, such as the ground or the water surface, at which a sample was taken or a value measured.
 bridge_property:fire_return_interval	fire return interval	Average time between fires at a site or in an area.
 bridge_property:growth_temperature	growth temperature	Temperature at which an organism grows.
+bridge_property:lead_concentration	lead concentration	Concentration of lead in a sample.
+bridge_property:lithium_dissolved	dissolved lithium concentration	Concentration of dissolved lithium in a sample.
 bridge_property:microbial_biomass_carbon	microbial biomass carbon	Carbon held in living microbial biomass, per unit mass of soil or sediment.
 bridge_property:nitrate_concentration	nitrate concentration	Amount of nitrate per unit volume or mass of a sample.
 bridge_property:ph	pH	Acidity or alkalinity of a sample on the pH scale.
@@ -14,6 +17,8 @@ bridge_property:salinity	salinity	Concentration of dissolved salts in water or a
 bridge_property:sample_storage_temperature	sample storage temperature	Temperature at which a sample was stored before analysis.
 bridge_property:soil_organic_carbon_content	soil organic carbon content	Organic carbon per unit mass of soil.
 bridge_property:soil_phosphate_content	soil phosphate content	Phosphate per unit mass of soil.
+bridge_property:streamflow	streamflow	Volume of water flowing past a point in a stream per unit time.
 bridge_property:temperature	temperature	Temperature of the feature of interest, when the medium is not part of the property.
 bridge_property:total_carbon	total carbon	All carbon, organic and inorganic, per unit mass or volume of a sample.
+bridge_property:total_nitrogen_content	total nitrogen content	Total nitrogen in a sample.
 bridge_property:water_temperature	water temperature	Temperature of a body of water, or of water at a point in it.
