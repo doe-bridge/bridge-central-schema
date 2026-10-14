@@ -5,7 +5,7 @@ title: BRIDGE Central Schema
 description: >-
   The central BRIDGE schema for harmonized cross-BER data access. Defines
   shared base elements and composes domain modules (currently:
-  measurements.yaml).
+  measurements.yaml and attributes.yaml).
 license: Apache-2.0
 see_also:
   - https://github.com/ber-data/bridge-central-schema
@@ -21,6 +21,7 @@ default_range: string
 imports:
   - linkml:types
   - measurements
+  - attributes
 
 classes:
 
