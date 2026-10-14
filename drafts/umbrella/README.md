@@ -11,6 +11,7 @@ Sources read on 2026-10-14: nmdc-schema main at 03ba5a2 (https://github.com/micr
 | `nmdc-basalt-comparison.md` | What nmdc-schema and BASALT have today, side by side. Same content as the commentable Google Doc: https://docs.google.com/document/d/1ZF5mnfnauqJag8zM-YEZVq5BPa-jUyoKOOHChi5xtd4/edit |
 | `umbrella_classes.yaml` | A LinkML proposal for shared `Study`, `Site`, `Organism`, `Sample`, `ProcessedSample` and `Processing` classes, plus `ProcessingSampleLink` |
 | `mapper-notes.md` | What Yuri's BER Schema Mapper covers and lacks for this work |
+| `examples/` | Small valid and invalid instances, including the two `ProcessingSampleLink` rows that one NMDC Extraction step becomes |
 
 ## Use together
 
@@ -32,7 +33,7 @@ The two hold the same facts; BASALT's table is the union of NMDC's two. `umbrell
 These do different jobs. Each fact should have one home.
 
 - LinkML mapping slots (`exact_mappings`, `close_mappings`, `related_mappings`) in the umbrella schema, as in `umbrella_classes.yaml`. Proposed as the main record.
-- SSSOM (https://mapping-commons.github.io/sssom/): the same mappings as a table, with room for justification, author and confidence. It can be generated from the LinkML mapping slots, so it is another view of the same facts, not a second source.
+- SSSOM (https://mapping-commons.github.io/sssom/): the same mappings as a table, with room for justification, author and confidence. It can be generated from the LinkML mapping slots (`gen-sssom umbrella_classes.yaml` with linkml 1.11.1 gives one row per mapping, 37 rows), so it is another view of the same facts, not a second source.
 - linkml-map (https://github.com/linkml/linkml-map): transformation specs for converting NMDC or BASALT data into umbrella form, for example turning `has_input` lists into `ProcessingSampleLink` rows. Needed for loading data, not for agreeing on classes.
 
 ### Placing classes
@@ -42,7 +43,14 @@ These do different jobs. Each fact should have one home.
 
 The mapper suits a first pass across many schemas; what the group agrees can then be recorded in the LinkML mapping slots.
 
+## Checking the draft
+
+With linkml 1.11.1, `linkml-validate -s umbrella_classes.yaml -C <Class> <file>` reports no issues for every file in `examples/valid/` and an error for every file in `examples/invalid/`.
+
 ## Known gaps
+
+- Identifiers: BASALT ids are bare UUIDs and the umbrella `id` range is `uriorcurie`. The BASALT example writes them as `urn:uuid:` URIs. `linkml-validate` 1.11.1 also accepted a bare UUID in a `uriorcurie` slot, so the draft does not yet enforce any id form; that needs a decision (`urn:uuid:`, a BASALT prefix, or a pattern).
+- `Sample` and `Processing` are abstract and the draft has no concrete subclasses, so the examples use `ProcessedSample` and `ProcessingSampleLink`.
 
 - James Carr's BASALT-to-Parquet work was not found, so the BASALT flat form above comes from the BASALT LinkML schema, not its Parquet output.
 - See `mapper-notes.md` for gaps in the mapper's catalog.
