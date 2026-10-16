@@ -36,6 +36,7 @@ classes:
       - id
       - name
       - description
+      - external_identifiers
 
   Study:
     is_a: NamedThing
@@ -157,6 +158,25 @@ slots:
     slot_uri: schema:name
   description:
     slot_uri: schema:description
+  external_identifiers:
+    description: >-
+      Identifiers for the same entity in the system that holds the original
+      record, such as GOLD, EMSL or INSDC. Lets a record that one BER system
+      redistributes from another be matched to the original.
+    range: uriorcurie
+    multivalued: true
+    exact_mappings:
+      - basalt_schema:external_identifiers
+    close_mappings:
+      # Abstract parent of nmdc-schema's per-source identifier slots.
+      - nmdc:external_database_identifiers
+    related_mappings:
+      # nmdc-schema has one slot per source system and entity type.
+      - nmdc:gold_biosample_identifiers
+      - nmdc:emsl_biosample_identifiers
+      - nmdc:insdc_biosample_identifiers
+      - nmdc:emsl_project_identifiers
+      - nmdc:gold_study_identifiers
   principal_investigator:
     description: The person responsible for the study.
   taxon:

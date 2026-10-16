@@ -33,7 +33,7 @@ The two hold the same facts; BASALT's table is the union of NMDC's two. `umbrell
 These do different jobs. Each fact should have one home.
 
 - LinkML mapping slots (`exact_mappings`, `close_mappings`, `related_mappings`) in the umbrella schema, as in `umbrella_classes.yaml`. Proposed as the main record.
-- SSSOM (https://mapping-commons.github.io/sssom/): the same mappings as a table, with room for justification, author and confidence. It can be generated from the LinkML mapping slots (`gen-sssom umbrella_classes.yaml` with linkml 1.11.1 gives one row per mapping, 37 rows), so it is another view of the same facts, not a second source.
+- SSSOM (https://mapping-commons.github.io/sssom/): the same mappings as a table, with room for justification, author and confidence. It can be generated from the LinkML mapping slots (`gen-sssom umbrella_classes.yaml` with linkml 1.11.1 gives one row per mapping, 44 rows), so it is another view of the same facts, not a second source.
 - linkml-map (https://github.com/linkml/linkml-map): transformation specs for converting NMDC or BASALT data into umbrella form, for example turning `has_input` lists into `ProcessingSampleLink` rows. Needed for loading data, not for agreeing on classes.
 
 ### Placing classes
@@ -50,6 +50,7 @@ With linkml 1.11.1, `linkml-validate -s umbrella_classes.yaml -C <Class> <file>`
 ## Known gaps
 
 - Identifiers: BASALT ids are bare UUIDs and the umbrella `id` range is `uriorcurie`. The BASALT example writes them as `urn:uuid:` URIs. `linkml-validate` 1.11.1 also accepted a bare UUID in a `uriorcurie` slot, so the draft does not yet enforce any id form; that needs a decision (`urn:uuid:`, a BASALT prefix, or a pattern).
+- Records held in more than one system: much NMDC metadata redistributes records that EMSL and JGI (GOLD) also hold. `external_identifiers` on `NamedThing` records the original system's identifier so the copies can be matched. It is one generic list, as in BASALT; nmdc-schema instead has one slot per system and entity type (`gold_biosample_identifiers`, `emsl_biosample_identifiers`, ...). Whether the umbrella needs to say which system holds the original record is open.
 - `Sample` and `Processing` are abstract and the draft has no concrete subclasses, so the examples use `ProcessedSample` and `ProcessingSampleLink`.
 
 - James Carr's BASALT-to-Parquet work was not found, so the BASALT flat form above comes from the BASALT LinkML schema, not its Parquet output.
