@@ -85,6 +85,7 @@ classes:
       - associated_studies
       - collected_at
       - organism
+      - sample_category
       - env_broad_scale
       - env_local_scale
       - env_medium
@@ -204,6 +205,17 @@ slots:
     close_mappings:
       - nmdc:expected_organism
       - basalt_schema:organism_ref
+  sample_category:
+    description: >-
+      What kind of material the sample is, at the coarse level needed to find
+      the same kind of sample across BER sources. Finer detail goes in
+      env_medium; programs and protocols (MONet, Terraform, AMP2) stay with the
+      study and the source schema.
+    range: SampleCategoryEnum
+    related_mappings:
+      # BASALT expresses this as Sample subclasses; nmdc-schema has no single
+      # slot for it (env_package, sample_type and samp_type are all candidates).
+      - nmdc:sample_type
   env_broad_scale:
     range: uriorcurie
     exact_mappings:
@@ -252,6 +264,36 @@ slots:
       - basalt_schema:role
 
 enums:
+  SampleCategoryEnum:
+    description: >-
+      Coarse sample categories. Each value lists the BASALT Sample subclass it
+      corresponds to. Ontology meanings are not assigned yet.
+    permissible_values:
+      soil:
+        exact_mappings: [basalt_schema:SoilSample]
+        related_mappings: [basalt_schema:MonetSoilSample]
+      sediment:
+        exact_mappings: [basalt_schema:SedimentSample]
+      water:
+        exact_mappings: [basalt_schema:WaterSample]
+      aerosol:
+        exact_mappings: [basalt_schema:AerosolSample]
+        related_mappings: [basalt_schema:AerosolArmSample]
+      plant:
+        exact_mappings: [basalt_schema:PlantSample]
+      pure_culture:
+        exact_mappings: [basalt_schema:PureCultureSample]
+      mixed_culture:
+        exact_mappings: [basalt_schema:MixedCultureSample]
+        related_mappings: [basalt_schema:CultureEnvironmentalSample]
+      engineered_strain:
+        exact_mappings: [basalt_schema:EngineeredStrainSample]
+      synthesized_material:
+        exact_mappings: [basalt_schema:SynthesizedMaterialSample]
+      commercial_material:
+        exact_mappings: [basalt_schema:CommerciallyPurchasedSample]
+      other:
+        exact_mappings: [basalt_schema:OtherUndescribedSample]
   ProcessingRoleEnum:
     permissible_values:
       input:
