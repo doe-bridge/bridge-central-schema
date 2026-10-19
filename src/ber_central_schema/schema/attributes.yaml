@@ -64,4 +64,5 @@ classes:
           keeps the source text, so 3.4e-28 and 3.40E-28 stay distinguishable.
         exact_mappings:
           - kb_cdm:numeric_value
-          - nmdc:numeric_value
+        close_mappings:
+          - nmdc:has_numeric_value
