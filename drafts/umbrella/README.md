@@ -16,7 +16,7 @@ Sources read on 2026-10-14: nmdc-schema main at 03ba5a2 (https://github.com/micr
 ## Use together
 
 - Start from `nmdc-basalt-comparison.md`. Each umbrella class in `umbrella_classes.yaml` lists, in `exact_mappings` or `close_mappings`, the nmdc-schema and BASALT classes from that table that it stands for.
-- The umbrella classes would go into this repo's schema once agreed. The measurements module (https://github.com/ber-data/bridge-central-schema/pull/9) has a `feature_of_interest` slot waiting for a Sample class.
+- The umbrella classes would go into this repo's schema once agreed. The measurements module (https://github.com/doe-bridge/bridge-central-schema/pull/9) has a `feature_of_interest` slot waiting for a Sample class.
 - For what the processing graph looks like as tables, nmdc-lakehouse is one worked example. Its flattening rules are in https://github.com/microbiomedata/nmdc-lakehouse/blob/main/docs/architecture.md ("Normalization decisions"), and the generated flat schema is itself LinkML (https://github.com/microbiomedata/nmdc-lakehouse-schema).
 
 ## Alternatives for the same job
