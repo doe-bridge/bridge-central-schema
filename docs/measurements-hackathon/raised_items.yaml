@@ -1,0 +1,465 @@
+# Everything raised at, or about, the BRIDGE Measurements hackathon of
+# 2026-09-30, and where each item went in measurements.yaml 0.4.0.
+#
+# sources:
+#   notes:   Hackathon Notes doc, main tab
+#            https://docs.google.com/document/d/1_MTh8PRRG5cn2DV-b8wr9u8bu_EmChAHREfhUX4Ks9I
+#   chat:    the hackathon Zoom chat (times are US Eastern)
+#   drawing: "measurement brainstorm" drawing
+#            https://docs.google.com/drawings/d/1llZ1wNabHL1A1EXYxelY62qru8Qz1tdaDvT2pdvW50Y
+#   slides:  hackathon intro slides
+#            https://docs.google.com/presentation/d/1-2ai8pYpBnytDB8-ihF4e1pK2RoUW2zGDxgOMUsPqHE
+#   issue4:  https://github.com/doe-bridge/bridge-central-schema/issues/4
+#   recap:   10/07/2026 entry in the BRIDGE DM weekly notes
+#            https://docs.google.com/document/d/1ezgBR6IbJNJjDntK27djICFIFNBKHeNtdgHqwELMQqU
+#   reportout: Report Out tab of the Hackathon Notes doc
+#   data:    the example files each organization put in the hackathon shared drive
+#   review:  raised while this first pass was being written, 2026-10-07
+#
+# disposition:
+#   in_schema:     handled by an element of measurements.yaml
+#   known_gap:     the schema cannot express it yet; a tests/data/problem example shows it
+#   open_question: needs a group decision; the first pass makes a provisional choice or none
+#   deferred:      belongs to a later module or another working group
+#   out_of_scope:  not a schema matter (ETL, tooling, ontology development, organization)
+#
+# People are named by GitHub handle. "KBase participant" means no handle was confirmed;
+# an organization name means the source records the organization but not the speaker;
+# "not recorded" means the source does not say who raised it.
+
+items:
+
+  # --- the overall shape ---------------------------------------------------
+
+  - id: R01
+    point: Start with one class and add structure when data needs it; build a union straw-person and see what each source can conform to.
+    raised_by: ["@mslarae13"]
+    source: drawing
+    disposition: in_schema
+    where: Measurement is the only class
+  - id: R02
+    point: Lean towards one concept for now rather than separate Observation and Measurement classes.
+    raised_by: ["BRIDGE DM team"]
+    source: recap
+    disposition: in_schema
+    where: Measurement is the only class; Observation and the MeasurementValue/QuantityValue split from 0.2.0 are removed
+  - id: R03
+    point: Is a measurement a type of observation?
+    raised_by: ["@dschristianson"]
+    source: drawing
+    disposition: open_question
+    where: Measurement has close_mappings to sosa:Observation; no Observation class until data needs one
+  - id: R04
+    point: We may not have enough data recording observation properties to justify an Observation class.
+    raised_by: ["@caufieldjh"]
+    source: drawing
+    disposition: in_schema
+    where: no Observation class
+  - id: R05
+    point: JGI examples would split between Observation and Measurement, and users may want to search them together.
+    raised_by: ["@valerie-autumn-skye"]
+    source: drawing
+    disposition: in_schema
+    where: one class, so categorical and numeric values are searched together (valid Measurement-008)
+  - id: R06
+    point: The core parts are a type, a value, a raw value and a unit.
+    raised_by: ["BRIDGE DM team"]
+    source: recap
+    disposition: in_schema
+    where: observed_property (alias measurement_type), numeric_value, raw_value, unit
+  - id: R07
+    point: Make a schema, then see whether each source can map up to it; feedback loop up to a cutoff date.
+    raised_by: ["@corilo", "@turbomam"]
+    source: chat
+    disposition: in_schema
+    where: this first pass; examples from GOLD, NMDC, EMSL MONet, ORNL APPL, BASALT and BASIN-3D
+  - id: R08
+    point: Generic property/value model (BASIN-3D, BERtron) or named-property model (NMDC, BASALT)?
+    raised_by: ["@sierra-moxon"]
+    source: slides
+    disposition: in_schema
+    where: generic, one Measurement per value; a wide source becomes one record per column (valid Measurement-018)
+  - id: R09
+    point: Data is too diverse for named attributes; averages over time and space must be captured with the measurements.
+    raised_by: ["@dschristianson"]
+    source: notes
+    disposition: in_schema
+    where: generic observed_property plus statistic
+  - id: R10
+    point: A catch-all for values that fit nowhere else, as MIxS misc_param, NMDC PropertyAssertion and BERtron Attribute provide.
+    raised_by: ["@turbomam"]
+    source: review
+    disposition: in_schema
+    where: property_label (free text) as the alternative to observed_property (valid Measurement-020)
+
+  # --- values ---------------------------------------------------------------
+
+  - id: R11
+    point: Ranges, such as 0.16-0.22.
+    raised_by: ["@valerie-autumn-skye"]
+    source: chat
+    disposition: in_schema
+    where: minimum_numeric_value, maximum_numeric_value (valid Measurement-002, -004, -012)
+  - id: R12
+    point: Split ranges into high and low fields.
+    raised_by: ["JGI"]
+    source: reportout
+    disposition: in_schema
+    where: minimum_numeric_value, maximum_numeric_value
+  - id: R13
+    point: Two dimensions in one field (cell diameter and cell length), or are these two measurements?
+    raised_by: ["@valerie-autumn-skye"]
+    source: chat
+    disposition: in_schema
+    where: two Measurement records sharing source_record_id and source_field (valid Measurement-010, -011)
+  - id: R14
+    point: Uncertainty, such as 1.870 +/- 0.568 um (mean +/- standard deviation for 63 cells).
+    raised_by: ["@valerie-autumn-skye"]
+    source: chat
+    disposition: in_schema
+    where: statistic, standard_deviation, sample_size (valid Measurement-007)
+  - id: R15
+    point: ESS-DIVE reports a mean and a standard deviation as separate records tied by timestamp and property.
+    raised_by: ["ESS-DIVE"]
+    source: drawing
+    disposition: known_gap
+    where: statistic standard_deviation exists, but nothing ties the two records (problem/valid Measurement-003)
+  - id: R16
+    point: Qualitative values, such as circumneutral pH.
+    raised_by: ["@valerie-autumn-skye"]
+    source: chat
+    disposition: in_schema
+    where: raw_value plus value_role interpreted; value_term for an ontology term (valid Measurement-008)
+  - id: R17
+    point: Instantiate categorical values (mesophilic) as observations.
+    raised_by: ["@turbomam"]
+    source: drawing
+    disposition: in_schema
+    where: value_term on Measurement, since there is one class
+  - id: R18
+    point: A scientist-assigned label may not mean what the ontology term means (their mesophilic is not necessarily the term Mesophilic).
+    raised_by: ["@caufieldjh"]
+    source: chat
+    disposition: open_question
+    where: value_role interpreted marks such values; who assigns value_term, and how it is reviewed, is undecided
+  - id: R19
+    point: Context attached to a value, such as Optimal 10MPa or "for optimal growth".
+    raised_by: ["@valerie-autumn-skye"]
+    source: chat
+    disposition: in_schema
+    where: value_qualifier (optimum, tolerated) (valid Measurement-005, -006)
+  - id: R20
+    point: Split non-measurement qualifiers (such as "optimal") into their own field.
+    raised_by: ["JGI"]
+    source: reportout
+    disposition: in_schema
+    where: value_qualifier
+  - id: R21
+    point: Are some of these experimental settings rather than measurements (grew at 5 degrees for 2 hours)? Things measured versus things intended.
+    raised_by: ["@turbomam"]
+    source: drawing
+    disposition: in_schema
+    where: value_role setting (valid Measurement-003)
+  - id: R22
+    point: Should raw_value be required, or may a record have a property but no result?
+    raised_by: ["@caufieldjh"]
+    source: chat
+    disposition: open_question
+    where: raw_value is recommended, not required; a record needs some value or a missing_value_reason. Replies "I think we need it" (@mslarae13) and "Makes sense to me to have it too" (@dschristianson) followed at 15:25, but the chat does not show which question they answered
+  - id: R23
+    point: Implicit NA and sentinel values (9999 meaning not in range); "not determined"; below detection.
+    raised_by: ["@caufieldjh", "@valerie-autumn-skye"]
+    source: chat
+    disposition: in_schema
+    where: missing_value_reason, comparator (valid Measurement-001, -009, -014, -017)
+  - id: R24
+    point: Numbers that are not quantities (latitude/longitude, grading scales, coefficients).
+    raised_by: ["@caufieldjh"]
+    source: chat
+    disposition: open_question
+    where: numeric_value without a unit is allowed; latitude/longitude belong to a location model, not here
+  - id: R25
+    point: Not all numbers have units (pH, % salinity).
+    raised_by: ["@caufieldjh", "@valerie-autumn-skye", "@ialarmedalien"]
+    source: chat
+    disposition: in_schema
+    where: unit is optional (valid Measurement-008)
+  - id: R26
+    point: Malformed values (107.55.82) and unitless salinity (8258) in GOLD.
+    raised_by: ["@valerie-autumn-skye"]
+    source: notes
+    disposition: in_schema
+    where: raw_value kept, no number, quality_flag needs_review (valid Measurement-013)
+  - id: R27
+    point: Flag ambiguous records for review.
+    raised_by: ["@valerie-autumn-skye"]
+    source: notes
+    disposition: in_schema
+    where: quality_flag
+  - id: R28
+    point: Retain original values (NMDC TextValue approach) while parsing typed numbers.
+    raised_by: ["@valerie-autumn-skye"]
+    source: notes
+    disposition: in_schema
+    where: raw_value beside the parsed slots
+
+  # --- units ----------------------------------------------------------------
+
+  - id: R29
+    point: Allow non-Latin characters in units? um, µm and &#956; all appear. Require or coerce to UTF-8? Normalize with reasonable effort.
+    raised_by: ["@turbomam", "@caufieldjh", "@valerie-autumn-skye"]
+    source: chat
+    disposition: in_schema
+    where: raw_value keeps the source bytes; unit must be printable ASCII (invalid Measurement-002)
+  - id: R30
+    point: UCUM required or preferred? A closed list like NMDC's 136-code UnitEnum, or any valid UCUM string?
+    raised_by: ["@sierra-moxon"]
+    source: slides
+    disposition: open_question
+    where: unit is described as UCUM and checked only for ASCII; no list yet
+  - id: R31
+    point: Was QUDT considered for units? QUDT is uneven in coverage.
+    raised_by: ["@dschristianson", "@caufieldjh", "@turbomam"]
+    source: chat
+    disposition: open_question
+    where: not adopted in the first pass
+  - id: R32
+    point: Separate the unit description from a unit ontology code.
+    raised_by: ["JGI"]
+    source: reportout
+    disposition: in_schema
+    where: unit holds the code; the source's description stays in raw_value
+  - id: R33
+    point: Can unit normalization be handed to an AI agent, or triaged with a decision model first?
+    raised_by: ["@caufieldjh"]
+    source: chat
+    disposition: out_of_scope
+    where: curation tooling, not schema
+
+  # --- what was measured, and on what ------------------------------------------
+
+  - id: R34
+    point: BERVO as the dictionary of measured properties; BERVO term coverage for plant phenotypes is partial.
+    raised_by: ["@sierra-moxon", "@caufieldjh"]
+    source: chat
+    disposition: in_schema
+    where: observed_property uses BERVO when BERVO has the term, otherwise a bridge_property identifier
+  - id: R35
+    point: Map to other vocabularies with SKOS-style mappings rather than importing terms (MIREOT).
+    raised_by: ["@caufieldjh"]
+    source: chat
+    disposition: in_schema
+    where: mappings/observed_property.sssom.tsv
+  - id: R36
+    point: Where does MIxS fit, in BERVO mappings?
+    raised_by: ["@sierra-moxon"]
+    source: slides
+    disposition: in_schema
+    where: MIxS terms are mapping targets in mappings/observed_property.sssom.tsv, never the observed_property value
+  - id: R37
+    point: KBase defined a measurement as the value of a variable_id (from a controlled vocabulary) under specified conditions.
+    raised_by: ["@ialarmedalien"]
+    source: chat
+    disposition: in_schema
+    where: observed_property (alias variable); conditions through value_role and value_qualifier
+  - id: R38
+    point: Provisional property IDs need a policy. Also, the 0.2.0 pattern accepts only bervo:BERVO_ CURIEs while BERVO's source table writes BERVO:8000261 (found while preparing this pass).
+    raised_by: ["@valerie-autumn-skye"]
+    source: issue4
+    disposition: open_question
+    where: pattern removed; bridge_property is a proposed prefix for BRIDGE-issued IDs, not yet agreed
+  - id: R39
+    point: Feature of interest (plot of land, sample, organism) and its type; there are nested features.
+    raised_by: ["@sierra-moxon", "@valerie-autumn-skye"]
+    source: notes
+    disposition: in_schema
+    where: feature_of_interest as a reference only; the classes it points to are deferred to the Project/Sample/Study/Processing working group
+  - id: R40
+    point: Is a sample a collection of observations, or a physical thing (dirt, a leaf)? Samples and locations are named things.
+    raised_by: ["@ialarmedalien", "@dschristianson", "@turbomam", "@mslarae13"]
+    source: chat
+    disposition: deferred
+    where: Project/Sample/Study/Processing working group
+  - id: R41
+    point: Not all observations are tied to a sample (air temperature at a field site).
+    raised_by: ["@mslarae13"]
+    source: chat
+    disposition: in_schema
+    where: feature_of_interest accepts any identifier, or none (valid Measurement-017)
+  - id: R42
+    point: Do all observations have unique IDs? Not in ESS-DIVE; BRIDGE could mint IDs on ingest.
+    raised_by: ["@caufieldjh", "@dschristianson", "@mslarae13"]
+    source: chat
+    disposition: open_question
+    where: measurement_id is optional; minting policy undecided
+  - id: R43
+    point: If each measurement is a specific event, it is not a NamedThing; NamedThing works against a domain hierarchy.
+    raised_by: ["@caufieldjh", "@turbomam"]
+    source: chat
+    disposition: in_schema
+    where: Measurement does not inherit from NamedThing
+  - id: R44
+    point: Source lineage (source system, record ID, field, snapshot) so raw text stays traceable.
+    raised_by: ["@valerie-autumn-skye"]
+    source: issue4
+    disposition: known_gap
+    where: source_system, source_record_id, source_field; no snapshot or version slot yet (problem/valid Measurement-005)
+  - id: R45
+    point: Review the exact_mappings to NMDC QuantityValue and AttributeValue until the constraints match; add NMDC's minimum and maximum fields.
+    raised_by: ["@valerie-autumn-skye"]
+    source: issue4
+    disposition: in_schema
+    where: mappings to nmdc are close_mappings; minimum and maximum added
+
+  # --- how and when ------------------------------------------------------------
+
+  - id: R46
+    point: Method. NMDC pairs some slots with a method slot (ph with ph_meth, but no temp_meth); ESS-DIVE plans to add method; where does "how" live?
+    raised_by: ["@bmeluch", "@dschristianson", "@sierra-moxon"]
+    source: chat
+    disposition: in_schema
+    where: measurement_method (named to avoid the feature model's method slot)
+  - id: R47
+    point: BASALT has an instrument class.
+    raised_by: ["@bmeluch"]
+    source: chat
+    disposition: in_schema
+    where: instrument (text for now)
+  - id: R48
+    point: Instrument resolution, such as a stated 2 standard deviations for everything from one machine.
+    raised_by: ["ESS-DIVE"]
+    source: drawing
+    disposition: deferred
+    where: belongs on an instrument record, not on each value
+  - id: R49
+    point: Time, with UTC offsets.
+    raised_by: ["@dschristianson"]
+    source: notes
+    disposition: in_schema
+    where: observed_time, observed_start_time, observed_end_time (ISO 8601; an offset whenever a time of day is given)
+  - id: R50
+    point: Time series (loggers at 10 Hz reported per minute or per 5 minutes). Is a TimeseriesMeasurement needed on day one?
+    raised_by: ["ESS-DIVE", "@sierra-moxon"]
+    source: drawing
+    disposition: known_gap
+    where: one value per record only (problem/invalid Measurement-001)
+  - id: R51
+    point: Replicates; EMSL has replicates and ranges, mostly not captured.
+    raised_by: ["not recorded"]
+    source: drawing
+    disposition: deferred
+    where: sample_size covers a summarized count; replicate structure belongs with the sample and processing model
+
+  # --- grouping, derivation, conditions ---------------------------------------------
+
+  - id: R52
+    point: A measurement set, or an Observation holding associations between measurements; or slots grouped under a dimension.
+    raised_by: ["@ialarmedalien", "@caufieldjh", "@dschristianson"]
+    source: chat
+    disposition: open_question
+    where: not modeled; records from one source cell share source_record_id and source_field
+  - id: R53
+    point: Is growth an observation, with OD as its measurement? OD measures turbidity, which says something about growth; growth is a difference between observations.
+    raised_by: ["@janakagithub", "@turbomam", "@ialarmedalien"]
+    source: chat
+    disposition: known_gap
+    where: OD readings are Measurements (BERVO Optical density); a growth value derived from several of them has no link back
+  - id: R54
+    point: Derived measurement columns (APPL visual transformer outputs); measurements are modalities.
+    raised_by: ["@pranjan77"]
+    source: notes
+    disposition: in_schema
+    where: value_role derived (valid Measurement-016); modality is deferred to the Phenotype working group
+  - id: R55
+    point: Complicated experimental conditions entered under "other", such as "prescribed burn every 3-4 years".
+    raised_by: ["@bmeluch"]
+    source: chat
+    disposition: known_gap
+    where: storable as raw text with a range, but recurrence and the event are lost (problem/valid Measurement-002)
+
+  # --- outside the schema --------------------------------------------------------------
+
+  - id: R56
+    point: Parse and normalize once, in a QA/QC step after ingest, instead of every agent doing it on every query.
+    raised_by: ["@ialarmedalien", "@sierra-moxon", "@dschristianson"]
+    source: chat
+    disposition: out_of_scope
+    where: ETL working group; data tiers draft
+  - id: R57
+    point: In practice agents mediate lakehouse access and handle measurement nuance ("let the agents deal with it").
+    raised_by: ["@ialarmedalien"]
+    source: chat
+    disposition: out_of_scope
+    where: recorded as a position; the schema supplies the structure agents query
+  - id: R58
+    point: Structured metadata helps ensure metadata exists, so users' agents do not invent it.
+    raised_by: ["@dschristianson"]
+    source: chat
+    disposition: out_of_scope
+    where: recorded as a position
+  - id: R59
+    point: About 9% of 500k GOLD organism records have measurement metadata; standardizing it may fall to the JGI Advanced Analysis Data Modeling team, and changing the GOLD schema has met resistance.
+    raised_by: ["@valerie-autumn-skye"]
+    source: chat
+    disposition: out_of_scope
+    where: JGI organization
+  - id: R60
+    point: Add more fire-related terms to BERVO.
+    raised_by: ["@caufieldjh"]
+    source: chat
+    disposition: out_of_scope
+    where: BERVO development
+  - id: R61
+    point: METPO for categorical microbial traits.
+    raised_by: ["@caufieldjh", "@turbomam"]
+    source: chat
+    disposition: in_schema
+    where: value_term accepts METPO terms; METPO is a mapping target for cell length and growth temperature
+  - id: R62
+    point: Every element should have a text description, and something should check that the description agrees with the schema and the data.
+    raised_by: ["not recorded"]
+    source: notes
+    disposition: in_schema
+    where: every class, slot, enum and value in measurements.yaml has a description; the agreement check is not built
+  - id: R63
+    point: What do people want to search on at BRIDGE?
+    raised_by: ["@mslarae13"]
+    source: drawing
+    disposition: open_question
+    where: no user research yet
+  - id: R64
+    point: A QA class?
+    raised_by: ["not recorded"]
+    source: drawing
+    disposition: open_question
+    where: quality_flag as a single field for now
+  - id: R65
+    point: The ESS-DIVE example on the slides may reflect user input rather than BASIN-3D storage.
+    raised_by: ["not recorded"]
+    source: notes
+    disposition: out_of_scope
+    where: correction to the slide example
+  - id: R66
+    point: Is the KBase upload validator a public API? Only as a platform app; its configuration is public.
+    raised_by: ["@turbomam", "KBase participant"]
+    source: chat
+    disposition: out_of_scope
+    where: https://github.com/kbase/sample_service_validator_config/blob/master/metadata_validation.tsv
+  - id: R67
+    point: Sparse data can be brought up to type/value/unit where reasonable; data tiers are the escape hatch where not.
+    raised_by: ["BRIDGE DM team"]
+    source: recap
+    disposition: out_of_scope
+    where: data tiers draft https://docs.google.com/document/d/1QVEBg6NJ_e5cXw76PwkTiSkax_ObLA7Cdnnj5FEt__M
+  - id: R68
+    point: Each source schema provides a mapping to the central schema; people need examples of how.
+    raised_by: ["BRIDGE DM team"]
+    source: recap
+    disposition: deferred
+    where: the valid examples here show one record per source; mapping worksheets per source come next
+  - id: R69
+    point: Measurement could be a subclass of QuantityValue, inheriting the number, range and unit slots and keeping NMDC's value structure.
+    raised_by: ["@turbomam"]
+    source: review
+    disposition: open_question
+    where: not taken in the first pass; the value slots sit on Measurement and there is no QuantityValue class

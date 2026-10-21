@@ -1,0 +1,22 @@
+#curie_map:
+#  bervo: https://w3id.org/bervo/
+#  bridge_property: https://w3id.org/ber-data/bridge-property/
+#  METPO: https://w3id.org/metpo/
+#  MIXS: https://w3id.org/mixs/
+#  semapv: https://w3id.org/semapv/vocab/
+#  skos: http://www.w3.org/2004/02/skos/core#
+#mapping_set_id: https://w3id.org/ber-data/bridge-central-schema/mappings/observed_property.sssom.tsv
+#mapping_set_description: Correspondences from BRIDGE observed_property values (BERVO terms and BRIDGE-issued property IDs) to MIxS and METPO terms, asserted by BRIDGE where BERVO does not already carry them. First pass, 2026-10-07; BERVO release 2026-09-25, MIxS main at 6a2a6edd6.
+#license: https://creativecommons.org/publicdomain/zero/1.0/
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	comment
+bervo:BERVO_8000261	pH	skos:closeMatch	MIXS:0001001	pH	semapv:ManualMappingCuration	MIxS pH is the pH of a sample; BERVO pH is general.
+bervo:BERVO_8000427	Salinity	skos:closeMatch	MIXS:0000183	salinity	semapv:ManualMappingCuration	
+bervo:BERVO_8000518	Pressure	skos:closeMatch	MIXS:0000412	pressure	semapv:ManualMappingCuration	
+bervo:BERVO_8000168	Nitrate	skos:closeMatch	MIXS:0000425	nitrate	semapv:ManualMappingCuration	BERVO Nitrate names the substance; MIxS nitrate is its concentration in a sample.
+bervo:BERVO_0001370	Air temperature	skos:exactMatch	MIXS:0000124	air temperature	semapv:ManualMappingCuration	
+bervo:BERVO_8000133	Temperature	skos:closeMatch	MIXS:0000113	temperature	semapv:ManualMappingCuration	MIxS temperature is the temperature of a sample.
+bervo:BERVO_8000069	Depth	skos:closeMatch	MIXS:0000018	depth	semapv:ManualMappingCuration	MIxS depth is the depth of a sample; BERVO Depth is general.
+bridge_property:sample_storage_temperature	sample storage temperature	skos:exactMatch	MIXS:0000110	sample storage temperature	semapv:ManualMappingCuration	
+bridge_property:total_carbon	total carbon	skos:exactMatch	MIXS:0000525	total carbon	semapv:ManualMappingCuration	
+bridge_property:cell_length	cell length	skos:closeMatch	METPO:1000881	cell length	semapv:ManualMappingCuration	
+bridge_property:growth_temperature	growth temperature	skos:closeMatch	METPO:2000701	has growth temperature value	semapv:ManualMappingCuration	METPO models this as a data property, not a class.

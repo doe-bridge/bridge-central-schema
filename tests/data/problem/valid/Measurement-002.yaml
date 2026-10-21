@@ -1,0 +1,10 @@
+# KNOWN GAP: a recurring experimental condition. Raised at the hackathon by
+# NMDC (MONet users enter "prescribed burn every 3-4 years" under "other").
+# This record validates, but the schema has no way to say "every 3 to 4
+# years" or to tie it to a fire event, so the meaning stays in raw_value only.
+observed_property: bervo:BERVO_0002137  # Fire return interval
+raw_value: prescribed burn every 3-4 years
+minimum_numeric_value: 3
+maximum_numeric_value: 4
+unit: a
+value_role: setting
