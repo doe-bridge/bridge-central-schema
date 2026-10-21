@@ -152,12 +152,15 @@ classes:
 
 slots:
   id:
+    description: A unique identifier for the entity, as a URI or CURIE.
     identifier: true
     range: uriorcurie
     slot_uri: schema:identifier
   name:
+    description: A human-readable name for the entity.
     slot_uri: schema:name
   description:
+    description: A free-text description of the entity.
     slot_uri: schema:description
   external_identifiers:
     description: >-
@@ -187,6 +190,7 @@ slots:
       - nmdc:classified_as
       - basalt_schema:taxonomy_id
   associated_studies:
+    description: The studies the sample was collected or processed under.
     range: Study
     multivalued: true
     close_mappings:
@@ -194,6 +198,7 @@ slots:
       # BASALT's `project` is an integer, not a reference.
       - basalt_schema:project
   collected_at:
+    description: The site the sample was collected from.
     range: Site
     close_mappings:
       - nmdc:collected_from
@@ -217,26 +222,31 @@ slots:
       # slot for it (env_package, sample_type and samp_type are all candidates).
       - nmdc:sample_type
   env_broad_scale:
+    description: The broad-scale environmental context (for example, the biome) the sample came from, as an ontology term CURIE, following the MIxS slot of the same name.
     range: uriorcurie
     exact_mappings:
       - nmdc:env_broad_scale
       - basalt_schema:env_broad_scale
   env_local_scale:
+    description: The local environment the sample came from, as an ontology term CURIE, following the MIxS slot of the same name.
     range: uriorcurie
     exact_mappings:
       - nmdc:env_local_scale
       - basalt_schema:env_local_scale
   env_medium:
+    description: The environmental material immediately surrounding the sample at the time of sampling, as an ontology term CURIE, following the MIxS slot of the same name.
     range: uriorcurie
     exact_mappings:
       - nmdc:env_medium
       - basalt_schema:env_medium
   has_input:
+    description: The samples a processing step takes in.
     range: Sample
     multivalued: true
     exact_mappings:
       - nmdc:has_input
   has_output:
+    description: The processed samples a processing step produces.
     range: ProcessedSample
     multivalued: true
     exact_mappings:
@@ -248,16 +258,19 @@ slots:
       - nmdc:protocol_link
       - basalt_schema:in_protocol
   processing:
+    description: The processing step this link row belongs to.
     range: Processing
     required: true
     close_mappings:
       - basalt_schema:processing_id
   sample:
+    description: The sample this link row connects to the processing step.
     range: Sample
     required: true
     close_mappings:
       - basalt_schema:sample_id
   role:
+    description: Whether the sample went into or came out of the processing step.
     range: ProcessingRoleEnum
     required: true
     exact_mappings:
@@ -295,6 +308,7 @@ enums:
       other:
         exact_mappings: [basalt_schema:OtherUndescribedSample]
   ProcessingRoleEnum:
+    description: Whether a sample is an input to or an output of a processing step.
     permissible_values:
       input:
         description: The sample was consumed by the processing step.
