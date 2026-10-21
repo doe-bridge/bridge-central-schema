@@ -3,7 +3,7 @@
 # result is not a slot, and with no value slot the record also fails the
 # rule that a measurement carries at least one value.
 # Raised by ESS-DIVE at the 2026-09-30 hackathon; deferred.
-observed_property: bridge_property:water_temperature
+observed_property: bervo:BERVO_0002312  # Water temperature
 source_system: BASIN-3D (USGS)
 source_record_id: USGS-09110000
 unit: Cel

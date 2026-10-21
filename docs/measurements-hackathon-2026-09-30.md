@@ -198,7 +198,7 @@ Names were chosen to avoid the feature model's global slots in https://github.co
 | BASALT | `Measurement-018` | one record per analyte column of a wide table |
 | BASIN-3D | `Measurement-019` | a mean with its time (the averaging window is not recorded; see known gaps) |
 | MIxS / NMDC `misc_param` | `Measurement-020` | the free-text catch-all |
-| none (illustrative) | `Measurement-021` to `-025` | an identifier, instrument and `less_than` comparator; a categorical `value_term`; a treatment, unit basis, month-only time and start and end times; a raw value containing a colon; `unknown` as the missing value reason |
+| none (illustrative) | `Measurement-021` to `-026` | an identifier, instrument and `less_than` comparator; a categorical `value_term`; a treatment, unit basis, month-only time and start and end times; a raw value containing a colon; `unknown` as the missing value reason; a year-only time |
 
 Each example's header says where it came from. Most cite a source file and row; `Measurement-004` cites the GOLD organism ID, `Measurement-019` is carried over from the 0.2.0 module, and `Measurement-020` repeats the MIxS and NMDC `misc_param` examples. Those values were copied from their sources. `Measurement-021` to `-025`, and the problem examples `Measurement-004` and `-005`, were written to show a slot or a gap and say so in their headers.
 

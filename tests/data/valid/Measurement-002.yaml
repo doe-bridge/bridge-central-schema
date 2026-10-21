@@ -1,6 +1,6 @@
 # NMDC Biosample depth stored as a range.
 # Source: nmdc_quantity_values_2026-09-30.tsv, line 178.
-observed_property: bridge_property:depth  # no BERVO term; mapped to MIXS:0000018
+observed_property: bervo:BERVO_8000069  # Depth; mapped to MIXS:0000018
 feature_of_interest: nmdc:bsm-11-042nd237
 raw_value: .02 -.10
 minimum_numeric_value: 0.02

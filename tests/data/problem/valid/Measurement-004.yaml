@@ -2,7 +2,7 @@
 # slot with another, so nothing requires maximum_numeric_value to be at least
 # minimum_numeric_value. This validates. NMDC's export has 196 such ranges
 # (docs/measurements-hackathon-2026-09-30.md, known gaps).
-observed_property: bridge_property:depth
+observed_property: bervo:BERVO_8000069  # Depth
 raw_value: 0.2 to 0.1 m
 minimum_numeric_value: 0.2
 maximum_numeric_value: 0.1

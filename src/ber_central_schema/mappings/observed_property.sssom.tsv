@@ -15,7 +15,7 @@ bervo:BERVO_8000518	Pressure	skos:closeMatch	MIXS:0000412	pressure	semapv:Manual
 bervo:BERVO_8000168	Nitrate	skos:closeMatch	MIXS:0000425	nitrate	semapv:ManualMappingCuration	BERVO Nitrate names the substance; MIxS nitrate is its concentration in a sample.
 bervo:BERVO_0001370	Air temperature	skos:exactMatch	MIXS:0000124	air temperature	semapv:ManualMappingCuration	
 bervo:BERVO_8000133	Temperature	skos:closeMatch	MIXS:0000113	temperature	semapv:ManualMappingCuration	MIxS temperature is the temperature of a sample.
-bridge_property:depth	depth	skos:exactMatch	MIXS:0000018	depth	semapv:ManualMappingCuration	No BERVO term for depth of a sample.
+bervo:BERVO_8000069	Depth	skos:closeMatch	MIXS:0000018	depth	semapv:ManualMappingCuration	MIxS depth is the depth of a sample; BERVO Depth is general.
 bridge_property:sample_storage_temperature	sample storage temperature	skos:exactMatch	MIXS:0000110	sample storage temperature	semapv:ManualMappingCuration	
 bridge_property:total_carbon	total carbon	skos:exactMatch	MIXS:0000525	total carbon	semapv:ManualMappingCuration	
 bridge_property:cell_length	cell length	skos:closeMatch	METPO:1000881	cell length	semapv:ManualMappingCuration	

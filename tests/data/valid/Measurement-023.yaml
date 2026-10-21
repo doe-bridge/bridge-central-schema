@@ -2,7 +2,7 @@
 # treatment plot, with a start and end instead of one time, a month-only
 # observed_time, and a unit basis that UCUM does not express. Dates are
 # quoted so YAML keeps them as text.
-observed_property: bridge_property:soil_organic_carbon
+observed_property: bervo:BERVO_0001523  # Soil organic carbon content
 raw_value: "12.4 mg/g dry soil"
 numeric_value: 12.4
 unit: mg/g

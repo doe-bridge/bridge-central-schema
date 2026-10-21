@@ -329,8 +329,8 @@ slots:
 
   source_record_id:
     description: >-
-      The identifier of the source record the value came from, written as the
-      source writes it.
+      The identifier of the source record the value came from, in the
+      source's own format. The schema does not impose a format.
 
   source_field:
     description: >-
