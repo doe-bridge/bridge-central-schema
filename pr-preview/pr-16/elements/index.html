@@ -547,7 +547,7 @@
 
 
 <h1 id="bridge-central-schema">BRIDGE Central Schema</h1>
-<p>The central BRIDGE schema for harmonized cross-BER data access. Defines shared base elements and composes domain modules (currently: measurements.yaml).</p>
+<p>The central BRIDGE schema for harmonized cross-BER data access. Composes the shared base elements in core.yaml with domain modules (currently: measurements.yaml and the draft umbrella.yaml).</p>
 <p>URI: <a href="https://w3id.org/ber-data/bridge-central-schema">https://w3id.org/ber-data/bridge-central-schema</a></p>
 <p>Name: ber-central-schema</p>
 <h2 id="classes">Classes</h2>
@@ -572,12 +572,40 @@
 <td>Generic base for any identifiable BRIDGE entity</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Organism/">Organism</a></td>
+<td>The biological identity of what is in a sample (a strain, isolate or engineer...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Processing/">Processing</a></td>
+<td>One laboratory step that takes one or more samples as input and produces one ...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Sample/">Sample</a></td>
+<td>A physical material that can be characterized by an experiment</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ProcessedSample/">ProcessedSample</a></td>
+<td>A sample produced by a processing step from one or more other samples</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Site/">Site</a></td>
+<td>A place where samples are collected</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Study/">Study</a></td>
+<td>A research initiative, proposal or project under which samples are collected ...</td>
+</tr>
+<tr>
 <td><a href="Observation/">Observation</a></td>
 <td>An act of observing a property of a feature of interest, yielding a result (O...</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Measurement/">Measurement</a></td>
 <td>An observation whose result is a quantity</td>
+</tr>
+<tr>
+<td><a href="ProcessingSampleLink/">ProcessingSampleLink</a></td>
+<td>One row of the flat table form of has_input and has_output: one sample, one p...</td>
 </tr>
 </tbody>
 </table>
@@ -591,8 +619,40 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="associated_studies/">associated_studies</a></td>
+<td>The studies the sample was collected or processed under</td>
+</tr>
+<tr>
+<td><a href="collected_at/">collected_at</a></td>
+<td>The site the sample was collected from</td>
+</tr>
+<tr>
 <td><a href="description/">description</a></td>
 <td>A human-readable description for a thing</td>
+</tr>
+<tr>
+<td><a href="env_broad_scale/">env_broad_scale</a></td>
+<td>The broad-scale environmental context (for example, the biome) the sample cam...</td>
+</tr>
+<tr>
+<td><a href="env_local_scale/">env_local_scale</a></td>
+<td>The local environment the sample came from, as an ontology term CURIE, follow...</td>
+</tr>
+<tr>
+<td><a href="env_medium/">env_medium</a></td>
+<td>The environmental material immediately surrounding the sample at the time of ...</td>
+</tr>
+<tr>
+<td><a href="external_identifiers/">external_identifiers</a></td>
+<td>Identifiers for the same entity in the system that holds the original record,...</td>
+</tr>
+<tr>
+<td><a href="has_input/">has_input</a></td>
+<td>The samples a processing step takes in</td>
+</tr>
+<tr>
+<td><a href="has_output/">has_output</a></td>
+<td>The processed samples a processing step produces</td>
 </tr>
 <tr>
 <td><a href="id/">id</a></td>
@@ -611,12 +671,44 @@
 <td>The property observed; a BERVO Variable CURIE when one exists</td>
 </tr>
 <tr>
+<td><a href="organism/">organism</a></td>
+<td>The organism the sample is expected to contain, when it is one organism</td>
+</tr>
+<tr>
+<td><a href="principal_investigator/">principal_investigator</a></td>
+<td>The person responsible for the study</td>
+</tr>
+<tr>
+<td><a href="processing/">processing</a></td>
+<td>The processing step this link row belongs to</td>
+</tr>
+<tr>
+<td><a href="protocol/">protocol</a></td>
+<td>A link to the protocol the step followed</td>
+</tr>
+<tr>
 <td><a href="raw_value/">raw_value</a></td>
 <td>The value exactly as it appeared at the source</td>
 </tr>
 <tr>
 <td><a href="result/">result</a></td>
 <td>The result of the observation</td>
+</tr>
+<tr>
+<td><a href="role/">role</a></td>
+<td>Whether the sample went into or came out of the processing step</td>
+</tr>
+<tr>
+<td><a href="sample/">sample</a></td>
+<td>The sample this link row connects to the processing step</td>
+</tr>
+<tr>
+<td><a href="sample_category/">sample_category</a></td>
+<td>What kind of material the sample is, at the coarse level needed to find the s...</td>
+</tr>
+<tr>
+<td><a href="taxon/">taxon</a></td>
+<td>Taxonomic classification, as an NCBITaxon CURIE</td>
 </tr>
 <tr>
 <td><a href="unit/">unit</a></td>
@@ -634,8 +726,12 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
+<td><a href="ProcessingRoleEnum/">ProcessingRoleEnum</a></td>
+<td>Whether a sample is an input to or an output of a processing step</td>
+</tr>
+<tr>
+<td><a href="SampleCategoryEnum/">SampleCategoryEnum</a></td>
+<td>Coarse sample categories</td>
 </tr>
 </tbody>
 </table>

@@ -1,6 +1,7 @@
 name: ber-central-schema
-description: 'The central BRIDGE schema for harmonized cross-BER data access. Defines
-  shared base elements and composes domain modules (currently: measurements.yaml).'
+description: 'The central BRIDGE schema for harmonized cross-BER data access. Composes
+  the shared base elements in core.yaml with domain modules (currently: measurements.yaml
+  and the draft umbrella.yaml).'
 title: BRIDGE Central Schema
 see_also:
 - https://github.com/ber-data/bridge-central-schema
@@ -8,7 +9,9 @@ see_also:
 id: https://w3id.org/ber-data/bridge-central-schema
 imports:
 - linkml:types
+- core
 - measurements
+- umbrella
 license: Apache-2.0
 prefixes:
   bridge_central_schema:
@@ -291,12 +294,82 @@ types:
     base: str
     uri: xsd:string
     repr: str
+enums:
+  SampleCategoryEnum:
+    name: SampleCategoryEnum
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/SampleCategoryEnum
+    description: Coarse sample categories. Each value lists the BASALT Sample subclass
+      it corresponds to. Ontology meanings are not assigned yet.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    permissible_values:
+      soil:
+        text: soil
+        exact_mappings:
+        - basalt_schema:SoilSample
+        related_mappings:
+        - basalt_schema:MonetSoilSample
+      sediment:
+        text: sediment
+        exact_mappings:
+        - basalt_schema:SedimentSample
+      water:
+        text: water
+        exact_mappings:
+        - basalt_schema:WaterSample
+      aerosol:
+        text: aerosol
+        exact_mappings:
+        - basalt_schema:AerosolSample
+        related_mappings:
+        - basalt_schema:AerosolArmSample
+      plant:
+        text: plant
+        exact_mappings:
+        - basalt_schema:PlantSample
+      pure_culture:
+        text: pure_culture
+        exact_mappings:
+        - basalt_schema:PureCultureSample
+      mixed_culture:
+        text: mixed_culture
+        exact_mappings:
+        - basalt_schema:MixedCultureSample
+        related_mappings:
+        - basalt_schema:CultureEnvironmentalSample
+      engineered_strain:
+        text: engineered_strain
+        exact_mappings:
+        - basalt_schema:EngineeredStrainSample
+      synthesized_material:
+        text: synthesized_material
+        exact_mappings:
+        - basalt_schema:SynthesizedMaterialSample
+      commercial_material:
+        text: commercial_material
+        exact_mappings:
+        - basalt_schema:CommerciallyPurchasedSample
+      other:
+        text: other
+        exact_mappings:
+        - basalt_schema:OtherUndescribedSample
+  ProcessingRoleEnum:
+    name: ProcessingRoleEnum
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/ProcessingRoleEnum
+    description: Whether a sample is an input to or an output of a processing step.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    permissible_values:
+      input:
+        text: input
+        description: The sample was consumed by the processing step.
+      output:
+        text: output
+        description: The sample was produced by the processing step.
 slots:
   id:
     name: id
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/id
     description: A unique identifier for a thing
-    from_schema: https://w3id.org/ber-data/bridge-central-schema
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/core
     mappings:
     - schema:identifier
     slot_uri: schema:identifier
@@ -310,7 +383,7 @@ slots:
     name: name
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/name
     description: A human-readable name for a thing
-    from_schema: https://w3id.org/ber-data/bridge-central-schema
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/core
     mappings:
     - schema:name
     slot_uri: schema:name
@@ -322,7 +395,7 @@ slots:
     name: description
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/description
     description: A human-readable description for a thing
-    from_schema: https://w3id.org/ber-data/bridge-central-schema
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/core
     mappings:
     - schema:description
     slot_uri: schema:description
@@ -330,6 +403,29 @@ slots:
     domain_of:
     - NamedThing
     range: string
+  external_identifiers:
+    name: external_identifiers
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/external_identifiers
+    description: Identifiers for the same entity in the system that holds the original
+      record, such as GOLD, EMSL or INSDC. Lets a record that one BER system redistributes
+      from another be matched to the original.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/core
+    exact_mappings:
+    - basalt_schema:external_identifiers
+    close_mappings:
+    - nmdc:external_database_identifiers
+    related_mappings:
+    - nmdc:gold_biosample_identifiers
+    - nmdc:emsl_biosample_identifiers
+    - nmdc:insdc_biosample_identifiers
+    - nmdc:emsl_project_identifiers
+    - nmdc:gold_study_identifiers
+    slot_uri: bridge_central_schema:external_identifiers
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    range: uriorcurie
+    multivalued: true
   observed_property:
     name: observed_property
     definition_uri: https://w3id.org/ber-data/bridge-measurements/observed_property
@@ -381,6 +477,206 @@ slots:
     domain_of:
     - QuantityValue
     range: string
+  principal_investigator:
+    name: principal_investigator
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/principal_investigator
+    description: The person responsible for the study.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    slot_uri: bridge_central_schema:principal_investigator
+    owner: Study
+    domain_of:
+    - Study
+    range: string
+  taxon:
+    name: taxon
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/taxon
+    description: Taxonomic classification, as an NCBITaxon CURIE.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:classified_as
+    - basalt_schema:taxonomy_id
+    slot_uri: bridge_central_schema:taxon
+    owner: Organism
+    domain_of:
+    - Organism
+    range: uriorcurie
+  associated_studies:
+    name: associated_studies
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/associated_studies
+    description: The studies the sample was collected or processed under.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:associated_studies
+    - basalt_schema:project
+    slot_uri: bridge_central_schema:associated_studies
+    owner: Sample
+    domain_of:
+    - Sample
+    range: Study
+    multivalued: true
+  collected_at:
+    name: collected_at
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/collected_at
+    description: The site the sample was collected from.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:collected_from
+    - basalt_schema:sampled_at_site
+    slot_uri: bridge_central_schema:collected_at
+    owner: Sample
+    domain_of:
+    - Sample
+    range: Site
+  organism:
+    name: organism
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/organism
+    description: The organism the sample is expected to contain, when it is one organism.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:expected_organism
+    - basalt_schema:organism_ref
+    slot_uri: bridge_central_schema:organism
+    owner: Sample
+    domain_of:
+    - Sample
+    range: Organism
+  sample_category:
+    name: sample_category
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/sample_category
+    description: What kind of material the sample is, at the coarse level needed to
+      find the same kind of sample across BER sources. Finer detail goes in env_medium;
+      programs and protocols (MONet, Terraform, AMP2) stay with the study and the
+      source schema.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    related_mappings:
+    - nmdc:sample_type
+    slot_uri: bridge_central_schema:sample_category
+    owner: Sample
+    domain_of:
+    - Sample
+    range: SampleCategoryEnum
+  env_broad_scale:
+    name: env_broad_scale
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/env_broad_scale
+    description: The broad-scale environmental context (for example, the biome) the
+      sample came from, as an ontology term CURIE, following the MIxS slot of the
+      same name.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:env_broad_scale
+    - basalt_schema:env_broad_scale
+    slot_uri: bridge_central_schema:env_broad_scale
+    owner: Sample
+    domain_of:
+    - Sample
+    range: uriorcurie
+  env_local_scale:
+    name: env_local_scale
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/env_local_scale
+    description: The local environment the sample came from, as an ontology term CURIE,
+      following the MIxS slot of the same name.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:env_local_scale
+    - basalt_schema:env_local_scale
+    slot_uri: bridge_central_schema:env_local_scale
+    owner: Sample
+    domain_of:
+    - Sample
+    range: uriorcurie
+  env_medium:
+    name: env_medium
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/env_medium
+    description: The environmental material immediately surrounding the sample at
+      the time of sampling, as an ontology term CURIE, following the MIxS slot of
+      the same name.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:env_medium
+    - basalt_schema:env_medium
+    slot_uri: bridge_central_schema:env_medium
+    owner: Sample
+    domain_of:
+    - Sample
+    range: uriorcurie
+  has_input:
+    name: has_input
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/has_input
+    description: The samples a processing step takes in.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:has_input
+    slot_uri: bridge_central_schema:has_input
+    owner: Processing
+    domain_of:
+    - Processing
+    range: Sample
+    multivalued: true
+  has_output:
+    name: has_output
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/has_output
+    description: The processed samples a processing step produces.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:has_output
+    slot_uri: bridge_central_schema:has_output
+    owner: Processing
+    domain_of:
+    - Processing
+    range: ProcessedSample
+    multivalued: true
+  protocol:
+    name: protocol
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/protocol
+    description: A link to the protocol the step followed.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:protocol_link
+    - basalt_schema:in_protocol
+    slot_uri: bridge_central_schema:protocol
+    owner: Processing
+    domain_of:
+    - Processing
+    range: uriorcurie
+  processing:
+    name: processing
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/processing
+    description: The processing step this link row belongs to.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - basalt_schema:processing_id
+    slot_uri: bridge_central_schema:processing
+    owner: ProcessingSampleLink
+    domain_of:
+    - ProcessingSampleLink
+    range: Processing
+    required: true
+  sample:
+    name: sample
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/sample
+    description: The sample this link row connects to the processing step.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - basalt_schema:sample_id
+    slot_uri: bridge_central_schema:sample
+    owner: ProcessingSampleLink
+    domain_of:
+    - ProcessingSampleLink
+    range: Sample
+    required: true
+  role:
+    name: role
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/role
+    description: Whether the sample went into or came out of the processing step.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - basalt_schema:role
+    slot_uri: bridge_central_schema:role
+    owner: ProcessingSampleLink
+    domain_of:
+    - ProcessingSampleLink
+    range: ProcessingRoleEnum
+    required: true
   Measurement_result:
     name: Measurement_result
     definition_uri: https://w3id.org/ber-data/bridge-measurements/result
@@ -423,13 +719,14 @@ classes:
     name: NamedThing
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/NamedThing
     description: Generic base for any identifiable BRIDGE entity.
-    from_schema: https://w3id.org/ber-data/bridge-central-schema
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/core
     mappings:
     - schema:Thing
     slots:
     - id
     - name
     - description
+    - external_identifiers
     class_uri: schema:Thing
   MeasurementValue:
     name: MeasurementValue
@@ -490,9 +787,159 @@ classes:
           as they are admitted.'
         pattern: ^bervo:BERVO_\d{7}$
     class_uri: bridge:Measurement
+  Study:
+    name: Study
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/Study
+    description: A research initiative, proposal or project under which samples are
+      collected and processed.
+    comments:
+    - GOLD has both a study and a project class (cmungall/bridge-schemas gold.linkml.yaml).
+      Whether a GOLD project belongs here or with data generation is open; ask the
+      GOLD team.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:Study
+    - basalt_schema:Study
+    is_a: NamedThing
+    slots:
+    - id
+    - name
+    - description
+    - external_identifiers
+    - principal_investigator
+    class_uri: bridge_central_schema:Study
+  Site:
+    name: Site
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/Site
+    description: A place where samples are collected.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:FieldResearchSite
+    - basalt_schema:Site
+    is_a: NamedThing
+    slots:
+    - id
+    - name
+    - description
+    - external_identifiers
+    class_uri: bridge_central_schema:Site
+  Organism:
+    name: Organism
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/Organism
+    description: The biological identity of what is in a sample (a strain, isolate
+      or engineered construct), not a physical sample. Several samples can share one
+      organism.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:Organism
+    - basalt_schema:organism
+    is_a: NamedThing
+    slots:
+    - id
+    - name
+    - description
+    - external_identifiers
+    - taxon
+    class_uri: bridge_central_schema:Organism
+  Sample:
+    name: Sample
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/Sample
+    description: A physical material that can be characterized by an experiment.
+    comments:
+    - 'Concrete sample types stay in the source schemas: nmdc:Biosample and nmdc:OrganismSample,
+      and the 18 direct BASALT Sample subclasses (SoilSample, WaterSample, ...).'
+    - BASALT records collection on a separate SamplingActivity class; NMDC records
+      it on the sample. This draft leaves the sampling event out.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:Sample
+    - basalt_schema:Sample
+    is_a: NamedThing
+    abstract: true
+    slots:
+    - id
+    - name
+    - description
+    - external_identifiers
+    - associated_studies
+    - collected_at
+    - organism
+    - sample_category
+    - env_broad_scale
+    - env_local_scale
+    - env_medium
+    class_uri: bridge_central_schema:Sample
+  ProcessedSample:
+    name: ProcessedSample
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/ProcessedSample
+    description: A sample produced by a processing step from one or more other samples.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:ProcessedSample
+    - basalt_schema:ProcessedSample
+    is_a: Sample
+    slots:
+    - id
+    - name
+    - description
+    - external_identifiers
+    - associated_studies
+    - collected_at
+    - organism
+    - sample_category
+    - env_broad_scale
+    - env_local_scale
+    - env_medium
+    class_uri: bridge_central_schema:ProcessedSample
+  Processing:
+    name: Processing
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/Processing
+    description: One laboratory step that takes one or more samples as input and produces
+      one or more processed samples.
+    comments:
+    - Inputs and outputs are lists here, as in nmdc-schema. BASALT stores the same
+      links only in ProcessingSampleLink rows; see that class.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:MaterialProcessing
+    - basalt_schema:SampleProcessing
+    close_mappings:
+    - OBI:0000094
+    is_a: NamedThing
+    abstract: true
+    slots:
+    - id
+    - name
+    - description
+    - external_identifiers
+    - has_input
+    - has_output
+    - protocol
+    class_uri: bridge_central_schema:Processing
+  ProcessingSampleLink:
+    name: ProcessingSampleLink
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/ProcessingSampleLink
+    description: 'One row of the flat table form of has_input and has_output: one
+      sample, one processing step, and whether the sample went in or came out. This
+      is the shape a flattened lakehouse table would take. It is derived from has_input
+      and has_output, not recorded separately.'
+    comments:
+    - BASALT's link also has step_number and in_run, which order steps within a run.
+      Whether those belong in the umbrella is an open question.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - basalt_schema:ProcessingSampleLink
+    related_mappings:
+    - nmdc:has_input
+    - nmdc:has_output
+    slots:
+    - processing
+    - sample
+    - role
+    class_uri: bridge_central_schema:ProcessingSampleLink
 metamodel_version: 1.11.0
 source_file: ber_central_schema.yaml
-source_file_date: '2026-10-21T19:55:04'
-source_file_size: 1176
-generation_date: '2026-10-21T19:55:13'
+source_file_date: '2026-10-21T21:07:02'
+source_file_size: 733
+generation_date: '2026-10-21T21:07:08'
 
