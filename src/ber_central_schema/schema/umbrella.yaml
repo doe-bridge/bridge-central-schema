@@ -2,8 +2,8 @@
 # Built from the nmdc-schema and BASALT comparison:
 # https://docs.google.com/document/d/1ZF5mnfnauqJag8zM-YEZVq5BPa-jUyoKOOHChi5xtd4/edit
 # Sources read 2026-10-14: nmdc-schema main 03ba5a2, BASALT-Schema f41b7f4.
-id: https://w3id.org/ber-data/bridge-central-schema/umbrella-draft
-name: bridge-umbrella-draft
+id: https://w3id.org/ber-data/bridge-central-schema/umbrella
+name: umbrella
 title: BRIDGE umbrella classes (draft)
 description: >-
   Shared classes for samples, organisms, studies and sample processing that
@@ -26,17 +26,10 @@ default_range: string
 
 imports:
   - linkml:types
+  - core
 
+# NamedThing and its slots are defined in core.yaml.
 classes:
-
-  NamedThing:
-    abstract: true
-    description: Generic base for any identifiable BRIDGE entity.
-    slots:
-      - id
-      - name
-      - description
-      - external_identifiers
 
   Study:
     is_a: NamedThing
@@ -151,36 +144,6 @@ classes:
         a run. Whether those belong in the umbrella is an open question.
 
 slots:
-  id:
-    description: A unique identifier for the entity, as a URI or CURIE.
-    identifier: true
-    range: uriorcurie
-    slot_uri: schema:identifier
-  name:
-    description: A human-readable name for the entity.
-    slot_uri: schema:name
-  description:
-    description: A free-text description of the entity.
-    slot_uri: schema:description
-  external_identifiers:
-    description: >-
-      Identifiers for the same entity in the system that holds the original
-      record, such as GOLD, EMSL or INSDC. Lets a record that one BER system
-      redistributes from another be matched to the original.
-    range: uriorcurie
-    multivalued: true
-    exact_mappings:
-      - basalt_schema:external_identifiers
-    close_mappings:
-      # Abstract parent of nmdc-schema's per-source identifier slots.
-      - nmdc:external_database_identifiers
-    related_mappings:
-      # nmdc-schema has one slot per source system and entity type.
-      - nmdc:gold_biosample_identifiers
-      - nmdc:emsl_biosample_identifiers
-      - nmdc:insdc_biosample_identifiers
-      - nmdc:emsl_project_identifiers
-      - nmdc:gold_study_identifiers
   principal_investigator:
     description: The person responsible for the study.
   taxon:
