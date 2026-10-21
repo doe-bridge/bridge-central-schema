@@ -8,6 +8,6 @@ statistic: mean
 standard_deviation: 0.568
 sample_size: 63
 unit: um
-source_system: GOLD
+source_system: ber_registry:schema-jgi-gold
 source_record_id: Go0654398
 source_field: organism_cell_length

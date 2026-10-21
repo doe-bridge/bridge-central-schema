@@ -8,6 +8,6 @@ missing_value_reason: below_detection_limit
 unit: mg/kg
 measurement_method: Bray
 quality_flag: Below_Detection
-source_system: EMSL MONet
+source_system: ber_registry:schema-basalt-schema
 source_record_id: 60846_2_BTM_1
 source_field: PO4_P_mg_per_kg

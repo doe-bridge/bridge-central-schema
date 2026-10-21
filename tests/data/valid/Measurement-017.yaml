@@ -4,6 +4,6 @@ observed_property: bervo:BERVO_0001370  # Air temperature
 raw_value: TO BE SUPPLIED
 missing_value_reason: not_reported
 value_role: measured
-source_system: ORNL APPL
+source_system: ber_registry:schema-plant-phenotyping
 source_record_id: "67"
 source_field: envParamValue

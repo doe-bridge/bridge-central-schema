@@ -4,5 +4,5 @@ observed_property: bridge_property:total_carbon  # mapped to MIXS:0000525
 raw_value: "2.41 %"
 numeric_value: 2.41
 unit: "%"
-source_system: BASALT
+source_system: ber_registry:schema-basalt-schema
 source_field: total_carbon_id

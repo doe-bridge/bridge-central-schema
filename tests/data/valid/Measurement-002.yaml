@@ -6,6 +6,6 @@ raw_value: .02 -.10
 minimum_numeric_value: 0.02
 maximum_numeric_value: 0.1
 unit: m
-source_system: NMDC
+source_system: ber_registry:schema-nmdc-schema
 source_record_id: nmdc:bsm-11-042nd237
 source_field: depth

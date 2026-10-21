@@ -51,7 +51,7 @@ def render(items: list[dict]) -> str:
         "",
         f"{len(items)} items were raised in the hackathon notes, Zoom chat, brainstorm drawing, "
         "intro slides, Report Out tab, issue 4 and the 10/07 DM notes. Each one is listed below "
-        "with where it went in `measurements.yaml` 0.3.0. The synthesis is in "
+        "with where it went in `measurements.yaml` 0.4.0. The synthesis is in "
         "[../measurements-hackathon-2026-09-30.md](../measurements-hackathon-2026-09-30.md).",
         "",
         "## Where the items went",

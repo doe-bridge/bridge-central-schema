@@ -1,5 +1,5 @@
 # Everything raised at, or about, the BRIDGE Measurements hackathon of
-# 2026-09-30, and where each item went in measurements.yaml 0.3.0.
+# 2026-09-30, and where each item went in measurements.yaml 0.4.0.
 #
 # sources:
 #   notes:   Hackathon Notes doc, main tab
@@ -9,7 +9,7 @@
 #            https://docs.google.com/drawings/d/1llZ1wNabHL1A1EXYxelY62qru8Qz1tdaDvT2pdvW50Y
 #   slides:  hackathon intro slides
 #            https://docs.google.com/presentation/d/1-2ai8pYpBnytDB8-ihF4e1pK2RoUW2zGDxgOMUsPqHE
-#   issue4:  https://github.com/ber-data/bridge-central-schema/issues/4
+#   issue4:  https://github.com/doe-bridge/bridge-central-schema/issues/4
 #   recap:   10/07/2026 entry in the BRIDGE DM weekly notes
 #            https://docs.google.com/document/d/1ezgBR6IbJNJjDntK27djICFIFNBKHeNtdgHqwELMQqU
 #   reportout: Report Out tab of the Hackathon Notes doc
@@ -302,8 +302,8 @@ items:
     point: Source lineage (source system, record ID, field, snapshot) so raw text stays traceable.
     raised_by: ["@valerie-autumn-skye"]
     source: issue4
-    disposition: in_schema
-    where: source_system, source_record_id, source_field; a snapshot slot is not added yet
+    disposition: known_gap
+    where: source_system, source_record_id, source_field; no snapshot or version slot yet (problem/valid Measurement-005)
   - id: R45
     point: Review the exact_mappings to NMDC QuantityValue and AttributeValue until the constraints match; add NMDC's minimum and maximum fields.
     raised_by: ["@valerie-autumn-skye"]
@@ -336,13 +336,13 @@ items:
     raised_by: ["@dschristianson"]
     source: notes
     disposition: in_schema
-    where: observed_time (ISO 8601 with offset)
+    where: observed_time, observed_start_time, observed_end_time (ISO 8601; an offset whenever a time of day is given)
   - id: R50
     point: Time series (loggers at 10 Hz reported per minute or per 5 minutes). Is a TimeseriesMeasurement needed on day one?
     raised_by: ["ESS-DIVE", "@sierra-moxon"]
     source: drawing
     disposition: known_gap
-    where: one value per record only (problem/valid Measurement-001)
+    where: one value per record only (problem/invalid Measurement-001)
   - id: R51
     point: Replicates; EMSL has replicates and ranges, mostly not captured.
     raised_by: ["not recorded"]

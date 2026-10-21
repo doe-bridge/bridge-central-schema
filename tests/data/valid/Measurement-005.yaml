@@ -8,6 +8,6 @@ minimum_numeric_value: 0
 maximum_numeric_value: 30
 unit: MPa
 value_qualifier: tolerated
-source_system: GOLD
+source_system: ber_registry:schema-jgi-gold
 source_record_id: Go0120212
 source_field: organism_pressure

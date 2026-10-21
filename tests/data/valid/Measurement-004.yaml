@@ -6,6 +6,6 @@ raw_value: 0.16-0.22 M
 minimum_numeric_value: 0.16
 maximum_numeric_value: 0.22
 unit: mol/L
-source_system: GOLD
+source_system: ber_registry:schema-jgi-gold
 source_record_id: Go0370391
 source_field: organism_salinity_concentration

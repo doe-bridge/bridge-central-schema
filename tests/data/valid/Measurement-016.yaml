@@ -5,6 +5,6 @@ numeric_value: 98.89321422132993
 unit: mm2
 value_role: derived
 measurement_method: RGB2 imaging; APPL-CORE feature extraction
-source_system: ORNL APPL
+source_system: ber_registry:schema-plant-phenotyping
 source_record_id: 67__29041__5701__rgb2__area_mm2
 source_field: rgb2.area_mm2

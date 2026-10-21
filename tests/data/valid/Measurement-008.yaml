@@ -5,6 +5,6 @@ observed_property: bervo:BERVO_8000261  # pH
 feature_of_interest: gold:Go0094515
 raw_value: circumneutral
 value_role: interpreted
-source_system: GOLD
+source_system: ber_registry:schema-jgi-gold
 source_record_id: Go0094515
 source_field: organism_ph

@@ -8,8 +8,8 @@ description: >-
   measurements.yaml).
 license: Apache-2.0
 see_also:
-  - https://github.com/ber-data/bridge-central-schema
-  - https://github.com/ber-data/lakehouse-registry
+  - https://github.com/doe-bridge/bridge-central-schema
+  - https://github.com/doe-bridge/lakehouse-registry
 
 prefixes:
   bridge_central_schema: https://w3id.org/ber-data/bridge-central-schema/

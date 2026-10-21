@@ -4,6 +4,6 @@ observed_property: bervo:BERVO_8000427  # Salinity
 feature_of_interest: gold:Go0110604
 raw_value: " not determined"
 missing_value_reason: not_determined
-source_system: GOLD
+source_system: ber_registry:schema-jgi-gold
 source_record_id: Go0110604
 source_field: organism_salinity_concentration

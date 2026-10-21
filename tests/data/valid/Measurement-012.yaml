@@ -7,6 +7,6 @@ raw_value: 30-37
 minimum_numeric_value: 30
 maximum_numeric_value: 37
 unit: Cel
-source_system: GOLD
+source_system: ber_registry:schema-jgi-gold
 source_record_id: Go0011324
 source_field: organism_growth_temperature_in_centigrade

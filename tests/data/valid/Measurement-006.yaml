@@ -6,6 +6,6 @@ raw_value: 0–30 MPa (Optimal 10MPa)
 numeric_value: 10
 unit: MPa
 value_qualifier: optimum
-source_system: GOLD
+source_system: ber_registry:schema-jgi-gold
 source_record_id: Go0120212
 source_field: organism_pressure

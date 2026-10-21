@@ -1,5 +1,7 @@
 # KNOWN GAP: a time series. BASIN-3D packs many readings into one result;
-# this module holds one value per record, so this fails validation today.
+# this module holds one value per record, so this fails validation today:
+# result is not a slot, and with no value slot the record also fails the
+# rule that a measurement carries at least one value.
 # Raised by ESS-DIVE at the 2026-09-30 hackathon; deferred.
 observed_property: bridge_property:water_temperature
 source_system: BASIN-3D (USGS)

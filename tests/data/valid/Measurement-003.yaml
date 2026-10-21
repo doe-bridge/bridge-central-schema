@@ -7,6 +7,6 @@ raw_value: -80 Celcius
 numeric_value: -80
 unit: Cel
 value_role: setting
-source_system: NMDC
+source_system: ber_registry:schema-nmdc-schema
 source_record_id: nmdc:bsm-11-03dy0348
 source_field: samp_store_temp
