@@ -486,7 +486,7 @@
 
 
 <h1 id="slot-source_system">Slot: source_system</h1>
-<p><em>The system the value came from, such as GOLD, NMDC, BASALT or ESS-DIVE.</em></p>
+<p><em>The system the value came from. Use the BER lakehouse registry entry (<a href="https://github.com/doe-bridge/lakehouse-registry">https://github.com/doe-bridge/lakehouse-registry</a>) for the source's schema when it has one, such as ber_registry:schema-jgi-gold; otherwise the system's name, such as BASIN-3D (USGS).</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/ber-data/bridge-central-schema/source_system">bridge_central_schema:source_system</a></p>
 <!-- no inheritance hierarchy -->
@@ -569,7 +569,10 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">source_system</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The system the value came from, such as GOLD, NMDC, BASALT or ESS-DIVE.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The system the value came from. Use the BER lakehouse registry entry</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">(https://github.com/doe-bridge/lakehouse-registry) for the source&#39;s schema when</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">it has one, such as ber_registry:schema-jgi-gold; otherwise the system&#39;s name, such</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">as BASIN-3D (USGS).</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">domain_of</span><span class="p">:</span>

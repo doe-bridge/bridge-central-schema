@@ -624,15 +624,23 @@
 </tr>
 <tr>
 <td><a href="numeric_value/">numeric_value</a></td>
-<td>A single number parsed from the source value</td>
+<td>A single number parsed from raw_value</td>
+</tr>
+<tr>
+<td><a href="observed_end_time/">observed_end_time</a></td>
+<td>The end of the period a value covers</td>
 </tr>
 <tr>
 <td><a href="observed_property/">observed_property</a></td>
 <td>The property that was measured</td>
 </tr>
 <tr>
+<td><a href="observed_start_time/">observed_start_time</a></td>
+<td>The start of the period a value covers, for sources that report a start and a...</td>
+</tr>
+<tr>
 <td><a href="observed_time/">observed_time</a></td>
-<td>When the property was observed, as an ISO 8601 date-time with a UTC offset</td>
+<td>When the property was observed, in ISO 8601 at whatever resolution the source...</td>
 </tr>
 <tr>
 <td><a href="property_label/">property_label</a></td>
@@ -652,15 +660,15 @@
 </tr>
 <tr>
 <td><a href="source_field/">source_field</a></td>
-<td>The source field, column or slot the value came from</td>
+<td>The source field, column or slot the value came from, named as the source nam...</td>
 </tr>
 <tr>
 <td><a href="source_record_id/">source_record_id</a></td>
-<td>The identifier of the source record the value came from</td>
+<td>The identifier of the source record the value came from, written as the sourc...</td>
 </tr>
 <tr>
 <td><a href="source_system/">source_system</a></td>
-<td>The system the value came from, such as GOLD, NMDC, BASALT or ESS-DIVE</td>
+<td>The system the value came from</td>
 </tr>
 <tr>
 <td><a href="standard_deviation/">standard_deviation</a></td>
@@ -671,8 +679,16 @@
 <td>The summary statistic that numeric_value reports, when the source value summa...</td>
 </tr>
 <tr>
+<td><a href="treatment/">treatment</a></td>
+<td>The experimental treatment applied to the thing measured, such as a warming o...</td>
+</tr>
+<tr>
 <td><a href="unit/">unit</a></td>
 <td>The unit as a UCUM code, written in printable ASCII (for example um, not µm)</td>
+</tr>
+<tr>
+<td><a href="unit_basis/">unit_basis</a></td>
+<td>What the unit is expressed relative to, when the unit alone does not say, suc...</td>
 </tr>
 <tr>
 <td><a href="value_qualifier/">value_qualifier</a></td>
@@ -684,7 +700,7 @@
 </tr>
 <tr>
 <td><a href="value_term/">value_term</a></td>
-<td>An ontology term for a categorical value, such as METPO:1000615 (mesophilic)</td>
+<td>An ontology term for a categorical value, parsed from raw_value the way numer...</td>
 </tr>
 </tbody>
 </table>
@@ -783,6 +799,10 @@
 <tr>
 <td><a href="Objectidentifier/">Objectidentifier</a></td>
 <td>A URI or CURIE that represents an object in the model</td>
+</tr>
+<tr>
+<td><a href="PartialDateTime/">PartialDateTime</a></td>
+<td>An ISO 8601 year, year-month, date, or date-time</td>
 </tr>
 <tr>
 <td><a href="Sparqlpath/">Sparqlpath</a></td>

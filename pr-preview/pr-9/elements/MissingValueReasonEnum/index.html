@@ -473,7 +473,7 @@
 <tr>
 <td>not_reported</td>
 <td>None</td>
-<td>The source has no value and gives no reason</td>
+<td>The source leaves the value empty and gives no reason</td>
 </tr>
 <tr>
 <td>below_detection_limit</td>
@@ -484,6 +484,11 @@
 <td>above_detection_limit</td>
 <td>None</td>
 <td>The value was above the method's upper detection limit</td>
+</tr>
+<tr>
+<td>unknown</td>
+<td>None</td>
+<td>The source says the value is unknown, for example by writing unknown where th...</td>
 </tr>
 <tr>
 <td>out_of_range</td>
@@ -527,13 +532,17 @@
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The property does not apply to this thing.</span>
 <span class="w">  </span><span class="nt">not_reported</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">not_reported</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The source has no value and gives no reason.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The source leaves the value empty and gives no reason.</span>
 <span class="w">  </span><span class="nt">below_detection_limit</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">below_detection_limit</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The value was below the method&#39;s detection limit.</span>
 <span class="w">  </span><span class="nt">above_detection_limit</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">above_detection_limit</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The value was above the method&#39;s upper detection limit.</span>
+<span class="w">  </span><span class="nt">unknown</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unknown</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The source says the value is unknown, for example by writing unknown</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">where the value would be.</span>
 <span class="w">  </span><span class="nt">out_of_range</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">out_of_range</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The source used a sentinel value meaning the reading was outside</span>

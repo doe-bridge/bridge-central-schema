@@ -319,7 +319,11 @@
 
       Measurement : numeric_value
 
+      Measurement : observed_end_time
+
       Measurement : observed_property
+
+      Measurement : observed_start_time
 
       Measurement : observed_time
 
@@ -350,7 +354,11 @@
 
 
 
+      Measurement : treatment
+
       Measurement : unit
+
+      Measurement : unit_basis
 
       Measurement : value_qualifier
 
@@ -422,7 +430,7 @@
 <tr>
 <td><a href="../numeric_value/">numeric_value</a></td>
 <td>0..1 <br/> <a href="../Double/">Double</a></td>
-<td>A single number parsed from the source value</td>
+<td>A single number parsed from raw_value</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -444,9 +452,15 @@
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="../unit_basis/">unit_basis</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>What the unit is expressed relative to, when the unit alone does not say, suc...</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../value_term/">value_term</a></td>
 <td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>An ontology term for a categorical value, such as METPO:1000615 (mesophilic)</td>
+<td>An ontology term for a categorical value, parsed from raw_value the way numer...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -498,6 +512,12 @@
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="../treatment/">treatment</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The experimental treatment applied to the thing measured, such as a warming o...</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../instrument/">instrument</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The instrument or sensor that produced the value</td>
@@ -505,26 +525,38 @@
 </tr>
 <tr>
 <td><a href="../observed_time/">observed_time</a></td>
-<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
-<td>When the property was observed, as an ISO 8601 date-time with a UTC offset</td>
+<td>0..1 <br/> <a href="../PartialDateTime/">PartialDateTime</a></td>
+<td>When the property was observed, in ISO 8601 at whatever resolution the source...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../observed_start_time/">observed_start_time</a></td>
+<td>0..1 <br/> <a href="../PartialDateTime/">PartialDateTime</a></td>
+<td>The start of the period a value covers, for sources that report a start and a...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../observed_end_time/">observed_end_time</a></td>
+<td>0..1 <br/> <a href="../PartialDateTime/">PartialDateTime</a></td>
+<td>The end of the period a value covers</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../source_system/">source_system</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The system the value came from, such as GOLD, NMDC, BASALT or ESS-DIVE</td>
+<td>The system the value came from</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../source_record_id/">source_record_id</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The identifier of the source record the value came from</td>
+<td>The identifier of the source record the value came from, written as the sourc...</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../source_field/">source_field</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The source field, column or slot the value came from</td>
+<td>The source field, column or slot the value came from, named as the source nam...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -573,6 +605,7 @@ The class must satisfy exactly one of:
 <ul>
 <li>A record must carry at least one of raw_value, numeric_value, minimum_numeric_value, maximum_numeric_value, value_term or missing_value_reason, so an empty measurement fails validation.</li>
 <li>A record names its property with exactly one of observed_property (an identifier) or property_label (free text). property_label is the catch-all for values whose property has no identifier yet, as MIxS misc_param, NMDC PropertyAssertion and BERtron Attribute allow.</li>
+<li>The value slots come in two groups. raw_value, numeric_value, minimum_numeric_value, maximum_numeric_value, unit and value_term hold the value itself: raw_value as the source wrote it, the others as parsed from it (numeric_value for a number, value_term for a category). comparator, statistic, standard_deviation, sample_size, value_role, value_qualifier and missing_value_reason say something about that value.</li>
 <li>A source cell that holds several values (for example a width and a length) becomes several Measurement records that share source_record_id and source_field.</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -621,6 +654,11 @@ The class must satisfy exactly one of:
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">or property_label (free text). property_label is the catch-all for values whose</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">property has no identifier yet, as MIxS misc_param, NMDC PropertyAssertion and BERtron</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Attribute allow.</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">come</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">two</span><span class="nv"> </span><span class="s">groups.</span><span class="nv"> </span><span class="s">raw_value,</span><span class="nv"> </span><span class="s">numeric_value,</span><span class="nv"> </span><span class="s">minimum_numeric_value,</span>
+<span class="w">  </span><span class="s">maximum_numeric_value,</span><span class="nv"> </span><span class="s">unit</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">value_term</span><span class="nv"> </span><span class="s">hold</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">itself:</span><span class="nv"> </span><span class="s">raw_value</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">the</span>
+<span class="w">  </span><span class="s">source</span><span class="nv"> </span><span class="s">wrote</span><span class="nv"> </span><span class="s">it,</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">others</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">parsed</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">(numeric_value</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">number,</span><span class="nv"> </span><span class="s">value_term</span>
+<span class="w">  </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">category).</span><span class="nv"> </span><span class="s">comparator,</span><span class="nv"> </span><span class="s">statistic,</span><span class="nv"> </span><span class="s">standard_deviation,</span><span class="nv"> </span><span class="s">sample_size,</span><span class="nv"> </span><span class="s">value_role,</span>
+<span class="w">  </span><span class="s">value_qualifier</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">missing_value_reason</span><span class="nv"> </span><span class="s">say</span><span class="nv"> </span><span class="s">something</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">value.'</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A source cell that holds several values (for example a width and a length) becomes</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">several Measurement records that share source_record_id and source_field.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
@@ -637,6 +675,7 @@ The class must satisfy exactly one of:
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">minimum_numeric_value</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">maximum_numeric_value</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit_basis</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value_term</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">comparator</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">statistic</span>
@@ -646,8 +685,11 @@ The class must satisfy exactly one of:
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value_qualifier</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">missing_value_reason</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">measurement_method</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">treatment</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">instrument</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">observed_time</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">observed_start_time</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">observed_end_time</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">source_system</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">source_record_id</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">source_field</span>
@@ -711,6 +753,11 @@ The class must satisfy exactly one of:
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">or property_label (free text). property_label is the catch-all for values whose</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">property has no identifier yet, as MIxS misc_param, NMDC PropertyAssertion and BERtron</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Attribute allow.</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">slots</span><span class="nv"> </span><span class="s">come</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">two</span><span class="nv"> </span><span class="s">groups.</span><span class="nv"> </span><span class="s">raw_value,</span><span class="nv"> </span><span class="s">numeric_value,</span><span class="nv"> </span><span class="s">minimum_numeric_value,</span>
+<span class="w">  </span><span class="s">maximum_numeric_value,</span><span class="nv"> </span><span class="s">unit</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">value_term</span><span class="nv"> </span><span class="s">hold</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">itself:</span><span class="nv"> </span><span class="s">raw_value</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">the</span>
+<span class="w">  </span><span class="s">source</span><span class="nv"> </span><span class="s">wrote</span><span class="nv"> </span><span class="s">it,</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">others</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">parsed</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">(numeric_value</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">number,</span><span class="nv"> </span><span class="s">value_term</span>
+<span class="w">  </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">category).</span><span class="nv"> </span><span class="s">comparator,</span><span class="nv"> </span><span class="s">statistic,</span><span class="nv"> </span><span class="s">standard_deviation,</span><span class="nv"> </span><span class="s">sample_size,</span><span class="nv"> </span><span class="s">value_role,</span>
+<span class="w">  </span><span class="s">value_qualifier</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">missing_value_reason</span><span class="nv"> </span><span class="s">say</span><span class="nv"> </span><span class="s">something</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">value.'</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A source cell that holds several values (for example a width and a length) becomes</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">several Measurement records that share source_record_id and source_field.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
@@ -730,6 +777,9 @@ The class must satisfy exactly one of:
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">An identifier for this measurement, when the source has one or BRIDGE</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">mints one on ingest. Optional, because many sources (ESS-DIVE among them) do</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">not identify individual measurements.</span>
+<span class="w">    </span><span class="nt">comments</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">'Not</span><span class="nv"> </span><span class="s">named</span><span class="nv"> </span><span class="s">id:</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">central</span><span class="nv"> </span><span class="s">schema</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">id</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">identifier,</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">LinkML</span>
+<span class="w">      </span><span class="s">makes</span><span class="nv"> </span><span class="s">required,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">most</span><span class="nv"> </span><span class="s">measurements</span><span class="nv"> </span><span class="s">have</span><span class="nv"> </span><span class="s">no</span><span class="nv"> </span><span class="s">identifier.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
@@ -770,8 +820,10 @@ The class must satisfy exactly one of:
 <span class="w">  </span><span class="nt">feature_of_interest</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">feature_of_interest</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'A</span><span class="nv"> </span><span class="s">reference</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">thing</span><span class="nv"> </span><span class="s">whose</span><span class="nv"> </span><span class="s">property</span><span class="nv"> </span><span class="s">was</span><span class="nv"> </span><span class="s">measured:</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">sample,</span>
-<span class="w">      </span><span class="s">an</span><span class="nv"> </span><span class="s">organism,</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">site</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">plot,</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">stream.</span><span class="nv"> </span><span class="s">Only</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">reference:</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">classes</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">those</span>
-<span class="w">      </span><span class="s">things</span><span class="nv"> </span><span class="s">belong</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Project/Sample/Study/Processing</span><span class="nv"> </span><span class="s">working</span><span class="nv"> </span><span class="s">group.'</span>
+<span class="w">      </span><span class="s">an</span><span class="nv"> </span><span class="s">organism,</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">site</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">plot,</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">stream.</span><span class="nv"> </span><span class="s">Only</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">reference:</span><span class="nv"> </span><span class="s">classes</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">samples</span>
+<span class="w">      </span><span class="s">belong</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Project/Sample/Study/Processing</span><span class="nv"> </span><span class="s">working</span><span class="nv"> </span><span class="s">group,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">classes</span><span class="nv"> </span><span class="s">for</span>
+<span class="w">      </span><span class="s">sites,</span><span class="nv"> </span><span class="s">plots</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">landscape</span><span class="nv"> </span><span class="s">features</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Landscape/Physical</span><span class="nv"> </span><span class="s">Features</span>
+<span class="w">      </span><span class="s">working</span><span class="nv"> </span><span class="s">group.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="w">    </span><span class="nt">exact_mappings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sosa:hasFeatureOfInterest</span>
@@ -783,7 +835,8 @@ The class must satisfy exactly one of:
 <span class="w">  </span><span class="nt">raw_value</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">raw_value</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The value exactly as it appeared at the source, including its unit</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">text, ranges, qualifiers and any non-ASCII characters. Never edited.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">text, ranges, qualifiers and any non-ASCII characters. Never edited. The other</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">value slots are parsed from it.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="w">    </span><span class="nt">close_mappings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmdc:has_raw_value</span>
@@ -795,7 +848,7 @@ The class must satisfy exactly one of:
 <span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">numeric_value</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numeric_value</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A single number parsed from the source value.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A single number parsed from raw_value.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="w">    </span><span class="nt">close_mappings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmdc:has_numeric_value</span>
@@ -830,7 +883,11 @@ The class must satisfy exactly one of:
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The unit as a UCUM code, written in printable ASCII (for example</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">um, not µm). Leave empty for values without a unit, such as pH. The source's</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">own spelling stays in raw_value.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">own spelling stays in raw_value. UCUM is a grammar rather than a fixed list,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">so most units can be written even when no common code exists, and annotations</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">in braces cover counted things ({cells}/g). When a unit cannot be written in</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">UCUM, leave unit empty and keep the source's unit in raw_value. Many units from</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">QUDT (used by ESS-DIVE) carry a UCUM code (qudt:ucumCode) that can go here.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="w">    </span><span class="nt">close_mappings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmdc:has_unit</span>
@@ -840,9 +897,21 @@ The class must satisfy exactly one of:
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">    </span><span class="nt">pattern</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^[!-~]+$</span>
+<span class="w">  </span><span class="nt">unit_basis</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit_basis</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">What the unit is expressed relative to, when the unit alone does</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">not say, such as dry weight. Some bases fit UCUM annotations (mg{C}/L); this</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">slot is for those that do not. Free text until examples settle a vocabulary.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">value_term</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value_term</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">An ontology term for a categorical value, such as METPO:1000615 (mesophilic).</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">An ontology term for a categorical value, parsed from raw_value the</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">way numeric_value is parsed for a number, such as METPO:1000615 (mesophilic).</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">The source wording stays in raw_value.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
@@ -853,7 +922,9 @@ The class must satisfy exactly one of:
 <span class="w">  </span><span class="nt">comparator</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">comparator</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">How the true value relates to numeric_value, for values reported</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">as above or below a number, such as below a detection limit.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">as above or below a number, such as below a detection limit. When the source</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">gives the limit as a number, record it in numeric_value with a comparator; when</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">it gives no number, use missing_value_reason below_detection_limit instead.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
@@ -932,6 +1003,17 @@ The class must satisfy exactly one of:
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">treatment</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">treatment</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The experimental treatment applied to the thing measured, such as</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">a warming or nitrogen addition plot, kept apart from measurement_method because</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">downstream users filter and compare on it.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">instrument</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">instrument</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The instrument or sensor that produced the value.</span>
@@ -945,8 +1027,10 @@ The class must satisfy exactly one of:
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">observed_time</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">observed_time</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">When the property was observed, as an ISO 8601 date-time with a UTC</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">offset.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'When</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">property</span><span class="nv"> </span><span class="s">was</span><span class="nv"> </span><span class="s">observed,</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">ISO</span><span class="nv"> </span><span class="s">8601</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">whatever</span><span class="nv"> </span><span class="s">resolution</span>
+<span class="w">      </span><span class="s">the</span><span class="nv"> </span><span class="s">source</span><span class="nv"> </span><span class="s">gives:</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">year</span><span class="nv"> </span><span class="s">(2021),</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">year</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">month</span><span class="nv"> </span><span class="s">(2021-06),</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">date</span><span class="nv"> </span><span class="s">(2021-06-15),</span>
+<span class="w">      </span><span class="s">or</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">date-time</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">UTC</span><span class="nv"> </span><span class="s">offset</span><span class="nv"> </span><span class="s">(2021-06-15T14:30:00-07:00).</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">time</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">day</span>
+<span class="w">      </span><span class="s">must</span><span class="nv"> </span><span class="s">carry</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">offset;</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">date</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">coarser</span><span class="nv"> </span><span class="s">does</span><span class="nv"> </span><span class="s">not.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="w">    </span><span class="nt">close_mappings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sosa:phenomenonTime</span>
@@ -954,10 +1038,32 @@ The class must satisfy exactly one of:
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">datetime</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PartialDateTime</span>
+<span class="w">  </span><span class="nt">observed_start_time</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">observed_start_time</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The start of the period a value covers, for sources that report a</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">start and an end instead of one time. Same format as observed_time.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PartialDateTime</span>
+<span class="w">  </span><span class="nt">observed_end_time</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">observed_end_time</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The end of the period a value covers. Same format as observed_time.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PartialDateTime</span>
 <span class="w">  </span><span class="nt">source_system</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">source_system</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The system the value came from, such as GOLD, NMDC, BASALT or ESS-DIVE.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The system the value came from. Use the BER lakehouse registry entry</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">(https://github.com/doe-bridge/lakehouse-registry) for the source's schema when</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">it has one, such as ber_registry:schema-jgi-gold; otherwise the system's name,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">such as BASIN-3D (USGS).</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
@@ -966,7 +1072,8 @@ The class must satisfy exactly one of:
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">source_record_id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">source_record_id</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The identifier of the source record the value came from.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The identifier of the source record the value came from, written</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">as the source writes it.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
@@ -975,7 +1082,8 @@ The class must satisfy exactly one of:
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">source_field</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">source_field</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The source field, column or slot the value came from.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The source field, column or slot the value came from, named as the</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">source names it.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>

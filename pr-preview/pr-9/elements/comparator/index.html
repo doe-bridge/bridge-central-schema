@@ -486,7 +486,7 @@
 
 
 <h1 id="slot-comparator">Slot: comparator</h1>
-<p><em>How the true value relates to numeric_value, for values reported as above or below a number, such as below a detection limit.</em></p>
+<p><em>How the true value relates to numeric_value, for values reported as above or below a number, such as below a detection limit. When the source gives the limit as a number, record it in numeric_value with a comparator; when it gives no number, use missing_value_reason below_detection_limit instead.</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/ber-data/bridge-central-schema/comparator">bridge_central_schema:comparator</a></p>
 <!-- no inheritance hierarchy -->
@@ -570,7 +570,9 @@
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">comparator</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">How the true value relates to numeric_value, for values reported as above</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">or below a number, such as below a detection limit.</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">or below a number, such as below a detection limit. When the source gives the limit</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">as a number, record it in numeric_value with a comparator; when it gives no number,</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">use missing_value_reason below_detection_limit instead.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">domain_of</span><span class="p">:</span>

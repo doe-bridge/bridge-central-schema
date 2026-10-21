@@ -486,7 +486,7 @@
 
 
 <h1 id="slot-observed_time">Slot: observed_time</h1>
-<p><em>When the property was observed, as an ISO 8601 date-time with a UTC offset.</em></p>
+<p><em>When the property was observed, in ISO 8601 at whatever resolution the source gives: a year (2021), a year and month (2021-06), a date (2021-06-15), or a date-time with a UTC offset (2021-06-15T14:30:00-07:00). A time of day must carry an offset; a date or coarser does not.</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/ber-data/bridge-central-schema/observed_time">bridge_central_schema:observed_time</a></p>
 <!-- no inheritance hierarchy -->
@@ -519,7 +519,7 @@
 <tbody>
 <tr>
 <td>Range</td>
-<td><a href="../Datetime/">Datetime</a></td>
+<td><a href="../PartialDateTime/">PartialDateTime</a></td>
 </tr>
 <tr>
 <td>Domain Of</td>
@@ -573,14 +573,17 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">observed_time</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">When the property was observed, as an ISO 8601 date-time with a UTC offset.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;When</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">property</span><span class="nv"> </span><span class="s">was</span><span class="nv"> </span><span class="s">observed,</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">ISO</span><span class="nv"> </span><span class="s">8601</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">whatever</span><span class="nv"> </span><span class="s">resolution</span><span class="nv"> </span><span class="s">the</span>
+<span class="w">  </span><span class="s">source</span><span class="nv"> </span><span class="s">gives:</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">year</span><span class="nv"> </span><span class="s">(2021),</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">year</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">month</span><span class="nv"> </span><span class="s">(2021-06),</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">date</span><span class="nv"> </span><span class="s">(2021-06-15),</span><span class="nv"> </span><span class="s">or</span>
+<span class="w">  </span><span class="s">a</span><span class="nv"> </span><span class="s">date-time</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">UTC</span><span class="nv"> </span><span class="s">offset</span><span class="nv"> </span><span class="s">(2021-06-15T14:30:00-07:00).</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">time</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">day</span><span class="nv"> </span><span class="s">must</span><span class="nv"> </span><span class="s">carry</span>
+<span class="w">  </span><span class="s">an</span><span class="nv"> </span><span class="s">offset;</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">date</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">coarser</span><span class="nv"> </span><span class="s">does</span><span class="nv"> </span><span class="s">not.&#39;</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="nt">close_mappings</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sosa:phenomenonTime</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Measurement</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">datetime</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PartialDateTime</span>
 </code></pre></div>
 </details>
 </div>

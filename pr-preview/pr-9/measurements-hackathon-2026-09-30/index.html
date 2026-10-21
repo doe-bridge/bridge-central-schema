@@ -226,6 +226,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#what-changed-in-040">
+<span class="md-ellipsis">
+      
+        What changed in 0.4.0
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#what-changed-from-020">
 <span class="md-ellipsis">
       
@@ -278,7 +287,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="bridge-measurements-hackathon-2026-09-30-synthesis-and-first-pass-module">BRIDGE Measurements hackathon, 2026-09-30: synthesis and first-pass module</h1>
-<p>At the 2026-09-30 BRIDGE Data Modeling hackathon on measurements, the group agreed to build a straw-person schema from the transcript, the brainstorm drawing and the draft module, then see whether each source can map up to it. This page is that synthesis. The schema is <code>src/ber_central_schema/schema/measurements.yaml</code> version 0.3.0. The full list of what was raised, with where each item went, is <a href="../measurements-hackathon/raised-items/">measurements-hackathon/raised-items.md</a>.</p>
+<p>At the 2026-09-30 BRIDGE Data Modeling hackathon on measurements, the group agreed to build a straw-person schema from the transcript, the brainstorm drawing and the draft module, then see whether each source can map up to it. This page is that synthesis. The schema is <code>src/ber_central_schema/schema/measurements.yaml</code> version 0.4.0, which revises 0.3.0 after review (see "What changed in 0.4.0"). The full list of what was raised, with where each item went, is <a href="../measurements-hackathon/raised-items/">measurements-hackathon/raised-items.md</a>.</p>
 <p>Inputs:</p>
 <ul>
 <li>Hackathon Notes, main tab and Report Out tab: <a href="https://docs.google.com/document/d/1_MTh8PRRG5cn2DV-b8wr9u8bu_EmChAHREfhUX4Ks9I">https://docs.google.com/document/d/1_MTh8PRRG5cn2DV-b8wr9u8bu_EmChAHREfhUX4Ks9I</a></li>
@@ -286,10 +295,12 @@
 <li>The "measurement brainstorm" drawing: <a href="https://docs.google.com/drawings/d/1llZ1wNabHL1A1EXYxelY62qru8Qz1tdaDvT2pdvW50Y">https://docs.google.com/drawings/d/1llZ1wNabHL1A1EXYxelY62qru8Qz1tdaDvT2pdvW50Y</a></li>
 <li>The intro slides: <a href="https://docs.google.com/presentation/d/1-2ai8pYpBnytDB8-ihF4e1pK2RoUW2zGDxgOMUsPqHE">https://docs.google.com/presentation/d/1-2ai8pYpBnytDB8-ihF4e1pK2RoUW2zGDxgOMUsPqHE</a></li>
 <li>The example data each organization put in the hackathon shared drive (JGI, NMDC, EMSL, ORNL)</li>
-<li><a href="https://github.com/ber-data/bridge-central-schema/issues/4">https://github.com/ber-data/bridge-central-schema/issues/4</a>, GOLD organism measurements mapped to BRIDGE measurement draft 0.2.0</li>
+<li><a href="https://github.com/doe-bridge/bridge-central-schema/issues/4">https://github.com/doe-bridge/bridge-central-schema/issues/4</a>, GOLD organism measurements mapped to BRIDGE measurement draft 0.2.0</li>
 <li>The 10/07/2026 entry in the BRIDGE DM weekly notes: <a href="https://docs.google.com/document/d/1ezgBR6IbJNJjDntK27djICFIFNBKHeNtdgHqwELMQqU">https://docs.google.com/document/d/1ezgBR6IbJNJjDntK27djICFIFNBKHeNtdgHqwELMQqU</a></li>
+<li>Added 2026-10-12: @dschristianson's review of this PR, 2026-10-09, 13 inline comments: <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#pullrequestreview-5470820043">https://github.com/doe-bridge/bridge-central-schema/pull/9#pullrequestreview-5470820043</a></li>
+<li>Added 2026-10-12: <a href="https://github.com/doe-bridge/bridge-central-schema/issues/11">https://github.com/doe-bridge/bridge-central-schema/issues/11</a>, Attribute/value representation (@ialarmedalien, 2026-10-09)</li>
 </ul>
-<p>The meeting transcript was not available when this was written. ESS-DIVE, BASALT and KBase presented but left no files in the shared drive, so their examples here come from the slides and the 0.2.0 module.</p>
+<p>The meeting transcript was not available when this was written, and none had been found as of 2026-10-12. BASALT and KBase presented but left no files in the shared drive, so their examples here come from the slides and the 0.2.0 module. ESS-DIVE has since shared example data privately (2026-10-07), and @dschristianson is testing the model against it; none of it is used or described here.</p>
 <h2 id="what-the-group-agreed">What the group agreed</h2>
 <ul>
 <li>Start with one class and add structure only when data needs it (@mslarae13 in the drawing; the 10/07 notes "slightly leaning towards one concept for now").</li>
@@ -312,6 +323,7 @@
         minimum_numeric_value : double
         maximum_numeric_value : double
         unit : UCUM code, ASCII
+        unit_basis : string
         value_term : uriorcurie
         comparator : ComparatorEnum
         statistic : StatisticEnum
@@ -322,8 +334,11 @@
         missing_value_reason : MissingValueReasonEnum
         how and when
         measurement_method : string
+        treatment : string
         instrument : string
-        observed_time : datetime
+        observed_time : PartialDateTime
+        observed_start_time : PartialDateTime
+        observed_end_time : PartialDateTime
         where it came from
         measurement_id : uriorcurie
         source_system : string
@@ -347,6 +362,7 @@
         not_reported
         below_detection_limit
         above_detection_limit
+        unknown
         out_of_range
     }
     class ComparatorEnum {
@@ -406,6 +422,10 @@
 <td><code>standard_deviation</code> is not negative</td>
 <td><code>Measurement-007</code></td>
 </tr>
+<tr>
+<td><code>observed_time</code> and the start and end times are ISO 8601 at year, month, date or date-time resolution, and a time of day carries a UTC offset; months, days, hours and minutes must be in range</td>
+<td><code>Measurement-010</code>, <code>Measurement-011</code>, <code>Measurement-012</code></td>
+</tr>
 </tbody>
 </table>
 <h2 id="how-a-messy-source-value-becomes-records">How a messy source value becomes records</h2>
@@ -434,6 +454,54 @@
     bv --&gt; m["observed_property.sssom.tsv&lt;br/&gt;MIXS: and METPO: mappings"]
     bp --&gt; m</code></pre>
 <p><code>property_label</code> is the catch-all for values that fit nowhere else. It plays the same part as MIxS <code>misc_param</code> (<code>MIXS:0000752</code>), NMDC's <code>PropertyAssertion</code>, BERtron's <code>Attribute</code> and the feature model's <code>Attribute</code>. All four allow a free-text key when no identifier exists. <code>tests/data/valid/Measurement-020.yaml</code> is the MIxS and NMDC <code>misc_param</code> example (bicarbonate) as a <code>Measurement</code>.</p>
+<h2 id="what-changed-in-040">What changed in 0.4.0</h2>
+<p>After the first reviews of <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9">https://github.com/doe-bridge/bridge-central-schema/pull/9</a> :</p>
+<table>
+<thead>
+<tr>
+<th>0.3.0</th>
+<th>0.4.0</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>observed_time</code> a full date-time with offset</td>
+<td>Year, year-month, date or date-time, plus <code>observed_start_time</code> and <code>observed_end_time</code></td>
+<td>ESS-DIVE values come at coarser resolutions and some cover a period (open question 16)</td>
+</tr>
+<tr>
+<td>no treatment slot</td>
+<td><code>treatment</code></td>
+<td>ESS-DIVE: treatment is too important downstream to leave in the method text</td>
+</tr>
+<tr>
+<td>no unit basis</td>
+<td><code>unit_basis</code> (text)</td>
+<td>ESS-DIVE's forthcoming unit basis; some bases cannot be written in UCUM (open question 3)</td>
+</tr>
+<tr>
+<td><code>source_system</code> a free name</td>
+<td>the source's lakehouse registry ID when it has one, such as <code>ber_registry:schema-jgi-gold</code></td>
+<td>the registry (<a href="https://github.com/doe-bridge/lakehouse-registry">https://github.com/doe-bridge/lakehouse-registry</a>) already lists GOLD, NMDC, BASALT and ESS-DIVE</td>
+</tr>
+<tr>
+<td><code>MissingValueReasonEnum</code> without <code>unknown</code></td>
+<td><code>unknown</code> added</td>
+<td>a source can say a value is unknown, which differs from leaving it empty (<code>not_reported</code>)</td>
+</tr>
+<tr>
+<td>value slot descriptions</td>
+<td>say which slots hold the value and which say something about it; <code>measured</code> covers spatial and temporal means</td>
+<td>open questions 13 and 15</td>
+</tr>
+<tr>
+<td>R44 counted as handled</td>
+<td>R44 a known gap, with a problem example</td>
+<td>there is still no snapshot or version slot</td>
+</tr>
+</tbody>
+</table>
 <h2 id="what-changed-from-020">What changed from 0.2.0</h2>
 <table>
 <thead>
@@ -481,7 +549,7 @@
 </tr>
 </tbody>
 </table>
-<p>Names were chosen to avoid the feature model's global slots in <a href="https://github.com/ber-data/bridge-central-schema/pull/5">https://github.com/ber-data/bridge-central-schema/pull/5</a> (<code>method</code>, <code>type</code>, <code>source</code>, <code>note</code>), hence <code>measurement_method</code> and <code>source_system</code>. Both modules define <code>numeric_value</code>; this one uses <code>double</code>, and the feature model's <code>Attribute.numeric_value</code> is <code>float</code>, which should be made to match before both are merged.</p>
+<p>Names were chosen to avoid the feature model's global slots in <a href="https://github.com/doe-bridge/bridge-central-schema/pull/5">https://github.com/doe-bridge/bridge-central-schema/pull/5</a> (<code>method</code>, <code>type</code>, <code>source</code>, <code>note</code>), hence <code>measurement_method</code> and <code>source_system</code>. Both modules define <code>numeric_value</code>; this one uses <code>double</code>, and the feature model's <code>Attribute.numeric_value</code> is <code>float</code>, which should be made to match before both are merged.</p>
 <h2 id="examples-by-source">Examples by source</h2>
 <table>
 <thead>
@@ -520,16 +588,21 @@
 <tr>
 <td>BASIN-3D</td>
 <td><code>Measurement-019</code></td>
-<td>a daily mean with its time</td>
+<td>a mean with its time (the averaging window is not recorded; see known gaps)</td>
 </tr>
 <tr>
 <td>MIxS / NMDC <code>misc_param</code></td>
 <td><code>Measurement-020</code></td>
 <td>the free-text catch-all</td>
 </tr>
+<tr>
+<td>none (illustrative)</td>
+<td><code>Measurement-021</code> to <code>-025</code></td>
+<td>an identifier, instrument and <code>less_than</code> comparator; a categorical <code>value_term</code>; a treatment, unit basis, month-only time and start and end times; a raw value containing a colon; <code>unknown</code> as the missing value reason</td>
+</tr>
 </tbody>
 </table>
-<p>Every example cites the file and row it came from. Values were copied from the source files; none were invented.</p>
+<p>Each example's header says where it came from. Most cite a source file and row; <code>Measurement-004</code> cites the GOLD organism ID, <code>Measurement-019</code> is carried over from the 0.2.0 module, and <code>Measurement-020</code> repeats the MIxS and NMDC <code>misc_param</code> examples. Those values were copied from their sources. <code>Measurement-021</code> to <code>-025</code>, and the problem examples <code>Measurement-004</code> and <code>-005</code>, were written to show a slot or a gap and say so in their headers.</p>
 <h2 id="what-the-data-showed">What the data showed</h2>
 <p>Read from the files in the hackathon shared drive on 2026-10-07:</p>
 <ul>
@@ -541,23 +614,41 @@
 <h2 id="open-questions-for-the-group">Open questions for the group</h2>
 <p>The first pass makes a provisional choice where it can. Each needs a group decision.</p>
 <ol>
-<li>Is a measurement a kind of observation, and when does an Observation class earn its place? (R03) Provisional: no Observation class.</li>
-<li>Should <code>raw_value</code> be required? (R22) Provisional: recommended. A record needs some value or a reason it has none.</li>
-<li>UCUM required, a closed unit list, or QUDT? (R30, R31) Provisional: UCUM code in printable ASCII, no list.</li>
-<li>How are BRIDGE property IDs issued, and under what prefix? (R38) Provisional: <code>bridge_property:</code>, not agreed.</li>
-<li>Do measurements get BRIDGE-minted IDs on ingest? (R42) Provisional: <code>measurement_id</code> is optional.</li>
+<li>Is a measurement a kind of observation, and when does an Observation class earn its place? (R03) Provisional: no Observation class. @valerie-autumn-skye: a measurement is an observation, and an interpretation such as "strain X is mesophilic" is an observation supported by measurements such as "strain X grows at 28 C" (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273800445">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273800445</a>).</li>
+<li>Should <code>raw_value</code> be required? (R22) Provisional: recommended. A record needs some value or a reason it has none. @valerie-autumn-skye leans against requiring it, since it could add a lot of redundancy to large data sets or carry unintended meaning downstream (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273685294">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273685294</a>).</li>
+<li>UCUM required, a closed unit list, or QUDT? (R30, R31) Provisional: UCUM code in printable ASCII, no list. @dschristianson asks what happens when there is no UCUM term (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230751366">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230751366</a>), notes that ESS-DIVE uses QUDT, most of whose units map to UCUM (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230965424">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230965424</a>), and that ESS-DIVE has a forthcoming <code>unit_basis</code> that further qualifies a unit, sometimes expressible in UCUM and sometimes not (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230956454">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230956454</a>). 0.4.0 says what to do when a unit cannot be written in UCUM and adds an optional <code>unit_basis</code>. @valerie-autumn-skye recommends <code>bridge_unit:</code> identifiers mapped to UCUM terms and, where needed, other vocabularies, so the schema is not tied to one (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273699901">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273699901</a>, <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273505382">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273505382</a>).</li>
+<li>How are BRIDGE property IDs issued, and under what prefix? (R38) Provisional: <code>bridge_property:</code>, not agreed. Related: should <code>observed_property</code> hold a BERVO ID when BERVO has the term, as this pass does, or always a <code>bridge_property:</code> ID mapped to BERVO and other vocabularies, as @valerie-autumn-skye recommends (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273386207">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273386207</a>, <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273779118">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273779118</a>)?</li>
+<li>Do measurements get BRIDGE-minted IDs on ingest? (R42) Provisional: <code>measurement_id</code> is optional. @dschristianson asks why it isn't just <code>id</code> (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230719718">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230719718</a>). The central schema's <code>id</code> is an identifier, which LinkML makes required, so reusing it would make every measurement need one.</li>
 <li>How are related records grouped: a mean with its SD, replicates, the parts of one cell? (R52) Provisional: shared <code>source_record_id</code> and <code>source_field</code>.</li>
-<li>Who assigns <code>value_term</code> for a scientist's label such as mesophilic, and how is it reviewed? (R18)</li>
+<li>Who assigns <code>value_term</code> for a scientist's label such as mesophilic, and how is it reviewed? (R18) @valerie-autumn-skye suggests an optional provenance field, such as <code>source: PMID:29182670</code> or <code>curation: GOLD</code> (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273734035">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273734035</a>).</li>
 <li>Numbers that are not quantities, such as grading scales and coefficients. (R24)</li>
-<li>A QA class, or is one <code>quality_flag</code> enough for now? (R64)</li>
-<li>What do people want to search on? (R63)</li>
+<li>A QA class, or is one <code>quality_flag</code> enough for now? (R64) @valerie-autumn-skye: <code>quality_flag</code> is enough for now (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273737869">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273737869</a>).</li>
+<li>What do people want to search on? (R63) @valerie-autumn-skye considers this out of scope here and a question for the User Research team (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273756898">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273756898</a>).</li>
 <li>(Raised while writing this pass.) Should a mapping to MIxS be <code>exactMatch</code> when MIxS defines the property of a sample and BERVO the property in general? The mapping file uses <code>closeMatch</code> for those.</li>
-<li>(Raised while reviewing this pass, R69.) Should <code>Measurement</code> be a subclass of <code>QuantityValue</code>, inheriting <code>numeric_value</code>, the minimum and maximum, and <code>unit</code>, and keeping NMDC's value structure? That treats a measurement as a kind of value. The first pass treats it as a record about a property that carries a value, with the value slots on <code>Measurement</code> and no <code>QuantityValue</code> class.</li>
+<li>
+<p>(Raised while reviewing this pass, R69.) Should <code>Measurement</code> be a subclass of <code>QuantityValue</code>, inheriting <code>numeric_value</code>, the minimum and maximum, and <code>unit</code>, and keeping NMDC's value structure? That treats a measurement as a kind of value. The first pass treats it as a record about a property that carries a value, with the value slots on <code>Measurement</code> and no <code>QuantityValue</code> class. @valerie-autumn-skye asks whether that would imply every measurement is numeric (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273745478">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273745478</a>); it would, and categorical values (<code>value_term</code>) are one reason the first pass did not do it.</p>
+</li>
+<li>
+<p>Is the line between a value and facts about a value clear? @dschristianson read <code>value_term</code> as the parsed form of a non-numeric value, like <code>numeric_value</code> for numbers, and asked how it relates to <code>value_role</code> and <code>value_qualifier</code> (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230783915">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230783915</a>). That reading is right; 0.4.0 says so in the class comments and slot descriptions.</p>
+</li>
+<li>Statistics come in kinds: temporal, spatial and measurement. Should <code>statistic</code> become a structure (type, statistic, number), possibly repeated on one record, with <code>sample_size</code> renamed (for example <code>statistic_sample_number</code>)? (@dschristianson, <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230798043">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230798043</a> and <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230841807">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230841807</a>) The same structure could carry the period a value represents (daily, monthly, yearly), which observed time cannot always show (@dschristianson, <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#pullrequestreview-5519748477">https://github.com/doe-bridge/bridge-central-schema/pull/9#pullrequestreview-5519748477</a>), or a separate <code>sampling_period</code> field could (@valerie-autumn-skye, <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273300055">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273300055</a>).</li>
+<li>Which <code>value_role</code> fits a spatial mean of several measurements, which an earth scientist would call measured? (@dschristianson, <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4231116532">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4231116532</a>) 0.4.0: <code>measured</code>, with the summary in <code>statistic</code>; <code>derived</code> is for a value of one property computed from others.</li>
+<li><code>observed_time</code> is a full date-time. ESS-DIVE needs year, year-month and date resolutions, and records UTC only when a time is present. (@dschristianson, <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230984199">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230984199</a>) 0.4.0 accepts all four resolutions and adds start and end times (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4272389263">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4272389263</a>).</li>
+<li>For ESS-DIVE, <code>source_record_id</code> would likely combine a dataset DOI and a file PID. How should identifiers like that be combined and documented? (@dschristianson, <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4231015041">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4231015041</a>)</li>
+<li>Should a generic attribute/value representation come first, with features and measurements built on it, as in bertron-schema's <code>AttributeValue</code>? (@ialarmedalien, <a href="https://github.com/doe-bridge/bridge-central-schema/issues/11">https://github.com/doe-bridge/bridge-central-schema/issues/11</a>) This module is flat on purpose, following the 10/07 notes; that issue would decide nested or flat for the feature model and measurements together.</li>
+<li>For a sample-based measurement, the collection time often matters more than the lab measurement time. How should a record show that? (@dschristianson, <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4272389263">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4272389263</a>) This overlaps the Project/Sample/Study/Processing working group.</li>
+<li>Should the material measured (water, air, soil) be its own slot or part of the observed property? ESS-DIVE keeps it separate; CF Conventions fold it in (@dschristianson, <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#pullrequestreview-5519748477">https://github.com/doe-bridge/bridge-central-schema/pull/9#pullrequestreview-5519748477</a>). BERVO release 2026-09-25 has both a plain Temperature and Air temperature and Soil temperature terms.</li>
+<li>Should time series go in this class or a separate one? (@dschristianson, <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#pullrequestreview-5519748477">https://github.com/doe-bridge/bridge-central-schema/pull/9#pullrequestreview-5519748477</a>)</li>
+<li><code>gold:</code> may be too narrow for JGI identifiers in general (@valerie-autumn-skye, <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273817438">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273817438</a>).</li>
 </ol>
+<p>Also from that review, all taken in 0.4.0: <code>missing_value_reason</code> probably needs an <code>unknown</code> option (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4231040002">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4231040002</a>); <code>feature_of_interest</code> targets for ESS-DIVE would come from the Landscape/Physical Features working group (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230737215">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4230737215</a>); and the <code>property_label</code> fallback was welcomed (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4231133180">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4231133180</a>).</p>
 <h2 id="known-gaps-and-deferred-work">Known gaps and deferred work</h2>
 <ul>
-<li>Time series (R50): <code>tests/data/problem/valid/Measurement-001.yaml</code> fails today.</li>
+<li>Time series (R50): <code>tests/data/problem/invalid/Measurement-001.yaml</code> fails today.</li>
 <li>A standard deviation reported as its own record (R15) and growth derived from several OD readings (R53) have no link to the records they belong with.</li>
+<li>Nothing enforces <code>maximum_numeric_value</code> &gt;= <code>minimum_numeric_value</code>; plain LinkML cannot compare one slot with another, and NMDC's export has 196 inverted ranges. <code>tests/data/problem/valid/Measurement-004.yaml</code> validates anyway.</li>
+<li>A mean records no averaging window (hourly, daily), so <code>Measurement-019</code> cannot say it is a daily mean (open question 14).</li>
+<li>Source lineage cannot tell revisions of the same source record apart; there is no snapshot or version slot yet (R44, <code>tests/data/problem/valid/Measurement-005.yaml</code>).</li>
 <li>Recurring conditions such as "prescribed burn every 3-4 years" (R55) store only as text and a range.</li>
 <li>Sample, site and organism classes, replicates, and instrument records belong to the Project/Sample/Study/Processing working group (R40, R48, R51).</li>
 </ul>
