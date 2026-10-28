@@ -480,6 +480,7 @@ slots:
     domain_of:
     - Organism
     range: uriorcurie
+    pattern: ^NCBITaxon:\d+$
   associated_studies:
     name: associated_studies
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/associated_studies
@@ -917,7 +918,7 @@ classes:
     class_uri: bridge_central_schema:ProcessingSampleLink
 metamodel_version: 1.11.0
 source_file: ber_central_schema.yaml
-source_file_date: '2026-10-28T19:27:43'
+source_file_date: '2026-10-28T20:50:00'
 source_file_size: 733
-generation_date: '2026-10-28T19:27:51'
+generation_date: '2026-10-28T20:50:11'
 
