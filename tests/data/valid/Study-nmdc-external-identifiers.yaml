@@ -2,7 +2,6 @@
 # and emsl_project_identifiers slots, not one real study.
 id: nmdc:sty-11-example
 name: Example NMDC study
-principal_investigator: Example PI
 external_identifiers:
   - gold:Gs0110115
   - emsl.project:60141

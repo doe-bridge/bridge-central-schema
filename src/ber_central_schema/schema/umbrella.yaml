@@ -37,8 +37,6 @@ classes:
     description: >-
       A research initiative, proposal or project under which samples are
       collected and processed.
-    slots:
-      - principal_investigator
     close_mappings:
       # nmdc:Study aliases include "project" and "proposal".
       - nmdc:Study
@@ -165,8 +163,6 @@ classes:
         a run. Whether those belong in the umbrella is an open question.
 
 slots:
-  principal_investigator:
-    description: The person responsible for the study.
   taxon:
     description: Taxonomic classification, as an NCBITaxon CURIE.
     range: uriorcurie
