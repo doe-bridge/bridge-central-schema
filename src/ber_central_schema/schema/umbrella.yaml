@@ -108,6 +108,11 @@ classes:
       - protocol
     exact_mappings:
       - nmdc:PlannedProcess
+    close_mappings:
+      # OBI made OBI:0000011 (planned process), the class_uri of
+      # nmdc:PlannedProcess, obsolete in favor of this term. COB:0000110
+      # (material processing) is a subclass of it.
+      - COB:0000035
     comments:
       - >-
         MaterialProcessing (sample to sample) is the only subclass in this
