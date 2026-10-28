@@ -162,6 +162,8 @@ slots:
   taxon:
     description: Taxonomic classification, as an NCBITaxon CURIE.
     range: uriorcurie
+    # Same pattern as the id of nmdc:NcbiTaxon in nmdc-schema.
+    pattern: '^NCBITaxon:\d+$'
     close_mappings:
       - nmdc:classified_as
       - basalt_schema:taxonomy_id
