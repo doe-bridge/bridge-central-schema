@@ -1,7 +1,5 @@
-# An environmental sample: sample_category says where the material came from,
-# and the environmental triad says which environment. Ids are made up.
+# An environmental sample: sample_category says where the material came from.
+# Ids are made up.
 id: nmdc:bsm-11-example
 name: Example soil sample
 sample_category: environmental
-env_broad_scale: ENVO:00000446
-env_medium: ENVO:00001998

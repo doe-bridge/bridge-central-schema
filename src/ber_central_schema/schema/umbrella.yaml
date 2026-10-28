@@ -19,7 +19,6 @@ prefixes:
   basalt_schema: https://emsl-computing.github.io/BASALT-Schema/elements/
   COB: http://purl.obolibrary.org/obo/COB_
   NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
-  ENVO: http://purl.obolibrary.org/obo/ENVO_
   MIXS: https://w3id.org/mixs/
   schema: http://schema.org/
 default_prefix: bridge_central_schema
@@ -72,9 +71,6 @@ classes:
       - collected_at
       - organism
       - sample_category
-      - env_broad_scale
-      - env_local_scale
-      - env_medium
     exact_mappings:
       - nmdc:Sample
       - basalt_schema:Sample
@@ -193,32 +189,13 @@ slots:
   sample_category:
     description: >-
       Where the sample's material came from, such as a pure culture, an
-      engineered strain or the environment. The kind of environment goes in
-      env_broad_scale, env_local_scale and env_medium; programs and protocols
-      (MONet, Terraform, AMP2) stay with the study and the source schema.
+      engineered strain or the environment. Programs and protocols (MONet,
+      Terraform, AMP2) stay with the study and the source schema.
     range: SampleCategoryEnum
     related_mappings:
       # BASALT expresses this as Sample subclasses; nmdc-schema has no single
       # slot for it (env_package, sample_type and samp_type are all candidates).
       - nmdc:sample_type
-  env_broad_scale:
-    description: The broad-scale environmental context (for example, the biome) the sample came from, as an ontology term CURIE, following the MIxS slot of the same name.
-    range: uriorcurie
-    exact_mappings:
-      - nmdc:env_broad_scale
-      - basalt_schema:env_broad_scale
-  env_local_scale:
-    description: The local environment the sample came from, as an ontology term CURIE, following the MIxS slot of the same name.
-    range: uriorcurie
-    exact_mappings:
-      - nmdc:env_local_scale
-      - basalt_schema:env_local_scale
-  env_medium:
-    description: The environmental material immediately surrounding the sample at the time of sampling, as an ontology term CURIE, following the MIxS slot of the same name.
-    range: uriorcurie
-    exact_mappings:
-      - nmdc:env_medium
-      - basalt_schema:env_medium
   has_input:
     description: The things a process takes in, such as samples or data.
     range: NamedThing
@@ -263,9 +240,7 @@ enums:
       subclasses it corresponds to. Ontology meanings are not assigned yet.
     permissible_values:
       environmental:
-        description: >-
-          Material collected from the environment. env_broad_scale,
-          env_local_scale and env_medium say which environment.
+        description: Material collected from the environment.
         narrow_mappings:
           - basalt_schema:SoilSample
           - basalt_schema:MonetSoilSample
