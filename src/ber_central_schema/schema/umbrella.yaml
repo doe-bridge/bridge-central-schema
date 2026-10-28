@@ -43,11 +43,6 @@ classes:
       - nmdc:Study
       # BASALT Study holds an EMSL user project (project_id, proposal abstract).
       - basalt_schema:Study
-    comments:
-      - >-
-        GOLD has both a study and a project class (cmungall/bridge-schemas
-        gold.linkml.yaml). Whether a GOLD project belongs here or with data
-        generation is open; ask the GOLD team.
 
   Site:
     is_a: NamedThing
