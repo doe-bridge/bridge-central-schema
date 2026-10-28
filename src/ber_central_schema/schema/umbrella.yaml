@@ -102,6 +102,8 @@ classes:
       A process carried out according to a plan, such as a laboratory step or a
       computational workflow.
     slots:
+      - has_input
+      - has_output
       - protocol
     exact_mappings:
       - nmdc:PlannedProcess
@@ -118,9 +120,11 @@ classes:
     description: >-
       One laboratory step that takes one or more samples as input and produces
       one or more samples.
-    slots:
-      - has_input
-      - has_output
+    slot_usage:
+      has_input:
+        range: Sample
+      has_output:
+        range: Sample
     exact_mappings:
       - nmdc:MaterialProcessing
       - basalt_schema:SampleProcessing
@@ -214,14 +218,14 @@ slots:
       - nmdc:env_medium
       - basalt_schema:env_medium
   has_input:
-    description: The samples a processing step takes in.
-    range: Sample
+    description: The things a process takes in, such as samples or data.
+    range: NamedThing
     multivalued: true
     exact_mappings:
       - nmdc:has_input
   has_output:
-    description: The samples a processing step produces.
-    range: Sample
+    description: The things a process produces, such as samples or data.
+    range: NamedThing
     multivalued: true
     exact_mappings:
       - nmdc:has_output

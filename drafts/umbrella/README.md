@@ -26,7 +26,7 @@ Sources read on 2026-10-14: nmdc-schema main at 03ba5a2 (https://github.com/micr
 - NMDC flattened: two tables, `material_processing_set_has_input` and `material_processing_set_has_output`, with the direction in the table name (https://github.com/microbiomedata/nmdc-lakehouse/blob/main/docs/trino_recursive_graph_traversal.md).
 - BASALT: one `ProcessingSampleLink` table with a `role` column, plus `step_number` and `in_run`.
 
-The two hold the same facts; BASALT's table is the union of NMDC's two. `umbrella.yaml` keeps `has_input` and `has_output` on `MaterialProcessing` and uses BASALT's shape for the flat form. Whether `step_number` and `in_run` belong in the umbrella is open.
+The two hold the same facts; BASALT's table is the union of NMDC's two. `umbrella.yaml` keeps `has_input` and `has_output` on `PlannedProcess` (limited to samples on `MaterialProcessing`) and uses BASALT's shape for the flat form. Whether `step_number` and `in_run` belong in the umbrella is open.
 
 ### Writing down mappings
 
