@@ -19,6 +19,7 @@ prefixes:
   basalt_schema: https://emsl-computing.github.io/BASALT-Schema/elements/
   COB: http://purl.obolibrary.org/obo/COB_
   NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
+  ENVO: http://purl.obolibrary.org/obo/ENVO_
   MIXS: https://w3id.org/mixs/
   schema: http://schema.org/
 default_prefix: bridge_central_schema
@@ -190,10 +191,10 @@ slots:
       - basalt_schema:organism_ref
   sample_category:
     description: >-
-      What kind of material the sample is, at the coarse level needed to find
-      the same kind of sample across BER sources. Finer detail goes in
-      env_medium; programs and protocols (MONet, Terraform, AMP2) stay with the
-      study and the source schema.
+      Where the sample's material came from, such as a pure culture, an
+      engineered strain or the environment. The kind of environment goes in
+      env_broad_scale, env_local_scale and env_medium; programs and protocols
+      (MONet, Terraform, AMP2) stay with the study and the source schema.
     range: SampleCategoryEnum
     related_mappings:
       # BASALT expresses this as Sample subclasses; nmdc-schema has no single
@@ -257,19 +258,20 @@ slots:
 enums:
   SampleCategoryEnum:
     description: >-
-      Coarse sample categories. Each value lists the BASALT Sample subclass it
-      corresponds to. Ontology meanings are not assigned yet.
+      Where a sample's material came from. Each value lists the BASALT Sample
+      subclasses it corresponds to. Ontology meanings are not assigned yet.
     permissible_values:
-      soil:
-        exact_mappings: [basalt_schema:SoilSample]
-        related_mappings: [basalt_schema:MonetSoilSample]
-      sediment:
-        exact_mappings: [basalt_schema:SedimentSample]
-      water:
-        exact_mappings: [basalt_schema:WaterSample]
-      aerosol:
-        exact_mappings: [basalt_schema:AerosolSample]
-        related_mappings: [basalt_schema:AerosolArmSample]
+      environmental:
+        description: >-
+          Material collected from the environment. env_broad_scale,
+          env_local_scale and env_medium say which environment.
+        narrow_mappings:
+          - basalt_schema:SoilSample
+          - basalt_schema:MonetSoilSample
+          - basalt_schema:SedimentSample
+          - basalt_schema:WaterSample
+          - basalt_schema:AerosolSample
+          - basalt_schema:AerosolArmSample
       plant:
         exact_mappings: [basalt_schema:PlantSample]
       pure_culture:
