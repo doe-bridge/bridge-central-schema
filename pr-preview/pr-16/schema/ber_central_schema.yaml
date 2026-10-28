@@ -298,29 +298,20 @@ enums:
   SampleCategoryEnum:
     name: SampleCategoryEnum
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/SampleCategoryEnum
-    description: Coarse sample categories. Each value lists the BASALT Sample subclass
-      it corresponds to. Ontology meanings are not assigned yet.
+    description: Where a sample's material came from. Each value lists the BASALT
+      Sample subclasses it corresponds to. Ontology meanings are not assigned yet.
     from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
     permissible_values:
-      soil:
-        text: soil
-        exact_mappings:
+      environmental:
+        text: environmental
+        description: Material collected from the environment. env_broad_scale, env_local_scale
+          and env_medium say which environment.
+        narrow_mappings:
         - basalt_schema:SoilSample
-        related_mappings:
         - basalt_schema:MonetSoilSample
-      sediment:
-        text: sediment
-        exact_mappings:
         - basalt_schema:SedimentSample
-      water:
-        text: water
-        exact_mappings:
         - basalt_schema:WaterSample
-      aerosol:
-        text: aerosol
-        exact_mappings:
         - basalt_schema:AerosolSample
-        related_mappings:
         - basalt_schema:AerosolArmSample
       plant:
         text: plant
@@ -543,10 +534,10 @@ slots:
   sample_category:
     name: sample_category
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/sample_category
-    description: What kind of material the sample is, at the coarse level needed to
-      find the same kind of sample across BER sources. Finer detail goes in env_medium;
-      programs and protocols (MONet, Terraform, AMP2) stay with the study and the
-      source schema.
+    description: Where the sample's material came from, such as a pure culture, an
+      engineered strain or the environment. The kind of environment goes in env_broad_scale,
+      env_local_scale and env_medium; programs and protocols (MONet, Terraform, AMP2)
+      stay with the study and the source schema.
     from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
     related_mappings:
     - nmdc:sample_type
@@ -602,28 +593,28 @@ slots:
   has_input:
     name: has_input
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/has_input
-    description: The samples a processing step takes in.
+    description: The things a process takes in, such as samples or data.
     from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
     exact_mappings:
     - nmdc:has_input
     slot_uri: bridge_central_schema:has_input
-    owner: Processing
+    owner: PlannedProcess
     domain_of:
-    - Processing
-    range: Sample
+    - PlannedProcess
+    range: NamedThing
     multivalued: true
   has_output:
     name: has_output
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/has_output
-    description: The processed samples a processing step produces.
+    description: The things a process produces, such as samples or data.
     from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
     exact_mappings:
     - nmdc:has_output
     slot_uri: bridge_central_schema:has_output
-    owner: Processing
+    owner: PlannedProcess
     domain_of:
-    - Processing
-    range: ProcessedSample
+    - PlannedProcess
+    range: NamedThing
     multivalued: true
   protocol:
     name: protocol
@@ -634,9 +625,9 @@ slots:
     - nmdc:protocol_link
     - basalt_schema:in_protocol
     slot_uri: bridge_central_schema:protocol
-    owner: Processing
+    owner: PlannedProcess
     domain_of:
-    - Processing
+    - PlannedProcess
     range: uriorcurie
   processing:
     name: processing
@@ -649,7 +640,7 @@ slots:
     owner: ProcessingSampleLink
     domain_of:
     - ProcessingSampleLink
-    range: Processing
+    range: MaterialProcessing
     required: true
   sample:
     name: sample
@@ -714,6 +705,42 @@ slots:
     usage_slot_name: observed_property
     range: uriorcurie
     pattern: ^bervo:BERVO_\d{7}$
+  MaterialProcessing_has_input:
+    name: MaterialProcessing_has_input
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/has_input
+    description: The things a process takes in, such as samples or data.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:has_input
+    is_a: has_input
+    domain: MaterialProcessing
+    slot_uri: bridge_central_schema:has_input
+    alias: has_input
+    owner: MaterialProcessing
+    domain_of:
+    - MaterialProcessing
+    is_usage_slot: true
+    usage_slot_name: has_input
+    range: Sample
+    multivalued: true
+  MaterialProcessing_has_output:
+    name: MaterialProcessing_has_output
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/has_output
+    description: The things a process produces, such as samples or data.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:has_output
+    is_a: has_output
+    domain: MaterialProcessing
+    slot_uri: bridge_central_schema:has_output
+    alias: has_output
+    owner: MaterialProcessing
+    domain_of:
+    - MaterialProcessing
+    is_usage_slot: true
+    usage_slot_name: has_output
+    range: Sample
+    multivalued: true
 classes:
   NamedThing:
     name: NamedThing
@@ -792,10 +819,6 @@ classes:
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/Study
     description: A research initiative, proposal or project under which samples are
       collected and processed.
-    comments:
-    - GOLD has both a study and a project class (cmungall/bridge-schemas gold.linkml.yaml).
-      Whether a GOLD project belongs here or with data generation is open; ask the
-      GOLD team.
     from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
     close_mappings:
     - nmdc:Study
@@ -850,12 +873,16 @@ classes:
       and the 18 direct BASALT Sample subclasses (SoilSample, WaterSample, ...).'
     - BASALT records collection on a separate SamplingActivity class; NMDC records
       it on the sample. This draft leaves the sampling event out.
+    - There is no separate class for processed samples. A sample produced by a processing
+      step is a Sample, and sample_category says what kind of sample it is.
     from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
     exact_mappings:
     - nmdc:Sample
     - basalt_schema:Sample
+    narrow_mappings:
+    - nmdc:ProcessedSample
+    - basalt_schema:ProcessedSample
     is_a: NamedThing
-    abstract: true
     slots:
     - id
     - name
@@ -869,42 +896,21 @@ classes:
     - env_local_scale
     - env_medium
     class_uri: bridge_central_schema:Sample
-  ProcessedSample:
-    name: ProcessedSample
-    definition_uri: https://w3id.org/ber-data/bridge-central-schema/ProcessedSample
-    description: A sample produced by a processing step from one or more other samples.
-    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
-    exact_mappings:
-    - nmdc:ProcessedSample
-    - basalt_schema:ProcessedSample
-    is_a: Sample
-    slots:
-    - id
-    - name
-    - description
-    - external_identifiers
-    - associated_studies
-    - collected_at
-    - organism
-    - sample_category
-    - env_broad_scale
-    - env_local_scale
-    - env_medium
-    class_uri: bridge_central_schema:ProcessedSample
-  Processing:
-    name: Processing
-    definition_uri: https://w3id.org/ber-data/bridge-central-schema/Processing
-    description: One laboratory step that takes one or more samples as input and produces
-      one or more processed samples.
+  PlannedProcess:
+    name: PlannedProcess
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/PlannedProcess
+    description: A process carried out according to a plan, such as a laboratory step
+      or a computational workflow.
     comments:
-    - Inputs and outputs are lists here, as in nmdc-schema. BASALT stores the same
-      links only in ProcessingSampleLink rows; see that class.
+    - MaterialProcessing (sample to sample) is the only subclass in this draft. Subclasses
+      for sample-to-data processes (nmdc:DataGeneration) and data-to-data processes
+      (nmdc:WorkflowExecution) are future work; the umbrella has no data object class
+      for them to range on yet.
     from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
     exact_mappings:
-    - nmdc:MaterialProcessing
-    - basalt_schema:SampleProcessing
+    - nmdc:PlannedProcess
     close_mappings:
-    - OBI:0000094
+    - COB:0000035
     is_a: NamedThing
     abstract: true
     slots:
@@ -915,7 +921,39 @@ classes:
     - has_input
     - has_output
     - protocol
-    class_uri: bridge_central_schema:Processing
+    class_uri: bridge_central_schema:PlannedProcess
+  MaterialProcessing:
+    name: MaterialProcessing
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/MaterialProcessing
+    description: One laboratory step that takes one or more samples as input and produces
+      one or more samples.
+    comments:
+    - Inputs and outputs are lists here, as in nmdc-schema. BASALT stores the same
+      links only in ProcessingSampleLink rows; see that class.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:MaterialProcessing
+    - basalt_schema:SampleProcessing
+    close_mappings:
+    - COB:0000110
+    is_a: PlannedProcess
+    abstract: true
+    slots:
+    - id
+    - name
+    - description
+    - external_identifiers
+    - protocol
+    - MaterialProcessing_has_input
+    - MaterialProcessing_has_output
+    slot_usage:
+      has_input:
+        name: has_input
+        range: Sample
+      has_output:
+        name: has_output
+        range: Sample
+    class_uri: bridge_central_schema:MaterialProcessing
   ProcessingSampleLink:
     name: ProcessingSampleLink
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/ProcessingSampleLink
@@ -939,7 +977,7 @@ classes:
     class_uri: bridge_central_schema:ProcessingSampleLink
 metamodel_version: 1.11.0
 source_file: ber_central_schema.yaml
-source_file_date: '2026-10-21T21:07:02'
+source_file_date: '2026-10-28T18:21:45'
 source_file_size: 733
-generation_date: '2026-10-21T21:07:08'
+generation_date: '2026-10-28T18:21:54'
 

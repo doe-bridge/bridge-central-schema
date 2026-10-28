@@ -576,16 +576,16 @@
 <td>The biological identity of what is in a sample (a strain, isolate or engineer...</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Processing/">Processing</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PlannedProcess/">PlannedProcess</a></td>
+<td>A process carried out according to a plan, such as a laboratory step or a com...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MaterialProcessing/">MaterialProcessing</a></td>
 <td>One laboratory step that takes one or more samples as input and produces one ...</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Sample/">Sample</a></td>
 <td>A physical material that can be characterized by an experiment</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ProcessedSample/">ProcessedSample</a></td>
-<td>A sample produced by a processing step from one or more other samples</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Site/">Site</a></td>
@@ -648,11 +648,11 @@
 </tr>
 <tr>
 <td><a href="has_input/">has_input</a></td>
-<td>The samples a processing step takes in</td>
+<td>The things a process takes in, such as samples or data</td>
 </tr>
 <tr>
 <td><a href="has_output/">has_output</a></td>
-<td>The processed samples a processing step produces</td>
+<td>The things a process produces, such as samples or data</td>
 </tr>
 <tr>
 <td><a href="id/">id</a></td>
@@ -704,7 +704,7 @@
 </tr>
 <tr>
 <td><a href="sample_category/">sample_category</a></td>
-<td>What kind of material the sample is, at the coarse level needed to find the s...</td>
+<td>Where the sample's material came from, such as a pure culture, an engineered ...</td>
 </tr>
 <tr>
 <td><a href="taxon/">taxon</a></td>
@@ -731,7 +731,7 @@
 </tr>
 <tr>
 <td><a href="SampleCategoryEnum/">SampleCategoryEnum</a></td>
-<td>Coarse sample categories</td>
+<td>Where a sample's material came from</td>
 </tr>
 </tbody>
 </table>

@@ -486,7 +486,7 @@
 
 
 <h1 id="slot-has_output">Slot: has_output</h1>
-<p><em>The processed samples a processing step produces.</em></p>
+<p><em>The things a process produces, such as samples or data.</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/ber-data/bridge-central-schema/has_output">bridge_central_schema:has_output</a></p>
 <!-- no inheritance hierarchy -->
@@ -501,9 +501,14 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Processing/">Processing</a></td>
-<td>One laboratory step that takes one or more samples as input and produces one ...</td>
+<td><a href="../PlannedProcess/">PlannedProcess</a></td>
+<td>A process carried out according to a plan, such as a laboratory step or a com...</td>
 <td>no</td>
+</tr>
+<tr>
+<td><a href="../MaterialProcessing/">MaterialProcessing</a></td>
+<td>One laboratory step that takes one or more samples as input and produces one ...</td>
+<td>yes</td>
 </tr>
 </tbody>
 </table>
@@ -519,11 +524,11 @@
 <tbody>
 <tr>
 <td>Range</td>
-<td><a href="../ProcessedSample/">ProcessedSample</a></td>
+<td><a href="../NamedThing/">NamedThing</a></td>
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="../Processing/">Processing</a></td>
+<td><a href="../PlannedProcess/">PlannedProcess</a></td>
 </tr>
 </tbody>
 </table>
@@ -573,14 +578,14 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_output</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The processed samples a processing step produces.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The things a process produces, such as samples or data.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="nt">exact_mappings</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmdc:has_output</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Processing</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProcessedSample</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PlannedProcess</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>

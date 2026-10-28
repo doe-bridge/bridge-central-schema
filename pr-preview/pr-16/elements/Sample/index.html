@@ -297,20 +297,12 @@
 <h1 id="class-sample">Class: Sample</h1>
 <p><em>A physical material that can be characterized by an experiment.</em></p>
 <div>
-<ul>
-<li><strong>NOTE</strong>: this is an abstract class and should not be instantiated directly</li>
-</ul>
 <p>URI: <a href="https://w3id.org/ber-data/bridge-central-schema/Sample">bridge_central_schema:Sample</a></p>
 <pre class="mermaid"><code> classDiagram
     class Sample
     click Sample href "../Sample/"
       NamedThing &lt;|-- Sample
         click NamedThing href "../NamedThing/"
-
-
-      Sample &lt;|-- ProcessedSample
-        click ProcessedSample href "../ProcessedSample/"
-
 
       Sample : associated_studies
 
@@ -374,10 +366,7 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../NamedThing/">NamedThing</a><ul>
-<li><strong>Sample</strong><ul>
-<li><a href="../ProcessedSample/">ProcessedSample</a></li>
-</ul>
-</li>
+<li><strong>Sample</strong></li>
 </ul>
 </li>
 </ul>
@@ -413,7 +402,7 @@
 <tr>
 <td><a href="../sample_category/">sample_category</a></td>
 <td>0..1 <br/> <a href="../SampleCategoryEnum/">SampleCategoryEnum</a></td>
-<td>What kind of material the sample is, at the coarse level needed to find the s...</td>
+<td>Where the sample's material came from, such as a pure culture, an engineered ...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -472,8 +461,14 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Processing/">Processing</a></td>
+<td><a href="../MaterialProcessing/">MaterialProcessing</a></td>
 <td><a href="../has_input/">has_input</a></td>
+<td>range</td>
+<td><a href="./">Sample</a></td>
+</tr>
+<tr>
+<td><a href="../MaterialProcessing/">MaterialProcessing</a></td>
+<td><a href="../has_output/">has_output</a></td>
 <td>range</td>
 <td><a href="./">Sample</a></td>
 </tr>
@@ -489,6 +484,7 @@
 <ul>
 <li>Concrete sample types stay in the source schemas: nmdc:Biosample and nmdc:OrganismSample, and the 18 direct BASALT Sample subclasses (SoilSample, WaterSample, ...).</li>
 <li>BASALT records collection on a separate SamplingActivity class; NMDC records it on the sample. This draft leaves the sampling event out.</li>
+<li>There is no separate class for processed samples. A sample produced by a processing step is a Sample, and sample_category says what kind of sample it is.</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -516,6 +512,10 @@
 <td>exact</td>
 <td>nmdc:Sample, basalt_schema:Sample</td>
 </tr>
+<tr>
+<td>narrow</td>
+<td>nmdc:ProcessedSample, basalt_schema:ProcessedSample</td>
+</tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
@@ -529,12 +529,16 @@
 <span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">18</span><span class="nv"> </span><span class="s">direct</span><span class="nv"> </span><span class="s">BASALT</span><span class="nv"> </span><span class="s">Sample</span><span class="nv"> </span><span class="s">subclasses</span><span class="nv"> </span><span class="s">(SoilSample,</span><span class="nv"> </span><span class="s">WaterSample,</span><span class="nv"> </span><span class="s">...).'</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BASALT records collection on a separate SamplingActivity class; NMDC records it</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">on the sample. This draft leaves the sampling event out.</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">There is no separate class for processed samples. A sample produced by a processing</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">step is a Sample, and sample_category says what kind of sample it is.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="nt">exact_mappings</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmdc:Sample</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">basalt_schema:Sample</span>
+<span class="nt">narrow_mappings</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmdc:ProcessedSample</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">basalt_schema:ProcessedSample</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
-<span class="nt">abstract</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">associated_studies</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">collected_at</span>
@@ -554,12 +558,16 @@
 <span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">18</span><span class="nv"> </span><span class="s">direct</span><span class="nv"> </span><span class="s">BASALT</span><span class="nv"> </span><span class="s">Sample</span><span class="nv"> </span><span class="s">subclasses</span><span class="nv"> </span><span class="s">(SoilSample,</span><span class="nv"> </span><span class="s">WaterSample,</span><span class="nv"> </span><span class="s">...).'</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BASALT records collection on a separate SamplingActivity class; NMDC records it</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">on the sample. This draft leaves the sampling event out.</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">There is no separate class for processed samples. A sample produced by a processing</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">step is a Sample, and sample_category says what kind of sample it is.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="nt">exact_mappings</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmdc:Sample</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">basalt_schema:Sample</span>
+<span class="nt">narrow_mappings</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmdc:ProcessedSample</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">basalt_schema:ProcessedSample</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
-<span class="nt">abstract</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">associated_studies</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">associated_studies</span>
@@ -600,10 +608,10 @@
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Organism</span>
 <span class="w">  </span><span class="nt">sample_category</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_category</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">What kind of material the sample is, at the coarse level needed to</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">find the same kind of sample across BER sources. Finer detail goes in env_medium;</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">programs and protocols (MONet, Terraform, AMP2) stay with the study and the</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">source schema.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Where the sample's material came from, such as a pure culture, an</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">engineered strain or the environment. The kind of environment goes in env_broad_scale,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">env_local_scale and env_medium; programs and protocols (MONet, Terraform, AMP2)</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">stay with the study and the source schema.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="w">    </span><span class="nt">related_mappings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmdc:sample_type</span>

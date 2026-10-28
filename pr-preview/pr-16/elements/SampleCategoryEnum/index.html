@@ -447,7 +447,7 @@
 
 
 <h1 id="enum-samplecategoryenum">Enum: SampleCategoryEnum</h1>
-<p><em>Coarse sample categories. Each value lists the BASALT Sample subclass it corresponds to. Ontology meanings are not assigned yet.</em></p>
+<p><em>Where a sample's material came from. Each value lists the BASALT Sample subclasses it corresponds to. Ontology meanings are not assigned yet.</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/ber-data/bridge-central-schema/SampleCategoryEnum">bridge_central_schema:SampleCategoryEnum</a></p>
 <h2 id="permissible-values">Permissible Values</h2>
@@ -461,24 +461,9 @@
 </thead>
 <tbody>
 <tr>
-<td>soil</td>
+<td>environmental</td>
 <td>None</td>
-<td></td>
-</tr>
-<tr>
-<td>sediment</td>
-<td>None</td>
-<td></td>
-</tr>
-<tr>
-<td>water</td>
-<td>None</td>
-<td></td>
-</tr>
-<tr>
-<td>aerosol</td>
-<td>None</td>
-<td></td>
+<td>Material collected from the environment</td>
 </tr>
 <tr>
 <td>plant</td>
@@ -528,7 +513,7 @@
 <tbody>
 <tr>
 <td><a href="../sample_category/">sample_category</a></td>
-<td>What kind of material the sample is, at the coarse level needed to find the s...</td>
+<td>Where the sample's material came from, such as a pure culture, an engineered ...</td>
 </tr>
 </tbody>
 </table>
@@ -540,30 +525,21 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SampleCategoryEnum</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Coarse sample categories. Each value lists the BASALT Sample subclass</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">it corresponds to. Ontology meanings are not assigned yet.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Where a sample&#39;s material came from. Each value lists the BASALT Sample</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">subclasses it corresponds to. Ontology meanings are not assigned yet.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">permissible_values</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">soil</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">soil</span>
-<span class="w">    </span><span class="nt">exact_mappings</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">environmental</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">environmental</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Material collected from the environment. env_broad_scale, env_local_scale</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">and env_medium say which environment.</span>
+<span class="w">    </span><span class="nt">narrow_mappings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">basalt_schema:SoilSample</span>
-<span class="w">    </span><span class="nt">related_mappings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">basalt_schema:MonetSoilSample</span>
-<span class="w">  </span><span class="nt">sediment</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sediment</span>
-<span class="w">    </span><span class="nt">exact_mappings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">basalt_schema:SedimentSample</span>
-<span class="w">  </span><span class="nt">water</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">water</span>
-<span class="w">    </span><span class="nt">exact_mappings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">basalt_schema:WaterSample</span>
-<span class="w">  </span><span class="nt">aerosol</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aerosol</span>
-<span class="w">    </span><span class="nt">exact_mappings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">basalt_schema:AerosolSample</span>
-<span class="w">    </span><span class="nt">related_mappings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">basalt_schema:AerosolArmSample</span>
 <span class="w">  </span><span class="nt">plant</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">plant</span>

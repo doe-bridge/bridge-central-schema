@@ -486,7 +486,7 @@
 
 
 <h1 id="slot-sample_category">Slot: sample_category</h1>
-<p><em>What kind of material the sample is, at the coarse level needed to find the same kind of sample across BER sources. Finer detail goes in env_medium; programs and protocols (MONet, Terraform, AMP2) stay with the study and the source schema.</em></p>
+<p><em>Where the sample's material came from, such as a pure culture, an engineered strain or the environment. The kind of environment goes in env_broad_scale, env_local_scale and env_medium; programs and protocols (MONet, Terraform, AMP2) stay with the study and the source schema.</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/ber-data/bridge-central-schema/sample_category">bridge_central_schema:sample_category</a></p>
 <!-- no inheritance hierarchy -->
@@ -503,11 +503,6 @@
 <tr>
 <td><a href="../Sample/">Sample</a></td>
 <td>A physical material that can be characterized by an experiment</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ProcessedSample/">ProcessedSample</a></td>
-<td>A sample produced by a processing step from one or more other samples</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -578,9 +573,10 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_category</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">What kind of material the sample is, at the coarse level needed to find</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">the same kind of sample across BER sources. Finer detail goes in env_medium; programs</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">and protocols (MONet, Terraform, AMP2) stay with the study and the source schema.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Where the sample&#39;s material came from, such as a pure culture, an engineered</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">strain or the environment. The kind of environment goes in env_broad_scale, env_local_scale</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">and env_medium; programs and protocols (MONet, Terraform, AMP2) stay with the study</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">and the source schema.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="nt">related_mappings</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nmdc:sample_type</span>

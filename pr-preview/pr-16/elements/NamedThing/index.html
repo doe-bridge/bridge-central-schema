@@ -217,6 +217,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#usages">
+<span class="md-ellipsis">
+      
+        Usages
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#identifier-and-mapping-information">
 <span class="md-ellipsis">
       
@@ -300,8 +309,8 @@
         click Organism href "../Organism/"
       NamedThing &lt;|-- Sample
         click Sample href "../Sample/"
-      NamedThing &lt;|-- Processing
-        click Processing href "../Processing/"
+      NamedThing &lt;|-- PlannedProcess
+        click PlannedProcess href "../PlannedProcess/"
 
       NamedThing : description
 
@@ -319,7 +328,7 @@
 <li><a href="../Site/">Site</a></li>
 <li><a href="../Organism/">Organism</a></li>
 <li><a href="../Sample/">Sample</a></li>
-<li><a href="../Processing/">Processing</a></li>
+<li><a href="../PlannedProcess/">PlannedProcess</a></li>
 </ul>
 </li>
 </ul>
@@ -372,6 +381,31 @@
 <td>* <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
 <td>Identifiers for the same entity in the system that holds the original record,...</td>
 <td>direct</td>
+</tr>
+</tbody>
+</table>
+<h2 id="usages">Usages</h2>
+<table>
+<thead>
+<tr>
+<th>used by</th>
+<th>used in</th>
+<th>type</th>
+<th>used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../PlannedProcess/">PlannedProcess</a></td>
+<td><a href="../has_input/">has_input</a></td>
+<td>range</td>
+<td><a href="./">NamedThing</a></td>
+</tr>
+<tr>
+<td><a href="../PlannedProcess/">PlannedProcess</a></td>
+<td><a href="../has_output/">has_output</a></td>
+<td>range</td>
+<td><a href="./">NamedThing</a></td>
 </tr>
 </tbody>
 </table>
