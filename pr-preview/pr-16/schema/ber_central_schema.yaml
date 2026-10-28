@@ -304,8 +304,7 @@ enums:
     permissible_values:
       environmental:
         text: environmental
-        description: Material collected from the environment. env_broad_scale, env_local_scale
-          and env_medium say which environment.
+        description: Material collected from the environment.
         narrow_mappings:
         - basalt_schema:SoilSample
         - basalt_schema:MonetSoilSample
@@ -468,16 +467,6 @@ slots:
     domain_of:
     - QuantityValue
     range: string
-  principal_investigator:
-    name: principal_investigator
-    definition_uri: https://w3id.org/ber-data/bridge-central-schema/principal_investigator
-    description: The person responsible for the study.
-    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
-    slot_uri: bridge_central_schema:principal_investigator
-    owner: Study
-    domain_of:
-    - Study
-    range: string
   taxon:
     name: taxon
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/taxon
@@ -535,9 +524,8 @@ slots:
     name: sample_category
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/sample_category
     description: Where the sample's material came from, such as a pure culture, an
-      engineered strain or the environment. The kind of environment goes in env_broad_scale,
-      env_local_scale and env_medium; programs and protocols (MONet, Terraform, AMP2)
-      stay with the study and the source schema.
+      engineered strain or the environment. Programs and protocols (MONet, Terraform,
+      AMP2) stay with the study and the source schema.
     from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
     related_mappings:
     - nmdc:sample_type
@@ -546,50 +534,6 @@ slots:
     domain_of:
     - Sample
     range: SampleCategoryEnum
-  env_broad_scale:
-    name: env_broad_scale
-    definition_uri: https://w3id.org/ber-data/bridge-central-schema/env_broad_scale
-    description: The broad-scale environmental context (for example, the biome) the
-      sample came from, as an ontology term CURIE, following the MIxS slot of the
-      same name.
-    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
-    exact_mappings:
-    - nmdc:env_broad_scale
-    - basalt_schema:env_broad_scale
-    slot_uri: bridge_central_schema:env_broad_scale
-    owner: Sample
-    domain_of:
-    - Sample
-    range: uriorcurie
-  env_local_scale:
-    name: env_local_scale
-    definition_uri: https://w3id.org/ber-data/bridge-central-schema/env_local_scale
-    description: The local environment the sample came from, as an ontology term CURIE,
-      following the MIxS slot of the same name.
-    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
-    exact_mappings:
-    - nmdc:env_local_scale
-    - basalt_schema:env_local_scale
-    slot_uri: bridge_central_schema:env_local_scale
-    owner: Sample
-    domain_of:
-    - Sample
-    range: uriorcurie
-  env_medium:
-    name: env_medium
-    definition_uri: https://w3id.org/ber-data/bridge-central-schema/env_medium
-    description: The environmental material immediately surrounding the sample at
-      the time of sampling, as an ontology term CURIE, following the MIxS slot of
-      the same name.
-    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
-    exact_mappings:
-    - nmdc:env_medium
-    - basalt_schema:env_medium
-    slot_uri: bridge_central_schema:env_medium
-    owner: Sample
-    domain_of:
-    - Sample
-    range: uriorcurie
   has_input:
     name: has_input
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/has_input
@@ -829,7 +773,6 @@ classes:
     - name
     - description
     - external_identifiers
-    - principal_investigator
     class_uri: bridge_central_schema:Study
   Site:
     name: Site
@@ -892,9 +835,6 @@ classes:
     - collected_at
     - organism
     - sample_category
-    - env_broad_scale
-    - env_local_scale
-    - env_medium
     class_uri: bridge_central_schema:Sample
   PlannedProcess:
     name: PlannedProcess
@@ -977,7 +917,7 @@ classes:
     class_uri: bridge_central_schema:ProcessingSampleLink
 metamodel_version: 1.11.0
 source_file: ber_central_schema.yaml
-source_file_date: '2026-10-28T18:21:45'
+source_file_date: '2026-10-28T19:27:43'
 source_file_size: 733
-generation_date: '2026-10-28T18:21:54'
+generation_date: '2026-10-28T19:27:51'
 

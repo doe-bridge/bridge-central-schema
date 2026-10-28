@@ -161,18 +161,6 @@
          <lastmod>2026-10-28</lastmod>
     </url>
     <url>
-         <loc>https://sierra-moxon.github.io/ber-central-schema/elements/env_broad_scale/</loc>
-         <lastmod>2026-10-28</lastmod>
-    </url>
-    <url>
-         <loc>https://sierra-moxon.github.io/ber-central-schema/elements/env_local_scale/</loc>
-         <lastmod>2026-10-28</lastmod>
-    </url>
-    <url>
-         <loc>https://sierra-moxon.github.io/ber-central-schema/elements/env_medium/</loc>
-         <lastmod>2026-10-28</lastmod>
-    </url>
-    <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/external_identifiers/</loc>
          <lastmod>2026-10-28</lastmod>
     </url>
@@ -202,10 +190,6 @@
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/organism/</loc>
-         <lastmod>2026-10-28</lastmod>
-    </url>
-    <url>
-         <loc>https://sierra-moxon.github.io/ber-central-schema/elements/principal_investigator/</loc>
          <lastmod>2026-10-28</lastmod>
     </url>
     <url>
