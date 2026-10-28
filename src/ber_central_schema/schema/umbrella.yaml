@@ -66,7 +66,6 @@ classes:
 
   Sample:
     is_a: NamedThing
-    abstract: true
     description: >-
       A physical material that can be characterized by an experiment.
     slots:
@@ -80,6 +79,9 @@ classes:
     exact_mappings:
       - nmdc:Sample
       - basalt_schema:Sample
+    narrow_mappings:
+      - nmdc:ProcessedSample
+      - basalt_schema:ProcessedSample
     comments:
       - >-
         Concrete sample types stay in the source schemas: nmdc:Biosample and
@@ -88,20 +90,17 @@ classes:
       - >-
         BASALT records collection on a separate SamplingActivity class; NMDC
         records it on the sample. This draft leaves the sampling event out.
-
-  ProcessedSample:
-    is_a: Sample
-    description: A sample produced by a processing step from one or more other samples.
-    exact_mappings:
-      - nmdc:ProcessedSample
-      - basalt_schema:ProcessedSample
+      - >-
+        There is no separate class for processed samples. A sample produced by
+        a processing step is a Sample, and sample_category says what kind of
+        sample it is.
 
   Processing:
     is_a: NamedThing
     abstract: true
     description: >-
       One laboratory step that takes one or more samples as input and produces
-      one or more processed samples.
+      one or more samples.
     slots:
       - has_input
       - has_output
@@ -204,8 +203,8 @@ slots:
     exact_mappings:
       - nmdc:has_input
   has_output:
-    description: The processed samples a processing step produces.
-    range: ProcessedSample
+    description: The samples a processing step produces.
+    range: Sample
     multivalued: true
     exact_mappings:
       - nmdc:has_output

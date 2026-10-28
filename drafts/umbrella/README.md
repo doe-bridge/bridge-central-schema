@@ -9,7 +9,7 @@ Sources read on 2026-10-14: nmdc-schema main at 03ba5a2 (https://github.com/micr
 | File | What it is |
 |---|---|
 | `nmdc-basalt-comparison.md` | What nmdc-schema and BASALT have today, side by side. Same content as the commentable Google Doc: https://docs.google.com/document/d/1ZF5mnfnauqJag8zM-YEZVq5BPa-jUyoKOOHChi5xtd4/edit |
-| `src/ber_central_schema/schema/umbrella.yaml` | A LinkML proposal for shared `Study`, `Site`, `Organism`, `Sample`, `ProcessedSample` and `Processing` classes, plus `ProcessingSampleLink` |
+| `src/ber_central_schema/schema/umbrella.yaml` | A LinkML proposal for shared `Study`, `Site`, `Organism`, `Sample` and `Processing` classes, plus `ProcessingSampleLink` |
 | `mapper-notes.md` | What Yuri's BER Schema Mapper covers and lacks for this work |
 | `tests/data/valid/` and `tests/data/invalid/` (files not named `Measurement-*`) | Small valid and invalid instances, including the two `ProcessingSampleLink` rows that one NMDC Extraction step becomes |
 
@@ -52,7 +52,7 @@ The mapper suits a first pass across many schemas; what the group agrees can the
 - Identifiers: BASALT ids are bare UUIDs and the umbrella `id` range is `uriorcurie`. The BASALT example writes them as `urn:uuid:` URIs. `linkml-validate` 1.11.1 also accepted a bare UUID in a `uriorcurie` slot, so the draft does not yet enforce any id form; that needs a decision (`urn:uuid:`, a BASALT prefix, or a pattern).
 - Records held in more than one system: much NMDC metadata redistributes records that EMSL and JGI (GOLD) also hold. `external_identifiers` on `NamedThing` records the original system's identifier so the copies can be matched. It is one generic list, as in BASALT; nmdc-schema instead has one slot per system and entity type (`gold_biosample_identifiers`, `emsl_biosample_identifiers`, ...). Whether the umbrella needs to say which system holds the original record is open.
 - Sample categories: `sample_category` (`SampleCategoryEnum`) is one option for the request for more sample categories (plants and others). Three BASALT Sample subclasses name a program rather than a material (`AMP2UserSample`, `TerraformSample`, `FieldDeployedTerraformSample`) and have no category value. Values have no ontology meanings yet.
-- `Sample` and `Processing` are abstract and the draft has no concrete subclasses, so the examples use `ProcessedSample` and `ProcessingSampleLink`.
+- `Processing` is abstract and the draft has no concrete subclasses, so the processing examples use `ProcessingSampleLink`.
 
 - James Carr's BASALT-to-Parquet work was not found, so the BASALT flat form above comes from the BASALT LinkML schema, not its Parquet output.
 - See `mapper-notes.md` for gaps in the mapper's catalog.
