@@ -11,6 +11,8 @@ Sources read on 2026-10-14: nmdc-schema main at 03ba5a2 (https://github.com/micr
 | `nmdc-basalt-comparison.md` | What nmdc-schema and BASALT have today, side by side. Same content as the commentable Google Doc: https://docs.google.com/document/d/1ZF5mnfnauqJag8zM-YEZVq5BPa-jUyoKOOHChi5xtd4/edit |
 | `src/ber_central_schema/schema/umbrella.yaml` | A LinkML proposal for shared `Study`, `Site`, `Organism`, `Sample`, `PlannedProcess` and `MaterialProcessing` classes, plus `ProcessingSampleLink` |
 | `mapper-notes.md` | What Yuri's BER Schema Mapper covers and lacks for this work |
+| `what-is-a-sample.md` | What the draft means by a sample (material, drawn from a larger body it represents, collected for measurement), what is not one (subjects, observation contexts, stations, information artifacts), and how the 2026-10-28 meeting cases come out. A proposal, not agreed. |
+| `wide-polymorphic-tables.md` | Whether to store sample and process subtypes as a few wide tables with a `type` column or as many narrow tables, measured on nmdc-schema and nmdc-lakehouse, with a recommendation |
 | `tests/data/valid/` and `tests/data/invalid/` (files not named `Measurement-*`) | Small valid and invalid instances, including the two `ProcessingSampleLink` rows that one NMDC Extraction step becomes |
 
 ## Use together
