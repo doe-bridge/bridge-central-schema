@@ -2,230 +2,230 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/about/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Boolean/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Curie/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Date/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/DateOrDatetime/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Datetime/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Decimal/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Double/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Float/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Integer/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Jsonpath/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Jsonpointer/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/MaterialProcessing/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Measurement/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/MeasurementValue/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/NamedThing/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Ncname/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Nodeidentifier/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Objectidentifier/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Observation/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Organism/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/PlannedProcess/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/ProcessingRoleEnum/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/ProcessingSampleLink/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/QuantityValue/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Sample/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/SampleCategoryEnum/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Site/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Sparqlpath/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/String/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Study/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Time/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Uri/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/Uriorcurie/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/associated_studies/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/ber-central-schema/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/collected_at/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/description/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/external_identifiers/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/has_input/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/has_output/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/id/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/name/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/numeric_value/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/observed_property/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/organism/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/processing/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/protocol/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/raw_value/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/result/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/role/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/sample/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/sample_category/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/taxon/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/ber-central-schema/elements/unit/</loc>
-         <lastmod>2026-10-28</lastmod>
+         <lastmod>2026-10-29</lastmod>
     </url>
 </urlset>
