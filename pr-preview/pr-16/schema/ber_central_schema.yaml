@@ -918,7 +918,7 @@ classes:
     class_uri: bridge_central_schema:ProcessingSampleLink
 metamodel_version: 1.11.0
 source_file: ber_central_schema.yaml
-source_file_date: '2026-10-29T14:21:47'
+source_file_date: '2026-10-30T14:59:06'
 source_file_size: 733
-generation_date: '2026-10-29T14:21:55'
+generation_date: '2026-10-30T14:59:13'
 
