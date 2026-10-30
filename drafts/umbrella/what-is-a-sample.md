@@ -58,7 +58,7 @@ For anyone writing a loader or a mapping, this is where the kinds above land in 
 | the larger thing a sample was taken from | none | The draft records neither the sampling step nor the source. This note argues that one of the two is needed. |
 | subject, as an individual (one plant, one patient) | none | The draft's `Organism` is "The biological identity of what is in a sample (a strain, isolate or engineered construct), not a physical sample", and several samples share one. An individual plant under daily imaging has no class yet. |
 | station or site | `Site` | Described as "A place where samples are collected." A flux tower site collects none, so that description would need to widen. |
-| observation | `Observation` in `measurements.yaml` | Mapped to sosa:Observation. Its `feature_of_interest` slot is commented out, with a note to restore it once a shared sample or feature-of-interest class is designed. |
+| observation | `Observation` or `Measurement` in `measurements.yaml` | On main, `Observation` is mapped to sosa:Observation and its `feature_of_interest` slot is commented out. https://github.com/doe-bridge/bridge-central-schema/pull/9 removes `Observation`, maps `Measurement` to sosa:Observation, and makes `feature_of_interest` a reference (uriorcurie) that can point at a sample, an organism, a site or a plot. Its valid examples point at GOLD organism IDs as well as NMDC biosamples, so a feature of interest is not always a sample. |
 | information artifact (sequence, MAG bin, plasmid map) | none | Out of scope for this note. |
 
 ## Why this matters for the tables
