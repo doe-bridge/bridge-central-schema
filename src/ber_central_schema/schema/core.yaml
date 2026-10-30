@@ -1,0 +1,62 @@
+---
+id: https://w3id.org/ber-data/bridge-central-schema/core
+name: core
+title: BRIDGE core elements
+description: >-
+  Shared base elements used by the BRIDGE Central Schema modules.
+license: Apache-2.0
+
+prefixes:
+  bridge_central_schema: https://w3id.org/ber-data/bridge-central-schema/
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  nmdc: https://w3id.org/nmdc/
+  basalt_schema: https://emsl-computing.github.io/BASALT-Schema/elements/
+default_prefix: bridge_central_schema
+default_range: string
+
+imports:
+  - linkml:types
+
+classes:
+
+  NamedThing:
+    class_uri: schema:Thing
+    description: Generic base for any identifiable BRIDGE entity.
+    slots:
+      - id
+      - name
+      - description
+      - external_identifiers
+
+slots:
+  id:
+    identifier: true
+    slot_uri: schema:identifier
+    range: uriorcurie
+    description: A unique identifier for a thing
+  name:
+    slot_uri: schema:name
+    description: A human-readable name for a thing
+  description:
+    slot_uri: schema:description
+    description: A human-readable description for a thing
+  external_identifiers:
+    description: >-
+      Identifiers for the same entity in the system that holds the original
+      record, such as GOLD, EMSL or INSDC. Lets a record that one BER system
+      redistributes from another be matched to the original.
+    range: uriorcurie
+    multivalued: true
+    exact_mappings:
+      - basalt_schema:external_identifiers
+    close_mappings:
+      # Abstract parent of nmdc-schema's per-source identifier slots.
+      - nmdc:external_database_identifiers
+    related_mappings:
+      # nmdc-schema has one slot per source system and entity type.
+      - nmdc:gold_biosample_identifiers
+      - nmdc:emsl_biosample_identifiers
+      - nmdc:insdc_biosample_identifiers
+      - nmdc:emsl_project_identifiers
+      - nmdc:gold_study_identifiers
