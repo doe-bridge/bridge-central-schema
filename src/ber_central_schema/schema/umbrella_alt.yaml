@@ -1,0 +1,464 @@
+# alternate version of umbrella.yaml showing "document style" version of Study/Person/Credit modelling
+id: https://w3id.org/ber-data/bridge-central-schema/umbrella
+name: umbrella
+title: BRIDGE umbrella classes (draft)
+description: >-
+  Shared classes for samples, organisms, studies and sample processing that
+  source schemas map to. Each class carries mappings to the nmdc-schema and
+  BASALT classes it stands for. Source-specific detail (MIxS fields, protocol
+  parameters) stays in the source schemas.
+license: Apache-2.0
+
+prefixes:
+  bridge_central_schema: https://w3id.org/ber-data/bridge-central-schema/
+  linkml: https://w3id.org/linkml/
+  nmdc: https://w3id.org/nmdc/
+  basalt_schema: https://emsl-computing.github.io/BASALT-Schema/elements/
+  COB: http://purl.obolibrary.org/obo/COB_
+  NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
+  MIXS: https://w3id.org/mixs/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  dcm: https://kbase.github.io/credit_engine/
+default_prefix: bridge_central_schema
+default_range: string
+
+imports:
+  - linkml:types
+  - core
+
+# NamedThing and its slots are defined in core.yaml.
+classes:
+
+  Study:
+    is_a: NamedThing
+    description: >-
+      A research initiative, proposal or project under which samples are
+      collected and processed.
+    slots:
+      - has_credit_associations
+    close_mappings:
+      # nmdc:Study aliases include "project" and "proposal".
+      - nmdc:Study
+      # BASALT Study holds an EMSL user project (project_id, proposal abstract).
+      - basalt_schema:Study
+
+  Agent:
+    is_a: NamedThing
+    abstract: true
+    description: >-
+      A person or organization that bears responsibility for an activity, for
+      the existence of an entity, or for another agent's activity. `name` is
+      inherited from NamedThing. Unlike nmdc:Agent (which has no identifier
+      of its own, so nmdc:CreditAssociation.applies_to_agent always embeds a
+      full copy), this Agent keeps the `id` it inherits from NamedThing, so
+      it can be stored once and referenced from many CreditAssociation rows.
+    slots:
+      - name
+      - profile_image_url
+      - websites
+    close_mappings:
+      - prov:Agent
+
+  Person:
+    is_a: Agent
+    description: >-
+      An individual, independent of any study or role they hold on one.
+      Stored once per person and referenced by id from CreditAssociation, so
+      the same person credited on several studies is one record, not several
+      copies.
+    slots:
+      - email
+      - orcid
+    slot_usage:
+      name:
+        description: The full name of the person.
+    close_mappings:
+      - nmdc:Person
+      - basalt_schema:PersonValue
+
+  Organization:
+    is_a: Agent
+    description: A social or legal institution, such as a company or consortium.
+    slots:
+      - ror
+    close_mappings:
+      - nmdc:Organization
+
+  CreditAssociation:
+    aliases:
+      - credit table
+      - associated researchers
+    description: >-
+      One agent's role(s) on the study document that contains it, following
+      nmdc-schema's has_credit_associations pattern: rows are embedded
+      directly in Study.has_credit_associations rather than living in a
+      standalone join table keyed by study and agent identifiers. Unlike
+      nmdc-schema, applies_to_agent is a reference to a Person or
+      Organization record, not an embedded copy of one; see Agent.
+    slots:
+      - applies_to_agent
+      - applied_roles
+    class_uri: prov:Association
+    close_mappings:
+      - dcm:Contributor
+      - nmdc:CreditAssociation
+    related_mappings:
+      - basalt_schema:ProjectParticipant
+    see_also:
+      - https://casrai.org/credit/
+      - https://kbase.github.io/credit_engine/
+      - https://info.orcid.org/credit-for-research-contribution
+      - https://credit.niso.org/
+
+  Site:
+    is_a: NamedThing
+    description: A place where samples are collected.
+    close_mappings:
+      - nmdc:FieldResearchSite
+      - basalt_schema:Site
+
+  Organism:
+    is_a: NamedThing
+    description: >-
+      The biological identity of what is in a sample (a strain, isolate or
+      engineered construct), not a physical sample. Several samples can share
+      one organism.
+    slots:
+      - taxon
+    close_mappings:
+      # Both define biological identity, not a sample; both dropped a separate Strain class.
+      - nmdc:Organism
+      - basalt_schema:organism
+
+  Sample:
+    is_a: NamedThing
+    description: >-
+      A physical material that can be characterized by an experiment.
+    slots:
+      - associated_studies
+      - collected_at
+      - organism
+      - sample_category
+    exact_mappings:
+      - nmdc:Sample
+      - basalt_schema:Sample
+    narrow_mappings:
+      - nmdc:ProcessedSample
+      - basalt_schema:ProcessedSample
+    comments:
+      - >-
+        Concrete sample types stay in the source schemas: nmdc:Biosample and
+        nmdc:OrganismSample, and the 18 direct BASALT Sample subclasses
+        (SoilSample, WaterSample, ...).
+      - >-
+        BASALT records collection on a separate SamplingActivity class; NMDC
+        records it on the sample. This draft leaves the sampling event out.
+      - >-
+        There is no separate class for processed samples. A sample produced by
+        a processing step is a Sample, and sample_category says what kind of
+        sample it is.
+
+  PlannedProcess:
+    is_a: NamedThing
+    abstract: true
+    description: >-
+      A process carried out according to a plan, such as a laboratory step or a
+      computational workflow.
+    slots:
+      - has_input
+      - has_output
+      - protocol
+    exact_mappings:
+      - nmdc:PlannedProcess
+    close_mappings:
+      # OBI made OBI:0000011 (planned process), the class_uri of
+      # nmdc:PlannedProcess, obsolete in favor of this term. COB:0000110
+      # (material processing) is a subclass of it.
+      - COB:0000035
+    comments:
+      - >-
+        MaterialProcessing (sample to sample) is the only subclass in this
+        draft. Subclasses for sample-to-data processes (nmdc:DataGeneration)
+        and data-to-data processes (nmdc:WorkflowExecution) are future work;
+        the umbrella has no data object class for them to range on yet.
+
+  MaterialProcessing:
+    is_a: PlannedProcess
+    abstract: true
+    description: >-
+      One laboratory step that takes one or more samples as input and produces
+      one or more samples.
+    slot_usage:
+      has_input:
+        range: Sample
+      has_output:
+        range: Sample
+    exact_mappings:
+      - nmdc:MaterialProcessing
+      - basalt_schema:SampleProcessing
+    close_mappings:
+      # Replaces OBI:0000094, which OBI made obsolete in favor of this term.
+      - COB:0000110
+    comments:
+      - >-
+        Inputs and outputs are lists here, as in nmdc-schema. BASALT stores the
+        same links only in ProcessingSampleLink rows; see that class.
+
+  ProcessingSampleLink:
+    description: >-
+      One row of the flat table form of has_input and has_output: one sample,
+      one processing step, and whether the sample went in or came out. This is
+      the shape a flattened lakehouse table would take. It is derived from
+      has_input and has_output, not recorded separately.
+    slots:
+      - processing
+      - sample
+      - role
+    exact_mappings:
+      - basalt_schema:ProcessingSampleLink
+    related_mappings:
+      # nmdc-lakehouse writes these as two tables, one per direction:
+      # material_processing_set_has_input and material_processing_set_has_output.
+      - nmdc:has_input
+      - nmdc:has_output
+    comments:
+      - >-
+        BASALT's link also has step_number and in_run, which order steps within
+        a run. Whether those belong in the umbrella is an open question.
+
+slots:
+  has_credit_associations:
+    description: >-
+      Links this study to its credit associations. Each one is embedded
+      directly here as a list entry, inlined_as_list like nmdc-schema does,
+      rather than looked up from a standalone join table.
+    range: CreditAssociation
+    multivalued: true
+    inlined_as_list: true
+    slot_uri: prov:qualifiedAssociation
+    exact_mappings:
+      - nmdc:has_credit_associations
+    close_mappings:
+      - dcm:contributors
+      - basalt_schema:has_participants
+  applies_to_agent:
+    description: >-
+      The agent (person or organization) this credit association applies to,
+      referenced by id rather than embedded, so the same Person or
+      Organization record can be reused across studies and roles without
+      duplicating it.
+    range: Agent
+    required: true
+    close_mappings:
+      - nmdc:applies_to_agent
+  applied_roles:
+    description: >-
+      The role(s) this agent held on the study. Multivalued: one
+      CreditAssociation entry can list every role a given agent held, as in
+      nmdc-schema, rather than needing one entry per role.
+    range: CreditEnum
+    multivalued: true
+    required: true
+    close_mappings:
+      - dcm:contributor_roles
+  email:
+    description: A contactable email address for the person.
+    close_mappings:
+      - nmdc:email
+      - basalt_schema:email
+  orcid:
+    range: uriorcurie
+    description: The person's ORCID identifier.
+    close_mappings:
+      - nmdc:orcid
+      - basalt_schema:orcid
+  ror:
+    description: The Research Organization Registry identifier of the organization.
+    range: uriorcurie
+    close_mappings:
+      - nmdc:ror
+  taxon:
+    description: Taxonomic classification, as an NCBITaxon CURIE.
+    range: uriorcurie
+    # Same pattern as the id of nmdc:NcbiTaxon in nmdc-schema.
+    pattern: '^NCBITaxon:\d+$'
+    close_mappings:
+      - nmdc:classified_as
+      - basalt_schema:taxonomy_id
+  associated_studies:
+    description: The studies the sample was collected or processed under.
+    range: Study
+    multivalued: true
+    close_mappings:
+      - nmdc:associated_studies
+      # BASALT's `project` is an integer, not a reference.
+      - basalt_schema:project
+  collected_at:
+    description: The site the sample was collected from.
+    range: Site
+    close_mappings:
+      - nmdc:collected_from
+      # On BASALT SamplingActivity, not on Sample.
+      - basalt_schema:sampled_at_site
+  organism:
+    description: The organism the sample is expected to contain, when it is one organism.
+    range: Organism
+    close_mappings:
+      - nmdc:expected_organism
+      - basalt_schema:organism_ref
+  sample_category:
+    description: >-
+      Where the sample's material came from, such as a pure culture, an
+      engineered strain or the environment. Programs and protocols (MONet,
+      Terraform, AMP2) stay with the study and the source schema.
+    range: SampleCategoryEnum
+    related_mappings:
+      # BASALT expresses this as Sample subclasses; nmdc-schema has no single
+      # slot for it (env_package, sample_type and samp_type are all candidates).
+      - nmdc:sample_type
+  has_input:
+    description: The things a process takes in, such as samples or data.
+    range: NamedThing
+    multivalued: true
+    exact_mappings:
+      - nmdc:has_input
+  has_output:
+    description: The things a process produces, such as samples or data.
+    range: NamedThing
+    multivalued: true
+    exact_mappings:
+      - nmdc:has_output
+  protocol:
+    description: A link to the protocol the step followed.
+    range: uriorcurie
+    close_mappings:
+      - nmdc:protocol_link
+      - basalt_schema:in_protocol
+  processing:
+    description: The processing step this link row belongs to.
+    range: MaterialProcessing
+    required: true
+    close_mappings:
+      - basalt_schema:processing_id
+  sample:
+    description: The sample this link row connects to the processing step.
+    range: Sample
+    required: true
+    close_mappings:
+      - basalt_schema:sample_id
+  role:
+    description: Whether the sample went into or came out of the processing step.
+    range: ProcessingRoleEnum
+    required: true
+    exact_mappings:
+      - basalt_schema:role
+
+enums:
+  SampleCategoryEnum:
+    description: >-
+      Where a sample's material came from. Each value lists the BASALT Sample
+      subclasses it corresponds to. Ontology meanings are not assigned yet.
+    permissible_values:
+      environmental:
+        description: Material collected from the environment.
+        narrow_mappings:
+          - basalt_schema:SoilSample
+          - basalt_schema:MonetSoilSample
+          - basalt_schema:SedimentSample
+          - basalt_schema:WaterSample
+          - basalt_schema:AerosolSample
+          - basalt_schema:AerosolArmSample
+      plant:
+        exact_mappings: [basalt_schema:PlantSample]
+      pure_culture:
+        exact_mappings: [basalt_schema:PureCultureSample]
+      mixed_culture:
+        exact_mappings: [basalt_schema:MixedCultureSample]
+        related_mappings: [basalt_schema:CultureEnvironmentalSample]
+      engineered_strain:
+        exact_mappings: [basalt_schema:EngineeredStrainSample]
+      synthesized_material:
+        exact_mappings: [basalt_schema:SynthesizedMaterialSample]
+      commercial_material:
+        exact_mappings: [basalt_schema:CommerciallyPurchasedSample]
+      other:
+        exact_mappings: [basalt_schema:OtherUndescribedSample]
+  ProcessingRoleEnum:
+    description: Whether a sample is an input to or an output of a processing step.
+    permissible_values:
+      input:
+        description: The sample was consumed by the processing step.
+      output:
+        description: The sample was produced by the processing step.
+
+  CreditEnum:
+    permissible_values:
+      Conceptualization:
+        description: Conceptualization
+        exact_mappings:
+          - dcm:conceptualization
+      Data curation:
+        description: Data curation
+        exact_mappings:
+          - dcm:data_curation
+      Formal Analysis:
+        description: Formal Analysis
+        exact_mappings:
+          - dcm:formal_analysis
+      Funding acquisition:
+        description: Funding acquisition
+        exact_mappings:
+          - dcm:funding_acquisition
+      Investigation:
+        description: Investigation
+        exact_mappings:
+          - dcm:investigation
+      Methodology:
+        description: Methodology
+        exact_mappings:
+          - dcm:methodology
+      Project administration:
+        description: Project administration
+        exact_mappings:
+          - dcm:project_administration
+      Resources:
+        description: Resources
+        exact_mappings:
+          - dcm:resources
+      Software:
+        description: Software
+        exact_mappings:
+          - dcm:software
+      Supervision:
+        description: Supervision
+        exact_mappings:
+          - dcm:supervision
+      Validation:
+        description: Validation
+        exact_mappings:
+          - dcm:validation
+      Visualization:
+        description: Visualization
+        exact_mappings:
+          - dcm:visualization
+      Writing original draft:
+        description: "Writing original draft"
+        exact_mappings:
+          - dcm:writing_original_draft
+      Writing review and editing:
+        description: "Writing review & editing"
+        exact_mappings:
+          - dcm:writing_review_editing
+      Principal Investigator:
+        description: principal investigator role
+        meaning: OBI:0000103
+        related_mappings:
+          - dcm:project_leader
+      Submitter:
+        description: the person(s) who enter study and biosample metadata into the BRIDGE submission portal
+        meaning: EFO:0001741
+    comments:
+      - CreditEnums come from https://casrai.org/credit/
+    see_also:
+      - https://kbase.github.io/credit_engine/ContributorRole/
