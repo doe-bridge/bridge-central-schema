@@ -1,0 +1,1188 @@
+name: ber-central-schema
+description: 'The central BRIDGE schema for harmonized cross-BER data access. Composes
+  the shared base elements in core.yaml with domain modules (currently: measurements.yaml
+  and the draft umbrella.yaml).'
+title: BRIDGE Central Schema
+see_also:
+- https://github.com/ber-data/bridge-central-schema
+- https://github.com/ber-data/lakehouse-registry
+id: https://w3id.org/ber-data/bridge-central-schema
+imports:
+- linkml:types
+- core
+- measurements
+- umbrella
+license: Apache-2.0
+prefixes:
+  bridge_central_schema:
+    prefix_prefix: bridge_central_schema
+    prefix_reference: https://w3id.org/ber-data/bridge-central-schema/
+  linkml:
+    prefix_prefix: linkml
+    prefix_reference: https://w3id.org/linkml/
+  schema:
+    prefix_prefix: schema
+    prefix_reference: http://schema.org/
+default_prefix: bridge_central_schema
+default_range: string
+types:
+  string:
+    name: string
+    definition_uri: https://w3id.org/linkml/String
+    description: A character string
+    notes:
+    - In RDF serializations, a slot with range of string is treated as a literal or
+      type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced
+      with the lower case "string".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Text
+    base: str
+    uri: xsd:string
+  integer:
+    name: integer
+    definition_uri: https://w3id.org/linkml/Integer
+    description: An integer
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "integer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Integer
+    base: int
+    uri: xsd:integer
+  boolean:
+    name: boolean
+    definition_uri: https://w3id.org/linkml/Boolean
+    description: A binary (true or false) value
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "boolean".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Boolean
+    base: Bool
+    uri: xsd:boolean
+    repr: bool
+  float:
+    name: float
+    definition_uri: https://w3id.org/linkml/Float
+    description: A real number that conforms to the xsd:float specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "float".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:float
+  double:
+    name: double
+    definition_uri: https://w3id.org/linkml/Double
+    description: A real number that conforms to the xsd:double specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "double".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:double
+  decimal:
+    name: decimal
+    definition_uri: https://w3id.org/linkml/Decimal
+    description: A real number with arbitrary precision that conforms to the xsd:decimal
+      specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "decimal".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    broad_mappings:
+    - schema:Number
+    base: Decimal
+    uri: xsd:decimal
+  time:
+    name: time
+    definition_uri: https://w3id.org/linkml/Time
+    description: A time object represents a (local) time of day, independent of any
+      particular day
+    notes:
+    - URI is dateTime because OWL reasoners do not work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "time".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Time
+    base: XSDTime
+    uri: xsd:time
+    repr: str
+  date:
+    name: date
+    definition_uri: https://w3id.org/linkml/Date
+    description: a date (year, month and day) in an idealized calendar
+    notes:
+    - URI is dateTime because OWL reasoners don't work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Date
+    base: XSDDate
+    uri: xsd:date
+    repr: str
+  datetime:
+    name: datetime
+    definition_uri: https://w3id.org/linkml/Datetime
+    description: The combination of a date and time
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:DateTime
+    base: XSDDateTime
+    uri: xsd:dateTime
+    repr: str
+  date_or_datetime:
+    name: date_or_datetime
+    definition_uri: https://w3id.org/linkml/DateOrDatetime
+    description: Either a date or a datetime
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date_or_datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: linkml:DateOrDatetime
+    repr: str
+  uriorcurie:
+    name: uriorcurie
+    definition_uri: https://w3id.org/linkml/Uriorcurie
+    description: a URI or a CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uriorcurie".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: URIorCURIE
+    uri: xsd:anyURI
+    repr: str
+  curie:
+    name: curie
+    definition_uri: https://w3id.org/linkml/Curie
+    conforms_to: https://www.w3.org/TR/curie/
+    description: a compact URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "curie".
+    comments:
+    - in RDF serializations this MUST be expanded to a URI
+    - in non-RDF serializations MAY be serialized as the compact representation
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: Curie
+    uri: xsd:string
+    repr: str
+  uri:
+    name: uri
+    definition_uri: https://w3id.org/linkml/Uri
+    conforms_to: https://www.ietf.org/rfc/rfc3987.txt
+    description: a complete URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uri".
+    comments:
+    - in RDF serializations a slot with range of uri is treated as a literal or type
+      xsd:anyURI unless it is an identifier or a reference to an identifier, in which
+      case it is translated directly to a node
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:URL
+    base: URI
+    uri: xsd:anyURI
+    repr: str
+  ncname:
+    name: ncname
+    definition_uri: https://w3id.org/linkml/Ncname
+    description: Prefix part of CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "ncname".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NCName
+    uri: xsd:string
+    repr: str
+  objectidentifier:
+    name: objectidentifier
+    definition_uri: https://w3id.org/linkml/Objectidentifier
+    description: A URI or CURIE that represents an object in the model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "objectidentifier".
+    comments:
+    - Used for inheritance and type checking
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: ElementIdentifier
+    uri: shex:iri
+    repr: str
+  nodeidentifier:
+    name: nodeidentifier
+    definition_uri: https://w3id.org/linkml/Nodeidentifier
+    description: A URI, CURIE or BNODE that represents a node in a model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "nodeidentifier".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NodeIdentifier
+    uri: shex:nonLiteral
+    repr: str
+  jsonpointer:
+    name: jsonpointer
+    definition_uri: https://w3id.org/linkml/Jsonpointer
+    conforms_to: https://datatracker.ietf.org/doc/html/rfc6901
+    description: A string encoding a JSON Pointer. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to a valid object within the current
+      instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpointer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  jsonpath:
+    name: jsonpath
+    definition_uri: https://w3id.org/linkml/Jsonpath
+    conforms_to: https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html
+    description: A string encoding a JSON Path. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to zero or more valid objects within
+      the current instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  sparqlpath:
+    name: sparqlpath
+    definition_uri: https://w3id.org/linkml/Sparqlpath
+    conforms_to: https://www.w3.org/TR/sparql11-query/#propertypaths
+    description: A string encoding a SPARQL Property Path. The value of the string
+      MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects
+      within the current instance document when encoded as RDF.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "sparqlpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+enums:
+  SampleCategoryEnum:
+    name: SampleCategoryEnum
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/SampleCategoryEnum
+    description: Where a sample's material came from. Each value lists the BASALT
+      Sample subclasses it corresponds to. Ontology meanings are not assigned yet.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    permissible_values:
+      environmental:
+        text: environmental
+        description: Material collected from the environment.
+        narrow_mappings:
+        - basalt_schema:SoilSample
+        - basalt_schema:MonetSoilSample
+        - basalt_schema:SedimentSample
+        - basalt_schema:WaterSample
+        - basalt_schema:AerosolSample
+        - basalt_schema:AerosolArmSample
+      plant:
+        text: plant
+        exact_mappings:
+        - basalt_schema:PlantSample
+      pure_culture:
+        text: pure_culture
+        exact_mappings:
+        - basalt_schema:PureCultureSample
+      mixed_culture:
+        text: mixed_culture
+        exact_mappings:
+        - basalt_schema:MixedCultureSample
+        related_mappings:
+        - basalt_schema:CultureEnvironmentalSample
+      engineered_strain:
+        text: engineered_strain
+        exact_mappings:
+        - basalt_schema:EngineeredStrainSample
+      synthesized_material:
+        text: synthesized_material
+        exact_mappings:
+        - basalt_schema:SynthesizedMaterialSample
+      commercial_material:
+        text: commercial_material
+        exact_mappings:
+        - basalt_schema:CommerciallyPurchasedSample
+      other:
+        text: other
+        exact_mappings:
+        - basalt_schema:OtherUndescribedSample
+  ProcessingRoleEnum:
+    name: ProcessingRoleEnum
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/ProcessingRoleEnum
+    description: Whether a sample is an input to or an output of a processing step.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    permissible_values:
+      input:
+        text: input
+        description: The sample was consumed by the processing step.
+      output:
+        text: output
+        description: The sample was produced by the processing step.
+  CreditEnum:
+    name: CreditEnum
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/CreditEnum
+    comments:
+    - CreditEnums come from https://casrai.org/credit/
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    see_also:
+    - https://kbase.github.io/credit_engine/ContributorRole/
+    permissible_values:
+      Conceptualization:
+        text: Conceptualization
+        description: Conceptualization
+        exact_mappings:
+        - dcm:conceptualization
+      Data curation:
+        text: Data curation
+        description: Data curation
+        exact_mappings:
+        - dcm:data_curation
+      Formal Analysis:
+        text: Formal Analysis
+        description: Formal Analysis
+        exact_mappings:
+        - dcm:formal_analysis
+      Funding acquisition:
+        text: Funding acquisition
+        description: Funding acquisition
+        exact_mappings:
+        - dcm:funding_acquisition
+      Investigation:
+        text: Investigation
+        description: Investigation
+        exact_mappings:
+        - dcm:investigation
+      Methodology:
+        text: Methodology
+        description: Methodology
+        exact_mappings:
+        - dcm:methodology
+      Project administration:
+        text: Project administration
+        description: Project administration
+        exact_mappings:
+        - dcm:project_administration
+      Resources:
+        text: Resources
+        description: Resources
+        exact_mappings:
+        - dcm:resources
+      Software:
+        text: Software
+        description: Software
+        exact_mappings:
+        - dcm:software
+      Supervision:
+        text: Supervision
+        description: Supervision
+        exact_mappings:
+        - dcm:supervision
+      Validation:
+        text: Validation
+        description: Validation
+        exact_mappings:
+        - dcm:validation
+      Visualization:
+        text: Visualization
+        description: Visualization
+        exact_mappings:
+        - dcm:visualization
+      Writing original draft:
+        text: Writing original draft
+        description: Writing original draft
+        exact_mappings:
+        - dcm:writing_original_draft
+      Writing review and editing:
+        text: Writing review and editing
+        description: Writing review & editing
+        exact_mappings:
+        - dcm:writing_review_editing
+      Principal Investigator:
+        text: Principal Investigator
+        description: principal investigator role
+        meaning: OBI:0000103
+        related_mappings:
+        - dcm:project_leader
+      Submitter:
+        text: Submitter
+        description: the person(s) who enter study and biosample metadata into the
+          BRIDGE submission portal
+        meaning: EFO:0001741
+slots:
+  id:
+    name: id
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/id
+    description: A unique identifier for a thing
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/core
+    mappings:
+    - schema:identifier
+    slot_uri: schema:identifier
+    identifier: true
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    range: uriorcurie
+    required: true
+  name:
+    name: name
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/name
+    description: A human-readable name for a thing
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/core
+    mappings:
+    - schema:name
+    slot_uri: schema:name
+    owner: Agent
+    domain_of:
+    - NamedThing
+    - Agent
+    range: string
+  description:
+    name: description
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/description
+    description: A human-readable description for a thing
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/core
+    mappings:
+    - schema:description
+    slot_uri: schema:description
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    range: string
+  external_identifiers:
+    name: external_identifiers
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/external_identifiers
+    description: Identifiers for the same entity in the system that holds the original
+      record, such as GOLD, EMSL or INSDC. Lets a record that one BER system redistributes
+      from another be matched to the original.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/core
+    exact_mappings:
+    - basalt_schema:external_identifiers
+    close_mappings:
+    - nmdc:external_database_identifiers
+    related_mappings:
+    - nmdc:gold_biosample_identifiers
+    - nmdc:emsl_biosample_identifiers
+    - nmdc:insdc_biosample_identifiers
+    - nmdc:emsl_project_identifiers
+    - nmdc:gold_study_identifiers
+    slot_uri: bridge_central_schema:external_identifiers
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    range: uriorcurie
+    multivalued: true
+  observed_property:
+    name: observed_property
+    definition_uri: https://w3id.org/ber-data/bridge-measurements/observed_property
+    description: The property observed; a BERVO Variable CURIE when one exists.
+    from_schema: https://w3id.org/ber-data/bridge-measurements
+    slot_uri: bridge:observed_property
+    owner: Observation
+    domain_of:
+    - Observation
+    range: uriorcurie
+  result:
+    name: result
+    definition_uri: https://w3id.org/ber-data/bridge-measurements/result
+    description: The result of the observation.
+    from_schema: https://w3id.org/ber-data/bridge-measurements
+    slot_uri: bridge:result
+    owner: Observation
+    domain_of:
+    - Observation
+    range: MeasurementValue
+    inlined: true
+    inlined_as_list: true
+  raw_value:
+    name: raw_value
+    definition_uri: https://w3id.org/ber-data/bridge-measurements/raw_value
+    description: The value exactly as it appeared at the source.
+    from_schema: https://w3id.org/ber-data/bridge-measurements
+    slot_uri: bridge:raw_value
+    owner: MeasurementValue
+    domain_of:
+    - MeasurementValue
+    range: string
+  numeric_value:
+    name: numeric_value
+    definition_uri: https://w3id.org/ber-data/bridge-measurements/numeric_value
+    from_schema: https://w3id.org/ber-data/bridge-measurements
+    slot_uri: bridge:numeric_value
+    owner: QuantityValue
+    domain_of:
+    - QuantityValue
+    range: double
+  unit:
+    name: unit
+    definition_uri: https://w3id.org/ber-data/bridge-measurements/unit
+    description: UCUM code preferred.
+    from_schema: https://w3id.org/ber-data/bridge-measurements
+    slot_uri: bridge:unit
+    owner: QuantityValue
+    domain_of:
+    - QuantityValue
+    range: string
+  applies_to_agent:
+    name: applies_to_agent
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/applies_to_agent
+    description: The agent (person or organization) this credit association applies
+      to.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:applies_to_agent
+    slot_uri: bridge_central_schema:applies_to_agent
+    owner: CreditAssociation
+    domain_of:
+    - CreditAssociation
+    range: Agent
+    required: true
+  applied_roles:
+    name: applied_roles
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/applied_roles
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - dcm:contributor_roles
+    slot_uri: bridge_central_schema:applied_roles
+    owner: CreditAssociation
+    domain_of:
+    - CreditAssociation
+    range: CreditEnum
+    required: true
+  applies_to_study:
+    name: applies_to_study
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/applies_to_study
+    description: The study this credit association applies to.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    slot_uri: bridge_central_schema:applies_to_study
+    owner: CreditAssociation
+    domain_of:
+    - CreditAssociation
+    range: Study
+    required: true
+  email:
+    name: email
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/email
+    description: A contactable email address for the person.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:email
+    - basalt_schema:email
+    slot_uri: bridge_central_schema:email
+    owner: Person
+    domain_of:
+    - Person
+    range: string
+  orcid:
+    name: orcid
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/orcid
+    description: The person's ORCID identifier.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:orcid
+    - basalt_schema:orcid
+    slot_uri: bridge_central_schema:orcid
+    owner: Person
+    domain_of:
+    - Person
+    range: uriorcurie
+  ror:
+    name: ror
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/ror
+    description: The Research Organization Registry identifier of the organization.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:ror
+    slot_uri: bridge_central_schema:ror
+    owner: Organization
+    domain_of:
+    - Organization
+    range: uriorcurie
+  taxon:
+    name: taxon
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/taxon
+    description: Taxonomic classification, as an NCBITaxon CURIE.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:classified_as
+    - basalt_schema:taxonomy_id
+    slot_uri: bridge_central_schema:taxon
+    owner: Organism
+    domain_of:
+    - Organism
+    range: uriorcurie
+    pattern: ^NCBITaxon:\d+$
+  associated_studies:
+    name: associated_studies
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/associated_studies
+    description: The studies the sample was collected or processed under.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:associated_studies
+    - basalt_schema:project
+    slot_uri: bridge_central_schema:associated_studies
+    owner: Sample
+    domain_of:
+    - Sample
+    range: Study
+    multivalued: true
+  collected_at:
+    name: collected_at
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/collected_at
+    description: The site the sample was collected from.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:collected_from
+    - basalt_schema:sampled_at_site
+    slot_uri: bridge_central_schema:collected_at
+    owner: Sample
+    domain_of:
+    - Sample
+    range: Site
+  organism:
+    name: organism
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/organism
+    description: The organism the sample is expected to contain, when it is one organism.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:expected_organism
+    - basalt_schema:organism_ref
+    slot_uri: bridge_central_schema:organism
+    owner: Sample
+    domain_of:
+    - Sample
+    range: Organism
+  sample_category:
+    name: sample_category
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/sample_category
+    description: Where the sample's material came from, such as a pure culture, an
+      engineered strain or the environment. Programs and protocols (MONet, Terraform,
+      AMP2) stay with the study and the source schema.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    related_mappings:
+    - nmdc:sample_type
+    slot_uri: bridge_central_schema:sample_category
+    owner: Sample
+    domain_of:
+    - Sample
+    range: SampleCategoryEnum
+  has_input:
+    name: has_input
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/has_input
+    description: The things a process takes in, such as samples or data.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:has_input
+    slot_uri: bridge_central_schema:has_input
+    owner: PlannedProcess
+    domain_of:
+    - PlannedProcess
+    range: NamedThing
+    multivalued: true
+  has_output:
+    name: has_output
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/has_output
+    description: The things a process produces, such as samples or data.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:has_output
+    slot_uri: bridge_central_schema:has_output
+    owner: PlannedProcess
+    domain_of:
+    - PlannedProcess
+    range: NamedThing
+    multivalued: true
+  protocol:
+    name: protocol
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/protocol
+    description: A link to the protocol the step followed.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:protocol_link
+    - basalt_schema:in_protocol
+    slot_uri: bridge_central_schema:protocol
+    owner: PlannedProcess
+    domain_of:
+    - PlannedProcess
+    range: uriorcurie
+  processing:
+    name: processing
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/processing
+    description: The processing step this link row belongs to.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - basalt_schema:processing_id
+    slot_uri: bridge_central_schema:processing
+    owner: ProcessingSampleLink
+    domain_of:
+    - ProcessingSampleLink
+    range: MaterialProcessing
+    required: true
+  sample:
+    name: sample
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/sample
+    description: The sample this link row connects to the processing step.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - basalt_schema:sample_id
+    slot_uri: bridge_central_schema:sample
+    owner: ProcessingSampleLink
+    domain_of:
+    - ProcessingSampleLink
+    range: Sample
+    required: true
+  role:
+    name: role
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/role
+    description: Whether the sample went into or came out of the processing step.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - basalt_schema:role
+    slot_uri: bridge_central_schema:role
+    owner: ProcessingSampleLink
+    domain_of:
+    - ProcessingSampleLink
+    range: ProcessingRoleEnum
+    required: true
+  Measurement_result:
+    name: Measurement_result
+    definition_uri: https://w3id.org/ber-data/bridge-measurements/result
+    description: The result of the observation.
+    from_schema: https://w3id.org/ber-data/bridge-measurements
+    is_a: result
+    domain: Measurement
+    slot_uri: bridge:result
+    alias: result
+    owner: Measurement
+    domain_of:
+    - Measurement
+    is_usage_slot: true
+    usage_slot_name: result
+    range: QuantityValue
+    inlined: true
+    inlined_as_list: true
+  Measurement_observed_property:
+    name: Measurement_observed_property
+    definition_uri: https://w3id.org/ber-data/bridge-measurements/observed_property
+    description: The property observed; a BERVO Variable CURIE when one exists.
+    comments:
+    - 'Example constraint: narrows observed_property to BERVO Variable CURIEs (e.g.
+      bervo:BERVO_0000001). Sources whose properties are not yet in BERVO would use
+      Observation, or this pattern widens to alternate vocabularies as they are admitted.'
+    from_schema: https://w3id.org/ber-data/bridge-measurements
+    is_a: observed_property
+    domain: Measurement
+    slot_uri: bridge:observed_property
+    alias: observed_property
+    owner: Measurement
+    domain_of:
+    - Measurement
+    is_usage_slot: true
+    usage_slot_name: observed_property
+    range: uriorcurie
+    pattern: ^bervo:BERVO_\d{7}$
+  Person_name:
+    name: Person_name
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/name
+    description: The full name of the person.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/core
+    mappings:
+    - schema:name
+    is_a: name
+    domain: Person
+    slot_uri: schema:name
+    alias: name
+    owner: Person
+    domain_of:
+    - Person
+    is_usage_slot: true
+    usage_slot_name: name
+    range: string
+  MaterialProcessing_has_input:
+    name: MaterialProcessing_has_input
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/has_input
+    description: The things a process takes in, such as samples or data.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:has_input
+    is_a: has_input
+    domain: MaterialProcessing
+    slot_uri: bridge_central_schema:has_input
+    alias: has_input
+    owner: MaterialProcessing
+    domain_of:
+    - MaterialProcessing
+    is_usage_slot: true
+    usage_slot_name: has_input
+    range: Sample
+    multivalued: true
+  MaterialProcessing_has_output:
+    name: MaterialProcessing_has_output
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/has_output
+    description: The things a process produces, such as samples or data.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:has_output
+    is_a: has_output
+    domain: MaterialProcessing
+    slot_uri: bridge_central_schema:has_output
+    alias: has_output
+    owner: MaterialProcessing
+    domain_of:
+    - MaterialProcessing
+    is_usage_slot: true
+    usage_slot_name: has_output
+    range: Sample
+    multivalued: true
+classes:
+  NamedThing:
+    name: NamedThing
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/NamedThing
+    description: Generic base for any identifiable BRIDGE entity.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/core
+    mappings:
+    - schema:Thing
+    slots:
+    - id
+    - name
+    - description
+    - external_identifiers
+    class_uri: schema:Thing
+  MeasurementValue:
+    name: MeasurementValue
+    definition_uri: https://w3id.org/ber-data/bridge-measurements/MeasurementValue
+    description: The polymorphic result of an observation or measurement; root of
+      the result-value family.
+    from_schema: https://w3id.org/ber-data/bridge-measurements
+    exact_mappings:
+    - nmdc:AttributeValue
+    abstract: true
+    slots:
+    - raw_value
+    class_uri: bridge:MeasurementValue
+  QuantityValue:
+    name: QuantityValue
+    definition_uri: https://w3id.org/ber-data/bridge-measurements/QuantityValue
+    description: A numeric value with a unit.
+    from_schema: https://w3id.org/ber-data/bridge-measurements
+    exact_mappings:
+    - nmdc:QuantityValue
+    is_a: MeasurementValue
+    slots:
+    - raw_value
+    - numeric_value
+    - unit
+    class_uri: bridge:QuantityValue
+  Observation:
+    name: Observation
+    definition_uri: https://w3id.org/ber-data/bridge-measurements/Observation
+    description: An act of observing a property of a feature of interest, yielding
+      a result (OGC O&M / SOSA shape).
+    from_schema: https://w3id.org/ber-data/bridge-measurements
+    exact_mappings:
+    - sosa:Observation
+    slots:
+    - observed_property
+    - result
+    class_uri: bridge:Observation
+  Measurement:
+    name: Measurement
+    definition_uri: https://w3id.org/ber-data/bridge-measurements/Measurement
+    description: An observation whose result is a quantity.
+    from_schema: https://w3id.org/ber-data/bridge-measurements
+    is_a: Observation
+    slots:
+    - Measurement_result
+    - Measurement_observed_property
+    slot_usage:
+      result:
+        name: result
+        range: QuantityValue
+      observed_property:
+        name: observed_property
+        comments:
+        - 'Example constraint: narrows observed_property to BERVO Variable CURIEs
+          (e.g. bervo:BERVO_0000001). Sources whose properties are not yet in BERVO
+          would use Observation, or this pattern widens to alternate vocabularies
+          as they are admitted.'
+        pattern: ^bervo:BERVO_\d{7}$
+    class_uri: bridge:Measurement
+  Study:
+    name: Study
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/Study
+    description: A research initiative, proposal or project under which samples are
+      collected and processed.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:Study
+    - basalt_schema:Study
+    is_a: NamedThing
+    slots:
+    - id
+    - name
+    - description
+    - external_identifiers
+    class_uri: bridge_central_schema:Study
+  Agent:
+    name: Agent
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/Agent
+    description: A person or organization that bears responsibility for an activity,
+      for the existence of an entity, or for another agent's activity. `name` is inherited
+      from NamedThing.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - prov:Agent
+    is_a: NamedThing
+    abstract: true
+    slots:
+    - id
+    - description
+    - external_identifiers
+    - name
+    class_uri: bridge_central_schema:Agent
+  Person:
+    name: Person
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/Person
+    description: An individual, independent of any study or role they hold on one.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:Person
+    - basalt_schema:PersonValue
+    is_a: Agent
+    slots:
+    - id
+    - description
+    - external_identifiers
+    - email
+    - orcid
+    - Person_name
+    slot_usage:
+      name:
+        name: name
+        description: The full name of the person.
+    class_uri: bridge_central_schema:Person
+  Organization:
+    name: Organization
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/Organization
+    description: A social or legal institution, such as a company or consortium.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:Organization
+    is_a: Agent
+    slots:
+    - id
+    - description
+    - external_identifiers
+    - name
+    - ror
+    class_uri: bridge_central_schema:Organization
+  CreditAssociation:
+    name: CreditAssociation
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/CreditAssociation
+    description: This class supports binding an agent (a Person or an Organization)
+      to a Study record with a CRediT Contributor Role. One person's role on a study,
+      such as principal investigator or team member. A person can appear more than
+      once on the same study with different roles.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    see_also:
+    - https://casrai.org/credit/
+    - https://kbase.github.io/credit_engine/
+    - https://info.orcid.org/credit-for-research-contribution
+    - https://credit.niso.org/
+    aliases:
+    - credit table
+    - associated researchers
+    mappings:
+    - prov:Association
+    close_mappings:
+    - dcm:Contributor
+    - nmdc:CreditAssociation
+    related_mappings:
+    - basalt_schema:ProjectParticipant
+    slots:
+    - applies_to_agent
+    - applied_roles
+    - applies_to_study
+    class_uri: prov:Association
+  Site:
+    name: Site
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/Site
+    description: A place where samples are collected.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:FieldResearchSite
+    - basalt_schema:Site
+    is_a: NamedThing
+    slots:
+    - id
+    - name
+    - description
+    - external_identifiers
+    class_uri: bridge_central_schema:Site
+  Organism:
+    name: Organism
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/Organism
+    description: The biological identity of what is in a sample (a strain, isolate
+      or engineered construct), not a physical sample. Several samples can share one
+      organism.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    close_mappings:
+    - nmdc:Organism
+    - basalt_schema:organism
+    is_a: NamedThing
+    slots:
+    - id
+    - name
+    - description
+    - external_identifiers
+    - taxon
+    class_uri: bridge_central_schema:Organism
+  Sample:
+    name: Sample
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/Sample
+    description: A physical material that can be characterized by an experiment.
+    comments:
+    - 'Concrete sample types stay in the source schemas: nmdc:Biosample and nmdc:OrganismSample,
+      and the 18 direct BASALT Sample subclasses (SoilSample, WaterSample, ...).'
+    - BASALT records collection on a separate SamplingActivity class; NMDC records
+      it on the sample. This draft leaves the sampling event out.
+    - There is no separate class for processed samples. A sample produced by a processing
+      step is a Sample, and sample_category says what kind of sample it is.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:Sample
+    - basalt_schema:Sample
+    narrow_mappings:
+    - nmdc:ProcessedSample
+    - basalt_schema:ProcessedSample
+    is_a: NamedThing
+    slots:
+    - id
+    - name
+    - description
+    - external_identifiers
+    - associated_studies
+    - collected_at
+    - organism
+    - sample_category
+    class_uri: bridge_central_schema:Sample
+  PlannedProcess:
+    name: PlannedProcess
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/PlannedProcess
+    description: A process carried out according to a plan, such as a laboratory step
+      or a computational workflow.
+    comments:
+    - MaterialProcessing (sample to sample) is the only subclass in this draft. Subclasses
+      for sample-to-data processes (nmdc:DataGeneration) and data-to-data processes
+      (nmdc:WorkflowExecution) are future work; the umbrella has no data object class
+      for them to range on yet.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:PlannedProcess
+    close_mappings:
+    - COB:0000035
+    is_a: NamedThing
+    abstract: true
+    slots:
+    - id
+    - name
+    - description
+    - external_identifiers
+    - has_input
+    - has_output
+    - protocol
+    class_uri: bridge_central_schema:PlannedProcess
+  MaterialProcessing:
+    name: MaterialProcessing
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/MaterialProcessing
+    description: One laboratory step that takes one or more samples as input and produces
+      one or more samples.
+    comments:
+    - Inputs and outputs are lists here, as in nmdc-schema. BASALT stores the same
+      links only in ProcessingSampleLink rows; see that class.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - nmdc:MaterialProcessing
+    - basalt_schema:SampleProcessing
+    close_mappings:
+    - COB:0000110
+    is_a: PlannedProcess
+    abstract: true
+    slots:
+    - id
+    - name
+    - description
+    - external_identifiers
+    - protocol
+    - MaterialProcessing_has_input
+    - MaterialProcessing_has_output
+    slot_usage:
+      has_input:
+        name: has_input
+        range: Sample
+      has_output:
+        name: has_output
+        range: Sample
+    class_uri: bridge_central_schema:MaterialProcessing
+  ProcessingSampleLink:
+    name: ProcessingSampleLink
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/ProcessingSampleLink
+    description: 'One row of the flat table form of has_input and has_output: one
+      sample, one processing step, and whether the sample went in or came out. This
+      is the shape a flattened lakehouse table would take. It is derived from has_input
+      and has_output, not recorded separately.'
+    comments:
+    - BASALT's link also has step_number and in_run, which order steps within a run.
+      Whether those belong in the umbrella is an open question.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/umbrella
+    exact_mappings:
+    - basalt_schema:ProcessingSampleLink
+    related_mappings:
+    - nmdc:has_input
+    - nmdc:has_output
+    slots:
+    - processing
+    - sample
+    - role
+    class_uri: bridge_central_schema:ProcessingSampleLink
+metamodel_version: 1.11.0
+source_file: ber_central_schema.yaml
+source_file_date: '2026-10-31T00:19:45'
+source_file_size: 733
+generation_date: '2026-10-31T00:19:58'
+
