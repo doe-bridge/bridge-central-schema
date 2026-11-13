@@ -24,6 +24,7 @@ imports:
   - core
 
 classes:
+
   Dataset:
     is_a: NamedThing
     class_uri: schema:Dataset
@@ -105,6 +106,7 @@ classes:
       - longitude
 
 slots:
+
   persistent_identifier:
     range: uriorcurie
     description: >-
@@ -112,33 +114,40 @@ slots:
       Distinct from the BRIDGE record id and the dataset's landing page.
     close_mappings:
       - schema:identifier
+
   landing_page:
     range: uri
     slot_uri: schema:url
     description: A web page describing the dataset.
+
   access_url:
     range: uri
     description: The primary URL from which the data can be obtained.
+
   associated_studies:
     range: uriorcurie
     multivalued: true
     description: >-
       Identifiers of research studies or projects associated with the dataset.
       References can be given a Study range when that class is merged.
+
   publication_date:
     range: PartialDateTime
     slot_uri: schema:datePublished
     description: The date or year when the dataset was published, if applicable.
+
   temporal_coverage_start:
     range: PartialDateTime
     description: Earliest time represented by the data, at the source's precision.
     related_mappings:
       - schema:startDate
+
   temporal_coverage_end:
     range: PartialDateTime
     description: Latest time represented by the data, at the source's precision.
     related_mappings:
       - schema:endDate
+
   spatial_coverage:
     range: DatasetSpatialCoverage
     multivalued: true
@@ -146,20 +155,25 @@ slots:
     inlined_as_list: true
     slot_uri: schema:spatialCoverage
     description: Points or bounding boxes covered by the dataset.
+
   coverage_label:
     description: A human-readable name or description of the covered place.
+
   coverage_point:
     range: GeoCoordinates
     inlined: true
     description: The point covered by the dataset.
+
   northwest_corner:
     range: GeoCoordinates
     inlined: true
     description: Northwest corner of a bounding box.
+
   southeast_corner:
     range: GeoCoordinates
     inlined: true
     description: Southeast corner of a bounding box.
+
   latitude:
     range: decimal
     required: true
@@ -167,6 +181,7 @@ slots:
     maximum_value: 90
     slot_uri: schema:latitude
     description: Latitude in decimal degrees.
+
   longitude:
     range: decimal
     required: true
@@ -174,40 +189,47 @@ slots:
     maximum_value: 180
     slot_uri: schema:longitude
     description: Longitude in decimal degrees.
+
   keywords:
     multivalued: true
     slot_uri: schema:keywords
     description: Terms that support discovery of the dataset.
+
   variable_measured:
     multivalued: true
     slot_uri: schema:variableMeasured
     description: Names of measured variables represented in the dataset.
+
   measurement_techniques:
     multivalued: true
     slot_uri: schema:measurementTechnique
     description: Methods used to collect, process, or analyze the data.
+
   citations:
     multivalued: true
     slot_uri: schema:citation
     description: Citations for related publications or datasets.
+
   creators:
     range: uriorcurie
     multivalued: true
     slot_uri: schema:creator
     description: Identifiers of people or organizations credited as dataset creators.
+
   contributors:
     range: uriorcurie
     multivalued: true
     slot_uri: schema:contributor
     description: Identifiers of other people or organizations contributing to the dataset.
+
   funders:
     range: uriorcurie
     multivalued: true
     slot_uri: schema:funder
     description: Identifiers of organizations that funded the dataset's creation.
+
   contact:
     range: uriorcurie
     description: Identifier of the primary contact for questions about the dataset.
     close_mappings:
       - schema:editor
-
