@@ -9,6 +9,7 @@ license: https://creativecommons.org/publicdomain/zero/1.0/
 prefixes:
   linkml: https://w3id.org/linkml/
   bridge_central_schema: https://w3id.org/ber-data/bridge-central-schema/
+  edam: http://edamontology.org/
   kb_cdm: http://kbase.github.io/cdm-schema/linkml/
   nmdc: https://w3id.org/nmdc/
 default_prefix: bridge_central_schema
@@ -64,4 +65,5 @@ classes:
           keeps the source text, so 3.4e-28 and 3.40E-28 stay distinguishable.
         exact_mappings:
           - kb_cdm:numeric_value
-          - nmdc:numeric_value
+        close_mappings:
+          - nmdc:has_numeric_value
