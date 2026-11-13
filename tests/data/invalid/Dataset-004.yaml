@@ -1,0 +1,9 @@
+id: https://example.org/datasets/mixed-coverage
+name: Mixed point and box
+spatial_coverage:
+  - coverage_point:
+      latitude: 38.95
+      longitude: -122.8
+    northwest_corner:
+      latitude: 39.2
+      longitude: -123.1

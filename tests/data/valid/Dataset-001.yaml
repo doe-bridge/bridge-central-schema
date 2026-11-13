@@ -1,0 +1,18 @@
+id: https://example.org/datasets/soil-survey-draft
+name: Soil survey draft
+description: Unpublished observations from a soil survey.
+associated_studies:
+  - https://example.org/studies/soil-survey
+temporal_coverage_start: '2025-04'
+temporal_coverage_end: '2025-10'
+spatial_coverage:
+  - coverage_label: North field plot
+    coverage_point:
+      latitude: 38.89
+      longitude: -122.45
+keywords:
+  - soil
+variable_measured:
+  - soil moisture
+creators:
+  - https://orcid.org/0000-0002-1825-0097

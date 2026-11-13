@@ -1,0 +1,6 @@
+id: https://example.org/datasets/bad-latitude
+name: Invalid latitude
+spatial_coverage:
+  - coverage_point:
+      latitude: 91
+      longitude: -122.45

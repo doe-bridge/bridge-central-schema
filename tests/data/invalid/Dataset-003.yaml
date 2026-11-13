@@ -1,0 +1,6 @@
+id: https://example.org/datasets/incomplete-box
+name: Incomplete bounding box
+spatial_coverage:
+  - northwest_corner:
+      latitude: 39.2
+      longitude: -123.1
