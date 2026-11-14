@@ -13,6 +13,7 @@ prefixes:
   bridge_property: https://w3id.org/ber-data/bridge-property/
   ber_registry: https://w3id.org/ber-data/ber-data-registry/
   schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
   # Provisional ESS-DIVE elements URL; its w3id.org schema prefix is not configured.
   essdive: https://ess-dive.github.io/essdive-linkml-schemas/elements/
 
@@ -48,10 +49,13 @@ classes:
       - variable_measured
       - variable_measured_label
       - methods
+      - citation
       - related_works
       - creators
       - contributors
       - funders
+      - award
+      - license
       - contact
     slot_usage:
       name:
@@ -71,7 +75,8 @@ classes:
       - >-
         The ESS-DIVE mapping denotes a similar dataset metadata profile, not
         identical validation requirements. ESS-DIVE's required deposit fields
-        remain optional here except for the dataset title.
+        remain optional here except for the dataset title. A data license is
+        also required.
 
 slots:
 
@@ -169,6 +174,11 @@ slots:
     close_mappings:
       - essdive:measurementTechnique
 
+  citation:
+    range: string
+    slot_uri: dcterms:bibliographicCitation
+    description: A formatted citation for this dataset itself.
+
   related_works:
     multivalued: true
     slot_uri: schema:citation
@@ -201,6 +211,22 @@ slots:
     description: Identifiers of organizations that funded the dataset's creation.
     close_mappings:
       - essdive:funder
+
+  award:
+    range: string
+    multivalued: true
+    slot_uri: schema:award
+    description: Funding award or contract numbers associated with the dataset.
+    close_mappings:
+      - essdive:award
+
+  license:
+    range: uri
+    required: true
+    slot_uri: schema:license
+    description: URI of the license governing reuse of the dataset's data.
+    close_mappings:
+      - essdive:license
 
   contact:
     range: Agent

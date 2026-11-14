@@ -1,6 +1,7 @@
 id: https://example.org/datasets/soil-survey-draft
 name: Soil survey draft
 description: Unpublished observations from a soil survey.
+license: https://creativecommons.org/licenses/by/4.0/
 associated_studies:
   - https://example.org/studies/soil-survey
 temporal_coverage_start: '2025-04'

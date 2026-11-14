@@ -1,5 +1,6 @@
 id: https://example.org/datasets/watershed-data
 name: Watershed measurements
+license: https://creativecommons.org/licenses/by/4.0/
 persistent_identifier: https://doi.org/10.1234/watershed-data
 landing_page: https://example.org/datasets/watershed-data/description
 access_url: https://data.example.org/watershed-data.csv

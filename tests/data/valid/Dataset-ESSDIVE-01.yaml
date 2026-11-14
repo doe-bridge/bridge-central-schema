@@ -1,0 +1,44 @@
+# Source: https://api.ess-dive.lbl.gov/packages/doi%3A10.15485%2F17067910
+# ESS-DIVE Dataset Metadata (which includes the below) are available Creative Commons Public Domain: https://ess-dive.lbl.gov/data-use-and-citation/
+id: https://data.ess-dive.lbl.gov/view/ess-dive-edb05d58b182ca2-20261002T190018892
+name: Stomatal response of six Arctic plant species, Utqiagvik (Barrow), Alaska, 2022
+description: >-
+  Measurements of stomatal responses to changing irradiance in six Arctic
+  broadleaf and graminoid species, collected at the Barrow Environmental
+  Observatory in July 2022. The package includes CSV data and metadata files
+  and complete instrument output.
+persistent_identifier: https://doi.org/10.15485/17067910
+citation: >-
+  Ely K; Rogers A (2026): Stomatal response of six Arctic plant species,
+  Utqiagvik (Barrow), Alaska, 2022. Next-Generation Ecosystem Experiments
+  (NGEE) Arctic. Dataset. doi:10.15485/17067910
+landing_page: https://data.ess-dive.lbl.gov/view/doi:10.15485/17067910
+access_url: https://data.ess-dive.lbl.gov/view/ess-dive-edb05d58b182ca2-20261002T190018892
+license: http://creativecommons.org/licenses/by/4.0/
+publication_date: '2026'
+temporal_coverage_start: '2022-07-15'
+temporal_coverage_end: '2022-07-27'
+# Provisional relative identifier for the location described by ESS-DIVE.
+spatial_coverage:
+  - 10.15485/17067910-dataset_location_001
+keywords:
+  - EARTH SCIENCE > BIOSPHERE > ECOLOGICAL DYNAMICS > ECOSYSTEM FUNCTIONS > RESPIRATION RATE
+  - EARTH SCIENCE > BIOSPHERE > ECOLOGICAL DYNAMICS > ECOSYSTEM FUNCTIONS > PHOTOSYNTHESIS
+  - In Situ/Laboratory Instruments > Chemical Meters/Analyzers > LICOR GAS EXCHANGE SYSTEM
+  - ESS-DIVE CSV File Formatting Guidelines Reporting Format
+  - ESS-DIVE File Level Metadata Reporting Format
+  - ESS-DIVE Leaf-Level Gas Exchange Reporting Format
+methods:
+  - >-
+    Leaf gas exchange was measured in situ on 82 leaves from six tundra species
+    using four LI-COR 6400XT systems. A slow light-response protocol measured
+    stomatal response at five irradiance levels while controlling carbon dioxide
+    concentration and keeping leaf temperature near ambient conditions.
+creators:
+  - https://orcid.org/0000-0002-3915-001X
+  - https://orcid.org/0000-0001-9262-7430
+funders:
+  - http://dx.doi.org/10.13039/100006206
+award:
+  - DE-AC05-00OR22725
+contact: https://orcid.org/0000-0002-3915-001X
