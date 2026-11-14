@@ -1,0 +1,4 @@
+id: https://example.org/datasets/free-text-variable-id
+name: Free-text variable in identifier slot
+variable_measured:
+  - soil moisture

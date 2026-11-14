@@ -1,0 +1,4 @@
+id: https://example.org/datasets/embedded-location
+name: Embedded location is invalid
+spatial_coverage:
+  - id: https://example.org/locations/north-field-plot

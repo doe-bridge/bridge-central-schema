@@ -4,6 +4,8 @@ import csv
 import re
 from pathlib import Path
 
+import yaml
+
 ROOT = Path(__file__).resolve().parent.parent
 TERMS = ROOT / "src" / "ber_central_schema" / "terms" / "bridge_property.tsv"
 MAPPINGS = ROOT / "src" / "ber_central_schema" / "mappings" / "observed_property.sssom.tsv"
@@ -21,6 +23,8 @@ def test_example_ids_are_defined():
     used = set()
     for path in DATA_DIR.rglob("*.yaml"):
         used.update(re.findall(r"observed_property:\s*(bridge_property:\S+)", path.read_text()))
+    for path in (DATA_DIR / "valid").glob("Dataset-*.yaml"):
+        used.update(yaml.safe_load(path.read_text()).get("variable_measured", []))
     assert used, "no observed_property values found, so this check could not fail"
     assert used - defined_ids() == set()
 

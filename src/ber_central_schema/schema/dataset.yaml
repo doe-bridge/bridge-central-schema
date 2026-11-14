@@ -45,6 +45,7 @@ classes:
       - spatial_coverage
       - keywords
       - variable_measured
+      - variable_measured_label
       - measurement_techniques
       - citations
       - creators
@@ -66,45 +67,6 @@ classes:
         The ESS-DIVE mapping denotes a similar dataset metadata profile, not
         identical validation requirements. ESS-DIVE's required deposit fields
         remain optional here except for the dataset title.
-
-  DatasetSpatialCoverage:
-    description: A point or bounding box covered by the dataset.
-    close_mappings:
-      - essdive:Place
-    slots:
-      - coverage_label
-      - coverage_point
-      - northwest_corner
-      - southeast_corner
-    exactly_one_of:
-      - slot_conditions:
-          coverage_point:
-            required: true
-      - slot_conditions:
-          northwest_corner:
-            required: true
-          southeast_corner:
-            required: true
-    none_of:
-      - slot_conditions:
-          coverage_point:
-            required: true
-          northwest_corner:
-            required: true
-      - slot_conditions:
-          coverage_point:
-            required: true
-          southeast_corner:
-            required: true
-
-  GeoCoordinates:
-    class_uri: schema:GeoCoordinates
-    description: A latitude and longitude in decimal degrees.
-    close_mappings:
-      - essdive:GeoCoordinates
-    slots:
-      - latitude
-      - longitude
 
 slots:
 
@@ -150,46 +112,13 @@ slots:
       - schema:endDate
 
   spatial_coverage:
-    range: DatasetSpatialCoverage
+    range: uriorcurie
     multivalued: true
-    inlined: true
-    inlined_as_list: true
+    minimum_cardinality: 1
     slot_uri: schema:spatialCoverage
-    description: Points or bounding boxes covered by the dataset.
-
-  coverage_label:
-    description: A human-readable name or description of the covered place.
-
-  coverage_point:
-    range: GeoCoordinates
-    inlined: true
-    description: The point covered by the dataset.
-
-  northwest_corner:
-    range: GeoCoordinates
-    inlined: true
-    description: Northwest corner of a bounding box.
-
-  southeast_corner:
-    range: GeoCoordinates
-    inlined: true
-    description: Southeast corner of a bounding box.
-
-  latitude:
-    range: decimal
-    required: true
-    minimum_value: -90
-    maximum_value: 90
-    slot_uri: schema:latitude
-    description: Latitude in decimal degrees.
-
-  longitude:
-    range: decimal
-    required: true
-    minimum_value: -180
-    maximum_value: 180
-    slot_uri: schema:longitude
-    description: Longitude in decimal degrees.
+    description: >-
+      Identifiers of locations covered by the dataset. These can be ranged to
+      the Location class when that class is defined.
 
   keywords:
     multivalued: true
@@ -197,9 +126,21 @@ slots:
     description: Terms that support discovery of the dataset.
 
   variable_measured:
+    range: uriorcurie
     multivalued: true
     slot_uri: schema:variableMeasured
-    description: Names of measured variables represented in the dataset.
+    pattern: "^bridge_property:[a-z0-9_]+$"
+    description: >-
+      Measured variables represented in the dataset, as BRIDGE property
+      identifiers (bridge_property:). Use variable_measured_label for variables
+      without an identifier.
+
+  variable_measured_label:
+    range: string
+    multivalued: true
+    description: >-
+      Names of measured variables as free text, when no BRIDGE property
+      identifier exists. Use variable_measured whenever an identifier exists.
 
   measurement_techniques:
     multivalued: true

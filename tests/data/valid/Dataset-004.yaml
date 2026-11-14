@@ -1,0 +1,4 @@
+id: https://example.org/datasets/unmapped-variable
+name: Dataset with an unmapped variable
+variable_measured_label:
+  - soil moisture

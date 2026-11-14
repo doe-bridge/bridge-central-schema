@@ -5,17 +5,8 @@ landing_page: https://example.org/datasets/watershed-data/description
 access_url: https://data.example.org/watershed-data.csv
 publication_date: '2026-11-01'
 spatial_coverage:
-  - coverage_label: Upper watershed
-    northwest_corner:
-      latitude: 39.2
-      longitude: -123.1
-    southeast_corner:
-      latitude: 38.7
-      longitude: -122.4
-  - coverage_label: Sensor station
-    coverage_point:
-      latitude: 38.95
-      longitude: -122.8
+  - https://example.org/locations/upper-watershed
+  - https://example.org/locations/sensor-station
 measurement_techniques:
   - Continuous sensor monitoring.
 citations:
