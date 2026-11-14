@@ -6,7 +6,7 @@ with another schema branch. It does not replace the [Measurements open questions
 
 Keep each ID stable. When a choice is settled, change its status to **Resolved**
 and link the deciding PR or issue; do not remove the row. Open a
-[repository issue](https://github.com/ber-data/bridge-central-schema/issues)
+[repository issue](https://github.com/doe-bridge/bridge-central-schema/issues)
 when an item is ready for independent work, and add its link here. Review this
 list when integrating another schema branch or mapping a new source dataset.
 
