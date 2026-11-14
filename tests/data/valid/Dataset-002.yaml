@@ -7,9 +7,9 @@ publication_date: '2026-11-01'
 spatial_coverage:
   - https://example.org/locations/upper-watershed
   - https://example.org/locations/sensor-station
-measurement_techniques:
+methods:
   - Continuous sensor monitoring.
-citations:
+related_works:
   - 'Example et al. (2026), watershed methods.'
 creators:
   - https://ror.org/01bj3aw27
