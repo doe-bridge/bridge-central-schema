@@ -62,6 +62,7 @@ watch:
 nav:
   - Home: index.md
   - Schema: elements/index.md
+  - Dataset draft: dataset-revisit.md
   - About: about.md
 
 exclude_docs: |
