@@ -21,4 +21,5 @@ imports:
   - linkml:types
   - core
   - measurements
+  - agents
   - dataset

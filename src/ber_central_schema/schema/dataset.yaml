@@ -22,6 +22,7 @@ default_range: string
 imports:
   - linkml:types
   - core
+  - agents
 
 classes:
 
@@ -211,14 +212,16 @@ slots:
     description: Citations for related publications or datasets.
 
   creators:
-    range: uriorcurie
+    range: Agent
     multivalued: true
+    inlined: false
     slot_uri: schema:creator
     description: Identifiers of people or organizations credited as dataset creators.
 
   contributors:
-    range: uriorcurie
+    range: Agent
     multivalued: true
+    inlined: false
     slot_uri: schema:contributor
     description: Identifiers of other people or organizations contributing to the dataset.
 
@@ -229,7 +232,8 @@ slots:
     description: Identifiers of organizations that funded the dataset's creation.
 
   contact:
-    range: uriorcurie
-    description: Identifier of the primary contact for questions about the dataset.
+    range: Agent
+    inlined: false
+    description: Identifier of the primary person or organization to contact about the dataset.
     close_mappings:
       - schema:editor

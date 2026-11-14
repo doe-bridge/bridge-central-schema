@@ -1,0 +1,74 @@
+id: https://w3id.org/ber-data/bridge-central-schema/agents
+name: agents
+title: BRIDGE Agents Module
+description: Shared people and organizations that can be credited for BRIDGE resources.
+license: Apache-2.0
+
+prefixes:
+  bridge_central_schema: https://w3id.org/ber-data/bridge-central-schema/
+  linkml: https://w3id.org/linkml/
+  nmdc: https://w3id.org/nmdc/
+  basalt_schema: https://emsl-computing.github.io/BASALT-Schema/elements/
+  prov: http://www.w3.org/ns/prov#
+
+default_prefix: bridge_central_schema
+default_range: string
+
+imports:
+  - linkml:types
+  - core
+
+classes:
+
+  Agent:
+    is_a: NamedThing
+    abstract: true
+    description: >-
+      A person or organization that bears responsibility for an activity,
+      resource, or another agent's activity.
+    slots:
+      - name
+    close_mappings:
+      - prov:Agent
+
+  Person:
+    is_a: Agent
+    description: An individual, independent of any study or role they hold on one.
+    slots:
+      - email
+      - orcid
+    slot_usage:
+      name:
+        description: The full name of the person.
+    close_mappings:
+      - nmdc:Person
+      - basalt_schema:PersonValue
+
+  Organization:
+    is_a: Agent
+    description: A social or legal institution, such as a company or consortium.
+    slots:
+      - ror
+    close_mappings:
+      - nmdc:Organization
+
+slots:
+
+  email:
+    description: A contactable email address for the person.
+    close_mappings:
+      - nmdc:email
+      - basalt_schema:email
+
+  orcid:
+    range: uriorcurie
+    description: The person's ORCID identifier.
+    close_mappings:
+      - nmdc:orcid
+      - basalt_schema:orcid
+
+  ror:
+    range: uriorcurie
+    description: The Research Organization Registry identifier of the organization.
+    close_mappings:
+      - nmdc:ror
