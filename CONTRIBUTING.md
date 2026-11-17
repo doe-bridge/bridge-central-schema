@@ -111,6 +111,10 @@ Core developers should read the material on the [LinkML site](https://linkml.io/
 - Reuse
     - Existing scheme elements should be reused where appropriate, rather than making duplicative elements
     - More specific classes can be created by refinining classes using inheritance (`is_a`)
+- Modelling for relational data storage
+    - In general, data should be stored in flat tables, not as nested, inlined objects.
+    - If a slot's range is a class, that class must have an `id` slot.
+    - List/array columns or inlined JSON may be used minimally where it is advantageous.
 
 [about-branches]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches
 [about-issues]: https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues
