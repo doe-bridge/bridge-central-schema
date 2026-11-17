@@ -398,6 +398,8 @@ slots:
     description: Fraction of the contig's genes with a taxonomic hit whose lineage agrees with taxonomic_lineage.
     comments:
       - Third column of the scaffold lineage file (prefix_scaffold_lineage.tsv) from the NMDC metagenome annotation workflow, written by create_scaffold_lineage.py from the gene phylogeny file (https://github.com/microbiomedata/mg_annotation/blob/1bfcf898975cd2aa90906a54637d1380471c47c1/functional-annotation.wdl#L195).
+      - The script is part of JGI's IMG Annotation Pipeline (https://code.jgi.doe.gov/img/img-pipelines/img-annotation-pipeline/-/blob/5.3.0/bin/functional_annotation/create_scaffold_lineage.py, version 5.3.0, the version NMDC's workflow image installs).
+      - In NMDC files the value is per scaffold. Nearly every scaffold in NMDC metagenome assemblies is a single contig.
       - taxonomic_lineage is the most specific rank at which at least 51% of those genes agree, or at least 3 genes when the contig has 4 to 9.
       - Read it with lineage_gene_count. A short contig often has one gene with a hit, and then the value is 1.0.
   lineage_gene_count:
