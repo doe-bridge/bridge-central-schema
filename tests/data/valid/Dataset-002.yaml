@@ -16,11 +16,13 @@ contigs:
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgas-11-19jh9v28.1/nmdc_wfmgas-11-19jh9v28.1_contigs.fna
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_scaffold_lineage.tsv
+  - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_gene_phylogeny.tsv
   length_bp: 1754
   taxonomic_lineage:
   - Bacteria
   - Pseudomonadota
   lineage_confidence: 0.667
+  lineage_gene_count: 3
 - contig_id: nmdc:wfmgas-11-19jh9v28.1_scf_2_c1
   member_of:
   - nmdc:wfmgas-11-19jh9v28.1
@@ -29,6 +31,7 @@ contigs:
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgas-11-19jh9v28.1/nmdc_wfmgas-11-19jh9v28.1_contigs.fna
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_scaffold_lineage.tsv
+  - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_gene_phylogeny.tsv
   length_bp: 1624
   taxonomic_lineage:
   - Bacteria
@@ -37,6 +40,7 @@ contigs:
   - Terriglobales
   - Acidobacteriaceae
   lineage_confidence: 1.0
+  lineage_gene_count: 2
 - contig_id: nmdc:wfmgas-11-19jh9v28.1_scf_344_c1
   member_of:
   - nmdc:wfmgas-11-19jh9v28.1

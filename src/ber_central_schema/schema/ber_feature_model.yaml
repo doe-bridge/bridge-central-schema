@@ -63,6 +63,7 @@ classes:
       - translation_table
       - taxonomic_lineage
       - lineage_confidence
+      - lineage_gene_count
       - generated_by
       - source_files
 
@@ -391,11 +392,22 @@ slots:
   lineage_confidence:
     slot_uri: bridge_central_schema:lineage_confidence
     title: Lineage confidence
-    range: float
-    description: Confidence value reported alongside the lineage call.
-    notes:
-      - Meaning unverified against any pipeline's own documentation; treat the name as
-        descriptive, not confirmed.
+    range: double
+    minimum_value: 0
+    maximum_value: 1
+    description: Fraction of the contig's genes with a taxonomic hit whose lineage agrees with taxonomic_lineage.
+    comments:
+      - Third column of the scaffold lineage file (prefix_scaffold_lineage.tsv) from the NMDC metagenome annotation workflow, written by create_scaffold_lineage.py from the gene phylogeny file (https://github.com/microbiomedata/mg_annotation/blob/1bfcf898975cd2aa90906a54637d1380471c47c1/functional-annotation.wdl#L195).
+      - taxonomic_lineage is the most specific rank at which at least 51% of those genes agree, or at least 3 genes when the contig has 4 to 9.
+      - Read it with lineage_gene_count. A short contig often has one gene with a hit, and then the value is 1.0.
+  lineage_gene_count:
+    slot_uri: bridge_central_schema:lineage_gene_count
+    title: Lineage gene count
+    range: integer
+    minimum_value: 1
+    description: Number of the contig's genes with a taxonomic hit that lineage_confidence is computed from.
+    comments:
+      - The contig's rows in the gene phylogeny file (prefix_gene_phylogeny.tsv). The scaffold lineage file does not include it.
 
   feature_id:
     slot_uri: bridge_central_schema:feature_id
