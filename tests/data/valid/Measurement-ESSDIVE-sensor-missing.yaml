@@ -8,7 +8,7 @@ value_role: measured
 missing_value_reason: out_of_range
 measurement_method: 'method_id: sensor-fr; method: campbell scientific flow meter attached
   to metal pole driven into rock bottom of stream. Sensor placed 5 cm below lowest
-  historical record min stream height.; material measured: water; treatment_id: disturbed-flow;
+  historical record min stream height.; material measured: water;
   temporal representation: 15-minute; temporal statistic: mean; method lower bound:
   0.005; method upper bound: 0.4'
 treatment: flow disruption -- a grid is placed 1 meter upstream from the measurement point

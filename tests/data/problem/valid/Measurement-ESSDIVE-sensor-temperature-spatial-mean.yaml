@@ -9,7 +9,7 @@ sample_size: 2
 value_role: measured
 measurement_method: 'method_id: sensor-tw; method: hobo thermocouple tethered to flowrate
   pole with 5cm wire tether. Batteries were replaced each spring.; material measured:
-  water; treatment_id: control; temporal representation: 15-minute; temporal statistic:
+  water; temporal representation: 15-minute; temporal statistic:
   mean; method lower bound: -20; method upper bound: 50; spatial statistic: mean; spatial sample
   size: 2; spatial statistic detail: average of the 2 control treatments to represent
   the reach'

@@ -9,7 +9,7 @@ sample_size: 2
 value_role: measured
 measurement_method: 'method_id: sensor-fr; method: campbell scientific flow meter attached
   to metal pole driven into rock bottom of stream. Sensor placed 5 cm below lowest
-  historical record min stream height.; material measured: water; treatment_id: control;
+  historical record min stream height.; material measured: water;
   temporal representation: 15-minute; temporal statistic: mean; method lower bound: 0.005;
   method upper bound: 0.4; spatial statistic: mean; spatial sample size: 2; spatial
   statistic detail: average of the 2 control treatments to represent the reach'
