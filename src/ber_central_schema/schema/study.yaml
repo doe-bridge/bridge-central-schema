@@ -14,18 +14,20 @@ prefixes:
   linkml: https://w3id.org/linkml/
   nmdc: https://w3id.org/nmdc/
   basalt_schema: https://emsl-computing.github.io/BASALT-Schema/elements/
-  COB: http://purl.obolibrary.org/obo/COB_
-  NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
-  MIXS: https://w3id.org/mixs/
   schema: http://schema.org/
   prov: http://www.w3.org/ns/prov#
   dcm: https://kbase.github.io/credit_engine/
+  OBI: "http://purl.obolibrary.org/obo/OBI_"
+  ror: 'https://bioregistry.io/ror:'
+  EFO: "http://www.ebi.ac.uk/efo/EFO_"
+  orcid: "https://orcid.org/"
+
 default_prefix: bridge_central_schema
 default_range: string
 
 imports:
   - linkml:types
-  - core
+  - ber_central_schema
   
 classes:
 
@@ -34,11 +36,19 @@ classes:
     description: >-
       A research initiative, proposal or project under which samples and/or data
       may be collected and processed.
+    aliases:
+      - project
     close_mappings:
       # nmdc:Study aliases include "project" and "proposal".
       - nmdc:Study
       # BASALT Study holds an EMSL user project (project_id, proposal abstract).
       - basalt_schema:Study
+    slots: 
+      # inherits id, name, description
+      - websites
+      - funding_sources
+    todos:
+      - Class name - discuss between Study and Project. 
 
   Agent:
     is_a: NamedThing
@@ -97,3 +107,144 @@ classes:
       - https://kbase.github.io/credit_engine/
       - https://info.orcid.org/credit-for-research-contribution
       - https://credit.niso.org/
+
+  AwardedFunding:
+    is_a: NamedThing
+    description: >-
+      A funding source for the study, including the name of the funder
+      and the grant, award, or contract number.
+    related_mappings:
+      - OBI:0001942
+    slots:
+      - id    
+      - funding_organization
+      - funding_identifier
+
+slots:
+
+  applies_to_agent:
+    description: The agent (person or organization) this credit association applies to.
+    range: Agent
+    required: true
+    close_mappings:
+      - nmdc:applies_to_agent
+  applied_roles:
+    range: CreditEnum
+    required: true
+    close_mappings:
+      - dcm:contributor_roles
+  applies_to_study:
+    description: The study this credit association applies to.
+    range: Study
+    required: true
+  email:
+    description: A contactable email address for the person.
+    close_mappings:
+      - nmdc:email
+      - basalt_schema:email
+  orcid:
+    range: uriorcurie
+    description: The person's ORCID identifier.
+    close_mappings:
+      - nmdc:orcid
+      - basalt_schema:orcid
+  ror:
+    description: The Research Organization Registry identifier of the organization.
+    range: uriorcurie
+    close_mappings:
+      - nmdc:ror
+  websites:
+    description: The websites associated with the study.
+    range: uri
+    multivalued: true
+    close_mappings:
+      - nmdc:websites
+      - basalt_schema:websites
+  funding_sources:
+    description: The funding sources for the study.
+    range: AwardedFunding
+    multivalued: true
+    related_mappings:
+      - basalt_schema:funding_sources
+      - nmdc:funding_sources
+  funding_organization:
+    description: The organization providing the funding for the study.
+    range: Organization # or string
+    required: true
+  funding_identifier:
+    description: Identifier for the funding source, such as a grant, award, or contract number.
+    range: string
+    required: true
+
+enums:
+
+  CreditEnum:
+    permissible_values:
+      Conceptualization:
+        description: Conceptualization
+        exact_mappings:
+          - dcm:conceptualization
+      Data curation:
+        description: Data curation
+        exact_mappings:
+          - dcm:data_curation
+      Formal Analysis:
+        description: Formal Analysis
+        exact_mappings:
+          - dcm:formal_analysis
+      Funding acquisition:
+        description: Funding acquisition
+        exact_mappings:
+          - dcm:funding_acquisition
+      Investigation:
+        description: Investigation
+        exact_mappings:
+          - dcm:investigation
+      Methodology:
+        description: Methodology
+        exact_mappings:
+          - dcm:methodology
+      Project administration:
+        description: Project administration
+        exact_mappings:
+          - dcm:project_administration
+      Resources:
+        description: Resources
+        exact_mappings:
+          - dcm:resources
+      Software:
+        description: Software
+        exact_mappings:
+          - dcm:software
+      Supervision:
+        description: Supervision
+        exact_mappings:
+          - dcm:supervision
+      Validation:
+        description: Validation
+        exact_mappings:
+          - dcm:validation
+      Visualization:
+        description: Visualization
+        exact_mappings:
+          - dcm:visualization
+      Writing original draft:
+        description: "Writing original draft"
+        exact_mappings:
+          - dcm:writing_original_draft
+      Writing review and editing:
+        description: "Writing review & editing"
+        exact_mappings:
+          - dcm:writing_review_editing
+      Principal Investigator:
+        description: principal investigator role
+        meaning: OBI:0000103
+        related_mappings:
+          - dcm:project_leader
+      Submitter:
+        description: the person(s) who enter study and biosample metadata into the BRIDGE submission portal
+        meaning: EFO:0001741
+    comments:
+      - CreditEnums come from https://casrai.org/credit/
+    see_also:
+      - https://kbase.github.io/credit_engine/ContributorRole/
