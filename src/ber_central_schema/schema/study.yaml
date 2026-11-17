@@ -47,8 +47,6 @@ classes:
       A person or organization that bears responsibility for an activity, for
       the existence of an entity, or for another agent's activity. `name` is
       inherited from NamedThing.
-    slots:
-      - name
     close_mappings:
       - prov:Agent
 
