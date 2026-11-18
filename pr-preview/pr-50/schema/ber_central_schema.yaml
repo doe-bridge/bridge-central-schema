@@ -1,7 +1,7 @@
 name: ber-central-schema
 description: 'The central BRIDGE schema for harmonized cross-BER data access. Defines
   shared base elements and composes domain modules (currently: measurements.yaml,
-  attributes.yaml, and the draft plant_sample.yaml).'
+  attributes.yaml, and plant_sample.yaml).'
 title: BRIDGE Central Schema
 see_also:
 - https://github.com/doe-bridge/bridge-central-schema
@@ -2201,10 +2201,8 @@ classes:
   Sample:
     name: Sample
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/Sample
-    description: 'PLACEHOLDER. A material sample. This stub exists only so PlantSample
-      can assert its is_a parent in this draft; it is expected to be replaced by the
-      Sample class from the Thing/Identified/Measurable/Sample hierarchy proposed
-      in PR #39.'
+    description: A material entity collected or selected so that measurements made
+      on it can be generalized to the larger thing it represents.
     from_schema: https://w3id.org/ber-data/bridge-central-schema/plant_sample
     slots:
     - sample__id
@@ -2218,11 +2216,7 @@ classes:
   QuantityValue:
     name: QuantityValue
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/QuantityValue
-    description: "A simple quantity value, representing a measurement with a numeric\
-      \ value and unit. Simplified port of AIMS-LEAF's QuantityValue (lambda_ber_types.yaml);\
-      \ kept here so the ported PlantSample attributes keep their source ranges. Overlaps\
-      \ with the merged measurements module's value slots \u2014 reconciling the two\
-      \ is part of the evaluation."
+    description: 'A quantity: a numeric value or range together with a unit.'
     from_schema: https://w3id.org/ber-data/bridge-central-schema/plant_sample
     mappings:
     - nmdc:QuantityValue
@@ -2259,8 +2253,10 @@ classes:
   PlantSample:
     name: PlantSample
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/PlantSample
-    description: Plant sample info for AIMS-LEAF. (Ported verbatim from lambda-ber/aims-leaf
-      for evaluation.)
+    description: A sample taken from a plant, with the taxonomy and genetic identity
+      of the source plant, its collection and geographic details, the environmental
+      context and growth conditions it was raised in, and any treatments or perturbations
+      applied before sampling.
     from_schema: https://w3id.org/ber-data/bridge-central-schema/plant_sample
     mappings:
     - aimsplant:PlantSample
@@ -2822,7 +2818,7 @@ classes:
     class_uri: aimsplant:PlantSample
 metamodel_version: 1.11.0
 source_file: ber_central_schema.yaml
-source_file_date: '2026-11-18T04:45:09'
-source_file_size: 1262
-generation_date: '2026-11-18T04:45:17'
+source_file_date: '2026-11-18T04:48:59'
+source_file_size: 1252
+generation_date: '2026-11-18T04:49:10'
 
