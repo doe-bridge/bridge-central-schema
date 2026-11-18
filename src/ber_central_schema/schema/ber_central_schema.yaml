@@ -5,7 +5,7 @@ title: BRIDGE Central Schema
 description: >-
   The central BRIDGE schema for harmonized cross-BER data access. Defines
   shared base elements and composes domain modules (currently:
-  measurements.yaml and attributes.yaml).
+  measurements.yaml, attributes.yaml, and biological_context.yaml).
 license: Apache-2.0
 see_also:
   - https://github.com/doe-bridge/bridge-central-schema
@@ -15,6 +15,7 @@ prefixes:
   bridge_central_schema: https://w3id.org/ber-data/bridge-central-schema/
   linkml: https://w3id.org/linkml/
   schema: http://schema.org/
+  GENO: http://purl.obolibrary.org/obo/GENO_
 default_prefix: bridge_central_schema
 default_range: string
 
@@ -22,6 +23,7 @@ imports:
   - linkml:types
   - measurements
   - attributes
+  - biological_context
 
 classes:
 
