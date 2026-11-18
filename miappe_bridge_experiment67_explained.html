@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiment 67 Explained</title>
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --surface: #ffffff;
+    --text: #20252b;
+    --muted: #5d6670;
+    --line: #dfddd6;
+    --head: #f1efe9;
+    --accent: #2f6b4f;
+    --good-bg: #e2f1e8; --good: #1f6240;
+    --part-bg: #fbf0d5; --part: #7a5a0c;
+    --miss-bg: #f9e2de; --miss: #9a3324;
+    --na-bg: #e9ebee; --na: #4d5661;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #15181c;
+      --surface: #1d2126;
+      --text: #e7e9ec;
+      --muted: #a3acb6;
+      --line: #343a42;
+      --head: #262b31;
+      --accent: #7cc7a2;
+      --good-bg: #173527; --good: #8fdcb4;
+      --part-bg: #3a2f12; --part: #efcd7c;
+      --miss-bg: #41211c; --miss: #f3a999;
+      --na-bg: #2b3037; --na: #bcc4cd;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 1120px; margin: 0 auto; padding: 48px 24px 64px; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 6px; }
+  h2 { font-size: 1.3rem; margin: 44px 0 6px; }
+  p { margin: 0 0 12px; }
+  .sub { color: var(--muted); margin-bottom: 18px; overflow-wrap: anywhere; }
+  .lead { font-size: 1.1rem; max-width: 62em; }
+  .note { max-width: 62em; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 12px; }
+  .section-note { color: var(--muted); margin-bottom: 14px; max-width: 62em; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 26px 0 0; }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+  .stat b { display: block; font-size: 1.4rem; font-variant-numeric: tabular-nums; }
+  .stat span { color: var(--muted); font-size: .88rem; }
+  .table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: .93rem; }
+  th, td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+  th { background: var(--head); font-weight: 600; white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td:first-child { font-weight: 600; }
+  .wide { min-width: 860px; }
+  .medium { min-width: 640px; }
+  code {
+    font: .88em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    background: var(--head);
+    padding: 1px 4px;
+    border-radius: 4px;
+    overflow-wrap: anywhere;
+  }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: .8rem; font-weight: 600; white-space: nowrap; }
+  .good { background: var(--good-bg); color: var(--good); }
+  .part { background: var(--part-bg); color: var(--part); }
+  .miss { background: var(--miss-bg); color: var(--miss); }
+  .na { background: var(--na-bg); color: var(--na); }
+  ul, ol { padding-left: 22px; margin: 0; max-width: 62em; }
+  li { margin-bottom: 8px; }
+  .tree { display: grid; gap: 0; justify-items: center; }
+  .node { width: min(100%, 560px); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; text-align: center; }
+  .node.root { border: 2px solid var(--accent); }
+  .node small, .pack small { display: block; color: var(--muted); font-size: .85rem; }
+  .kind { display: block; color: var(--accent); font-size: .76rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+  .stem { width: 2px; height: 22px; background: var(--accent); }
+  .packs { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; border-top: 2px solid var(--accent); padding-top: 18px; }
+  .pack { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; }
+  .pack h3 { font-size: 1rem; margin: 0 0 2px; }
+  .pack ul { list-style: none; padding: 0; margin: 10px 0 0; font-size: .9rem; }
+  .pack li { margin-bottom: 5px; }
+  .flow { display: grid; gap: 8px; }
+  .flow-row { display: grid; grid-template-columns: minmax(0, 1.05fr) 28px minmax(0, 1.25fr); gap: 8px; align-items: stretch; }
+  .flow-box { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: .92rem; }
+  .flow-box small { display: block; color: var(--muted); font-size: .84rem; }
+  .flow-box.target { border-left: 3px solid var(--accent); }
+  .arrow { display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.25rem; font-weight: 700; }
+  td.blank { color: var(--muted); }
+  h3.table-title { font-size: 1rem; margin: 22px 0 8px; }
+  .explain { display: grid; gap: 12px; }
+  .explain details { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 0 16px; }
+  .explain summary { cursor: pointer; padding: 13px 0; font-weight: 650; }
+  .explain summary .bridge { color: var(--muted); font-weight: 400; }
+  .explain summary .badge { margin-left: 6px; }
+  .explain .body { padding-bottom: 16px; }
+  .explain .body > p { max-width: 62em; }
+  .explain .table-wrap { margin: 10px 0 14px; }
+  .explain .label { font-weight: 650; }
+  @media (max-width: 760px) {
+    .packs { grid-template-columns: 1fr; }
+    .flow-row { grid-template-columns: 1fr; gap: 2px; margin-bottom: 8px; }
+    .arrow { transform: rotate(90deg); height: 22px; }
+  }
+  @media (max-width: 600px) {
+    main { padding: 28px 16px 44px; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Experiment 67 in MIAPPE and BRIDGE</h1>
+  <p class="sub"><code>2026.04.09_OPAL.0002_Weston_PC</code></p>
+  <p class="lead"><strong>Experiment 67 maps well for plants, lines, the nickel factor and measurements. It has no source data for Person or Environment, no tissue Samples, and only watering for Event.</strong></p>
+  <p class="note">BRIDGE mappings come from the supplied MIAPPE–BRIDGE table and were not checked against the BRIDGE repository. The export calls the factor only "spike". Nickel and µmol/L come from the OPAL load report, which says the unit was supplied by an operator and is unverified.</p>
+
+  <div class="stats">
+    <div class="stat"><b>360</b><span>plants</span></div>
+    <div class="stat"><b>12</b><span>lines</span></div>
+    <div class="stat"><b>6</b><span>spike levels</span></div>
+    <div class="stat"><b>5</b><span>replicates</span></div>
+    <div class="stat"><b>78,034</b><span>sensor records</span></div>
+    <div class="stat"><b>25,752</b><span>weighings</span></div>
+  </div>
+
+  <h2>Category mapping</h2>
+  <div class="table-wrap">
+    <table class="wide">
+      <thead>
+        <tr><th>MIAPPE</th><th>BRIDGE</th><th>Experiment 67 data</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Investigation</td><td>Study</td><td>OPAL, inferred from the experiment name</td><td><span class="badge part">Name only, no aims</span></td></tr>
+        <tr><td>Study</td><td>Study + pending Site/Facility</td><td>ID 67, <code>experiment_name</code>, onboarding ID 61, 6 April to 7 May 2026, <code>Weston</code> in the name</td><td><span class="badge part">Partial</span></td></tr>
+        <tr><td>Person</td><td>Person + CreditAssociation</td><td>None</td><td><span class="badge miss">Missing</span></td></tr>
+        <tr><td>Data file</td><td>Dataset</td><td>20 paired CSV and Parquet tables (including <code>data-issues</code>), 5 column dictionaries, <code>manifest.json</code>, 58,384 JPG images, 101,614 PNG masks</td><td><span class="badge good">Complete</span></td></tr>
+        <tr><td>Biological material</td><td>BiologicalContext</td><td><code>design_species</code> and 12 values of <code>design_genotype</code></td><td><span class="badge part">Partial, no seed source</span></td></tr>
+        <tr><td>Environment</td><td><code>setting</code> Measurement, no treatment</td><td>No temperature, humidity, light, CO₂, medium or growth-condition fields</td><td><span class="badge miss">Missing</span></td></tr>
+        <tr><td>Experimental factor</td><td>Pending Treatment (<code>setting</code> + <code>treatment</code>)</td><td><code>design_spike</code>: 0, 50, 100, 200, 500, 1000</td><td><span class="badge part">Present, unit unverified</span></td></tr>
+        <tr><td>Event</td><td>Process</td><td>20,730 watering pairs in <code>plant-weights.csv</code></td><td><span class="badge part">Partial, no planting, dosing or harvest dates</span></td></tr>
+        <tr><td>Observation unit</td><td>Sample (the plant)</td><td><code>plant_id</code> 28773 to 29132, <code>plant_barcode</code>, <code>plant_info</code>, <code>design_replicate</code>, tray and tray position</td><td><span class="badge good">360 units</span></td></tr>
+        <tr><td>Sample</td><td>Sample (the tissue)</td><td>None. All data is whole-plant and non-destructive</td><td><span class="badge na">Not applicable</span></td></tr>
+        <tr><td>Observed variable</td><td>Measurement</td><td>Image traits, spectral bands, <code>weight_g</code>, <code>weight_after_watering_g</code></td><td><span class="badge part">Present, units and methods need curating</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Each category explained</h2>
+  <p class="section-note">Each panel explains one row of the mapping table: what the category means, what experiment 67 holds for it, what is missing, and an example. Select a heading to collapse its panel.</p>
+  <div class="explain">
+
+    <details open>
+      <summary>Investigation <span class="bridge">→ Study</span> <span class="badge part">Name only, no aims</span></summary>
+      <div class="body">
+        <p>This is the <strong>research program</strong> the experiment belongs to. BRIDGE uses one Study class for both MIAPPE's Investigation and Study levels.</p>
+        <div class="table-wrap"><table class="medium">
+          <thead><tr><th>Item</th><th>What it is</th><th>Experiment 67 value</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td>Program name</td><td>First part of the study code</td><td><code>OPAL</code></td><td>Candidate Investigation name</td></tr>
+            <tr><td>Study code</td><td>Program plus sequence number</td><td><code>OPAL.0002</code></td><td>Places this study within the program</td></tr>
+            <tr><td>Related studies</td><td>Other experiments named OPAL</td><td>65, 70, 71</td><td>Likely members of the same Investigation</td></tr>
+          </tbody>
+        </table></div>
+        <p><span class="label">Why this status:</span> the program is inferred from the name. Its full title, aims, funding, publications and data license are not recorded.</p>
+        <p><span class="label">Example:</span> a parent BRIDGE Study called OPAL could contain a child Study for <code>OPAL.0002</code>, once the program is confirmed.</p>
+      </div>
+    </details>
+
+    <details open>
+      <summary>Study <span class="bridge">→ Study + pending Site/Facility</span> <span class="badge part">Partial</span></summary>
+      <div class="body">
+        <p>This is the <strong>specific experiment</strong> carried out to answer a biological question.</p>
+        <div class="table-wrap"><table class="medium">
+          <thead><tr><th>Item</th><th>What it is</th><th>Experiment 67 value</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td><code>experiment_id</code></td><td>Export's numeric ID</td><td>67</td><td>Study identifier</td></tr>
+            <tr><td><code>experiment_name</code></td><td>Full study name</td><td><code>2026.04.09_OPAL.0002_Weston_PC</code></td><td>Study title or label</td></tr>
+            <tr><td>Onboarding ID</td><td><code>design_onboarding_experiment_id</code></td><td>61</td><td>External reference</td></tr>
+            <tr><td>Observed dates</td><td>First and last recorded data</td><td>6 April to 7 May 2026</td><td>Observed study period</td></tr>
+            <tr><td><code>Weston</code></td><td>Word in the experiment name</td><td>Meaning unconfirmed</td><td>Possible site, for pending Site/Facility</td></tr>
+          </tbody>
+        </table></div>
+        <p><span class="label">Why this status:</span> the experiment can be identified, but its objective, design description, location, growth facility and growing practices are missing.</p>
+        <p><span class="label">Example:</span> one BRIDGE Study record for experiment 67 links to the Dataset and to its 360 plant Samples. The name's date, 9 April, is not the first data date, so true start and end dates should be confirmed.</p>
+      </div>
+    </details>
+
+    <details open>
+      <summary>Person <span class="bridge">→ Person + CreditAssociation</span> <span class="badge miss">Missing</span></summary>
+      <div class="body">
+        <p>These are the <strong>people involved</strong>. BRIDGE keeps the person separately from their role on a study.</p>
+        <div class="table-wrap"><table class="medium">
+          <thead><tr><th>Needed</th><th>What it is</th><th>Experiment 67 value</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td>Name and contact</td><td>Who the person is</td><td>Not recorded</td><td>Person</td></tr>
+            <tr><td>Affiliation and ORCID</td><td>Organization and persistent ID</td><td>Not recorded</td><td>Person</td></tr>
+            <tr><td>Study role</td><td>For example principal investigator or data curator</td><td>Not recorded</td><td>CreditAssociation</td></tr>
+          </tbody>
+        </table></div>
+        <p><span class="label">Why this status:</span> no table has a person, operator, owner or contact column. <code>UserTerminated</code> is an imaging round status and does not identify anyone.</p>
+        <p><span class="label">Example:</span> once supplied, one Person record would link to the experiment 67 Study through a CreditAssociation with the role "principal investigator".</p>
+      </div>
+    </details>
+
+    <details open>
+      <summary>Data file <span class="bridge">→ Dataset</span> <span class="badge good">Complete</span></summary>
+      <div class="body">
+        <p>These are the <strong>files that hold or support the data</strong>. BRIDGE groups them into a Dataset that can be shared or cited, and the values inside become Measurement rows.</p>
+        <div class="table-wrap"><table class="medium">
+          <thead><tr><th>Item</th><th>What it is</th><th class="num">Files</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td>CSV and Parquet tables</td><td>20 tables in two formats, including <code>data-issues</code></td><td class="num">40</td><td>Main data and quality tables</td></tr>
+            <tr><td>Column dictionaries</td><td><code>*-columns</code> for 5 sensors, in CSV and JSON</td><td class="num">10</td><td>Documentation</td></tr>
+            <tr><td><code>manifest.json</code></td><td>Inventory of the export</td><td class="num">1</td><td>Describes the Dataset</td></tr>
+            <tr><td>JPG images</td><td>Picture previews from the 5 sensors</td><td class="num">58,384</td><td>Supporting files</td></tr>
+            <tr><td>PNG masks</td><td>78,034 APPL and 23,580 ViT plant masks</td><td class="num">101,614</td><td>Derived supporting files</td></tr>
+          </tbody>
+        </table></div>
+        <p><span class="label">Why this status:</span> the files are present and add up to all 160,049 in the export. The clearest MIAPPE data files are <code>*-features</code>, <code>*-signatures</code> and <code>plant-weights</code>, because they hold observations. "Complete" describes the files, and known data problems are listed in <code>data-issues</code>.</p>
+        <p><span class="label">Example:</span> <code>rgb2-features.csv</code> is a data file in the Dataset, and one plant's <code>area_mm2</code> in one round is a Measurement.</p>
+      </div>
+    </details>
+
+    <details open>
+      <summary>Biological material <span class="bridge">→ BiologicalContext</span> <span class="badge part">Partial, no seed source</span></summary>
+      <div class="body">
+        <p>This is <strong>what kind of plant was grown</strong>. A BiologicalContext is a catalog record for a species or line, not a physical plant.</p>
+        <div class="table-wrap"><table class="medium">
+          <thead><tr><th>Item</th><th>What it is</th><th>Experiment 67 value</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td><code>design_species</code></td><td>Species name</td><td><code>Thalpsi arvense</code>, likely <em>Thlaspi arvense</em></td><td>Taxon-level BiologicalContext</td></tr>
+            <tr><td><code>design_genotype</code></td><td>Line assigned to each plant</td><td>RIL 83, 132, 157, 245, 298, 407, 415; ISU 210; Ecm29; 9; 14; 16</td><td>Line-level BiologicalContext</td></tr>
+            <tr><td><code>design_plant_info</code></td><td>Entry number for each line</td><td>1 to 12</td><td>Study-specific code</td></tr>
+          </tbody>
+        </table></div>
+        <p><span class="label">Why this status:</span> the lines are named, but seed source, stable germplasm IDs, a verified taxon ID, material type and parentage are missing. Only ISU 210 matches a VCF sample, <code>Ta0378_S</code>.</p>
+        <p><span class="label">Example:</span> plant 28773 is a Sample linked to the BiologicalContext <code>Ecm29</code>. Its measurements attach to the plant, not to <code>Ecm29</code>.</p>
+      </div>
+    </details>
+
+    <details open>
+      <summary>Environment <span class="bridge">→ <code>setting</code> Measurement, no treatment</span> <span class="badge miss">Missing</span></summary>
+      <div class="body">
+        <p>These are the <strong>growing conditions kept constant</strong> across plants. Conditions that change over time are recorded as observed variables in MIAPPE.</p>
+        <div class="table-wrap"><table class="medium">
+          <thead><tr><th>Needed</th><th>What it is</th><th>Experiment 67 value</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td>Air conditions</td><td>Temperature, humidity, CO₂</td><td>Not recorded</td><td>Environment parameter</td></tr>
+            <tr><td>Light regime</td><td>Photoperiod and light intensity</td><td>Not recorded</td><td>Environment parameter</td></tr>
+            <tr><td>Growing setup</td><td>Medium, pot size, fertilizer</td><td>Not recorded</td><td>Environment parameter</td></tr>
+          </tbody>
+        </table></div>
+        <p><span class="label">Why this status:</span> the export has no growth-condition fields. <code>msc1_raw_light_captions</code> describes the imaging instrument, and tray or row fields describe position, so neither is Environment.</p>
+        <p><span class="label">Example:</span> a constant 22 °C, if that were the real setting, would become a <code>setting</code> Measurement without a treatment. Your table notes that it currently repeats per plant Sample or waits for the pending Site/Facility class.</p>
+      </div>
+    </details>
+
+    <details open>
+      <summary>Experimental factor <span class="bridge">→ Pending Treatment</span> <span class="badge part">Present, unit unverified</span></summary>
+      <div class="body">
+        <p>This is the <strong>condition deliberately varied between plants</strong> so its effect can be measured. In experiment 67 that is the spike, recorded by the OPAL load report as nickel.</p>
+        <div class="table-wrap"><table class="medium">
+          <thead><tr><th>Item</th><th>What it is</th><th>Experiment 67 value</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td><code>design_spike</code></td><td>Treatment level for each plant</td><td>0, 50, 100, 200, 500, 1000, with 60 plants each</td><td>Factor values</td></tr>
+            <tr><td><code>plant_info</code></td><td>Label that embeds the level</td><td><code>1_PC.10_50_rep5</code> contains 50</td><td>Cross-check</td></tr>
+            <tr><td>Factor name</td><td>Load report <code>factor_name</code></td><td>nickel, <code>CHEBI:28112</code></td><td>Treatment identity, from outside the export</td></tr>
+            <tr><td>Dose unit</td><td>Load report <code>dose_unit</code></td><td>µmol/L, unverified</td><td>Treatment unit</td></tr>
+          </tbody>
+        </table></div>
+        <p><span class="label">Why this status:</span> every plant has a level, and each line has 5 plants at each level. The export itself does not name nickel or give a unit. The compound, application method and dosing dates are missing. Line and replicate are not factors here: line is Biological material, and replicate is part of the design.</p>
+        <p><span class="label">Example:</span> plant 28773 at spike 50 becomes a <code>setting</code> Measurement with value 50, unit µmol/L once confirmed, and treatment "nickel". BRIDGE's Treatment class is pending, so this uses the <code>treatment</code> slot for now.</p>
+      </div>
+    </details>
+
+    <details open>
+      <summary>Event <span class="bridge">→ Process</span> <span class="badge part">Partial</span></summary>
+      <div class="body">
+        <p>This is <strong>something that happened at a particular time</strong>, such as planting, dosing or watering.</p>
+        <div class="table-wrap"><table class="medium">
+          <thead><tr><th>Item</th><th>What it is</th><th>Experiment 67 value</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td>Watering pairs</td><td><code>weight_g</code> and <code>weight_after_watering_g</code></td><td>20,730 weighings</td><td>Evidence of watering events</td></tr>
+            <tr><td><code>scale_plants_watered_sum</code></td><td><code>msc1</code> metadata column. The export does not define it, but 1 matches records with a before-and-after weighing pair</td><td>1 on 20,358 records, 0 on 3,222</td><td>Paired-weighing indicator, not proof of watering</td></tr>
+            <tr><td>Imaging rounds</td><td><code>round_id</code>, <code>round_date_start</code>, <code>round_status</code></td><td>67 rounds in <code>msc1</code></td><td>Timing context for Measurements</td></tr>
+          </tbody>
+        </table></div>
+        <p><span class="label">Why this status:</span> watering can be reconstructed, but the water amount is calculated, not recorded, and small or negative changes need care. Planting, germination, nickel dosing and harvest are absent.</p>
+        <p><span class="label">Example:</span> on 21 April at 09:51, plant 28773 went from 158.3 g to 162.1 g. That is a watering Process of about 3.8 g, and both weights are Measurements.</p>
+      </div>
+    </details>
+
+    <details open>
+      <summary>Observation unit <span class="bridge">→ Sample (the plant)</span> <span class="badge good">360 units</span></summary>
+      <div class="body">
+        <p>This is <strong>the thing being observed</strong>. In experiment 67 it is one individual plant, and measurements point to it.</p>
+        <div class="table-wrap"><table class="medium">
+          <thead><tr><th>Item</th><th>What it is</th><th>Experiment 67 value</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td><code>plant_id</code></td><td>Numeric plant ID</td><td>28773 to 29132</td><td>Primary identifier and join key</td></tr>
+            <tr><td><code>plant_barcode</code></td><td>Physical or system barcode</td><td><code>2026.04.09_OPAL.0002_Weston_PC_1.0_1</code></td><td>Alternate identifier</td></tr>
+            <tr><td><code>plant_info</code></td><td>Sequence, entry, spike and replicate</td><td><code>1_PC.10_50_rep5</code></td><td>Readable design label</td></tr>
+            <tr><td><code>design_replicate</code></td><td>Replicate within line and spike</td><td>1 to 5</td><td>Design attribute</td></tr>
+            <tr><td>Tray fields</td><td><code>tray_id</code>, <code>tray_barcode</code>, <code>tray_area</code>, <code>tray_info</code></td><td>60 trays, 6 positions each, rows 24 to 26</td><td>Plant location</td></tr>
+          </tbody>
+        </table></div>
+        <p><span class="label">Why this status:</span> all 360 plants have identifiers, design values and tray positions. Those plant and tray fields are filled in <code>msc1</code> metadata and <code>plant-weights</code>, not in every sensor's metadata. All plants have data from four sensors, while 353 have <code>vnir</code> data.</p>
+        <p><span class="label">Example:</span> plant 28773 is one Sample, in tray <code>XX APPL 1</code> at position A1, linked to <code>Ecm29</code> and spike 50.</p>
+      </div>
+    </details>
+
+    <details open>
+      <summary>Sample <span class="bridge">→ Sample (the tissue)</span> <span class="badge na">Not applicable</span></summary>
+      <div class="body">
+        <p>In MIAPPE, this is <strong>a physical portion taken from a plant</strong>, such as harvested leaf tissue, that can be stored and traced.</p>
+        <div class="table-wrap"><table class="medium">
+          <thead><tr><th>Would need</th><th>What it is</th><th>Experiment 67 value</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td>Tissue sample ID</td><td>Identifier for the harvested portion</td><td>None</td><td>Sample</td></tr>
+            <tr><td>Parent plant</td><td>Link to the source plant</td><td>None</td><td><code>derived_from</code></td></tr>
+            <tr><td>Tissue and collection time</td><td>Plant part and harvest time</td><td>None</td><td><code>tissue_ontology_term</code>, <code>collection_date_time</code></td></tr>
+          </tbody>
+        </table></div>
+        <p><span class="label">Why this status:</span> the export contains whole-plant imaging and weighing only. Images and masks are data files, not physical samples, and the load report confirms there is no tissue element data.</p>
+        <p><span class="label">Example:</span> if a leaf from plant 28773 were later analyzed for nickel, it would be a new tissue Sample <code>derived_from</code> the plant Sample.</p>
+      </div>
+    </details>
+
+    <details open>
+      <summary>Observed variable <span class="bridge">→ Measurement</span> <span class="badge part">Units and methods need curating</span></summary>
+      <div class="body">
+        <p>This describes <strong>what was measured and how</strong>. BRIDGE puts the property, method and unit directly on each Measurement row.</p>
+        <div class="table-wrap"><table class="medium">
+          <thead><tr><th>Item</th><th>What it is</th><th class="num">Variables</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td>Image traits</td><td>Size, shape, colour, fluorescence, water and vegetation summaries</td><td class="num">196</td><td><code>observed_property</code> values</td></tr>
+            <tr><td>Spectral bands</td><td>480 <code>vnir</code> and 636 <code>swir</code> bands</td><td class="num">1,116</td><td>Spectral properties</td></tr>
+            <tr><td>Scale readings</td><td><code>weight_g</code>, <code>weight_after_watering_g</code></td><td class="num">2</td><td>Weight properties</td></tr>
+          </tbody>
+        </table></div>
+        <p><span class="label">Why this status:</span> the values exist, but units are mostly implied by column names, and trait, method and scale definitions are not standardized. <code>qc_flags</code>, mask coverage and pixel positions are excluded from these counts. Weights start near 70 g, so they probably include the pot and growing medium.</p>
+        <p><span class="label">Example:</span> plant 28773's first weight becomes one Measurement: property weight, value 72.0, unit g, time 2026-04-06 18:18:14, <code>feature_of_interest</code> plant 28773, role <code>measured</code>.</p>
+      </div>
+    </details>
+  </div>
+
+  <h2>Data files and the Dataset</h2>
+  <p class="section-note">Proposed reading: the whole experiment 67 export is one BRIDGE Dataset, and each table or asset is a MIAPPE data file inside it. The Dataset describes and locates the data. The values inside the tables become Measurement rows.</p>
+
+  <div class="tree" role="img" aria-label="Study 67 contains one Dataset, which holds experiment-level tables, five sensor packages and image assets">
+    <div class="node"><span class="kind">BRIDGE Study</span><strong>Experiment 67</strong><small>OPAL.0002</small></div>
+    <div class="stem"></div>
+    <div class="node root"><span class="kind">BRIDGE Dataset</span><strong>Experiment 67 export</strong><small>160,049 files, 37 GB</small></div>
+    <div class="stem"></div>
+    <div class="packs">
+      <div class="pack">
+        <span class="kind">Data files</span>
+        <h3>Experiment-level</h3>
+        <small>Top of the folder</small>
+        <ul>
+          <li><code>manifest.json</code></li>
+          <li><code>experiment-metadata</code></li>
+          <li><code>plant-weights</code></li>
+          <li><code>data-issues</code></li>
+        </ul>
+      </div>
+      <div class="pack">
+        <span class="kind">Data files</span>
+        <h3>Sensor tables</h3>
+        <small><code>fc1</code>, <code>rgb2</code>, <code>msc1</code>, <code>swir</code>, <code>vnir</code></small>
+        <ul>
+          <li><code>*-features</code></li>
+          <li><code>*-metadata</code></li>
+          <li><code>*-design</code></li>
+          <li><code>*-columns</code></li>
+          <li><code>*-signatures</code> (<code>swir</code>, <code>vnir</code>)</li>
+        </ul>
+      </div>
+      <div class="pack">
+        <span class="kind">Linked assets</span>
+        <h3>Images and masks</h3>
+        <small>Referenced from the feature tables</small>
+        <ul>
+          <li>58,384 JPG images</li>
+          <li>78,034 APPL masks (PNG)</li>
+          <li>23,580 ViT masks (PNG)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="table-title">Where each file's content goes</h3>
+  <div class="flow">
+    <div class="flow-row"><div class="flow-box"><strong><code>*-features</code></strong><small>78,034 rows of traits per plant and round</small></div><div class="arrow" aria-hidden="true">→</div><div class="flow-box target"><strong>Measurement</strong><small><code>measured</code> values on the plant Sample</small></div></div>
+    <div class="flow-row"><div class="flow-box"><strong><code>*-signatures</code></strong><small>14,122 rows of spectral band values</small></div><div class="arrow" aria-hidden="true">→</div><div class="flow-box target"><strong>Measurement</strong><small>One value per plant, round and band</small></div></div>
+    <div class="flow-row"><div class="flow-box"><strong><code>plant-weights</code></strong><small>25,752 weighings, 20,730 with an after-watering weight</small></div><div class="arrow" aria-hidden="true">→</div><div class="flow-box target"><strong>Measurement + Process</strong><small>Weights are Measurements, and each watering is a Process</small></div></div>
+    <div class="flow-row"><div class="flow-box"><strong><code>*-design</code></strong><small>Line, spike and replicate, filled only in <code>msc1</code></small></div><div class="arrow" aria-hidden="true">→</div><div class="flow-box target"><strong>BiologicalContext, Sample, Treatment</strong><small>Line, plant design and <code>setting</code> values</small></div></div>
+    <div class="flow-row"><div class="flow-box"><strong><code>*-metadata</code></strong><small>Plant, tray, round and instrument context</small></div><div class="arrow" aria-hidden="true">→</div><div class="flow-box target"><strong>Sample and Measurement context</strong><small>Plant location, timing and <code>method</code></small></div></div>
+    <div class="flow-row"><div class="flow-box"><strong><code>*-columns</code></strong><small>Column names and roles</small></div><div class="arrow" aria-hidden="true">→</div><div class="flow-box target"><strong>Dataset documentation</strong><small>Starting point for <code>observed_property</code> definitions</small></div></div>
+    <div class="flow-row"><div class="flow-box"><strong>Images and masks</strong><small>Referenced through <code>thumbnail_path</code> and mask paths</small></div><div class="arrow" aria-hidden="true">→</div><div class="flow-box target"><strong>Dataset files</strong><small>Evidence linked to the matching plant and round</small></div></div>
+    <div class="flow-row"><div class="flow-box"><strong><code>manifest.json</code>, <code>experiment-metadata</code></strong><small>Inventory, row counts and date ranges</small></div><div class="arrow" aria-hidden="true">→</div><div class="flow-box target"><strong>Dataset and Study description</strong><small>What the export contains and when it was generated</small></div></div>
+    <div class="flow-row"><div class="flow-box"><strong><code>data-issues</code></strong><small>108,908 logged issues</small></div><div class="arrow" aria-hidden="true">→</div><div class="flow-box target"><strong>Dataset quality notes</strong><small>The supplied table names no dedicated BRIDGE class</small></div></div>
+  </div>
+
+  <h3 class="table-title">What exists for each sensor</h3>
+  <div class="table-wrap">
+    <table class="wide">
+      <thead>
+        <tr><th>Sensor</th><th class="num">Feature rows</th><th>Metadata and design rows</th><th class="num">Signature rows</th><th class="num">Images</th><th class="num">APPL masks</th><th class="num">ViT masks</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>rgb2</code></td><td class="num">23,580</td><td>23,580 each; design values blank</td><td class="num blank">–</td><td class="num">23,580</td><td class="num">23,580</td><td class="num">23,580</td></tr>
+        <tr><td><code>msc1</code></td><td class="num">23,580</td><td>23,580 each; <strong>design values filled</strong></td><td class="num blank">–</td><td class="num">3,930</td><td class="num">23,580</td><td class="num blank">0</td></tr>
+        <tr><td><code>fc1</code></td><td class="num">16,752</td><td>16,752 each; design values blank</td><td class="num blank">–</td><td class="num">16,752</td><td class="num">16,752</td><td class="num blank">0</td></tr>
+        <tr><td><code>swir</code></td><td class="num">7,723</td><td>7,723 each; design values blank</td><td class="num">7,723</td><td class="num">7,723</td><td class="num">7,723</td><td class="num blank">0</td></tr>
+        <tr><td><code>vnir</code></td><td class="num">6,399</td><td>6,399 each; design values blank</td><td class="num">6,399</td><td class="num">6,399</td><td class="num">6,399</td><td class="num blank">0</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="section-note" style="margin-top:12px">Each table is stored as CSV and Parquet, except the column dictionaries, which are CSV and JSON. READMEs from the other experiments' exports say such pairs hold the same rows and columns, so treat each pair as one logical data file in two formats. This was not confirmed for experiment 67's Parquet files. <code>msc1</code> has fewer images because one tray image serves 6 plants.</p>
+
+  <h2>Biological material and design</h2>
+  <p class="section-note">The design is fully crossed: 12 lines × 6 spike levels × 5 replicates = 360 plants, with 30 plants per line.</p>
+  <div class="table-wrap">
+    <table class="medium">
+      <thead><tr><th>Element</th><th>Values</th><th>Classification</th></tr></thead>
+      <tbody>
+        <tr><td>Species</td><td><code>Thalpsi arvense</code>, likely a misspelling of <em>Thlaspi arvense</em></td><td>BiologicalContext taxon</td></tr>
+        <tr><td>RIL-labelled lines</td><td>RIL 83, 132, 157, 245, 298, 407, 415</td><td>BiologicalContext, breeding line once confirmed</td></tr>
+        <tr><td>Other lines</td><td>ISU 210, Ecm29, 9, 14, 16</td><td>BiologicalContext, type to be confirmed</td></tr>
+        <tr><td>Entry number</td><td><code>design_plant_info</code> 1 to 12, shown as <code>PC.1</code> to <code>PC.12</code></td><td>Study-specific code for a line, not a germplasm ID</td></tr>
+        <tr><td>VCF link</td><td>Only ISU 210 matches a sample, <code>Ta0378_S</code></td><td>External reference on BiologicalContext</td></tr>
+        <tr><td>Seedlot and cultivar</td><td>Not recorded</td><td>Leave null. Do not derive from entry or onboarding IDs</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Observed variables</h2>
+  <p class="section-note">Trait counts have data and exclude <code>qc_flags</code>, <code>mask_coverage_pct</code> and pixel bounding-box positions. Summaries of one signal, such as mean and median, are counted separately.</p>
+  <div class="table-wrap">
+    <table class="medium">
+      <thead><tr><th>Source</th><th>Captures</th><th class="num">Records</th><th class="num">Rounds</th><th class="num">Trait columns</th><th class="num">Spectral bands</th></tr></thead>
+      <tbody>
+        <tr><td><code>rgb2</code></td><td>Size, shape, colour</td><td class="num">23,580</td><td class="num">67</td><td class="num">62</td><td class="num">–</td></tr>
+        <tr><td><code>msc1</code></td><td>Water-related reflectance</td><td class="num">23,580</td><td class="num">67</td><td class="num">43</td><td class="num">–</td></tr>
+        <tr><td><code>fc1</code></td><td>Chlorophyll fluorescence, shape</td><td class="num">16,752</td><td class="num">48</td><td class="num">13</td><td class="num">–</td></tr>
+        <tr><td><code>swir</code></td><td>Water content, shape, spectra</td><td class="num">7,723</td><td class="num">23</td><td class="num">21</td><td class="num">636</td></tr>
+        <tr><td><code>vnir</code></td><td>Vegetation indices, shape, spectra</td><td class="num">6,399</td><td class="num">23</td><td class="num">57</td><td class="num">480</td></tr>
+        <tr><td>Scale</td><td>Weight before and after watering</td><td class="num">25,752</td><td class="num">78</td><td class="num">2</td><td class="num">–</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Worked example: plant 28773</h2>
+  <div class="table-wrap">
+    <table class="medium">
+      <thead><tr><th>Source value</th><th>MIAPPE</th><th>BRIDGE</th></tr></thead>
+      <tbody>
+        <tr><td><code>Ecm29</code> (entry 10)</td><td>Biological material</td><td>BiologicalContext</td></tr>
+        <tr><td><code>plant_id</code> 28773, barcode <code>2026.04.09_OPAL.0002_Weston_PC_1.0_1</code></td><td>Observation unit</td><td>Sample (the plant)</td></tr>
+        <tr><td>Spike 50</td><td>Experimental factor value</td><td><code>setting</code> Measurement with <code>treatment</code></td></tr>
+        <tr><td>Replicate 5; tray <code>XX APPL 1</code>, position A1</td><td>Observation unit design and location</td><td>Sample attributes, or pending Site</td></tr>
+        <tr><td><code>weight_g</code> 72.0 at 2026-04-06 18:18:14</td><td>Observed variable and observation</td><td><code>measured</code> Measurement on the plant Sample</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Classification rules</h2>
+  <ul>
+    <li><strong>Plant vs line:</strong> <code>RIL 83</code> is a BiologicalContext, while each physical plant is a Sample. Measurements attach to the plant.</li>
+    <li><strong>Nickel vs watering:</strong> the spike is the Factor, each watering is an Event, and the weights are Measurements.</li>
+    <li><strong>Replicate:</strong> it belongs to the design and is not a physical block, because each tray mixes 3 to 5 replicates.</li>
+    <li><strong>Position:</strong> tray, tray area and row (24 to 26) describe where the Observation Unit sits. They are not Environment.</li>
+    <li><strong>Instrument settings:</strong> scanning height, rotation and device fields belong to the Measurement <code>method</code>.</li>
+    <li><strong>Non-variable "trait" columns:</strong> <code>qc_flags</code> and pixel bounding-box positions are QC or geometry.</li>
+  </ul>
+
+  <h2>Items to resolve</h2>
+  <ol>
+    <li><strong>Confirm the treatment:</strong> nickel compound, µmol/L unit, and when and how it was applied. No dosing date exists.</li>
+    <li><strong>Fill study metadata:</strong> people, aims, location, growth facility, growing conditions and seed source.</li>
+    <li><strong>Propagate design and plant fields:</strong> only <code>msc1</code> has design values and plant or tray metadata, so other sensors must join on <code>plant_id</code>. <code>plant-weights.csv</code> also has plant and tray fields.</li>
+    <li><strong>Confirm line identities:</strong> especially Ecm29, 9, 14 and 16, and how the RIL lines relate to genotype data.</li>
+    <li><strong>Check area calibration:</strong> <code>area_mm2</code> peaks near 110 and plant width near 14 mm, which looks small. Treat area as relative until confirmed.</li>
+    <li><strong>Handle data quality:</strong> 54,454 missing crop-coordinate errors, 54,454 missing ViT-mask warnings, about 20% blank RGB area and Fv/Fm values, 7 plants with no <code>vnir</code> data, and bad weights (6 at 0 g, one at 1,004.1 g).</li>
+    <li><strong>Reconcile watering:</strong> the OPAL load report says watering mass is unavailable, but this export has before and after weights for 20,730 weighings.</li>
+  </ol>
+</main>
+</body>
+</html>
