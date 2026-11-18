@@ -6,8 +6,10 @@ description: >-
   (lambda-ber/aims-leaf, src/aims_leaf_schema/schema/SamplePlant_schema.yaml)
   into the BRIDGE central schema, for evaluation alongside the
   genotype/strain/BiologicalContext module rewrite. Attribute names,
-  descriptions, and example comments are kept verbatim from the source so the
-  working group can evaluate its definitions as-is. The AIMS-LEAF field set is
+  descriptions, and example comments follow the source closely so the working
+  group can evaluate its definitions as-is; obvious source typos
+  (arabadopsis, sample_disease_staus, a malformed PATO CURIE) are corrected
+  in this port. The AIMS-LEAF field set is
   closest to the GSC MIxS plant-associated package (regimen fields,
   ancestral_data, chemical_mutagen, ploidy), with Plant Ontology /
   developmental-stage touches. Note that AIMS-LEAF flattens all genetic
@@ -179,7 +181,7 @@ classes:
       ploidy:
         range: PloidyTypeEnum
         required: false
-        description: "The ploidy level of the genome. For terms, please select terms listed under class ploidy (PATO:001374) of Phenotypic Quality Ontology"
+        description: "The ploidy level of the genome. For terms, please select terms listed under class ploidy (PATO:0001374) of Phenotypic Quality Ontology"
         comments:
           - diploid
 
@@ -330,8 +332,8 @@ classes:
         comments:
           - seedling
 
-      arabadopsis_phenotype_stage:
-        range: ArabadopsisStageEnum
+      arabidopsis_phenotype_stage:
+        range: ArabidopsisStageEnum
         required: false
         description: "Stage that takes into account effect of genotype & environment effects. Requires in depth knowledge about features of model organism doi: 10.1105/TPC.010011"
         comments:
@@ -522,7 +524,7 @@ classes:
         comments:
           - hermaphrodite
 
-      sample_disease_staus:
+      sample_disease_status:
         range: string
         required: false
         description: List of diseases with which the subject has been diagnosed at the time of sample collection; can include multiple diagnoses; e.g. Late wilt (Cephalosporium maydis)
@@ -563,7 +565,7 @@ enums:
       field:
       other:
 
-  ArabadopsisStageEnum:
+  ArabidopsisStageEnum:
     description: "Stage that takes into account effect of genotype & environment effects. Requires in depth knowledge about features of model organism doi: 10.1105/TPC.010011"
     permissible_values:
       Stage_0:
@@ -635,4 +637,4 @@ enums:
       Stage_9:
         description: principal growth stage - senescence
       Stage_9.70:
-        description: senesence complete; ready for seed harvest
+        description: senescence complete; ready for seed harvest
