@@ -405,7 +405,9 @@ slots:
         from the gene phylogeny file), never as a delimited string.
       - Rank names, not taxon ids, because that is what the sources give. The names follow the
         same taxonomy authority decision as BiologicalContext.taxon
-        (https://github.com/doe-bridge/bridge-central-schema/pull/40).
+        (https://github.com/doe-bridge/bridge-central-schema/pull/51) and
+        BiologicalClassification.taxon_id
+        (https://github.com/doe-bridge/bridge-central-schema/pull/52).
       - Left as a list rather than named rank slots (domain, phylum, class, ...), because
         forcing a fixed depth breaks on any lineage reported at a different resolution.
         Confirmed 2026-09-18 on one real run, per-contig lineage (Scaffold Lineage tsv) and
