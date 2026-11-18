@@ -1,0 +1,8 @@
+id: example:sample-beach-silt-001
+name: Silt fraction of beach mud scoop 1
+description: >-
+  The silt-sized particles separated from beach mud scoop 1 by sieving
+  and settling.
+derived_from:
+  - example:sample-beach-mud-001
+sample_of: example:beach-001-silt

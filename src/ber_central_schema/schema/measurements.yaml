@@ -29,6 +29,7 @@ default_range: string
 
 imports:
   - linkml:types
+  - core
 
 types:
 
@@ -48,13 +49,10 @@ types:
 classes:
 
   Measurement:
+    is_a: Thing
     description: >-
-      One value of one property of one thing, as reported by a source. A
-      measurement may carry a number with a unit, a range, a summary
-      statistic, a categorical term, or only the source text, and it may say
-      why no value is present. The 2026-09-30 hackathon chose to start with
-      this single class and add an Observation class only when data shows a
-      need for one.
+      A thing that states one value of one property of one thing, as
+      reported by a source.
     close_mappings:
       - sosa:Observation
       - nmdc:QuantityValue
@@ -119,6 +117,17 @@ classes:
           missing_value_reason:
             required: true
     comments:
+      - >-
+        A measurement may carry a number with a unit, a range, a summary
+        statistic, a categorical term, or only the source text, and it may say
+        why no value is present. The 2026-09-30 hackathon chose to start with
+        this single class and add an Observation class only when data shows a
+        need for one.
+      - >-
+        Measurement is a Thing but not a NamedThing, keeping hackathon raised
+        item R43: a measurement is a specific event, so it should not inherit
+        from NamedThing, and it has no required identifier (see
+        measurement_id).
       - >-
         A measurement must carry at least one of raw_value, numeric_value,
         minimum_numeric_value, maximum_numeric_value, coded_value or
