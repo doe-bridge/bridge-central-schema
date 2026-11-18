@@ -1,0 +1,17 @@
+id: example:context-mn106
+name: MN106
+context_type: cultivar
+taxon: NCBITaxon:13288
+genus: Thlaspi
+species: arvense
+secondary_identifiers:
+  - "Ames 32873"
+synonyms:
+  - MN106-Ref
+ploidy: diploid
+genome_assemblies:
+  - "GCA_911865555.2"
+  - "Phytozome Thlaspi arvense var. MN106 v4.1"
+material_source_institute_code: "USA020"
+material_source_accession_number: "Ames 32873"
+description: Field pennycress cultivar used as the reference background.
