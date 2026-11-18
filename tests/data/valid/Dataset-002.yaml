@@ -152,7 +152,7 @@ features:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_cath_funfam.gff
   seqid: nmdc:wfmgas-11-19jh9v28.1_scf_1_c1_104_853
   source: HMMER 3.1b2 (February 2015)
-  type: cath.superfamily:3.40.50.720
+  type: CATH:3.40.50.720
   start: 3
   end: 249
   coordinate_system: protein
@@ -200,7 +200,7 @@ features:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_supfam.gff
   seqid: nmdc:wfmgas-11-19jh9v28.1_scf_1_c1_104_853
   source: HMMER 3.1b2 (February 2015)
-  type: supfam:51735
+  type: SUPFAM:51735
   start: 5
   end: 248
   coordinate_system: protein

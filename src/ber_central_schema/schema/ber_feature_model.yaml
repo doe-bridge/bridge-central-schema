@@ -25,7 +25,7 @@ prefixes:
   MIXS: https://w3id.org/mixs/
   edam: http://edamontology.org/
   # Data id prefixes. Where nmdc-schema declares a prefix, this module uses nmdc-schema's spelling
-  # and expansion, so CURIEs join with NMDC data (nmdc, NCBITaxon, PFAM, COG, KEGG.ORTHOLOGY, EC).
+  # and expansion, so CURIEs join with NMDC data (nmdc, NCBITaxon, PFAM, COG, KEGG.ORTHOLOGY, EC, CATH, SUPFAM, prov).
   # Otherwise it uses Bioregistry's preferred prefix and expansion (https://bioregistry.io).
   # refseq expands to NCBI's nucleotide pages, not Bioregistry's protein pages: NC_ accessions are
   # nucleotide records (NCBI E-utilities, 2026-11-18: NC_001422.1 is in nuccore, not protein).
@@ -39,8 +39,8 @@ prefixes:
   KEGG.ORTHOLOGY: "https://bioregistry.io/kegg.orthology:"
   EC: "https://bioregistry.io/eccode:"
   rfam: https://rfam.org/family/
-  cath.superfamily: http://www.cathdb.info/cathnode/
-  supfam: http://supfam.org/SUPERFAMILY/cgi-bin/scop.cgi?ipid=
+  CATH: "https://bioregistry.io/cath:"
+  SUPFAM: "https://bioregistry.io/supfam:"
   img.gene: http://img.jgi.doe.gov/cgi-bin/w/main.cgi?section=GeneDetail&gene_oid=
   prov: http://www.w3.org/ns/prov#
   biolink: https://w3id.org/biolink/vocab/
