@@ -22,6 +22,7 @@ imports:
   - linkml:types
   - measurements
   - attributes
+  - biological_classification
 
 classes:
 

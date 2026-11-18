@@ -1,0 +1,13 @@
+id: example:classification-ch34
+name: Cupriavidus metallidurans CH34
+description: Type strain of Cupriavidus metallidurans, studied for heavy-metal resistance.
+type: strain
+taxon_id: NCBITaxon:266264
+strain_name: CH34
+isolate_name: CH34
+organism_genus: Cupriavidus
+organism_species: metallidurans
+alternative_names:
+  - Ralstonia metallidurans CH34
+gc_content: 63.6
+estimated_size: "6.9 Mb"
