@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://sierra-moxon.github.io/ber-central-schema/elements/ArabadopsisStageEnum/">
+        <link rel="canonical" href="https://sierra-moxon.github.io/ber-central-schema/elements/arabidopsis_phenotype_stage/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Enum: ArabadopsisStageEnum - ber-central-schema</title>
+        <title>Slot: arabidopsis_phenotype_stage - ber-central-schema</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#enum-arabadopsisstageenum" class="md-skip">
+        <a href="#slot-arabidopsis_phenotype_stage" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Enum: ArabadopsisStageEnum
+              Slot: arabidopsis_phenotype_stage
             
           </span>
         </div>
@@ -365,10 +365,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
+  <a href="#applicable-classes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Permissible Values
+        Applicable Classes
       
     </span>
   </a>
@@ -376,10 +376,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#slots" class="md-nav__link">
+  <a href="#properties" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Slots
+        Properties
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinality-and-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cardinality and Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comments
       
     </span>
   </a>
@@ -415,6 +454,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mappings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#linkml-source" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -446,330 +496,119 @@
   
 
 
-<h1 id="enum-arabadopsisstageenum">Enum: ArabadopsisStageEnum</h1>
+<h1 id="slot-arabidopsis_phenotype_stage">Slot: arabidopsis_phenotype_stage</h1>
 <p><em>Stage that takes into account effect of genotype &amp; environment effects. Requires in depth knowledge about features of model organism doi: 10.1105/TPC.010011</em></p>
 <div>
-<p>URI: <a href="https://w3id.org/ber-data/bridge-central-schema/ArabadopsisStageEnum">bridge_central_schema:ArabadopsisStageEnum</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Meaning</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Stage_0</td>
-<td>None</td>
-<td>principal growth stage - seed germination</td>
-</tr>
-<tr>
-<td>Stage_0.10</td>
-<td>None</td>
-<td>seed imbibition</td>
-</tr>
-<tr>
-<td>Stage_0.50</td>
-<td>None</td>
-<td>radicle emergence</td>
-</tr>
-<tr>
-<td>Stage_0.70</td>
-<td>None</td>
-<td>hypocotyl and cotyledon emergence</td>
-</tr>
-<tr>
-<td>Stage_1</td>
-<td>None</td>
-<td>principal growth stage - leaf development</td>
-</tr>
-<tr>
-<td>Stage_1.02</td>
-<td>None</td>
-<td>2 rosette leaves &gt; 1mm in length</td>
-</tr>
-<tr>
-<td>Stage_1.03</td>
-<td>None</td>
-<td>3 rosette leaves &gt; 1mm in length</td>
-</tr>
-<tr>
-<td>Stage_1.04</td>
-<td>None</td>
-<td>4 rosette leaves &gt; 1mm in length</td>
-</tr>
-<tr>
-<td>Stage_1.05</td>
-<td>None</td>
-<td>5 rosette leaves &gt; 1mm in length</td>
-</tr>
-<tr>
-<td>Stage_1.06</td>
-<td>None</td>
-<td>6 rosette leaves &gt; 1mm in length</td>
-</tr>
-<tr>
-<td>Stage_1.07</td>
-<td>None</td>
-<td>7 rosette leaves &gt; 1mm in length</td>
-</tr>
-<tr>
-<td>Stage_1.08</td>
-<td>None</td>
-<td>8 rosette leaves &gt; 1mm in length</td>
-</tr>
-<tr>
-<td>Stage_1.09</td>
-<td>None</td>
-<td>9 rosette leaves &gt; 1mm in length</td>
-</tr>
-<tr>
-<td>Stage_1.10</td>
-<td>None</td>
-<td>10 rosette leaves &gt; 1mm in length</td>
-</tr>
-<tr>
-<td>Stage_1.11</td>
-<td>None</td>
-<td>11 rosette leaves &gt; 1mm in length</td>
-</tr>
-<tr>
-<td>Stage_1.12</td>
-<td>None</td>
-<td>12 rosette leaves &gt; 1mm in length</td>
-</tr>
-<tr>
-<td>Stage_1.13</td>
-<td>None</td>
-<td>13 rosette leaves &gt; 1mm in length</td>
-</tr>
-<tr>
-<td>Stage_1.14</td>
-<td>None</td>
-<td>14 rosette leaves &gt; 1mm in length</td>
-</tr>
-<tr>
-<td>Stage_3</td>
-<td>None</td>
-<td>principal growth stage - rosette growth</td>
-</tr>
-<tr>
-<td>Stage_3.20</td>
-<td>None</td>
-<td>rosette is 20% of final size</td>
-</tr>
-<tr>
-<td>Stage_3.50</td>
-<td>None</td>
-<td>rosette is 50% of final size</td>
-</tr>
-<tr>
-<td>Stage_3.70</td>
-<td>None</td>
-<td>rosette is 70% of final size</td>
-</tr>
-<tr>
-<td>Stage_3.90</td>
-<td>None</td>
-<td>rosette is 90% of final size</td>
-</tr>
-<tr>
-<td>Stage_5</td>
-<td>None</td>
-<td>principal growth stage - inflorescence emergence</td>
-</tr>
-<tr>
-<td>Stage_5.10</td>
-<td>None</td>
-<td>first flower buds visible</td>
-</tr>
-<tr>
-<td>Stage_6</td>
-<td>None</td>
-<td>principal growth stage - flower production</td>
-</tr>
-<tr>
-<td>Stage_6.00</td>
-<td>None</td>
-<td>first flower open</td>
-</tr>
-<tr>
-<td>Stage_6.10</td>
-<td>None</td>
-<td>10% of flowers to be produced have opened</td>
-</tr>
-<tr>
-<td>Stage_6.30</td>
-<td>None</td>
-<td>30% of flowers to be produced have opened</td>
-</tr>
-<tr>
-<td>Stage_6.50</td>
-<td>None</td>
-<td>50% of flowers to be produced have opened</td>
-</tr>
-<tr>
-<td>Stage_6.90</td>
-<td>None</td>
-<td>flowering complete</td>
-</tr>
-<tr>
-<td>Stage_8</td>
-<td>None</td>
-<td>principal growth stage - silique ripening</td>
-</tr>
-<tr>
-<td>Stage_8.00</td>
-<td>None</td>
-<td>first silique shattered</td>
-</tr>
-<tr>
-<td>Stage_9</td>
-<td>None</td>
-<td>principal growth stage - senescence</td>
-</tr>
-<tr>
-<td>Stage_9.70</td>
-<td>None</td>
-<td>senesence complete; ready for seed harvest</td>
-</tr>
-</tbody>
-</table>
-<h2 id="slots">Slots</h2>
+<p>URI: <a href="https://w3id.org/ber-data/bridge-central-schema/arabidopsis_phenotype_stage">bridge_central_schema:arabidopsis_phenotype_stage</a></p>
+<!-- no inheritance hierarchy -->
+<h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Description</th>
+<th>Modifies Slot</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="../arabadopsis_phenotype_stage/">arabadopsis_phenotype_stage</a></td>
-<td>Stage that takes into account effect of genotype &amp; environment effects</td>
+<td><a href="../PlantSample/">PlantSample</a></td>
+<td>Plant sample info for AIMS-LEAF</td>
+<td>no</td>
 </tr>
 </tbody>
 </table>
+<h2 id="properties">Properties</h2>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../ArabidopsisStageEnum/">ArabidopsisStageEnum</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../PlantSample/">PlantSample</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="cardinality-and-requirements">Cardinality and Requirements</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>### Slot Characteristics</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner</td>
+<td><a href="../PlantSample/">PlantSample</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="comments">Comments</h2>
+<ul>
+<li>Stage 1.04</li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: <a href="https://w3id.org/ber-data/bridge-central-schema">https://w3id.org/ber-data/bridge-central-schema</a></li>
 </ul>
+<h2 id="mappings">Mappings</h2>
+<table>
+<thead>
+<tr>
+<th>Mapping Type</th>
+<th>Mapped Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>bridge_central_schema:arabidopsis_phenotype_stage</td>
+</tr>
+<tr>
+<td>native</td>
+<td>bridge_central_schema:arabidopsis_phenotype_stage</td>
+</tr>
+</tbody>
+</table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ArabadopsisStageEnum</span>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">arabidopsis_phenotype_stage</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Stage</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">takes</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">account</span><span class="nv"> </span><span class="s">effect</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">genotype</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">environment</span><span class="nv"> </span><span class="s">effects.</span>
 <span class="w">  </span><span class="s">Requires</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">depth</span><span class="nv"> </span><span class="s">knowledge</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">features</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">model</span><span class="nv"> </span><span class="s">organism</span><span class="nv"> </span><span class="s">doi:</span><span class="nv"> </span><span class="s">10.1105/TPC.010011&#39;</span>
+<span class="nt">comments</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage 1.04</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">permissible_values</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">Stage_0</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_0</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">principal growth stage - seed germination</span>
-<span class="w">  </span><span class="nt">Stage_0.10</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_0.10</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seed imbibition</span>
-<span class="w">  </span><span class="nt">Stage_0.50</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_0.50</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">radicle emergence</span>
-<span class="w">  </span><span class="nt">Stage_0.70</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_0.70</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hypocotyl and cotyledon emergence</span>
-<span class="w">  </span><span class="nt">Stage_1</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_1</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">principal growth stage - leaf development</span>
-<span class="w">  </span><span class="nt">Stage_1.02</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_1.02</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2 rosette leaves &gt; 1mm in length</span>
-<span class="w">  </span><span class="nt">Stage_1.03</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_1.03</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3 rosette leaves &gt; 1mm in length</span>
-<span class="w">  </span><span class="nt">Stage_1.04</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_1.04</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4 rosette leaves &gt; 1mm in length</span>
-<span class="w">  </span><span class="nt">Stage_1.05</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_1.05</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5 rosette leaves &gt; 1mm in length</span>
-<span class="w">  </span><span class="nt">Stage_1.06</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_1.06</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6 rosette leaves &gt; 1mm in length</span>
-<span class="w">  </span><span class="nt">Stage_1.07</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_1.07</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7 rosette leaves &gt; 1mm in length</span>
-<span class="w">  </span><span class="nt">Stage_1.08</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_1.08</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8 rosette leaves &gt; 1mm in length</span>
-<span class="w">  </span><span class="nt">Stage_1.09</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_1.09</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9 rosette leaves &gt; 1mm in length</span>
-<span class="w">  </span><span class="nt">Stage_1.10</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_1.10</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10 rosette leaves &gt; 1mm in length</span>
-<span class="w">  </span><span class="nt">Stage_1.11</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_1.11</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11 rosette leaves &gt; 1mm in length</span>
-<span class="w">  </span><span class="nt">Stage_1.12</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_1.12</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12 rosette leaves &gt; 1mm in length</span>
-<span class="w">  </span><span class="nt">Stage_1.13</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_1.13</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">13 rosette leaves &gt; 1mm in length</span>
-<span class="w">  </span><span class="nt">Stage_1.14</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_1.14</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">14 rosette leaves &gt; 1mm in length</span>
-<span class="w">  </span><span class="nt">Stage_3</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_3</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">principal growth stage - rosette growth</span>
-<span class="w">  </span><span class="nt">Stage_3.20</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_3.20</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rosette is 20% of final size</span>
-<span class="w">  </span><span class="nt">Stage_3.50</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_3.50</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rosette is 50% of final size</span>
-<span class="w">  </span><span class="nt">Stage_3.70</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_3.70</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rosette is 70% of final size</span>
-<span class="w">  </span><span class="nt">Stage_3.90</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_3.90</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rosette is 90% of final size</span>
-<span class="w">  </span><span class="nt">Stage_5</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_5</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">principal growth stage - inflorescence emergence</span>
-<span class="w">  </span><span class="nt">Stage_5.10</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_5.10</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">first flower buds visible</span>
-<span class="w">  </span><span class="nt">Stage_6</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_6</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">principal growth stage - flower production</span>
-<span class="w">  </span><span class="nt">Stage_6.00</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_6.00</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">first flower open</span>
-<span class="w">  </span><span class="nt">Stage_6.10</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_6.10</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10% of flowers to be produced have opened</span>
-<span class="w">  </span><span class="nt">Stage_6.30</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_6.30</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30% of flowers to be produced have opened</span>
-<span class="w">  </span><span class="nt">Stage_6.50</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_6.50</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50% of flowers to be produced have opened</span>
-<span class="w">  </span><span class="nt">Stage_6.90</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_6.90</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flowering complete</span>
-<span class="w">  </span><span class="nt">Stage_8</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_8</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">principal growth stage - silique ripening</span>
-<span class="w">  </span><span class="nt">Stage_8.00</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_8.00</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">first silique shattered</span>
-<span class="w">  </span><span class="nt">Stage_9</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_9</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">principal growth stage - senescence</span>
-<span class="w">  </span><span class="nt">Stage_9.70</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Stage_9.70</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">senesence complete; ready for seed harvest</span>
+<span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PlantSample</span>
+<span class="nt">domain_of</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PlantSample</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ArabidopsisStageEnum</span>
+<span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </code></pre></div>
 </details>
 </div>

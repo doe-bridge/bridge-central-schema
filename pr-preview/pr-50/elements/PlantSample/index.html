@@ -301,14 +301,14 @@
 
       PlantSample : antibiotic_regimen
 
-      PlantSample : arabadopsis_phenotype_stage
+      PlantSample : arabidopsis_phenotype_stage
 
 
 
 
 
-        PlantSample --&gt; "0..1" ArabadopsisStageEnum : arabadopsis_phenotype_stage
-        click ArabadopsisStageEnum href "../ArabadopsisStageEnum/"
+        PlantSample --&gt; "0..1" ArabidopsisStageEnum : arabidopsis_phenotype_stage
+        click ArabidopsisStageEnum href "../ArabidopsisStageEnum/"
 
 
 
@@ -466,7 +466,7 @@
 
       PlantSample : sample_disease_stage
 
-      PlantSample : sample_disease_staus
+      PlantSample : sample_disease_status
 
       PlantSample : sample_size
 
@@ -743,8 +743,8 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../arabadopsis_phenotype_stage/">arabadopsis_phenotype_stage</a></td>
-<td>0..1 <br/> <a href="../ArabadopsisStageEnum/">ArabadopsisStageEnum</a></td>
+<td><a href="../arabidopsis_phenotype_stage/">arabidopsis_phenotype_stage</a></td>
+<td>0..1 <br/> <a href="../ArabidopsisStageEnum/">ArabidopsisStageEnum</a></td>
 <td>Stage that takes into account effect of genotype &amp; environment effects</td>
 <td>direct</td>
 </tr>
@@ -905,7 +905,7 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../sample_disease_staus/">sample_disease_staus</a></td>
+<td><a href="../sample_disease_status/">sample_disease_status</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>List of diseases with which the subject has been diagnosed at the time of sam...</td>
 <td>direct</td>
@@ -1117,7 +1117,7 @@
 <span class="w">  </span><span class="nt">ploidy</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ploidy</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The ploidy level of the genome. For terms, please select terms listed</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">under class ploidy (PATO:001374) of Phenotypic Quality Ontology</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">under class ploidy (PATO:0001374) of Phenotypic Quality Ontology</span>
 <span class="w">    </span><span class="nt">comments</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">diploid</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema/plant_sample</span>
@@ -1355,8 +1355,8 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PlantSample</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">arabadopsis_phenotype_stage</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">arabadopsis_phenotype_stage</span>
+<span class="w">  </span><span class="nt">arabidopsis_phenotype_stage</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">arabidopsis_phenotype_stage</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Stage</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">takes</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">account</span><span class="nv"> </span><span class="s">effect</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">genotype</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">environment</span><span class="nv"> </span><span class="s">effects.</span>
 <span class="w">      </span><span class="s">Requires</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">depth</span><span class="nv"> </span><span class="s">knowledge</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">features</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">model</span><span class="nv"> </span><span class="s">organism</span><span class="nv"> </span><span class="s">doi:</span><span class="nv"> </span><span class="s">10.1105/TPC.010011'</span>
 <span class="w">    </span><span class="nt">comments</span><span class="p">:</span>
@@ -1365,7 +1365,7 @@
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PlantSample</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ArabadopsisStageEnum</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ArabidopsisStageEnum</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">  </span><span class="nt">air_temperature_regimen</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_temperature_regimen</span>
@@ -1668,8 +1668,8 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PlantSample</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">  </span><span class="nt">sample_disease_staus</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_disease_staus</span>
+<span class="w">  </span><span class="nt">sample_disease_status</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_disease_status</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">List of diseases with which the subject has been diagnosed at the</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">time of sample collection; can include multiple diagnoses; e.g. Late wilt (Cephalosporium</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">maydis)</span>
@@ -1877,7 +1877,7 @@
 <span class="w">  </span><span class="nt">ploidy</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ploidy</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The ploidy level of the genome. For terms, please select terms listed</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">under class ploidy (PATO:001374) of Phenotypic Quality Ontology</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">under class ploidy (PATO:0001374) of Phenotypic Quality Ontology</span>
 <span class="w">    </span><span class="nt">comments</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">diploid</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema/plant_sample</span>
@@ -2135,8 +2135,8 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PlantSample</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">arabadopsis_phenotype_stage</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">arabadopsis_phenotype_stage</span>
+<span class="w">  </span><span class="nt">arabidopsis_phenotype_stage</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">arabidopsis_phenotype_stage</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Stage</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">takes</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">account</span><span class="nv"> </span><span class="s">effect</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">genotype</span><span class="nv"> </span><span class="s">&amp;</span><span class="nv"> </span><span class="s">environment</span><span class="nv"> </span><span class="s">effects.</span>
 <span class="w">      </span><span class="s">Requires</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">depth</span><span class="nv"> </span><span class="s">knowledge</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">features</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">model</span><span class="nv"> </span><span class="s">organism</span><span class="nv"> </span><span class="s">doi:</span><span class="nv"> </span><span class="s">10.1105/TPC.010011'</span>
 <span class="w">    </span><span class="nt">comments</span><span class="p">:</span>
@@ -2146,7 +2146,7 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PlantSample</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PlantSample</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ArabadopsisStageEnum</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ArabidopsisStageEnum</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">  </span><span class="nt">air_temperature_regimen</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_temperature_regimen</span>
@@ -2475,8 +2475,8 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PlantSample</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">  </span><span class="nt">sample_disease_staus</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_disease_staus</span>
+<span class="w">  </span><span class="nt">sample_disease_status</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_disease_status</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">List of diseases with which the subject has been diagnosed at the</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">time of sample collection; can include multiple diagnoses; e.g. Late wilt (Cephalosporium</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">maydis)</span>

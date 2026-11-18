@@ -465,9 +465,9 @@ enums:
         text: field
       other:
         text: other
-  ArabadopsisStageEnum:
-    name: ArabadopsisStageEnum
-    definition_uri: https://w3id.org/ber-data/bridge-central-schema/ArabadopsisStageEnum
+  ArabidopsisStageEnum:
+    name: ArabidopsisStageEnum
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/ArabidopsisStageEnum
     description: 'Stage that takes into account effect of genotype & environment effects.
       Requires in depth knowledge about features of model organism doi: 10.1105/TPC.010011'
     from_schema: https://w3id.org/ber-data/bridge-central-schema/plant_sample
@@ -576,7 +576,7 @@ enums:
         description: principal growth stage - senescence
       Stage_9.70:
         text: Stage_9.70
-        description: senesence complete; ready for seed harvest
+        description: senescence complete; ready for seed harvest
 slots:
   id:
     name: id
@@ -1295,7 +1295,7 @@ slots:
   plantSample__ploidy:
     name: plantSample__ploidy
     description: The ploidy level of the genome. For terms, please select terms listed
-      under class ploidy (PATO:001374) of Phenotypic Quality Ontology
+      under class ploidy (PATO:0001374) of Phenotypic Quality Ontology
     comments:
     - diploid
     from_schema: https://w3id.org/ber-data/bridge-central-schema/plant_sample
@@ -1577,19 +1577,19 @@ slots:
     - PlantSample
     range: string
     required: true
-  plantSample__arabadopsis_phenotype_stage:
-    name: plantSample__arabadopsis_phenotype_stage
+  plantSample__arabidopsis_phenotype_stage:
+    name: plantSample__arabidopsis_phenotype_stage
     description: 'Stage that takes into account effect of genotype & environment effects.
       Requires in depth knowledge about features of model organism doi: 10.1105/TPC.010011'
     comments:
     - Stage 1.04
     from_schema: https://w3id.org/ber-data/bridge-central-schema/plant_sample
-    slot_uri: bridge_central_schema:arabadopsis_phenotype_stage
-    alias: arabadopsis_phenotype_stage
+    slot_uri: bridge_central_schema:arabidopsis_phenotype_stage
+    alias: arabidopsis_phenotype_stage
     owner: PlantSample
     domain_of:
     - PlantSample
-    range: ArabadopsisStageEnum
+    range: ArabidopsisStageEnum
     required: false
   plantSample__air_temperature_regimen:
     name: plantSample__air_temperature_regimen
@@ -1944,16 +1944,16 @@ slots:
     - PlantSample
     range: string
     required: false
-  plantSample__sample_disease_staus:
-    name: plantSample__sample_disease_staus
+  plantSample__sample_disease_status:
+    name: plantSample__sample_disease_status
     description: List of diseases with which the subject has been diagnosed at the
       time of sample collection; can include multiple diagnoses; e.g. Late wilt (Cephalosporium
       maydis)
     comments:
     - infection with Pseudomonas syringae pv. tomato DC3000
     from_schema: https://w3id.org/ber-data/bridge-central-schema/plant_sample
-    slot_uri: bridge_central_schema:sample_disease_staus
-    alias: sample_disease_staus
+    slot_uri: bridge_central_schema:sample_disease_status
+    alias: sample_disease_status
     owner: PlantSample
     domain_of:
     - PlantSample
@@ -2301,7 +2301,7 @@ classes:
     - plantSample__growth_medium_composition
     - plantSample__plant_age
     - plantSample__developmental_stage
-    - plantSample__arabadopsis_phenotype_stage
+    - plantSample__arabidopsis_phenotype_stage
     - plantSample__air_temperature_regimen
     - plantSample__antibiotic_regimen
     - plantSample__biotic_regimen
@@ -2328,7 +2328,7 @@ classes:
     - plantSample__mechanical_damage
     - plantSample__observed_host_symbionts
     - plantSample__plant_sex
-    - plantSample__sample_disease_staus
+    - plantSample__sample_disease_status
     - plantSample__sample_disease_stage
     attributes:
       biological_replicate_sample_group_name:
@@ -2435,7 +2435,7 @@ classes:
       ploidy:
         name: ploidy
         description: The ploidy level of the genome. For terms, please select terms
-          listed under class ploidy (PATO:001374) of Phenotypic Quality Ontology
+          listed under class ploidy (PATO:0001374) of Phenotypic Quality Ontology
         comments:
         - diploid
         range: PloidyTypeEnum
@@ -2594,14 +2594,14 @@ classes:
         - seedling
         range: string
         required: true
-      arabadopsis_phenotype_stage:
-        name: arabadopsis_phenotype_stage
+      arabidopsis_phenotype_stage:
+        name: arabidopsis_phenotype_stage
         description: 'Stage that takes into account effect of genotype & environment
           effects. Requires in depth knowledge about features of model organism doi:
           10.1105/TPC.010011'
         comments:
         - Stage 1.04
-        range: ArabadopsisStageEnum
+        range: ArabidopsisStageEnum
         required: false
       air_temperature_regimen:
         name: air_temperature_regimen
@@ -2802,8 +2802,8 @@ classes:
         - hermaphrodite
         range: string
         required: false
-      sample_disease_staus:
-        name: sample_disease_staus
+      sample_disease_status:
+        name: sample_disease_status
         description: List of diseases with which the subject has been diagnosed at
           the time of sample collection; can include multiple diagnoses; e.g. Late
           wilt (Cephalosporium maydis)
@@ -2822,7 +2822,7 @@ classes:
     class_uri: aimsplant:PlantSample
 metamodel_version: 1.11.0
 source_file: ber_central_schema.yaml
-source_file_date: '2026-11-18T01:38:24'
+source_file_date: '2026-11-18T04:45:09'
 source_file_size: 1262
-generation_date: '2026-11-18T01:38:38'
+generation_date: '2026-11-18T04:45:17'
 
