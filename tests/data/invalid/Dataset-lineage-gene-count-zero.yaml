@@ -1,0 +1,10 @@
+# lineage_gene_count counts genes with a hit, so it is at least 1
+contigs:
+- contig_id: nmdc:wfmgas-11-19jh9v28.1_scf_1_c1
+  member_of:
+  - nmdc:wfmgas-11-19jh9v28.1
+  taxonomic_lineage:
+  - Bacteria
+  - Pseudomonadota
+  lineage_confidence: 0.667
+  lineage_gene_count: 0
