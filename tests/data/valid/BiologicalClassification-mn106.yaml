@@ -1,0 +1,14 @@
+id: example:classification-mn106
+name: MN106
+description: Field pennycress cultivar used as the reference background.
+type: cultivar
+taxon_id: NCBITaxon:13288
+strain_name: MN106
+isolate_name: MN106
+organism_genus: Thlaspi
+organism_species: arvense
+alternative_identifiers:
+  - example:Ames-32873
+alternative_names:
+  - MN106-Ref
+estimated_size: "526 Mb"

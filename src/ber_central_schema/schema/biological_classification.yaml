@@ -1,0 +1,156 @@
+id: https://w3id.org/ber-data/bridge-central-schema/biological_classification
+name: biological_classification
+title: BRIDGE Biological Classification Module
+description: >-
+  Records that classify and name samples according to shared biological
+  characteristics.
+license: Apache-2.0
+version: 0.0.1
+
+prefixes:
+  bridge_central_schema: https://w3id.org/ber-data/bridge-central-schema/
+  linkml: https://w3id.org/linkml/
+  nmdc: https://w3id.org/nmdc/
+  NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
+
+default_prefix: bridge_central_schema
+default_range: string
+
+imports:
+  - linkml:types
+
+classes:
+
+  InformationEntity:
+    description: >-
+      An entity that represents information about other entities rather than
+      a material thing.
+
+  BiologicalClassification:
+    class_uri: nmdc:BiologicalClassification
+    is_a: InformationEntity
+    description: >-
+      A structured representation of data about the classification and
+      naming of samples according to shared characteristics.
+    slots:
+      ## required
+      - id
+      - name
+      - description
+      - type
+      - taxon_id
+      - strain_name
+      - isolate_name
+      ## optional
+      - subspecies_id
+      - observed_variation
+      - alternative_identifiers
+      - alternative_names
+      - relations
+      - definition
+      - is_obsolete
+      - is_root
+      - organism_genus
+      - organism_species
+      ## remove/move?
+      - gc_content
+      - estimated_size
+      - ref_biomaterial
+    slot_usage:
+      name:
+        required: true
+      description:
+        required: true
+      type:
+        required: true
+      taxon_id:
+        required: true
+      strain_name:
+        required: true
+      isolate_name:
+        required: true
+
+slots:
+
+  type:
+    description: >-
+      The kind of classification this record names, such as strain, isolate,
+      cultivar, line, or species.
+    comments:
+      - strain
+
+  taxon_id:
+    range: uriorcurie
+    description: >-
+      The most specific taxon identifier available for the classified
+      organisms.
+    comments:
+      - NCBITaxon:4558
+
+  strain_name:
+    description: The name of the strain.
+    comments:
+      - CH34
+
+  isolate_name:
+    description: The name of the isolate.
+    comments:
+      - Sb_Mut1
+
+  subspecies_id:
+    range: uriorcurie
+    description: The taxon identifier of the subspecies, where one exists.
+
+  observed_variation:
+    multivalued: true
+    description: >-
+      Genetic or phenotypic variation observed relative to the reference or
+      wild type.
+    comments:
+      - mlo-11 allele
+
+  alternative_identifiers:
+    range: uriorcurie
+    multivalued: true
+    description: Identifiers for this record in other registries and databases.
+
+  alternative_names:
+    multivalued: true
+    description: Other names this classification is known by.
+
+  relations:
+    range: uriorcurie
+    multivalued: true
+    description: Identifiers of related classification records.
+
+  definition:
+    description: A formal textual definition of the classification.
+
+  is_obsolete:
+    range: boolean
+    description: Whether this classification has been retired by its source.
+
+  is_root:
+    range: boolean
+    description: >-
+      Whether this classification is a root of its classification hierarchy.
+
+  organism_genus:
+    description: Taxonomic genus of the classified organisms.
+
+  organism_species:
+    description: Taxonomic species of the classified organisms.
+
+  gc_content:
+    range: float
+    description: Estimated GC content of the genome, as a percentage.
+
+  estimated_size:
+    description: Estimated size of the genome.
+    comments:
+      - "730 Mb"
+
+  ref_biomaterial:
+    description: >-
+      The primary publication or genome report for the reference biomaterial
+      of the classified organisms.
