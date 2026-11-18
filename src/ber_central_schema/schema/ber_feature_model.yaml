@@ -403,7 +403,7 @@ slots:
     notes:
       - Used the same way on a ContigCollection, a Contig and a SequenceFeature (a gene's lineage
         from the gene phylogeny file), never as a delimited string.
-      - Rank names, not taxon ids, because that is what the sources give. The names follow the
+      - Taxon names, one per rank, not taxon ids, because that is what the sources give. The names follow the
         same taxonomy authority decision as BiologicalContext.taxon
         (https://github.com/doe-bridge/bridge-central-schema/pull/51) and
         BiologicalClassification.taxon_id
