@@ -1,23 +1,13 @@
 id: https://w3id.org/ber-data/bridge-central-schema/plant_sample
 name: plant_sample
-title: BRIDGE Plant Sample Module (AIMS-LEAF port, DRAFT)
+title: BRIDGE Plant Sample Module
 description: >-
-  DRAFT port of the AIMS-LEAF PlantSample class
-  (lambda-ber/aims-leaf, src/aims_leaf_schema/schema/SamplePlant_schema.yaml)
-  into the BRIDGE central schema, for evaluation alongside the
-  genotype/strain/BiologicalContext module rewrite. Attribute names,
-  descriptions, and example comments follow the source closely so the working
-  group can evaluate its definitions as-is; obvious source typos
-  (arabadopsis, sample_disease_staus, a malformed PATO CURIE) are corrected
-  in this port. The AIMS-LEAF field set is
-  closest to the GSC MIxS plant-associated package (regimen fields,
-  ancestral_data, chemical_mutagen, ploidy), with Plant Ontology /
-  developmental-stage touches. Note that AIMS-LEAF flattens all genetic
-  identity (genus/species, cultivar, isolate, germplasm accession, pedigree,
-  genetic modification, reference genome) onto the sample as free-text
-  strings; whether BRIDGE lifts any of these into catalog records is the open
-  design question this draft is meant to support.
+  Metadata for plant-derived samples: taxonomy and genetic identity,
+  collection, geographic origin, environmental context, growth conditions,
+  treatment regimens, and perturbations.
 license: Apache-2.0
+see_also:
+  - https://github.com/lambda-ber/aims-leaf
 version: 0.0.1
 
 prefixes:
@@ -36,10 +26,8 @@ classes:
 
   Sample:
     description: >-
-      PLACEHOLDER. A material sample. This stub exists only so PlantSample
-      can assert its is_a parent in this draft; it is expected to be replaced
-      by the Sample class from the Thing/Identified/Measurable/Sample
-      hierarchy proposed in PR #39.
+      A material entity collected or selected so that measurements made on
+      it can be generalized to the larger thing it represents.
     attributes:
       id:
         identifier: true
@@ -49,11 +37,7 @@ classes:
   QuantityValue:
     class_uri: nmdc:QuantityValue
     description: >-
-      A simple quantity value, representing a measurement with a numeric
-      value and unit. Simplified port of AIMS-LEAF's QuantityValue
-      (lambda_ber_types.yaml); kept here so the ported PlantSample attributes
-      keep their source ranges. Overlaps with the merged measurements
-      module's value slots — reconciling the two is part of the evaluation.
+      A quantity: a numeric value or range together with a unit.
     attributes:
       numeric_value:
         range: float
@@ -80,8 +64,10 @@ classes:
     is_a: Sample
     class_uri: aimsplant:PlantSample
     description: >-
-      Plant sample info for AIMS-LEAF. (Ported verbatim from
-      lambda-ber/aims-leaf for evaluation.)
+      A sample taken from a plant, with the taxonomy and genetic identity of
+      the source plant, its collection and geographic details, the
+      environmental context and growth conditions it was raised in, and any
+      treatments or perturbations applied before sampling.
     attributes:
 
       biological_replicate_sample_group_name:
