@@ -1,0 +1,1114 @@
+name: ber-central-schema
+description: 'The central BRIDGE schema for harmonized cross-BER data access. Defines
+  shared base elements and composes domain modules (currently: measurements.yaml and
+  attributes.yaml).'
+title: BRIDGE Central Schema
+see_also:
+- https://github.com/doe-bridge/bridge-central-schema
+- https://github.com/doe-bridge/lakehouse-registry
+id: https://w3id.org/ber-data/bridge-central-schema
+imports:
+- linkml:types
+- measurements
+- attributes
+license: Apache-2.0
+prefixes:
+  bridge_central_schema:
+    prefix_prefix: bridge_central_schema
+    prefix_reference: https://w3id.org/ber-data/bridge-central-schema/
+  linkml:
+    prefix_prefix: linkml
+    prefix_reference: https://w3id.org/linkml/
+  schema:
+    prefix_prefix: schema
+    prefix_reference: http://schema.org/
+default_prefix: bridge_central_schema
+default_range: string
+types:
+  string:
+    name: string
+    definition_uri: https://w3id.org/linkml/String
+    description: A character string
+    notes:
+    - In RDF serializations, a slot with range of string is treated as a literal or
+      type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced
+      with the lower case "string".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Text
+    base: str
+    uri: xsd:string
+  integer:
+    name: integer
+    definition_uri: https://w3id.org/linkml/Integer
+    description: An integer
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "integer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Integer
+    base: int
+    uri: xsd:integer
+  boolean:
+    name: boolean
+    definition_uri: https://w3id.org/linkml/Boolean
+    description: A binary (true or false) value
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "boolean".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Boolean
+    base: Bool
+    uri: xsd:boolean
+    repr: bool
+  float:
+    name: float
+    definition_uri: https://w3id.org/linkml/Float
+    description: A real number that conforms to the xsd:float specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "float".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:float
+  double:
+    name: double
+    definition_uri: https://w3id.org/linkml/Double
+    description: A real number that conforms to the xsd:double specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "double".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:double
+  decimal:
+    name: decimal
+    definition_uri: https://w3id.org/linkml/Decimal
+    description: A real number with arbitrary precision that conforms to the xsd:decimal
+      specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "decimal".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    broad_mappings:
+    - schema:Number
+    base: Decimal
+    uri: xsd:decimal
+  time:
+    name: time
+    definition_uri: https://w3id.org/linkml/Time
+    description: A time object represents a (local) time of day, independent of any
+      particular day
+    notes:
+    - URI is dateTime because OWL reasoners do not work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "time".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Time
+    base: XSDTime
+    uri: xsd:time
+    repr: str
+  date:
+    name: date
+    definition_uri: https://w3id.org/linkml/Date
+    description: a date (year, month and day) in an idealized calendar
+    notes:
+    - URI is dateTime because OWL reasoners don't work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Date
+    base: XSDDate
+    uri: xsd:date
+    repr: str
+  datetime:
+    name: datetime
+    definition_uri: https://w3id.org/linkml/Datetime
+    description: The combination of a date and time
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:DateTime
+    base: XSDDateTime
+    uri: xsd:dateTime
+    repr: str
+  date_or_datetime:
+    name: date_or_datetime
+    definition_uri: https://w3id.org/linkml/DateOrDatetime
+    description: Either a date or a datetime
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date_or_datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: linkml:DateOrDatetime
+    repr: str
+  uriorcurie:
+    name: uriorcurie
+    definition_uri: https://w3id.org/linkml/Uriorcurie
+    description: a URI or a CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uriorcurie".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: URIorCURIE
+    uri: xsd:anyURI
+    repr: str
+  curie:
+    name: curie
+    definition_uri: https://w3id.org/linkml/Curie
+    conforms_to: https://www.w3.org/TR/curie/
+    description: a compact URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "curie".
+    comments:
+    - in RDF serializations this MUST be expanded to a URI
+    - in non-RDF serializations MAY be serialized as the compact representation
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: Curie
+    uri: xsd:string
+    repr: str
+  uri:
+    name: uri
+    definition_uri: https://w3id.org/linkml/Uri
+    conforms_to: https://www.ietf.org/rfc/rfc3987.txt
+    description: a complete URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uri".
+    comments:
+    - in RDF serializations a slot with range of uri is treated as a literal or type
+      xsd:anyURI unless it is an identifier or a reference to an identifier, in which
+      case it is translated directly to a node
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:URL
+    base: URI
+    uri: xsd:anyURI
+    repr: str
+  ncname:
+    name: ncname
+    definition_uri: https://w3id.org/linkml/Ncname
+    description: Prefix part of CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "ncname".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NCName
+    uri: xsd:string
+    repr: str
+  objectidentifier:
+    name: objectidentifier
+    definition_uri: https://w3id.org/linkml/Objectidentifier
+    description: A URI or CURIE that represents an object in the model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "objectidentifier".
+    comments:
+    - Used for inheritance and type checking
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: ElementIdentifier
+    uri: shex:iri
+    repr: str
+  nodeidentifier:
+    name: nodeidentifier
+    definition_uri: https://w3id.org/linkml/Nodeidentifier
+    description: A URI, CURIE or BNODE that represents a node in a model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "nodeidentifier".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NodeIdentifier
+    uri: shex:nonLiteral
+    repr: str
+  jsonpointer:
+    name: jsonpointer
+    definition_uri: https://w3id.org/linkml/Jsonpointer
+    conforms_to: https://datatracker.ietf.org/doc/html/rfc6901
+    description: A string encoding a JSON Pointer. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to a valid object within the current
+      instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpointer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  jsonpath:
+    name: jsonpath
+    definition_uri: https://w3id.org/linkml/Jsonpath
+    conforms_to: https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html
+    description: A string encoding a JSON Path. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to zero or more valid objects within
+      the current instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  sparqlpath:
+    name: sparqlpath
+    definition_uri: https://w3id.org/linkml/Sparqlpath
+    conforms_to: https://www.w3.org/TR/sparql11-query/#propertypaths
+    description: A string encoding a SPARQL Property Path. The value of the string
+      MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects
+      within the current instance document when encoded as RDF.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "sparqlpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  PartialDateTime:
+    name: PartialDateTime
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/PartialDateTime
+    description: An ISO 8601 year, year-month, date, or date-time. A date-time must
+      carry a UTC offset or Z; a date or coarser carries none.
+    comments:
+    - The pattern checks each part's range but not whether a day exists in its month,
+      so 2021-02-31 passes.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    typeof: string
+    base: str
+    uri: xsd:string
+    pattern: ^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01])(T([01][0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9](\.[0-9]+)?)?(Z|[+-]([01][0-9]|2[0-3]):[0-5][0-9]))?)?)?$
+enums:
+  ComparatorEnum:
+    name: ComparatorEnum
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/ComparatorEnum
+    description: How a reported number relates to the true value.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    permissible_values:
+      less_than:
+        text: less_than
+        description: The true value is below numeric_value.
+      less_than_or_equal:
+        text: less_than_or_equal
+        description: The true value is at or below numeric_value.
+      greater_than:
+        text: greater_than
+        description: The true value is above numeric_value.
+      greater_than_or_equal:
+        text: greater_than_or_equal
+        description: The true value is at or above numeric_value.
+      approximately:
+        text: approximately
+        description: The source gave numeric_value as an approximation.
+  StatisticEnum:
+    name: StatisticEnum
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/StatisticEnum
+    description: Summary statistics a measurement value can report.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    permissible_values:
+      mean:
+        text: mean
+        description: The arithmetic mean of the readings or individuals.
+      median:
+        text: median
+        description: The median of the readings or individuals.
+      minimum:
+        text: minimum
+        description: The smallest of the readings or individuals.
+      maximum:
+        text: maximum
+        description: The largest of the readings or individuals.
+      standard_deviation:
+        text: standard_deviation
+        description: numeric_value is itself a standard deviation, for sources that
+          report it as its own value.
+      sum:
+        text: sum
+        description: The total of the readings, such as a daily precipitation total.
+  ValueRoleEnum:
+    name: ValueRoleEnum
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/ValueRoleEnum
+    description: How a value came to be recorded.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    permissible_values:
+      measured:
+        text: measured
+        description: The value was measured, including a summary of several measurements,
+          such as a spatial or daily mean (give the summary in statistic).
+      setting:
+        text: setting
+        description: The value was set as an experimental condition, for example growth
+          at 5 degrees Celsius for 2 hours.
+      interpreted:
+        text: interpreted
+        description: A person assigned the value after interpreting other measurements,
+          for example a strain labelled mesophilic.
+      derived:
+        text: derived
+        description: The value of one property was computed from values of other properties,
+          for example a projected shoot area calculated from a pixel count and an
+          image scale. A mean of readings of the same property is measured, not derived.
+  ValueQualifierEnum:
+    name: ValueQualifierEnum
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/ValueQualifierEnum
+    description: Qualifiers a source attaches to a value.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    permissible_values:
+      optimum:
+        text: optimum
+        description: The value at which a process (usually growth) is best.
+      tolerated:
+        text: tolerated
+        description: A value or range within which a process can occur.
+  MissingValueReasonEnum:
+    name: MissingValueReasonEnum
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/MissingValueReasonEnum
+    description: Reasons a measurement has no usable value.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    permissible_values:
+      not_determined:
+        text: not_determined
+        description: The source says the value was not determined.
+      not_applicable:
+        text: not_applicable
+        description: The property does not apply to this thing.
+      not_reported:
+        text: not_reported
+        description: The source leaves the value empty and gives no reason.
+      below_detection_limit:
+        text: below_detection_limit
+        description: The value was below the method's detection limit.
+      above_detection_limit:
+        text: above_detection_limit
+        description: The value was above the method's upper detection limit.
+      unknown:
+        text: unknown
+        description: The source says the value is unknown, for example by writing
+          unknown where the value would be.
+      out_of_range:
+        text: out_of_range
+        description: The source used a sentinel value meaning the reading was outside
+          the instrument's range.
+slots:
+  id:
+    name: id
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/id
+    description: A unique identifier for a thing
+    from_schema: https://w3id.org/ber-data/bridge-central-schema
+    mappings:
+    - schema:identifier
+    slot_uri: schema:identifier
+    identifier: true
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    range: uriorcurie
+    required: true
+  name:
+    name: name
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/name
+    description: A human-readable name for a thing
+    from_schema: https://w3id.org/ber-data/bridge-central-schema
+    mappings:
+    - schema:name
+    slot_uri: schema:name
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    range: string
+  description:
+    name: description
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/description
+    description: A human-readable description for a thing
+    from_schema: https://w3id.org/ber-data/bridge-central-schema
+    mappings:
+    - schema:description
+    slot_uri: schema:description
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    range: string
+  measurement_id:
+    name: measurement_id
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/measurement_id
+    description: An identifier for this measurement, when the source has one or BRIDGE
+      mints one on ingest. Optional, because many sources (ESS-DIVE among them) do
+      not identify individual measurements.
+    comments:
+    - 'Not named id: the central schema''s id slot is an identifier, which LinkML
+      makes required, and most measurements have no identifier.'
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:measurement_id
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: uriorcurie
+  observed_property:
+    name: observed_property
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/observed_property
+    description: The property that was measured, as a BRIDGE property identifier (bridge_property:).
+    comments:
+    - 'Each bridge_property: term has an ID, a label and a definition in terms/bridge_property.tsv,
+      and mappings to BERVO, MIxS and other vocabularies in mappings/observed_property.sssom.tsv.
+      New terms are added by pull request. A term''s ID does not change once merged;
+      its label and definition can be edited.'
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    aliases:
+    - measurement_type
+    - variable
+    exact_mappings:
+    - sosa:observedProperty
+    slot_uri: bridge_central_schema:observed_property
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: uriorcurie
+    pattern: ^bridge_property:[a-z0-9_]+$
+  property_label:
+    name: property_label
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/property_label
+    description: The name of the measured property as free text, for values whose
+      property has no BRIDGE identifier yet. Use observed_property instead whenever
+      an identifier exists.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    close_mappings:
+    - nmdc:has_attribute_label
+    - MIXS:0000752
+    slot_uri: bridge_central_schema:property_label
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: string
+  feature_of_interest:
+    name: feature_of_interest
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/feature_of_interest
+    description: 'A reference to the thing whose property was measured: a sample,
+      an organism, a site or plot, a stream. Only a reference: classes for samples
+      belong to the Samples, Projects, and Processes Modelling Squad, and classes
+      for sites, plots and other landscape features to the Landscape/Physical Features
+      module proposed in the 2026-10-07 BRIDGE DM notes.'
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    exact_mappings:
+    - sosa:hasFeatureOfInterest
+    slot_uri: bridge_central_schema:feature_of_interest
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: uriorcurie
+  raw_value:
+    name: raw_value
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/raw_value
+    description: The value exactly as it appeared at the source, including its unit
+      text, ranges, qualifiers and any non-ASCII characters. Never edited. The other
+      value slots are parsed from it.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    close_mappings:
+    - nmdc:has_raw_value
+    slot_uri: bridge_central_schema:raw_value
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: string
+  numeric_value:
+    name: numeric_value
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/numeric_value
+    description: A single number parsed from raw_value.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    close_mappings:
+    - nmdc:has_numeric_value
+    slot_uri: bridge_central_schema:numeric_value
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: double
+  minimum_numeric_value:
+    name: minimum_numeric_value
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/minimum_numeric_value
+    description: The lower end of a range, or the lower bound of a one-sided value.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    close_mappings:
+    - nmdc:has_minimum_numeric_value
+    slot_uri: bridge_central_schema:minimum_numeric_value
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: double
+  maximum_numeric_value:
+    name: maximum_numeric_value
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/maximum_numeric_value
+    description: The upper end of a range, or the upper bound of a one-sided value.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    close_mappings:
+    - nmdc:has_maximum_numeric_value
+    slot_uri: bridge_central_schema:maximum_numeric_value
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: double
+  unit:
+    name: unit
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/unit
+    description: "The unit as a UCUM code, written in printable ASCII (for example\
+      \ um, not \xB5m). Leave empty for values without a unit, such as pH. The source's\
+      \ own spelling stays in raw_value. UCUM is a grammar rather than a fixed list,\
+      \ so most units can be written even when no common code exists, and annotations\
+      \ in braces cover counted things ({cells}/g). When a unit cannot be written\
+      \ in UCUM, leave unit empty and keep the source's unit in raw_value. Many units\
+      \ from QUDT (used by ESS-DIVE) carry a UCUM code (qudt:ucumCode) that can go\
+      \ here."
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    close_mappings:
+    - nmdc:has_unit
+    slot_uri: bridge_central_schema:unit
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: string
+    pattern: ^[!-~]+$
+  unit_basis:
+    name: unit_basis
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/unit_basis
+    description: What the unit is expressed relative to, when the unit alone does
+      not say, such as dry weight. Some bases fit UCUM annotations (mg{C}/L); this
+      slot is for those that do not. Free text until examples settle a vocabulary.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:unit_basis
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: string
+  coded_value:
+    name: coded_value
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/coded_value
+    description: A categorical value as a code from an ontology or controlled vocabulary,
+      parsed from raw_value the way numeric_value is parsed for a number, such as
+      METPO:1000615 (mesophilic). The source wording stays in raw_value.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:coded_value
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: uriorcurie
+  comparator:
+    name: comparator
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/comparator
+    description: How the true value relates to numeric_value, for values reported
+      as above or below a number, such as below a detection limit. When the source
+      gives the limit as a number, record it in numeric_value with a comparator; when
+      it gives no number, use missing_value_reason below_detection_limit instead.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:comparator
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: ComparatorEnum
+  statistic:
+    name: statistic
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/statistic
+    description: The summary statistic that numeric_value reports, when the source
+      value summarizes several readings or individuals.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:statistic
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: StatisticEnum
+  standard_deviation:
+    name: standard_deviation
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/standard_deviation
+    description: The standard deviation reported with a mean, in the same unit.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:standard_deviation
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: double
+    minimum_value: 0
+  sample_size:
+    name: sample_size
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/sample_size
+    description: How many readings, replicates or individuals a statistic summarizes.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:sample_size
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: integer
+    minimum_value: 1
+  value_role:
+    name: value_role
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/value_role
+    description: Whether the value was measured, set as an experimental condition,
+      or assigned by a person interpreting other measurements.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:value_role
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: ValueRoleEnum
+  value_qualifier:
+    name: value_qualifier
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/value_qualifier
+    description: A qualifier the source attaches to the value, such as an optimum
+      (optimal growth at 10 MPa).
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:value_qualifier
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: ValueQualifierEnum
+  missing_value_reason:
+    name: missing_value_reason
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/missing_value_reason
+    description: Why no usable value is present. Sources often write these as text
+      (not determined) or as sentinel numbers (-9999); record the source text in raw_value.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:missing_value_reason
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: MissingValueReasonEnum
+  measurement_method:
+    name: measurement_method
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/measurement_method
+    description: 'How the value was obtained: a protocol name, a method reference,
+      or the source''s companion method field (for example an NMDC ph_meth value).'
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    close_mappings:
+    - sosa:usedProcedure
+    slot_uri: bridge_central_schema:measurement_method
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: string
+  treatment:
+    name: treatment
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/treatment
+    description: The experimental treatment applied to the thing measured, such as
+      a warming or nitrogen addition plot, kept apart from measurement_method because
+      downstream users filter and compare on it.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:treatment
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: string
+  instrument:
+    name: instrument
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/instrument
+    description: The instrument or sensor that produced the value.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    close_mappings:
+    - sosa:madeBySensor
+    slot_uri: bridge_central_schema:instrument
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: string
+  observed_time:
+    name: observed_time
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/observed_time
+    description: 'When the property was observed, in ISO 8601 at whatever resolution
+      the source gives: a year (2021), a year and month (2021-06), a date (2021-06-15),
+      or a date-time with a UTC offset (2021-06-15T14:30:00-07:00). A time of day
+      must carry an offset; a date or coarser does not.'
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    close_mappings:
+    - sosa:phenomenonTime
+    slot_uri: bridge_central_schema:observed_time
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: PartialDateTime
+  observed_start_time:
+    name: observed_start_time
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/observed_start_time
+    description: The start of the period a value covers, for sources that report a
+      start and an end instead of one time. Same format as observed_time.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:observed_start_time
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: PartialDateTime
+  observed_end_time:
+    name: observed_end_time
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/observed_end_time
+    description: The end of the period a value covers. Same format as observed_time.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:observed_end_time
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: PartialDateTime
+  source_system:
+    name: source_system
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/source_system
+    description: The system the value came from. Use the BER lakehouse registry entry
+      (https://github.com/doe-bridge/lakehouse-registry) for the source's schema when
+      it has one, such as ber_registry:schema-jgi-gold; otherwise the system's name,
+      such as BASIN-3D (USGS).
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:source_system
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: string
+  source_record_id:
+    name: source_record_id
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/source_record_id
+    description: The identifier of the source record the value came from, in the source's
+      own format. The schema does not impose a format.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:source_record_id
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: string
+  source_field:
+    name: source_field
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/source_field
+    description: The source field, column or slot the value came from, named as the
+      source names it.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:source_field
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: string
+  quality_flag:
+    name: quality_flag
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/quality_flag
+    description: A flag from the source or from BRIDGE curation, such as needs_review
+      for a value that could not be parsed.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    slot_uri: bridge_central_schema:quality_flag
+    owner: Measurement
+    domain_of:
+    - Measurement
+    range: string
+  attribute__key:
+    name: attribute__key
+    description: Source-reported attribute name, unnormalized (for example a GFF tag
+      or metadata key).
+    title: Key
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/attributes
+    mappings:
+    - bridge_central_schema:key
+    slot_uri: bridge_central_schema:key
+    alias: key
+    owner: Attribute
+    domain_of:
+    - Attribute
+    range: string
+    required: true
+  attribute__value:
+    name: attribute__value
+    description: 'The source''s text for one value, as a string: not typed or normalized,
+      with any escaping the source format defines decoded (a GFF3 %2C is stored as
+      a comma).'
+    title: Value
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/attributes
+    mappings:
+    - bridge_central_schema:value
+    slot_uri: bridge_central_schema:value
+    alias: value
+    owner: Attribute
+    domain_of:
+    - Attribute
+    range: string
+    required: true
+  attribute__attribute_cv_id:
+    name: attribute__attribute_cv_id
+    description: A CURIE for what the key means, from an ontology or controlled vocabulary,
+      for example edam:data_1667 (E-value) for both e-value and evalue. key keeps
+      the source spelling either way.
+    title: Attribute CV ID
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/attributes
+    mappings:
+    - bridge_central_schema:attribute_cv_id
+    exact_mappings:
+    - kb_cdm:attribute_cv_id
+    slot_uri: bridge_central_schema:attribute_cv_id
+    alias: attribute_cv_id
+    owner: Attribute
+    domain_of:
+    - Attribute
+    range: uriorcurie
+  attribute__numeric_value:
+    name: attribute__numeric_value
+    description: value read as a number, only for keys known to be numeric. value
+      keeps the source text, so 3.4e-28 and 3.40E-28 stay distinguishable.
+    title: Numeric value
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/attributes
+    mappings:
+    - bridge_central_schema:numeric_value
+    exact_mappings:
+    - kb_cdm:numeric_value
+    close_mappings:
+    - nmdc:has_numeric_value
+    slot_uri: bridge_central_schema:numeric_value
+    alias: numeric_value
+    owner: Attribute
+    domain_of:
+    - Attribute
+    range: double
+  Measurement_observed_property:
+    name: Measurement_observed_property
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/observed_property
+    description: The property that was measured, as a BRIDGE property identifier (bridge_property:).
+    comments:
+    - 'Each bridge_property: term has an ID, a label and a definition in terms/bridge_property.tsv,
+      and mappings to BERVO, MIxS and other vocabularies in mappings/observed_property.sssom.tsv.
+      New terms are added by pull request. A term''s ID does not change once merged;
+      its label and definition can be edited.'
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    aliases:
+    - measurement_type
+    - variable
+    exact_mappings:
+    - sosa:observedProperty
+    is_a: observed_property
+    domain: Measurement
+    slot_uri: bridge_central_schema:observed_property
+    alias: observed_property
+    owner: Measurement
+    domain_of:
+    - Measurement
+    is_usage_slot: true
+    usage_slot_name: observed_property
+    range: uriorcurie
+    recommended: true
+    pattern: ^bridge_property:[a-z0-9_]+$
+  Measurement_raw_value:
+    name: Measurement_raw_value
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/raw_value
+    description: The value exactly as it appeared at the source, including its unit
+      text, ranges, qualifiers and any non-ASCII characters. Never edited. The other
+      value slots are parsed from it.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    close_mappings:
+    - nmdc:has_raw_value
+    is_a: raw_value
+    domain: Measurement
+    slot_uri: bridge_central_schema:raw_value
+    alias: raw_value
+    owner: Measurement
+    domain_of:
+    - Measurement
+    is_usage_slot: true
+    usage_slot_name: raw_value
+    range: string
+    recommended: true
+classes:
+  NamedThing:
+    name: NamedThing
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/NamedThing
+    description: Generic base for any identifiable BRIDGE entity.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema
+    mappings:
+    - schema:Thing
+    slots:
+    - id
+    - name
+    - description
+    class_uri: schema:Thing
+  Measurement:
+    name: Measurement
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/Measurement
+    description: One value of one property of one thing, as reported by a source.
+      A measurement may carry a number with a unit, a range, a summary statistic,
+      a categorical term, or only the source text, and it may say why no value is
+      present. The 2026-09-30 hackathon chose to start with this single class and
+      add an Observation class only when data shows a need for one.
+    comments:
+    - A measurement must carry at least one of raw_value, numeric_value, minimum_numeric_value,
+      maximum_numeric_value, coded_value or missing_value_reason, so an empty measurement
+      fails validation.
+    - A measurement names its property with exactly one of observed_property (an identifier)
+      or property_label (free text). property_label is the catch-all for values whose
+      property has no identifier yet, as MIxS misc_param, NMDC PropertyAssertion and
+      BERtron Attribute allow.
+    - 'The value slots come in two groups. raw_value, numeric_value, minimum_numeric_value,
+      maximum_numeric_value, unit and coded_value hold the value itself: raw_value
+      as the source wrote it, the others as parsed from it (numeric_value for a number,
+      coded_value for a category). comparator, statistic, standard_deviation, sample_size,
+      value_role, value_qualifier and missing_value_reason say something about that
+      value.'
+    - A source cell that holds several values (for example a width and a length) becomes
+      several measurements that share source_record_id and source_field.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/measurements
+    close_mappings:
+    - sosa:Observation
+    - nmdc:QuantityValue
+    slots:
+    - measurement_id
+    - Measurement_observed_property
+    - property_label
+    - feature_of_interest
+    - Measurement_raw_value
+    - numeric_value
+    - minimum_numeric_value
+    - maximum_numeric_value
+    - unit
+    - unit_basis
+    - coded_value
+    - comparator
+    - statistic
+    - standard_deviation
+    - sample_size
+    - value_role
+    - value_qualifier
+    - missing_value_reason
+    - measurement_method
+    - treatment
+    - instrument
+    - observed_time
+    - observed_start_time
+    - observed_end_time
+    - source_system
+    - source_record_id
+    - source_field
+    - quality_flag
+    slot_usage:
+      observed_property:
+        name: observed_property
+        recommended: true
+      raw_value:
+        name: raw_value
+        recommended: true
+    class_uri: bridge_central_schema:Measurement
+    any_of:
+    - slot_conditions:
+        raw_value:
+          name: raw_value
+          required: true
+    - slot_conditions:
+        numeric_value:
+          name: numeric_value
+          required: true
+    - slot_conditions:
+        minimum_numeric_value:
+          name: minimum_numeric_value
+          required: true
+    - slot_conditions:
+        maximum_numeric_value:
+          name: maximum_numeric_value
+          required: true
+    - slot_conditions:
+        coded_value:
+          name: coded_value
+          required: true
+    - slot_conditions:
+        missing_value_reason:
+          name: missing_value_reason
+          required: true
+    exactly_one_of:
+    - slot_conditions:
+        observed_property:
+          name: observed_property
+          required: true
+    - slot_conditions:
+        property_label:
+          name: property_label
+          required: true
+  Attribute:
+    name: Attribute
+    definition_uri: https://w3id.org/ber-data/bridge-central-schema/Attribute
+    description: One named value attached to a record by a consuming model.
+    title: Attribute
+    notes:
+    - GFF column 9 is a minimal use case, alongside tabular annotations and metadata.
+      This module has no dependency on GFF, Feature, Contig, or a genomic coordinate
+      system.
+    - A key is not an identifier; repeated keys can remain separate entries in an
+      ordered list. Consuming models choose attachment and cardinality. Keys are source
+      names, not a controlled vocabulary.
+    - Each value of a multivalued source attribute is its own Attribute entry, with
+      the same key, in source order; one entry never holds a joined list.
+    - attribute_cv_id and numeric_value follow the NMDC AttributeValue pattern that
+      BERtron and the KBase CDM use (an optional attribute CURIE plus the raw string,
+      with a typed value), which this pair can be projected onto later. key and value
+      keep the source's text.
+    from_schema: https://w3id.org/ber-data/bridge-central-schema/attributes
+    mappings:
+    - bridge_central_schema:Attribute
+    slots:
+    - attribute__key
+    - attribute__value
+    - attribute__attribute_cv_id
+    - attribute__numeric_value
+    attributes:
+      key:
+        name: key
+        description: Source-reported attribute name, unnormalized (for example a GFF
+          tag or metadata key).
+        title: Key
+        slot_uri: bridge_central_schema:key
+        range: string
+        required: true
+      value:
+        name: value
+        description: 'The source''s text for one value, as a string: not typed or
+          normalized, with any escaping the source format defines decoded (a GFF3
+          %2C is stored as a comma).'
+        title: Value
+        slot_uri: bridge_central_schema:value
+        range: string
+        required: true
+      attribute_cv_id:
+        name: attribute_cv_id
+        description: A CURIE for what the key means, from an ontology or controlled
+          vocabulary, for example edam:data_1667 (E-value) for both e-value and evalue.
+          key keeps the source spelling either way.
+        title: Attribute CV ID
+        exact_mappings:
+        - kb_cdm:attribute_cv_id
+        slot_uri: bridge_central_schema:attribute_cv_id
+        range: uriorcurie
+      numeric_value:
+        name: numeric_value
+        description: value read as a number, only for keys known to be numeric. value
+          keeps the source text, so 3.4e-28 and 3.40E-28 stay distinguishable.
+        title: Numeric value
+        exact_mappings:
+        - kb_cdm:numeric_value
+        close_mappings:
+        - nmdc:has_numeric_value
+        slot_uri: bridge_central_schema:numeric_value
+        range: double
+    class_uri: bridge_central_schema:Attribute
+metamodel_version: 1.11.0
+source_file: ber_central_schema.yaml
+source_file_date: '2026-11-19T19:27:02'
+source_file_size: 1215
+generation_date: '2026-11-19T19:27:12'
+
