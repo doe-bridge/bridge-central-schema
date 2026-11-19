@@ -1,0 +1,5 @@
+id: urn:uuid:27b98947-ee10-55fb-aeb1-4ca99255957a
+name: Nonnumeric coordinate text
+description: A point coordinate array containing text rather than a number.
+feature_shape: point
+location_coordinates: '["west",1]'

@@ -1,0 +1,5 @@
+id: urn:uuid:96cb1e81-27f3-5135-9ef3-518581df6ab2
+name: Three-dimensional coordinate text
+description: A point coordinate array containing an unsupported third ordinate.
+feature_shape: point
+location_coordinates: '[1,2,3]'

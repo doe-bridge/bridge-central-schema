@@ -201,12 +201,15 @@ classes:
         curve or surface they give a representative position. A feature may
         have no coordinates.
       - >-
+        Physical features can be linked into hierarchical relationships using
+        parent_feature to reference a higher-level physical feature.
+      - >-
         Data source location IDs may be scoped differently. Ingest constructs a
         URI or CURIE for id, retains the source value in source_location_id,
         and resolves parent_location_id to the parent's BRIDGE identifier.
       - >-
-        If data source does not have name, it is recommended to reuse the
-        source_location_id.
+        If data source physical feature does not have name, it is recommended
+        to reuse the source_location_id.
       - >-
         LinkML checks that vertical_position_bottom and vertical_position_top
         are supplied together and are not combined with vertical_position,
@@ -296,9 +299,13 @@ slots:
       - essdive_location_v2:location_confidence
 
   location_coordinates:
+    range: string
     description: >-
-      Source-provided GeoJSON coordinate array for a curve or surface, in the
-      same reference system and unit as its representative position.
+      Source-provided text containing a 2D GeoJSON coordinate array for a
+      point, curve, or surface, in the same reference system and unit as its
+      representative position.
+    # Textual JSON coordinate syntax only; geometry and feature_shape are not checked here.
+    pattern: '^[ \t\r\n]*(?:\[[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*,[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*\]|\[[ \t\r\n]*\[[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*,[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*\](?:[ \t\r\n]*,[ \t\r\n]*\[[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*,[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*\])*[ \t\r\n]*\]|\[[ \t\r\n]*\[[ \t\r\n]*\[[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*,[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*\](?:[ \t\r\n]*,[ \t\r\n]*\[[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*,[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*\])*[ \t\r\n]*\](?:[ \t\r\n]*,[ \t\r\n]*\[[ \t\r\n]*\[[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*,[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*\](?:[ \t\r\n]*,[ \t\r\n]*\[[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*,[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*\])*[ \t\r\n]*\])*[ \t\r\n]*\])[ \t\r\n]*$'
     close_mappings:
       - essdive_location_v2:location_coordinates
 

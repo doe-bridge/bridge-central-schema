@@ -1,0 +1,5 @@
+id: urn:uuid:86c3548e-d0a3-51e0-a6f3-0023365bff02
+name: Curve coordinate text
+description: A curve with whitespace and exponent notation in its coordinate array.
+feature_shape: curve
+location_coordinates: '[[ -1.2e+2, 3.4 ], [0, 1E-2]]'
