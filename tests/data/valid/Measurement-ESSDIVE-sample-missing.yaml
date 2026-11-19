@@ -1,7 +1,7 @@
 # ESS-DIVE sample_concentrations, sample 12a, lead below detection limit.
-measurement_id: https://example.org/essdive-sample-data/doi:essdive-1:12a:1:lead_conc
+measurement_id: urn:uuid:8bb7888c-d80d-41b4-9e3a-49b267b8b917
 observed_property: bridge_property:lead_concentration
-feature_of_interest: https://example.org/essdive-sample/doi:essdive-1:12a
+feature_of_interest: urn:uuid:4647a56f-5911-4c74-aab0-809c8d68156f
 raw_value: "-9999"
 unit: ppb
 missing_value_reason: below_detection_limit

@@ -1,6 +1,6 @@
-measurement_id: https://example.org/essdive-sensor-data/doi:essdive-1:2:flow_rate_avg
+measurement_id: urn:uuid:c6efd50e-b9c7-43a8-b101-db67e9a5f856
 observed_property: bridge_property:streamflow
-feature_of_interest: https://example.org/essdive-location/doi:essdive-1:stream-reach
+feature_of_interest: urn:uuid:ec0b9723-ba01-4cb5-8845-cb4ded59b74c
 raw_value: '0.042499999999999996'
 numeric_value: 0.042499999999999996
 unit: m3/s

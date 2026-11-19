@@ -1,6 +1,6 @@
-measurement_id: https://example.org/essdive-sensor-data/doi:essdive-1:2:temp_water_avg
+measurement_id: urn:uuid:8ad8480f-37b9-4f0e-b1e4-03019401e4c0
 observed_property: bridge_property:water_temperature
-feature_of_interest: https://example.org/essdive-location/doi:essdive-1:stream-reach
+feature_of_interest: urn:uuid:ec0b9723-ba01-4cb5-8845-cb4ded59b74c
 raw_value: '0.55'
 numeric_value: 0.55
 unit: Cel

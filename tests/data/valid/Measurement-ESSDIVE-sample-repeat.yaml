@@ -1,7 +1,7 @@
 # ESS-DIVE sample_concentrations, sample 1a, repeated source row.
-measurement_id: https://example.org/essdive-sample-data/doi:essdive-1:1a:2:lithium_conc
+measurement_id: urn:uuid:dc94f05a-9b2f-4414-9d72-b01ff69fa127
 observed_property: bridge_property:lithium_dissolved
-feature_of_interest: https://example.org/essdive-sample/doi:essdive-1:1a
+feature_of_interest: urn:uuid:ff12d221-a5ca-44f6-97a9-c218adcf9f0e
 raw_value: "1.0243"
 numeric_value: 1.0243
 unit: ppb
