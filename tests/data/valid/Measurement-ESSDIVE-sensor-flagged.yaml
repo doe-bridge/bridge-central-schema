@@ -1,0 +1,21 @@
+measurement_id: urn:uuid:bdc577bd-9abb-4bea-921b-df26325ca71f
+observed_property: bridge_property:streamflow
+feature_of_interest: urn:uuid:0bc74bd4-7bd0-4b4f-acb9-108fc9d2a40a
+raw_value: '0.011'
+numeric_value: 0.011
+unit: m3/s
+statistic: mean
+value_role: measured
+measurement_method: 'method_id: sensor-fr; method: campbell scientific flow meter attached
+  to metal pole driven into rock bottom of stream. Sensor placed 5 cm below lowest
+  historical record min stream height.; material measured: water;
+  temporal representation: 15-minute; temporal statistic: mean; method lower bound: 0.005;
+  method upper bound: 0.4'
+treatment: vegetation manipulation
+instrument: flow-d2 (flow meter)
+observed_start_time: '2020-06-14T03:00:00-06:00'
+observed_end_time: '2020-06-14T03:15:00-06:00'
+source_system: ber_registry:essdive-sensor-data
+source_record_id: doi=doi:essdive-1;file_pid=ess-dive-7181349edbd7b5b-20240130T002708988;source_row=15854;source_column=21
+source_field: sensor_data.csv;flow_rate_4
+quality_flag: 'P: provisional value'
