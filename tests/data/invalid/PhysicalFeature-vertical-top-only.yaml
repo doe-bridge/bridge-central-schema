@@ -1,0 +1,4 @@
+id: urn:uuid:2261240c-a18c-5c5f-bbc8-6ed2311d1052
+name: Vertical top only
+description: A feature with an incomplete vertical interval.
+vertical_position_top: 0

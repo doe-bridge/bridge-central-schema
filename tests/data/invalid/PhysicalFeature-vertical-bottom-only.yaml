@@ -1,0 +1,4 @@
+id: urn:uuid:b44c8078-cb10-55b5-81de-781230ab941a
+name: Vertical bottom only
+description: A feature with an incomplete vertical interval.
+vertical_position_bottom: -0.1

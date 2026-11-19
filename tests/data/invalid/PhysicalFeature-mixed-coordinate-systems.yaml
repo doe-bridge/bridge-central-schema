@@ -1,0 +1,10 @@
+id: urn:uuid:a1fa288f-2807-5977-89e0-340c0d4a7567
+name: Mixed coordinate systems
+description: A feature with both complete coordinate sets.
+feature_shape: point
+latitude: 0
+longitude: 0
+alt_coordinate_x: 0
+alt_coordinate_y: 0
+alt_coordinate_reference_system: local
+alt_coordinate_unit: meter

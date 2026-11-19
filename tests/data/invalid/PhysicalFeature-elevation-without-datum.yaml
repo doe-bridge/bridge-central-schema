@@ -1,0 +1,4 @@
+id: urn:uuid:3e617327-6ef7-56ec-ad34-cd41f81aeede
+name: Elevation without datum
+description: A feature whose reported elevation has no datum.
+elevation: 0

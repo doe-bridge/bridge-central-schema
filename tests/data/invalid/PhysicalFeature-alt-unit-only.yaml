@@ -1,0 +1,4 @@
+id: urn:uuid:177927e0-c54c-52d6-b399-e612691240dd
+name: Alternate unit only
+description: A feature with an incomplete alternate position.
+alt_coordinate_unit: meter

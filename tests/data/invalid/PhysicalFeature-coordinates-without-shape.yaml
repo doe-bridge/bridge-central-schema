@@ -1,0 +1,4 @@
+id: urn:uuid:dae6f9c0-6611-5a26-91a2-53003628d79b
+name: Coordinates without shape
+description: A feature with geometry but no declared shape.
+location_coordinates: '[[0,0],[1,1]]'

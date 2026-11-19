@@ -1,0 +1,6 @@
+id: urn:uuid:54635f16-6cc8-584e-8523-3d185ac0535e
+name: Mixed vertical positions
+description: A feature with both a single vertical position and an interval.
+vertical_position: -0.05
+vertical_position_bottom: -0.1
+vertical_position_top: 0

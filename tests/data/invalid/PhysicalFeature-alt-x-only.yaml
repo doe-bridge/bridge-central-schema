@@ -1,0 +1,4 @@
+id: urn:uuid:8ffdb526-6d07-5756-97a6-be7ef5e1f430
+name: Alternate x only
+description: A feature with an incomplete alternate position.
+alt_coordinate_x: 0

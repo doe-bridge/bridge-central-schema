@@ -1,0 +1,6 @@
+# Illustrative direct measurement on the plot in PhysicalFeature-wgs84.yaml.
+property_label: soil temperature
+feature_of_interest: urn:uuid:bb6cdc98-1168-5c7a-b43f-5bbc1bdd89ef
+raw_value: 12.3 Cel
+numeric_value: 12.3
+unit: Cel

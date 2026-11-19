@@ -1,0 +1,7 @@
+id: urn:uuid:11d32dd7-203d-572e-ab0b-92681aa8b950
+name: Context without coordinates
+description: A feature with positional context but no supplied position.
+elevation_datum: unknown
+location_confidence: unknown
+location_accuracy: position not recorded
+vertical_position_reference: ground_surface

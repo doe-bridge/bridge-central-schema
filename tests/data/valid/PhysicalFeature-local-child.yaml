@@ -1,0 +1,15 @@
+id: urn:uuid:c49e03a7-a80f-5a5e-8613-e8039156b66a
+name: Point 2
+description: Sampling point in Plot 1 on a local grid.
+source_location_id: AC-423
+feature_type: sampling point
+feature_shape: point
+parent_feature: urn:uuid:bb6cdc98-1168-5c7a-b43f-5bbc1bdd89ef
+alt_coordinate_x: 2.5
+alt_coordinate_y: 4.0
+alt_coordinate_reference_system: local
+alt_coordinate_unit: meter
+location_confidence: high
+vertical_position_bottom: -0.1
+vertical_position_top: 0
+vertical_position_reference: ground_surface
