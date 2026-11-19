@@ -1,0 +1,5 @@
+id: urn:uuid:b2dc704a-bcb9-5b94-ada8-13bd29361aca
+name: Malformed coordinate text
+description: A curve coordinate array with a trailing comma.
+feature_shape: curve
+location_coordinates: '[[0,0],]'

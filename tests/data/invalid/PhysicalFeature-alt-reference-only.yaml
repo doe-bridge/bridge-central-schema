@@ -1,0 +1,4 @@
+id: urn:uuid:91fcb6bf-6e16-589d-9002-504c85abd5d4
+name: Alternate reference only
+description: A feature with an incomplete alternate position.
+alt_coordinate_reference_system: local

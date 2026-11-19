@@ -1,0 +1,4 @@
+id: urn:uuid:298e517f-8eb2-5689-898b-1279ec8ffb50
+name: Latitude only
+description: A feature with an incomplete WGS84 position.
+latitude: 0

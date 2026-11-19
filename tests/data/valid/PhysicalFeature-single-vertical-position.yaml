@@ -1,0 +1,5 @@
+id: urn:uuid:ba76daaf-d253-5430-8e77-cda28e982670
+name: Surface reference point
+description: A feature at its vertical reference position.
+vertical_position: 0
+vertical_position_reference: ground_surface

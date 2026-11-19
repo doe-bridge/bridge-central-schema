@@ -1,0 +1,443 @@
+id: https://w3id.org/ber-data/bridge-central-schema/physical_features
+name: physical_features
+title: BRIDGE Physical Features Module
+description: >-
+  Identifiable places and environmental features on which observations can be
+  made, or which organize smaller features.
+license: Apache-2.0
+
+prefixes:
+  bridge_central_schema: https://w3id.org/ber-data/bridge-central-schema/
+  linkml: https://w3id.org/linkml/
+  essdive_location_v2: https://github.com/ess-dive-workspace/essdive-location-metadata/blob/44fbe2488a6004efa68ac7315edb376a73ed4e0b/term_guide.md#
+default_prefix: bridge_central_schema
+default_range: string
+
+imports:
+  - linkml:types
+
+classes:
+  PhysicalFeature:
+    is_a: NamedThing
+    description: >-
+      An identifiable place or environmental feature where a property may be
+      observed or measured, or which organizes smaller physical features.
+      A plot, point, stream reach, tower, or modeled location can be a physical
+      feature. A sample, sensor, or organism at a place has its own identity.
+    aliases:
+      - location
+      - environmental feature
+    see_also:
+      - https://github.com/ess-dive-workspace/essdive-location-metadata/blob/release-v2.0.0/term_guide.md
+      - https://github.com/BASIN-3D/basin3d
+    slots:
+      - id
+      - name
+      - description
+      - source_location_id
+      - feature_type
+      - feature_shape
+      - parent_feature
+      - latitude
+      - longitude
+      - alt_coordinate_x
+      - alt_coordinate_y
+      - alt_coordinate_reference_system
+      - alt_coordinate_unit
+      - location_confidence
+      - location_coordinates
+      - location_accuracy
+      - elevation
+      - elevation_datum
+      - vertical_position
+      - vertical_position_bottom
+      - vertical_position_top
+      - vertical_position_reference
+      - location_alias
+      - coordinate_measurement_method
+      - location_information_source
+      - location_supplemental_file_name
+      - notes
+    slot_usage:
+      id:
+        close_mappings:
+          - essdive_location_v2:location_id
+      name:
+        required: true
+        close_mappings:
+          - essdive_location_v2:location_name
+      description:
+        required: true
+        close_mappings:
+          - essdive_location_v2:location_description
+    none_of:
+      - slot_conditions:
+          latitude:
+            required: true
+          alt_coordinate_x:
+            required: true
+      - slot_conditions:
+          vertical_position:
+            required: true
+          vertical_position_bottom:
+            required: true
+      - slot_conditions:
+          vertical_position:
+            required: true
+          vertical_position_top:
+            required: true
+    rules:
+      - description: Latitude and longitude must be supplied together.
+        preconditions:
+          slot_conditions:
+            latitude:
+              required: true
+        postconditions:
+          slot_conditions:
+            longitude:
+              required: true
+      - description: Longitude and latitude must be supplied together.
+        preconditions:
+          slot_conditions:
+            longitude:
+              required: true
+        postconditions:
+          slot_conditions:
+            latitude:
+              required: true
+      - description: Alternate x requires the complete alternate coordinate group.
+        preconditions:
+          slot_conditions:
+            alt_coordinate_x:
+              required: true
+        postconditions:
+          slot_conditions:
+            alt_coordinate_y:
+              required: true
+            alt_coordinate_reference_system:
+              required: true
+            alt_coordinate_unit:
+              required: true
+      - description: Alternate y requires the complete alternate coordinate group.
+        preconditions:
+          slot_conditions:
+            alt_coordinate_y:
+              required: true
+        postconditions:
+          slot_conditions:
+            alt_coordinate_x:
+              required: true
+            alt_coordinate_reference_system:
+              required: true
+            alt_coordinate_unit:
+              required: true
+      - description: Alternate reference system requires the complete alternate coordinate group.
+        preconditions:
+          slot_conditions:
+            alt_coordinate_reference_system:
+              required: true
+        postconditions:
+          slot_conditions:
+            alt_coordinate_x:
+              required: true
+            alt_coordinate_y:
+              required: true
+            alt_coordinate_unit:
+              required: true
+      - description: Alternate unit requires the complete alternate coordinate group.
+        preconditions:
+          slot_conditions:
+            alt_coordinate_unit:
+              required: true
+        postconditions:
+          slot_conditions:
+            alt_coordinate_x:
+              required: true
+            alt_coordinate_y:
+              required: true
+            alt_coordinate_reference_system:
+              required: true
+      - description: Elevation requires its datum.
+        preconditions:
+          slot_conditions:
+            elevation:
+              required: true
+        postconditions:
+          slot_conditions:
+            elevation_datum:
+              required: true
+      - description: A vertical interval bottom requires a top.
+        preconditions:
+          slot_conditions:
+            vertical_position_bottom:
+              required: true
+        postconditions:
+          slot_conditions:
+            vertical_position_top:
+              required: true
+      - description: A vertical interval top requires a bottom.
+        preconditions:
+          slot_conditions:
+            vertical_position_top:
+              required: true
+        postconditions:
+          slot_conditions:
+            vertical_position_bottom:
+              required: true
+      - description: Location coordinates require a feature shape.
+        preconditions:
+          slot_conditions:
+            location_coordinates:
+              required: true
+        postconditions:
+          slot_conditions:
+            feature_shape:
+              required: true
+    comments:
+      - >-
+        Coordinates are recommended but optional. Supply either latitude and
+        longitude in WGS84 or alternate x and y with their reference system
+        and unit, but not both sets. For a point they locate the feature; for a
+        curve or surface they give a representative position. A feature may
+        have no coordinates.
+      - >-
+        Physical features can be linked into hierarchical relationships using
+        parent_feature to reference a higher-level physical feature.
+      - >-
+        Data source location IDs may be scoped differently. Ingest constructs a
+        URI or CURIE for id, retains the source value in source_location_id,
+        and resolves parent_location_id to the parent's BRIDGE identifier.
+      - >-
+        If data source physical feature does not have name, it is recommended
+        to reuse the source_location_id.
+      - >-
+        LinkML checks that vertical_position_bottom and vertical_position_top
+        are supplied together and are not combined with vertical_position,
+        but does not enforce their numeric order.
+      - >-
+        The ESS-DIVE Location Reporting Format linked in see_also is a
+        pre-release version.
+      - >-
+        BASIN-3D's related feature classes and fields are currently defined
+        in Python, not as published LinkML elements with term URIs. The
+        upstream repository is a conceptual reference for this class and has
+        close_mappings to the Feature > SamplingFeature > SpatialSamplingFeature
+        MonitoringFeature class with feature_type and feature_shape attributes.
+
+slots:
+  source_location_id:
+    description: Identifier for this location as supplied by the source.
+    close_mappings:
+      - essdive_location_v2:location_id
+
+  feature_type:
+    description: >-
+      The kind of feature, such as plot, site, point, transect, or stream reach.
+      This describes the feature independently of its geometric shape.
+
+  feature_shape:
+    range: FeatureShapeEnum
+    recommended: true
+    description: Geometric form that best represents the feature.
+    close_mappings:
+      - essdive_location_v2:location_shape
+
+  parent_feature:
+    range: PhysicalFeature
+    description: >-
+      A physical feature at the organizational level above this one, such as
+      the plot containing a point or a larger plot containing a smaller plot.
+    close_mappings:
+      - essdive_location_v2:parent_location_id
+
+  latitude:
+    range: double
+    minimum_value: -90
+    maximum_value: 90
+    recommended: true
+    description: WGS84 latitude in decimal degrees, actual or representative.
+    close_mappings:
+      - essdive_location_v2:latitude
+
+  longitude:
+    range: double
+    minimum_value: -180
+    maximum_value: 180
+    recommended: true
+    description: WGS84 longitude in decimal degrees, actual or representative.
+    close_mappings:
+      - essdive_location_v2:longitude
+
+  alt_coordinate_x:
+    range: double
+    description: X coordinate in the alternate reference system.
+    close_mappings:
+      - essdive_location_v2:alt_coordinate_x
+
+  alt_coordinate_y:
+    range: double
+    description: Y coordinate in the alternate reference system.
+    close_mappings:
+      - essdive_location_v2:alt_coordinate_y
+
+  alt_coordinate_reference_system:
+    description: >-
+      Reference system for alternate coordinates, as an EPSG URL, WKT, or local.
+    close_mappings:
+      - essdive_location_v2:alt_coordinate_reference_system
+
+  alt_coordinate_unit:
+    range: AltCoordinateUnitEnum
+    description: Unit for alternate coordinates.
+    close_mappings:
+      - essdive_location_v2:alt_coordinate_unit
+
+  location_confidence:
+    range: LocationConfidenceEnum
+    description: Confidence in the reported representative coordinates.
+    close_mappings:
+      - essdive_location_v2:location_confidence
+
+  location_coordinates:
+    range: string
+    description: >-
+      Source-provided text containing a 2D GeoJSON coordinate array for a
+      point, curve, or surface, in the same reference system and unit as its
+      representative position.
+    # Textual JSON coordinate syntax only; geometry and feature_shape are not checked here.
+    pattern: '^[ \t\r\n]*(?:\[[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*,[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*\]|\[[ \t\r\n]*\[[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*,[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*\](?:[ \t\r\n]*,[ \t\r\n]*\[[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*,[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*\])*[ \t\r\n]*\]|\[[ \t\r\n]*\[[ \t\r\n]*\[[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*,[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*\](?:[ \t\r\n]*,[ \t\r\n]*\[[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*,[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*\])*[ \t\r\n]*\](?:[ \t\r\n]*,[ \t\r\n]*\[[ \t\r\n]*\[[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*,[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*\](?:[ \t\r\n]*,[ \t\r\n]*\[[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*,[ \t\r\n]*-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?[ \t\r\n]*\])*[ \t\r\n]*\])*[ \t\r\n]*\])[ \t\r\n]*$'
+    close_mappings:
+      - essdive_location_v2:location_coordinates
+
+  location_accuracy:
+    description: Source-reported positional accuracy, including its unit.
+    close_mappings:
+      - essdive_location_v2:location_accuracy
+
+  elevation:
+    range: double
+    description: Ground-surface elevation in meters relative to elevation_datum.
+    close_mappings:
+      - essdive_location_v2:elevation
+
+  elevation_datum:
+    range: ElevationDatumEnum
+    description: Vertical datum used for elevation.
+    close_mappings:
+      - essdive_location_v2:elevation_datum
+
+  vertical_position:
+    range: double
+    description: >-
+      Position in meters relative to vertical_position_reference. Negative
+      values are below the reference, positive values are above it, and zero
+      is at the reference.
+    close_mappings:
+      - essdive_location_v2:vertical_position
+
+  vertical_position_bottom:
+    range: double
+    description: >-
+      Bottom endpoint of a vertical interval in meters relative to
+      vertical_position_reference. Negative values are below the reference,
+      positive values are above it, and zero is at the reference.
+    close_mappings:
+      - essdive_location_v2:vertical_position_interval
+
+  vertical_position_top:
+    range: double
+    description: >-
+      Top endpoint of a vertical interval in meters relative to
+      vertical_position_reference. Negative values are below the reference,
+      positive values are above it, and zero is at the reference.
+    close_mappings:
+      - essdive_location_v2:vertical_position_interval
+
+  vertical_position_reference:
+    range: VerticalPositionReferenceEnum
+    description: >-
+      Reference for vertical_position, vertical_position_bottom, and
+      vertical_position_top. Negative position values are below this
+      reference and positive values are above it.
+    close_mappings:
+      - essdive_location_v2:vertical_position_reference
+
+  location_alias:
+    description: Another name used for the feature.
+    close_mappings:
+      - essdive_location_v2:location_alias
+
+  coordinate_measurement_method:
+    description: Instrument or method used to determine the coordinates.
+    aliases:
+      - measurement_method
+    close_mappings:
+      - essdive_location_v2:measurement_method
+
+  location_information_source:
+    description: Source of location information that was not directly measured.
+    close_mappings:
+      - essdive_location_v2:location_information_source
+
+  location_supplemental_file_name:
+    description: >-
+      Source-provided names of files with additional location context, with
+      multiple names separated by a semicolon and space.
+    close_mappings:
+      - essdive_location_v2:location_supplemental_file_name
+
+  notes:
+    description: Additional context about the physical feature.
+    close_mappings:
+      - essdive_location_v2:notes
+
+enums:
+  FeatureShapeEnum:
+    description: >-
+      Geometric shapes adopted from the point, curve, and surface entries in
+      the Open Geospatial Consortium Observations, measurements and samples
+      specification (OGC 20-082r4, version 3.0),
+      The OGC codelist also has solid, which could be added if needed;
+    see_also:
+      - https://docs.ogc.org/as/20-082r4/20-082r4.html
+      - https://github.com/ess-dive-workspace/essdive-location-metadata/blob/release-v2.0.0/controlled_vocabulary.md#location_shape
+    permissible_values:
+      point:
+        description: A zero-dimensional point geometry.
+      curve:
+        description: A one-dimensional line or curve geometry.
+      surface:
+        description: A two-dimensional area or surface geometry.
+
+  LocationConfidenceEnum:
+    permissible_values:
+      high:
+      low:
+      unknown:
+
+  AltCoordinateUnitEnum:
+    permissible_values:
+      meter:
+      feet:
+      degree:
+      local:
+
+  ElevationDatumEnum:
+    permissible_values:
+      EGM96:
+      MSL:
+      NAVD88:
+      NGVD29:
+      WGS84:
+      unknown:
+      other:
+
+  VerticalPositionReferenceEnum:
+    permissible_values:
+      ground_surface:
+      well_casing_top:
+      water_bed:
+      water_surface:
+      mean_sea_level:
+      unknown:
+      other:

@@ -1,0 +1,9 @@
+id: urn:uuid:f4abc719-8f10-5344-a9d1-9bb74a58b672
+name: Zero coordinates
+description: A point demonstrating that zero counts as a supplied coordinate.
+feature_shape: point
+latitude: 0
+longitude: 0
+location_coordinates: '[0,0]'
+vertical_position_bottom: 0
+vertical_position_top: 0

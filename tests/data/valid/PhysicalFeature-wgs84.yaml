@@ -1,0 +1,18 @@
+id: urn:uuid:bb6cdc98-1168-5c7a-b43f-5bbc1bdd89ef
+name: Plot 1
+description: A five by five meter grassland plot.
+source_location_id: AC-400
+feature_type: plot
+feature_shape: surface
+latitude: 37.8749
+longitude: -122.2528
+location_confidence: high
+location_coordinates: '[[[-122.253,37.874],[-122.252,37.874],[-122.252,37.875],[-122.253,37.874]]]'
+location_accuracy: +/- 2 centimeters
+elevation: 396.24
+elevation_datum: NAVD88
+location_alias: LBNL-hillslope
+coordinate_measurement_method: Garmin eTrex 10
+location_information_source: Field survey
+location_supplemental_file_name: plot_1.jpeg
+notes: Soil sampling occurs quarterly.
