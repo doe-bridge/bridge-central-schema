@@ -3,10 +3,7 @@ id: https://w3id.org/ber-data/bridge-central-schema/study
 name: study
 title: BRIDGE Study umbrella classes (draft)
 description: >-
-  Shared classes for samples, organisms, studies and sample processing that
-  source schemas map to. Each class carries mappings to the nmdc-schema and
-  BASALT classes it stands for. Source-specific detail (MIxS fields, protocol
-  parameters) stays in the source schemas.
+  Shared classes for research projects, researchers, and contribution credit.
 license: Apache-2.0
 
 prefixes:
@@ -33,6 +30,8 @@ classes:
 
   ResearchProject:
     is_a: NamedThing
+    mixins:
+      - Creditable
     description: >-
       A research initiative, proposal or project under which samples and/or data
       may be collected and processed.
@@ -49,13 +48,18 @@ classes:
     slots: 
       # inherits id, name, description
       - websites
-      - funding_sources # could replace with the 2 separate slots on AwardedFunding and make them both required
+      - funding_sources # could replace nested slot with the 2 separate slots on AwardedFunding and make them both required
       - part_of
       - associated_products
     comments:
       - >-
         Previously named "Study". Renamed because this is about a funded unit 
         of research rather than capturing study design or experimental details.
+    todos:
+      - >- 
+        Would it be better to replace the nested funding_sources slot with 
+        the two required slots from AwardedFunding? Or is having a table 
+        to query grants etc. useful?
 
   AwardedFunding:
     is_a: NamedThing
@@ -114,14 +118,14 @@ classes:
       - associated researchers
     description: >-
       This class supports binding an agent (a Person or an Organization)
-      to a Study record with a CRediT Contributor Role.
-      One person's role on a study, such as principal investigator or team
+      to a Creditable class instance with a CRediT Contributor Role.
+      One person's role on e.g. a study or dataset, such as principal investigator or team
       member. A person can appear more than once on the same study with
       different roles.
     slots:
       - applies_to_agent
       - applied_roles
-      - applies_to_study
+      - applies_to_research
     class_uri: prov:Association
     close_mappings:
       - dcm:Contributor
@@ -134,6 +138,37 @@ classes:
       - https://info.orcid.org/credit-for-research-contribution
       - https://credit.niso.org/
 
+
+##########################################################
+# Stub Dataset class to show how credit could be reused
+# with the mixin
+
+  Dataset:
+    is_a: NamedThing
+    description: >-
+      A placeholder for the Dataset class proposed in https://github.com/doe-bridge/bridge-central-schema/pull/42
+    mixins:
+      - Creditable
+
+  Creditable:
+    mixin: true
+    description: >-
+      A mixin for classes whose instances have authors, creators, 
+      or other contributors that should be credited.
+    comments:
+      - >-
+        Modeled after `Identifiable` and `Measurable` in https://github.com/doe-bridge/bridge-central-schema/pull/39/
+      - >-
+        Allows a Person class instance to be associated with different research 
+        products
+      - >-
+        If we are only ever going to credit Person instances with ResearchProjects 
+        and Datasets, then this might not be worth it and we could put two slots 
+        on Person (associated_datasets and associated_projects). 
+        But if we anticipate tracking more products (such as publications) 
+        then this is more extensible.
+
+
 slots:
 
   applies_to_agent:
@@ -143,14 +178,17 @@ slots:
     close_mappings:
       - nmdc:applies_to_agent
   applied_roles:
+    description: The role the agent played in the research project or dataset.
     range: CreditEnum
     required: true
+    multivalued: true
     close_mappings:
       - dcm:contributor_roles
-  applies_to_study:
-    description: The study this credit association applies to.
-    range: ResearchProject
+  applies_to_research:
+    description: The research project or dataset this credit association applies to.
+    range: Creditable
     required: true
+
   email:
     description: A contactable email address for the person.
     close_mappings:
@@ -180,16 +218,17 @@ slots:
     close_mappings:
       - nmdc:websites
       - basalt_schema:websites
+
   funding_sources:
     description: The funding sources for the study.
     range: AwardedFunding
     multivalued: true
-    close_mappings:
+    broad_mappings:
       - basalt_schema:funding_sources
       - nmdc:funding_sources
   funding_organization:
     description: The organization providing the funding for the study.
-    range: Organization # or string
+    range: Organization # or string?
     required: true
   funding_identifier:
     description: Identifier for the funding source, such as a grant, award, or contract number.
@@ -202,10 +241,12 @@ slots:
     exact_mappings:
       - nmdc:part_of
   associated_products:
-    description: Products associated with the project, such as publications, datasets, or software.
+    description: >- 
+      External link(s) to products associated with the project,
+      such as publications, datasets, or software.
     range: uriorcurie
     multivalued: true
-    broad_mappings:
+    narrow_mappings:
       - nmdc:alternative_identifiers
       - nmdc:associated_dois
       - basalt_schema:associated_dois
@@ -278,7 +319,12 @@ enums:
       Submitter:
         description: the person(s) who enter study and biosample metadata into the BRIDGE submission portal
         meaning: EFO:0001741
+      Contact Person:
+        description: The person to contact regarding the study or dataset.
+        exact_mappings:
+          - dcm:contact_person
     comments:
       - CreditEnums come from https://casrai.org/credit/
+      - We could add more of the values from https://kbase.github.io/credit_engine/ContributorRole/ if that would be helpful
     see_also:
       - https://kbase.github.io/credit_engine/ContributorRole/
