@@ -31,13 +31,16 @@ imports:
   
 classes:
 
-  Study:
+  ResearchProject:
     is_a: NamedThing
     description: >-
       A research initiative, proposal or project under which samples and/or data
       may be collected and processed.
     aliases:
       - project
+      - initiative
+      - investigation
+      - campaign
     close_mappings:
       # nmdc:Study aliases include "project" and "proposal".
       - nmdc:Study
@@ -46,9 +49,13 @@ classes:
     slots: 
       # inherits id, name, description
       - websites
-      - funding_sources
-    todos:
-      - Class name - discuss between Study and Project. 
+      - funding_sources # could replace with the 2 separate slots and make them both required
+      - part_of
+      - associated_products
+    comments:
+      - >-
+        Previously named "Study". Renamed because this is about a funded unit 
+        of research rather than capturing study design or experimental details.
 
   Agent:
     is_a: NamedThing
@@ -116,7 +123,6 @@ classes:
     related_mappings:
       - OBI:0001942
     slots:
-      - id    
       - funding_organization
       - funding_identifier
 
@@ -135,7 +141,7 @@ slots:
       - dcm:contributor_roles
   applies_to_study:
     description: The study this credit association applies to.
-    range: Study
+    range: ResearchProject
     required: true
   email:
     description: A contactable email address for the person.
@@ -164,7 +170,7 @@ slots:
     description: The funding sources for the study.
     range: AwardedFunding
     multivalued: true
-    related_mappings:
+    close_mappings:
       - basalt_schema:funding_sources
       - nmdc:funding_sources
   funding_organization:
@@ -175,6 +181,20 @@ slots:
     description: Identifier for the funding source, such as a grant, award, or contract number.
     range: string
     required: true
+  part_of:
+    description: The larger initiative, investigation, or campaign this research project is part of.
+    range: ResearchProject
+    multivalued: true
+    exact_mappings:
+      - nmdc:part_of
+  associated_products:
+    description: Products associated with the project, such as publications, datasets, or software.
+    range: uriorcurie
+    multivalued: true
+    broad_mappings:
+      - nmdc:alternative_identifiers
+      - nmdc:associated_dois
+      - basalt_schema:associated_dois
 
 enums:
 
