@@ -49,13 +49,27 @@ classes:
     slots: 
       # inherits id, name, description
       - websites
-      - funding_sources # could replace with the 2 separate slots and make them both required
+      - funding_sources # could replace with the 2 separate slots on AwardedFunding and make them both required
       - part_of
       - associated_products
     comments:
       - >-
         Previously named "Study". Renamed because this is about a funded unit 
         of research rather than capturing study design or experimental details.
+
+  AwardedFunding:
+    is_a: NamedThing
+    description: >-
+      A funding source for the study, including the name of the funder
+      and the grant, award, or contract number.
+    related_mappings:
+      - OBI:0001942
+    slots:
+      - funding_organization
+      - funding_identifier
+
+##########################################################
+# Reusable Agent/Person and credit modelling
 
   Agent:
     is_a: NamedThing
@@ -74,6 +88,7 @@ classes:
     slots:
       - email
       - orcid
+      - affiliations
     slot_usage:
       name:
         description: The full name of the person.
@@ -88,6 +103,10 @@ classes:
       - ror
     close_mappings:
       - nmdc:Organization
+    comments:
+      - >-
+        If we populate enough Organizations we could use this in place of
+        basalt_schema:InstitutionEnum or nmdc:ProcessingInstitutionEnum
 
   CreditAssociation:
     aliases:
@@ -114,17 +133,6 @@ classes:
       - https://kbase.github.io/credit_engine/
       - https://info.orcid.org/credit-for-research-contribution
       - https://credit.niso.org/
-
-  AwardedFunding:
-    is_a: NamedThing
-    description: >-
-      A funding source for the study, including the name of the funder
-      and the grant, award, or contract number.
-    related_mappings:
-      - OBI:0001942
-    slots:
-      - funding_organization
-      - funding_identifier
 
 slots:
 
@@ -154,6 +162,12 @@ slots:
     close_mappings:
       - nmdc:orcid
       - basalt_schema:orcid
+  affiliations:
+    description: The affiliations of the person.
+    range: Organization
+    multivalued: true
+    close_mappings:
+      - nmdc:affiliations
   ror:
     description: The Research Organization Registry identifier of the organization.
     range: uriorcurie
