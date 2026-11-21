@@ -1,0 +1,330 @@
+# Draft BRIDGE Study umbrella class (draft)
+id: https://w3id.org/ber-data/bridge-central-schema/study
+name: study
+title: BRIDGE Study umbrella classes (draft)
+description: >-
+  Shared classes for research projects, researchers, and contribution credit.
+license: Apache-2.0
+
+prefixes:
+  bridge_central_schema: https://w3id.org/ber-data/bridge-central-schema/
+  linkml: https://w3id.org/linkml/
+  nmdc: https://w3id.org/nmdc/
+  basalt_schema: https://emsl-computing.github.io/BASALT-Schema/elements/
+  schema: http://schema.org/
+  prov: http://www.w3.org/ns/prov#
+  dcm: https://kbase.github.io/credit_engine/
+  OBI: "http://purl.obolibrary.org/obo/OBI_"
+  ror: 'https://bioregistry.io/ror:'
+  EFO: "http://www.ebi.ac.uk/efo/EFO_"
+  orcid: "https://orcid.org/"
+
+default_prefix: bridge_central_schema
+default_range: string
+
+imports:
+  - linkml:types
+  - ber_central_schema
+  
+classes:
+
+  ResearchProject:
+    is_a: NamedThing
+    mixins:
+      - Creditable
+    description: >-
+      A research initiative, proposal or project under which samples and/or data
+      may be collected and processed.
+    aliases:
+      - project
+      - initiative
+      - investigation
+      - campaign
+    close_mappings:
+      # nmdc:Study aliases include "project" and "proposal".
+      - nmdc:Study
+      # BASALT Study holds an EMSL user project (project_id, proposal abstract).
+      - basalt_schema:Study
+    slots: 
+      # inherits id, name, description
+      - websites
+      - funding_sources
+      - part_of
+      - associated_products
+    comments:
+      - >-
+        Previously named "Study". Renamed because this is about a funded unit 
+        of research rather than capturing study design or experimental details.
+    todos:
+      - >- 
+        Would it be better to replace the nested funding_sources slot with 
+        the two required slots from AwardedFunding? Or is having a table 
+        to query grants etc. useful?
+
+  AwardedFunding:
+    is_a: NamedThing
+    description: >-
+      A funding source for the study, including the name of the funder
+      and the grant, award, or contract number.
+    related_mappings:
+      - OBI:0001942
+    slots:
+      - funding_organization
+      - funding_identifier
+
+##########################################################
+# Reusable Agent/Person and credit modelling
+
+  Agent:
+    is_a: NamedThing
+    abstract: true
+    description: >-
+      A person or organization that bears responsibility for an activity, for
+      the existence of an entity, or for another agent's activity. `name` is
+      inherited from NamedThing.
+    close_mappings:
+      - prov:Agent
+
+  Person:
+    is_a: Agent
+    description: >-
+      An individual, independent of any study or role they hold on one.
+    slots:
+      - email
+      - orcid
+      - affiliations
+    slot_usage:
+      name:
+        description: The full name of the person.
+    close_mappings:
+      - nmdc:Person
+      - basalt_schema:PersonValue
+
+  Organization:
+    is_a: Agent
+    description: A social or legal institution, such as a company or consortium.
+    slots:
+      - ror
+    close_mappings:
+      - nmdc:Organization
+    comments:
+      - >-
+        If we populate enough Organizations we could use this in place of
+        basalt_schema:InstitutionEnum or nmdc:ProcessingInstitutionEnum
+
+  CreditAssociation:
+    aliases:
+      - credit table
+      - associated researchers
+    description: >-
+      This class supports binding an agent (a Person or an Organization)
+      to a Creditable class instance with a CRediT Contributor Role.
+      One person's role on e.g. a study or dataset, such as principal investigator or team
+      member. A person can appear more than once on the same study with
+      different roles.
+    slots:
+      - applies_to_agent
+      - applied_roles
+      - applies_to_research
+    class_uri: prov:Association
+    close_mappings:
+      - dcm:Contributor
+      - nmdc:CreditAssociation
+    related_mappings:
+      - basalt_schema:ProjectParticipant
+    see_also:
+      - https://casrai.org/credit/
+      - https://kbase.github.io/credit_engine/
+      - https://info.orcid.org/credit-for-research-contribution
+      - https://credit.niso.org/
+
+
+##########################################################
+# Stub Dataset class to show how credit could be reused
+# with the mixin
+
+  Dataset:
+    is_a: NamedThing
+    description: >-
+      A placeholder for the Dataset class proposed in https://github.com/doe-bridge/bridge-central-schema/pull/42
+    mixins:
+      - Creditable
+
+  Creditable:
+    mixin: true
+    description: >-
+      A mixin for classes whose instances have authors, creators, 
+      or other contributors that should be credited.
+    comments:
+      - >-
+        Modeled after `Identifiable` and `Measurable` in https://github.com/doe-bridge/bridge-central-schema/pull/39/
+      - >-
+        Allows a Person class instance to be associated with different research 
+        products
+      - >-
+        If we are only ever going to credit Person instances with ResearchProjects 
+        and Datasets, then this might not be worth it and we could put two slots 
+        on Person (associated_datasets and associated_projects). 
+        But if we anticipate tracking more products (such as publications) 
+        then this is more extensible.
+
+
+slots:
+
+  applies_to_agent:
+    description: The agent (person or organization) this credit association applies to.
+    range: Agent
+    required: true
+    close_mappings:
+      - nmdc:applies_to_agent
+  applied_roles:
+    description: The role the agent played in the research project or dataset.
+    range: CreditEnum
+    required: true
+    multivalued: true
+    close_mappings:
+      - dcm:contributor_roles
+  applies_to_research:
+    description: The research project or dataset this credit association applies to.
+    range: Creditable
+    required: true
+
+  email:
+    description: A contactable email address for the person.
+    close_mappings:
+      - nmdc:email
+      - basalt_schema:email
+  orcid:
+    range: uriorcurie
+    description: The person's ORCID identifier.
+    close_mappings:
+      - nmdc:orcid
+      - basalt_schema:orcid
+  affiliations:
+    description: The affiliations of the person.
+    range: Organization
+    multivalued: true
+    close_mappings:
+      - nmdc:affiliations
+  ror:
+    description: The Research Organization Registry identifier of the organization.
+    range: uriorcurie
+    close_mappings:
+      - nmdc:ror
+  websites:
+    description: The websites associated with the study.
+    range: uri
+    multivalued: true
+    close_mappings:
+      - nmdc:websites
+      - basalt_schema:websites
+
+  funding_sources:
+    description: The funding sources for the study.
+    range: AwardedFunding
+    multivalued: true
+    broad_mappings:
+      - basalt_schema:funding_sources
+      - nmdc:funding_sources
+  funding_organization:
+    description: The organization providing the funding for the study.
+    range: Organization # or string?
+    required: true
+  funding_identifier:
+    description: Identifier for the funding source, such as a grant, award, or contract number.
+    range: string
+    required: true
+  part_of:
+    description: The larger initiative, investigation, or campaign this research project is part of.
+    range: ResearchProject
+    multivalued: true
+    exact_mappings:
+      - nmdc:part_of
+  associated_products:
+    description: >- 
+      External link(s) to products associated with the project,
+      such as publications, datasets, or software.
+    range: uriorcurie
+    multivalued: true
+    narrow_mappings:
+      - nmdc:alternative_identifiers
+      - nmdc:associated_dois
+      - basalt_schema:associated_dois
+
+enums:
+
+  CreditEnum:
+    permissible_values:
+      Conceptualization:
+        description: Conceptualization
+        exact_mappings:
+          - dcm:conceptualization
+      Data curation:
+        description: Data curation
+        exact_mappings:
+          - dcm:data_curation
+      Formal Analysis:
+        description: Formal Analysis
+        exact_mappings:
+          - dcm:formal_analysis
+      Funding acquisition:
+        description: Funding acquisition
+        exact_mappings:
+          - dcm:funding_acquisition
+      Investigation:
+        description: Investigation
+        exact_mappings:
+          - dcm:investigation
+      Methodology:
+        description: Methodology
+        exact_mappings:
+          - dcm:methodology
+      Project administration:
+        description: Project administration
+        exact_mappings:
+          - dcm:project_administration
+      Resources:
+        description: Resources
+        exact_mappings:
+          - dcm:resources
+      Software:
+        description: Software
+        exact_mappings:
+          - dcm:software
+      Supervision:
+        description: Supervision
+        exact_mappings:
+          - dcm:supervision
+      Validation:
+        description: Validation
+        exact_mappings:
+          - dcm:validation
+      Visualization:
+        description: Visualization
+        exact_mappings:
+          - dcm:visualization
+      Writing original draft:
+        description: "Writing original draft"
+        exact_mappings:
+          - dcm:writing_original_draft
+      Writing review and editing:
+        description: "Writing review & editing"
+        exact_mappings:
+          - dcm:writing_review_editing
+      Principal Investigator:
+        description: principal investigator role
+        meaning: OBI:0000103
+        related_mappings:
+          - dcm:project_leader
+      Submitter:
+        description: the person(s) who enter study and biosample metadata into the BRIDGE submission portal
+        meaning: EFO:0001741
+      Contact Person:
+        description: The person to contact regarding the study or dataset.
+        exact_mappings:
+          - dcm:contact_person
+    comments:
+      - CreditEnums come from https://casrai.org/credit/
+      - We could add more of the values from https://kbase.github.io/credit_engine/ContributorRole/ if that would be helpful
+    see_also:
+      - https://kbase.github.io/credit_engine/ContributorRole/
