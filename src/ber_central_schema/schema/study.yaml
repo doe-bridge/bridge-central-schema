@@ -48,7 +48,7 @@ classes:
     slots: 
       # inherits id, name, description
       - websites
-      - funding_sources # could replace nested slot with the 2 separate slots on AwardedFunding and make them both required
+      - funding_sources
       - part_of
       - associated_products
     comments:
