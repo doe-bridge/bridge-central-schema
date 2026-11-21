@@ -1108,7 +1108,7 @@ classes:
     class_uri: bridge_central_schema:Attribute
 metamodel_version: 1.11.0
 source_file: ber_central_schema.yaml
-source_file_date: '2026-11-21T00:52:58'
+source_file_date: '2026-11-21T00:55:12'
 source_file_size: 1215
-generation_date: '2026-11-21T00:53:08'
+generation_date: '2026-11-21T00:55:23'
 
