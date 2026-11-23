@@ -6,7 +6,7 @@ contigs:
   length_bp: 5386
   topology: circular
 features:
-- feature_id: insdc:NC_001422.1:feature-1
+- feature_id: NC_001422.1_feature-1
   seqid: refseq:NC_001422.1
   type: source
   coordinate_system: contig
@@ -28,9 +28,9 @@ features:
     value: Escherichia phage phiX174
   - key: mol_type
     value: genomic DNA
-  - key: db_xref
-    value: taxon:2886930
-- feature_id: insdc:NC_001422.1:feature-2
+  dbxref:
+  - NCBITaxon:2886930
+- feature_id: NC_001422.1_feature-2
   seqid: refseq:NC_001422.1
   type: gene
   coordinate_system: contig
@@ -56,9 +56,9 @@ features:
   attributes:
   - key: locus_tag
     value: phiX174p01
-  - key: db_xref
-    value: GeneID:2546398
-- feature_id: insdc:NC_001422.1:feature-3
+  dbxref:
+  - NCBIGene:2546398
+- feature_id: NC_001422.1_feature-3
   seqid: refseq:NC_001422.1
   type: CDS
   coordinate_system: contig
@@ -96,13 +96,13 @@ features:
     value: DNA replication initiation
   - key: protein_id
     value: NP_040703.1
-  - key: db_xref
-    value: GeneID:2546398
   - key: translation
     value: MVRSYYPSECHADYFDFERIEALKPAIEACGISTLSQSPMLGFHKQMDNRIKLLEEILSFRMQGVEFDNGDMYVDGHKAASDVRDEFVSVTEKLMDELAQCYNVLPQLDINNTIDHRPEGDEKWFLENEKTVTQFCRKLAAERPLKDIRDEYNYPKKKGIKDECSRLLEASTMKSRRGFAIQRLMNAMRQAHADGWFIVFDTLTLADDRLEAFYDNPNALRDYFRDIGRMVLAAEGRKANDSHADCYQYFCVPEYGTANGRLHFHAVHFMRTLPTGSVDPNFGRRVRNRRQLNSLQNTWPYGYSMPIAVRYTQDAFSRSGWLWPVDAKGEPLKATSYMAVGFYVAKYVNKKSDMDLAAKGLGAKEWNNSLKTKLSLLPKKLFRIRMSRNFGMKMLTMTNLSTECLIQLTKLGYDATPFNQILKQNAKREMRLRLGKVTVADVLAAQPVTTNLLKFMRASIKMIGVSNLQSFIASMTQKLTLSDISDESKNYLDKAGITTACLRIKSKWTAGGK
   product: DNA replication initiation
   translated_sequence: MVRSYYPSECHADYFDFERIEALKPAIEACGISTLSQSPMLGFHKQMDNRIKLLEEILSFRMQGVEFDNGDMYVDGHKAASDVRDEFVSVTEKLMDELAQCYNVLPQLDINNTIDHRPEGDEKWFLENEKTVTQFCRKLAAERPLKDIRDEYNYPKKKGIKDECSRLLEASTMKSRRGFAIQRLMNAMRQAHADGWFIVFDTLTLADDRLEAFYDNPNALRDYFRDIGRMVLAAEGRKANDSHADCYQYFCVPEYGTANGRLHFHAVHFMRTLPTGSVDPNFGRRVRNRRQLNSLQNTWPYGYSMPIAVRYTQDAFSRSGWLWPVDAKGEPLKATSYMAVGFYVAKYVNKKSDMDLAAKGLGAKEWNNSLKTKLSLLPKKLFRIRMSRNFGMKMLTMTNLSTECLIQLTKLGYDATPFNQILKQNAKREMRLRLGKVTVADVLAAQPVTTNLLKFMRASIKMIGVSNLQSFIASMTQKLTLSDISDESKNYLDKAGITTACLRIKSKWTAGGK
-- feature_id: insdc:NC_001422.1:feature-4
+  dbxref:
+  - NCBIGene:2546398
+- feature_id: NC_001422.1_feature-4
   seqid: refseq:NC_001422.1
   type: gene
   coordinate_system: contig
@@ -128,9 +128,9 @@ features:
   attributes:
   - key: locus_tag
     value: phiX174p02
-  - key: db_xref
-    value: GeneID:2546406
-- feature_id: insdc:NC_001422.1:feature-5
+  dbxref:
+  - NCBIGene:2546406
+- feature_id: NC_001422.1_feature-5
   seqid: refseq:NC_001422.1
   type: CDS
   coordinate_system: contig
@@ -166,13 +166,13 @@ features:
     value: DNA replication initiation
   - key: protein_id
     value: NP_040704.1
-  - key: db_xref
-    value: GeneID:2546406
   - key: translation
     value: MKSRRGFAIQRLMNAMRQAHADGWFIVFDTLTLADDRLEAFYDNPNALRDYFRDIGRMVLAAEGRKANDSHADCYQYFCVPEYGTANGRLHFHAVHFMRTLPTGSVDPNFGRRVRNRRQLNSLQNTWPYGYSMPIAVRYTQDAFSRSGWLWPVDAKGEPLKATSYMAVGFYVAKYVNKKSDMDLAAKGLGAKEWNNSLKTKLSLLPKKLFRIRMSRNFGMKMLTMTNLSTECLIQLTKLGYDATPFNQILKQNAKREMRLRLGKVTVADVLAAQPVTTNLLKFMRASIKMIGVSNLQSFIASMTQKLTLSDISDESKNYLDKAGITTACLRIKSKWTAGGK
   product: DNA replication initiation
   translated_sequence: MKSRRGFAIQRLMNAMRQAHADGWFIVFDTLTLADDRLEAFYDNPNALRDYFRDIGRMVLAAEGRKANDSHADCYQYFCVPEYGTANGRLHFHAVHFMRTLPTGSVDPNFGRRVRNRRQLNSLQNTWPYGYSMPIAVRYTQDAFSRSGWLWPVDAKGEPLKATSYMAVGFYVAKYVNKKSDMDLAAKGLGAKEWNNSLKTKLSLLPKKLFRIRMSRNFGMKMLTMTNLSTECLIQLTKLGYDATPFNQILKQNAKREMRLRLGKVTVADVLAAQPVTTNLLKFMRASIKMIGVSNLQSFIASMTQKLTLSDISDESKNYLDKAGITTACLRIKSKWTAGGK
-- feature_id: insdc:NC_001422.1:feature-6
+  dbxref:
+  - NCBIGene:2546406
+- feature_id: NC_001422.1_feature-6
   seqid: refseq:NC_001422.1
   type: gene
   coordinate_system: contig
@@ -198,9 +198,9 @@ features:
   attributes:
   - key: locus_tag
     value: phiX174p03
-  - key: db_xref
-    value: GeneID:2546405
-- feature_id: insdc:NC_001422.1:feature-7
+  dbxref:
+  - NCBIGene:2546405
+- feature_id: NC_001422.1_feature-7
   seqid: refseq:NC_001422.1
   type: CDS
   coordinate_system: contig
@@ -236,13 +236,13 @@ features:
     value: head morphogenesis
   - key: protein_id
     value: NP_040705.1
-  - key: db_xref
-    value: GeneID:2546405
   - key: translation
     value: MEQLTKNQAVATSQEAVQNQNEPQLRDENAHNDKSVHGVLNPTYQAGLRRDAVQPDIEAERKKRDEIEAGKSYCSRRFGGATCDDKSAQIYARFDKNDWRIQPAEFYRFHDAEVNTFGYF
   product: head morphogenesis
   translated_sequence: MEQLTKNQAVATSQEAVQNQNEPQLRDENAHNDKSVHGVLNPTYQAGLRRDAVQPDIEAERKKRDEIEAGKSYCSRRFGGATCDDKSAQIYARFDKNDWRIQPAEFYRFHDAEVNTFGYF
-- feature_id: insdc:NC_001422.1:feature-8
+  dbxref:
+  - NCBIGene:2546405
+- feature_id: NC_001422.1_feature-8
   seqid: refseq:NC_001422.1
   type: variation
   coordinate_system: contig
@@ -266,7 +266,7 @@ features:
     value: in am18 and am35 [14]
   - key: replace
     value: t
-- feature_id: insdc:NC_001422.1:feature-9
+- feature_id: NC_001422.1_feature-9
   seqid: refseq:NC_001422.1
   type: variation
   coordinate_system: contig
@@ -290,7 +290,7 @@ features:
     value: ts116 [14]
   - key: replace
     value: c
-- feature_id: insdc:NC_001422.1:feature-10
+- feature_id: NC_001422.1_feature-10
   seqid: refseq:NC_001422.1
   type: gene
   coordinate_system: contig
@@ -310,9 +310,9 @@ features:
   attributes:
   - key: locus_tag
     value: phiX174p04
-  - key: db_xref
-    value: GeneID:2546403
-- feature_id: insdc:NC_001422.1:feature-11
+  dbxref:
+  - NCBIGene:2546403
+- feature_id: NC_001422.1_feature-11
   seqid: refseq:NC_001422.1
   type: CDS
   coordinate_system: contig
@@ -340,13 +340,13 @@ features:
     value: K
   - key: protein_id
     value: NP_040706.1
-  - key: db_xref
-    value: GeneID:2546403
   - key: translation
     value: MSRKIILIKQELLLLVYELNRSGLLAENEKIRPILAQLEKLLLCDLSPSTNDSVKN
   product: K
   translated_sequence: MSRKIILIKQELLLLVYELNRSGLLAENEKIRPILAQLEKLLLCDLSPSTNDSVKN
-- feature_id: insdc:NC_001422.1:feature-12
+  dbxref:
+  - NCBIGene:2546403
+- feature_id: NC_001422.1_feature-12
   seqid: refseq:NC_001422.1
   type: variation
   coordinate_system: contig
@@ -370,7 +370,7 @@ features:
     value: am6 [14]
   - key: replace
     value: c
-- feature_id: insdc:NC_001422.1:feature-13
+- feature_id: NC_001422.1_feature-13
   seqid: refseq:NC_001422.1
   type: variation
   coordinate_system: contig
@@ -394,7 +394,7 @@ features:
     value: am6 [14]
   - key: replace
     value: a
-- feature_id: insdc:NC_001422.1:feature-14
+- feature_id: NC_001422.1_feature-14
   seqid: refseq:NC_001422.1
   type: gene
   coordinate_system: contig
@@ -414,9 +414,9 @@ features:
   attributes:
   - key: locus_tag
     value: phiX174p05
-  - key: db_xref
-    value: GeneID:2546402
-- feature_id: insdc:NC_001422.1:feature-15
+  dbxref:
+  - NCBIGene:2546402
+- feature_id: NC_001422.1_feature-15
   seqid: refseq:NC_001422.1
   type: CDS
   coordinate_system: contig
@@ -446,13 +446,13 @@ features:
     value: terminase
   - key: protein_id
     value: NP_040707.1
-  - key: db_xref
-    value: GeneID:2546402
   - key: translation
     value: MRKFDLSLRSSRSSYFATFRHQLTILSKTDALDEEKWLNMLGTFVKDWFRYESHFVHGRDSLVDILKERGLLSESDAVQPLIGKKS
   product: terminase
   translated_sequence: MRKFDLSLRSSRSSYFATFRHQLTILSKTDALDEEKWLNMLGTFVKDWFRYESHFVHGRDSLVDILKERGLLSESDAVQPLIGKKS
-- feature_id: insdc:NC_001422.1:feature-16
+  dbxref:
+  - NCBIGene:2546402
+- feature_id: NC_001422.1_feature-16
   seqid: refseq:NC_001422.1
   type: gene
   coordinate_system: contig
@@ -472,9 +472,9 @@ features:
   attributes:
   - key: locus_tag
     value: phiX174p06
-  - key: db_xref
-    value: GeneID:2546408
-- feature_id: insdc:NC_001422.1:feature-17
+  dbxref:
+  - NCBIGene:2546408
+- feature_id: NC_001422.1_feature-17
   seqid: refseq:NC_001422.1
   type: mRNA
   coordinate_system: contig
@@ -496,10 +496,10 @@ features:
     value: phiX174p06
   - key: product
     value: major transcript
-  - key: db_xref
-    value: GeneID:2546408
   product: major transcript
-- feature_id: insdc:NC_001422.1:feature-18
+  dbxref:
+  - NCBIGene:2546408
+- feature_id: NC_001422.1_feature-18
   seqid: refseq:NC_001422.1
   type: gene
   coordinate_system: contig
@@ -519,9 +519,9 @@ features:
   attributes:
   - key: locus_tag
     value: phiX174p07
-  - key: db_xref
-    value: GeneID:2546399
-- feature_id: insdc:NC_001422.1:feature-19
+  dbxref:
+  - NCBIGene:2546399
+- feature_id: NC_001422.1_feature-19
   seqid: refseq:NC_001422.1
   type: mRNA
   coordinate_system: contig
@@ -543,10 +543,10 @@ features:
     value: phiX174p07
   - key: product
     value: minor transcript
-  - key: db_xref
-    value: GeneID:2546399
   product: minor transcript
-- feature_id: insdc:NC_001422.1:feature-20
+  dbxref:
+  - NCBIGene:2546399
+- feature_id: NC_001422.1_feature-20
   seqid: refseq:NC_001422.1
   type: CDS
   coordinate_system: contig
@@ -576,13 +576,13 @@ features:
     value: head morphogenesis
   - key: protein_id
     value: NP_040708.1
-  - key: db_xref
-    value: GeneID:2546399
   - key: translation
     value: MSQVTEQSVRFQTALASIKLIQASAVLDLTEDDFDFLTSNKVWIATDRSRARRCVEACVYGTLDFVGYPRFPAPVEFIAAVIAYYVHPVNIQTACLIMEGAEFTENIINGVERPVKAAELFAFTLRVRAGNTDVLTDAEENVRQKLRAEGVM
   product: head morphogenesis
   translated_sequence: MSQVTEQSVRFQTALASIKLIQASAVLDLTEDDFDFLTSNKVWIATDRSRARRCVEACVYGTLDFVGYPRFPAPVEFIAAVIAYYVHPVNIQTACLIMEGAEFTENIINGVERPVKAAELFAFTLRVRAGNTDVLTDAEENVRQKLRAEGVM
-- feature_id: insdc:NC_001422.1:feature-21
+  dbxref:
+  - NCBIGene:2546399
+- feature_id: NC_001422.1_feature-21
   seqid: refseq:NC_001422.1
   type: gene
   coordinate_system: contig
@@ -602,9 +602,9 @@ features:
   attributes:
   - key: locus_tag
     value: phiX174p08
-  - key: db_xref
-    value: GeneID:2546400
-- feature_id: insdc:NC_001422.1:feature-22
+  dbxref:
+  - NCBIGene:2546400
+- feature_id: NC_001422.1_feature-22
   seqid: refseq:NC_001422.1
   type: CDS
   coordinate_system: contig
@@ -634,13 +634,13 @@ features:
     value: endolysin
   - key: protein_id
     value: NP_040709.1
-  - key: db_xref
-    value: GeneID:2546400
   - key: translation
     value: MVRWTLWDTLAFLLLLSLLLPSLLIMFIPSTFKRPVSSWKALNLRKTLLMASSVRLKPLNCSRLPCVYAQETLTFLLTQKKTCVKNYVRKE
   product: endolysin
   translated_sequence: MVRWTLWDTLAFLLLLSLLLPSLLIMFIPSTFKRPVSSWKALNLRKTLLMASSVRLKPLNCSRLPCVYAQETLTFLLTQKKTCVKNYVRKE
-- feature_id: insdc:NC_001422.1:feature-23
+  dbxref:
+  - NCBIGene:2546400
+- feature_id: NC_001422.1_feature-23
   seqid: refseq:NC_001422.1
   type: gene
   coordinate_system: contig
@@ -660,9 +660,9 @@ features:
   attributes:
   - key: locus_tag
     value: phiX174p09
-  - key: db_xref
-    value: GeneID:2546404
-- feature_id: insdc:NC_001422.1:feature-24
+  dbxref:
+  - NCBIGene:2546404
+- feature_id: NC_001422.1_feature-24
   seqid: refseq:NC_001422.1
   type: CDS
   coordinate_system: contig
@@ -692,13 +692,13 @@ features:
     value: DNA condensation
   - key: protein_id
     value: NP_040710.1
-  - key: db_xref
-    value: GeneID:2546404
   - key: translation
     value: MSKGKKRSGARPGRPQPLRGTKGKRKGARLWYVGGQQF
   product: DNA condensation
   translated_sequence: MSKGKKRSGARPGRPQPLRGTKGKRKGARLWYVGGQQF
-- feature_id: insdc:NC_001422.1:feature-25
+  dbxref:
+  - NCBIGene:2546404
+- feature_id: NC_001422.1_feature-25
   seqid: refseq:NC_001422.1
   type: CDS
   coordinate_system: contig
@@ -728,13 +728,13 @@ features:
     value: major head protein
   - key: protein_id
     value: NP_040711.1
-  - key: db_xref
-    value: GeneID:2546408
   - key: translation
     value: MSNIQTGAERMPHDLSHLGFLAGQIGRLITISTTPVIAGDSFEMDAVGALRLSPLRRGLAIDSTVDIFTFYVPHRHVYGEQWIKFMKDGVNATPLPTVNTTGYIDHAAFLGTINPDTNKIPKHLFQGYLNIYNNYFKAPWMPDRTEANPNELNQDDARYGFRCCHLKNIWTAPLPPETELSRQMTTSTTSIDIMGLQAAYANLHTDQERDYFMQRYHDVISSFGGKTSYDADNRPLLVMRSNLWASGYDVDGTDQTSLGQFSGRVQQTYKHSVPRFFVPEHGTMFTLALVRFPPTATKEIQYLNAKGALTYTDIAGDPVLYGNLPPREISMKDVFRSGDSSKKFKIAEGQWYRYAPSYVSPAYHLLEGFPFIQEPPSGDLQERVLIRHHDYDQCFQSVQLLQWNSQVKFNVTVYRNLPTTRDSIMTS
   product: major head protein
   translated_sequence: MSNIQTGAERMPHDLSHLGFLAGQIGRLITISTTPVIAGDSFEMDAVGALRLSPLRRGLAIDSTVDIFTFYVPHRHVYGEQWIKFMKDGVNATPLPTVNTTGYIDHAAFLGTINPDTNKIPKHLFQGYLNIYNNYFKAPWMPDRTEANPNELNQDDARYGFRCCHLKNIWTAPLPPETELSRQMTTSTTSIDIMGLQAAYANLHTDQERDYFMQRYHDVISSFGGKTSYDADNRPLLVMRSNLWASGYDVDGTDQTSLGQFSGRVQQTYKHSVPRFFVPEHGTMFTLALVRFPPTATKEIQYLNAKGALTYTDIAGDPVLYGNLPPREISMKDVFRSGDSSKKFKIAEGQWYRYAPSYVSPAYHLLEGFPFIQEPPSGDLQERVLIRHHDYDQCFQSVQLLQWNSQVKFNVTVYRNLPTTRDSIMTS
-- feature_id: insdc:NC_001422.1:feature-26
+  dbxref:
+  - NCBIGene:2546408
+- feature_id: NC_001422.1_feature-26
   seqid: refseq:NC_001422.1
   type: gene
   coordinate_system: contig
@@ -754,9 +754,9 @@ features:
   attributes:
   - key: locus_tag
     value: phiX174p10
-  - key: db_xref
-    value: GeneID:2546401
-- feature_id: insdc:NC_001422.1:feature-27
+  dbxref:
+  - NCBIGene:2546401
+- feature_id: NC_001422.1_feature-27
   seqid: refseq:NC_001422.1
   type: CDS
   coordinate_system: contig
@@ -784,13 +784,13 @@ features:
     value: major spike protein
   - key: protein_id
     value: NP_040712.1
-  - key: db_xref
-    value: GeneID:2546401
   - key: translation
     value: MFQTFISRHNSNFFSDKLVLTSVTPASSAPVLQTPKATSSTLYFDSLTVNAGNGGFLHCIQMDTSVNAANQVVSVGADIAFDADPKFFACLVRFESSSVPTTLPTAYDVYPLNGRHDGGYYTVKDCVTIDVLPRTPGNNVYVGFMVWSNFTATKCRGLVSLNQVIKEIICLQPLK
   product: major spike protein
   translated_sequence: MFQTFISRHNSNFFSDKLVLTSVTPASSAPVLQTPKATSSTLYFDSLTVNAGNGGFLHCIQMDTSVNAANQVVSVGADIAFDADPKFFACLVRFESSSVPTTLPTAYDVYPLNGRHDGGYYTVKDCVTIDVLPRTPGNNVYVGFMVWSNFTATKCRGLVSLNQVIKEIICLQPLK
-- feature_id: insdc:NC_001422.1:feature-28
+  dbxref:
+  - NCBIGene:2546401
+- feature_id: NC_001422.1_feature-28
   seqid: refseq:NC_001422.1
   type: gene
   coordinate_system: contig
@@ -810,9 +810,9 @@ features:
   attributes:
   - key: locus_tag
     value: phiX174p11
-  - key: db_xref
-    value: GeneID:2546407
-- feature_id: insdc:NC_001422.1:feature-29
+  dbxref:
+  - NCBIGene:2546407
+- feature_id: NC_001422.1_feature-29
   seqid: refseq:NC_001422.1
   type: CDS
   coordinate_system: contig
@@ -844,13 +844,13 @@ features:
     value: pilot protein for DNA ejection
   - key: protein_id
     value: NP_040713.1
-  - key: db_xref
-    value: GeneID:2546407
   - key: translation
     value: MFGAIAGGIASALAGGAMSKLFGGGQKAASGGIQGDVLATDNNTVGMGDAGIKSAIQGSNVPNPDEAAPSFVSGAMAKAGKGLLEGTLQAGTSAVSDKLLDLVGLGGKSAADKGKDTRDYLAAAFPELNAWERAGADASSAGMVDAGFENQKELTKMQLDNQKEIAEMQNETQKEIAGIQSATSRQNTKDQVYAQNEMLAYQQKESTARVASIMENTNLSKQQQVSEIMRQMLTQAQTAGQYFTNDQIKEMTRKVSAEVDLVHQQTQNQRYGSSHIGATAKDISNVVTDAASGVVDIFHGIDKAVADTWNNFWKDGKADGIGSNLSRK
   product: pilot protein for DNA ejection
   translated_sequence: MFGAIAGGIASALAGGAMSKLFGGGQKAASGGIQGDVLATDNNTVGMGDAGIKSAIQGSNVPNPDEAAPSFVSGAMAKAGKGLLEGTLQAGTSAVSDKLLDLVGLGGKSAADKGKDTRDYLAAAFPELNAWERAGADASSAGMVDAGFENQKELTKMQLDNQKEIAEMQNETQKEIAGIQSATSRQNTKDQVYAQNEMLAYQQKESTARVASIMENTNLSKQQQVSEIMRQMLTQAQTAGQYFTNDQIKEMTRKVSAEVDLVHQQTQNQRYGSSHIGATAKDISNVVTDAASGVVDIFHGIDKAVADTWNNFWKDGKADGIGSNLSRK
-- feature_id: insdc:NC_001422.1:feature-30
+  dbxref:
+  - NCBIGene:2546407
+- feature_id: NC_001422.1_feature-30
   seqid: refseq:NC_001422.1
   type: misc_feature
   coordinate_system: contig
@@ -872,7 +872,7 @@ features:
     value: phiX174p06
   - key: note
     value: transcription start site
-- feature_id: insdc:NC_001422.1:feature-31
+- feature_id: NC_001422.1_feature-31
   seqid: refseq:NC_001422.1
   type: rep_origin
   coordinate_system: contig
@@ -894,7 +894,7 @@ features:
     value: phiX174p01
   - key: note
     value: origin of viral strand synthesis
-- feature_id: insdc:NC_001422.1:feature-32
+- feature_id: NC_001422.1_feature-32
   seqid: refseq:NC_001422.1
   type: misc_feature
   coordinate_system: contig

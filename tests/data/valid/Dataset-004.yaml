@@ -27,7 +27,7 @@ features:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_proteins.faa
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_10_c1_63_1091_168_312
   seqid: nmdc:wfmgas-11-19jh9v28.1_scf_10_c1_63_1091
-  type: PF13358
+  type: PFAM:PF13358
   start: 168
   end: 312
   coordinate_system: protein
@@ -54,12 +54,12 @@ features:
   - nmdc:wfmgas-11-19jh9v28.1_scf_10_c1_63_1091
   score_type: bit_score
   target:
-    target_id: PF13358
+    target_id: PFAM:PF13358
     target_start: 2
     target_end: 135
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_10_c1_63_1091_95_154
   seqid: nmdc:wfmgas-11-19jh9v28.1_scf_10_c1_63_1091
-  type: PF13592
+  type: PFAM:PF13592
   start: 95
   end: 154
   coordinate_system: protein
@@ -86,12 +86,12 @@ features:
   - nmdc:wfmgas-11-19jh9v28.1_scf_10_c1_63_1091
   score_type: bit_score
   target:
-    target_id: PF13592
+    target_id: PFAM:PF13592
     target_start: 1
     target_end: 59
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_10_c1_63_1091_17_70
   seqid: nmdc:wfmgas-11-19jh9v28.1_scf_10_c1_63_1091
-  type: PF13518
+  type: PFAM:PF13518
   start: 17
   end: 70
   coordinate_system: protein
@@ -118,6 +118,6 @@ features:
   - nmdc:wfmgas-11-19jh9v28.1_scf_10_c1_63_1091
   score_type: bit_score
   target:
-    target_id: PF13518
+    target_id: PFAM:PF13518
     target_start: 2
     target_end: 51

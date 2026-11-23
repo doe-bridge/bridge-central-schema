@@ -1,0 +1,10 @@
+# lineage_confidence is a fraction, so 1.5 is out of range
+contigs:
+- contig_id: nmdc:wfmgas-11-19jh9v28.1_scf_1_c1
+  member_of:
+  - nmdc:wfmgas-11-19jh9v28.1
+  taxonomic_lineage:
+  - Bacteria
+  - Pseudomonadota
+  lineage_confidence: 1.5
+  lineage_gene_count: 3

@@ -4,7 +4,7 @@
 contig_collections:
 - collection_id: nmdc:wfmgas-11-19jh9v28.1
   collection_type: metagenome
-  generated_by: nmdc:wfmgas-11-19jh9v28.1
+  was_generated_by: nmdc:wfmgas-11-19jh9v28.1
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgas-11-19jh9v28.1/nmdc_wfmgas-11-19jh9v28.1_contigs.fna
 contigs:
@@ -12,23 +12,28 @@ contigs:
   member_of:
   - nmdc:wfmgas-11-19jh9v28.1
   translation_table: 11
-  generated_by: nmdc:wfmgas-11-19jh9v28.1
+  lineage_was_generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgas-11-19jh9v28.1
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgas-11-19jh9v28.1/nmdc_wfmgas-11-19jh9v28.1_contigs.fna
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_scaffold_lineage.tsv
+  - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_gene_phylogeny.tsv
   length_bp: 1754
   taxonomic_lineage:
   - Bacteria
   - Pseudomonadota
   lineage_confidence: 0.667
+  lineage_gene_count: 3
 - contig_id: nmdc:wfmgas-11-19jh9v28.1_scf_2_c1
   member_of:
   - nmdc:wfmgas-11-19jh9v28.1
   translation_table: 11
-  generated_by: nmdc:wfmgas-11-19jh9v28.1
+  lineage_was_generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgas-11-19jh9v28.1
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgas-11-19jh9v28.1/nmdc_wfmgas-11-19jh9v28.1_contigs.fna
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_scaffold_lineage.tsv
+  - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_gene_phylogeny.tsv
   length_bp: 1624
   taxonomic_lineage:
   - Bacteria
@@ -37,16 +42,17 @@ contigs:
   - Terriglobales
   - Acidobacteriaceae
   lineage_confidence: 1.0
+  lineage_gene_count: 2
 - contig_id: nmdc:wfmgas-11-19jh9v28.1_scf_344_c1
   member_of:
   - nmdc:wfmgas-11-19jh9v28.1
-  generated_by: nmdc:wfmgas-11-19jh9v28.1
+  was_generated_by: nmdc:wfmgas-11-19jh9v28.1
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgas-11-19jh9v28.1/nmdc_wfmgas-11-19jh9v28.1_contigs.fna
   length_bp: 369
 features:
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_1_c1_104_853
-  generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgan-11-5xxrm214.2
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_prodigal.gff
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_structural_annotation.gff
@@ -65,7 +71,8 @@ features:
   phase: 0
   is_selected: true
   product: 3-oxoacyl-[acyl-carrier protein] reductase
-  product_source: KO:K00059
+  product_sources:
+  - KEGG.ORTHOLOGY:K00059
   translated_sequence: MKRLDNKVAIVTGASKGIGAGIAKAFGAEGAAVVVNYARDHEGAERVVREITGKGGRAIAVQGDVAQRSDAQRLVAEAKKAFGRLDVLVNNAGVFSFAPFEQFSEQEFHRQFNTNVLGMFLMIEAALPAFGAEGGSIINIGSTTSATAYPALSIYVASKSAVNGLTRVLSKEFGPRKIRVNALNPGGTETEGAHAAGVMGAEAKKQIIASTPLGRVGQPEDIARVAVFLASDDAGWLTGEIIFANGGNK
   attributes:
   - key: translation_table
@@ -77,20 +84,27 @@ features:
       not instantiated as a separate SequenceFeature here since the coordinates are identical, not a competing
       claim
   - key: phylogeny_subject_gene_ids
-    value: 2698062542;2695420919
+    value: img.gene:2698062542
+  - key: phylogeny_subject_gene_ids
+    value: img.gene:2695420919
   - key: phylogeny_percent_identity
     value: '93.98'
-  - key: phylogeny_lineage
-    value: Bacteria;Pseudomonadota;Alphaproteobacteria;Hyphomicrobiales;Nitrobacteraceae;Bradyrhizobium;Bradyrhizobium
-      erythrophlei;Bradyrhizobium erythrophlei GAS401
+  taxonomic_lineage:
+  - Bacteria
+  - Pseudomonadota
+  - Alphaproteobacteria
+  - Hyphomicrobiales
+  - Nitrobacteraceae
+  - Bradyrhizobium
+  - Bradyrhizobium erythrophlei
+  - Bradyrhizobium erythrophlei GAS401
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_1_c1_104_853_ko_ec
-  generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgan-11-5xxrm214.2
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_ko_ec.gff
-  - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_imgap.info
   seqid: nmdc:wfmgas-11-19jh9v28.1_scf_1_c1_104_853
   source: lastal 1456
-  type: KO:K00059__EC:1.1.1.100
+  type: KEGG.ORTHOLOGY:K00059
   start: 1
   end: 249
   coordinate_system: protein
@@ -99,21 +113,21 @@ features:
   - nmdc:wfmgas-11-19jh9v28.1_scf_1_c1_104_853
   attributes:
   - key: subject_gene_ids
-    value: '2698062542'
+    value: img.gene:2698062542
   - key: evalue
     value: '9.2e-163'
   - key: percent_identity
     value: '93.98'
   - key: alignment_length
     value: '249'
+  ontology_term:
+  - EC:1.1.1.100
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_1_c1_104_853_cog
-  generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgan-11-5xxrm214.2
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_cog.gff
-  - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_imgap.info
   seqid: nmdc:wfmgas-11-19jh9v28.1_scf_1_c1_104_853
-  source: HMMER 3.1b2 (February 2015)
-  type: COG1028
+  type: COG:COG1028
   start: 2
   end: 248
   coordinate_system: protein
@@ -133,13 +147,12 @@ features:
   - key: full_sequence_bitscore
     value: '239.4'
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_1_c1_104_853_cath
-  generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgan-11-5xxrm214.2
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_cath_funfam.gff
-  - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_imgap.info
   seqid: nmdc:wfmgas-11-19jh9v28.1_scf_1_c1_104_853
   source: HMMER 3.1b2 (February 2015)
-  type: 3.40.50.720
+  type: CATH:3.40.50.720
   start: 3
   end: 249
   coordinate_system: protein
@@ -159,13 +172,12 @@ features:
   - key: full_sequence_bitscore
     value: '290.5'
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_1_c1_104_853_pfam
-  generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgan-11-5xxrm214.2
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_pfam.gff
-  - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_imgap.info
   seqid: nmdc:wfmgas-11-19jh9v28.1_scf_1_c1_104_853
   source: HMMER 3.1b2 (February 2015)
-  type: PF13561
+  type: PFAM:PF13561
   start: 13
   end: 249
   coordinate_system: protein
@@ -183,13 +195,12 @@ features:
   - key: e-value
     value: '8.3e-67'
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_1_c1_104_853_supfam
-  generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgan-11-5xxrm214.2
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_supfam.gff
-  - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_imgap.info
   seqid: nmdc:wfmgas-11-19jh9v28.1_scf_1_c1_104_853
   source: HMMER 3.1b2 (February 2015)
-  type: '51735'
+  type: SUPFAM:51735
   start: 5
   end: 248
   coordinate_system: protein
@@ -209,7 +220,7 @@ features:
   - key: full_sequence_bitscore
     value: '280.6'
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_2_c1_3_866
-  generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgan-11-5xxrm214.2
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_prodigal.gff
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_structural_annotation.gff
@@ -227,7 +238,8 @@ features:
   phase: 0
   is_selected: true
   product: RNA-directed DNA polymerase
-  product_source: KO:K00986
+  product_sources:
+  - KEGG.ORTHOLOGY:K00986
   translated_sequence: MHENRETSEAPAAKHCGRTAGEGSSRTARMYIFEESDSGIIPMNHSNKDGKPYAESEEGRPLIKENTHQPSTYPTQSEKRVSQGLAGVRKAAKDNKEMKFTALLHHLTIDLLRDSFYALKRKAAPGVDGVTWQEYETGLQDRLVDLHSRVHRGAYRAKPSRRVYIEKEDGRQRPLGVAALEDKVVQQAVVTILNQIYEEDFLGFSYGFRPGRSQHQALDALSYALLRKKVNYVLDADIRGFFDNLDKSWLIKFVEHRVADPRILRLIQKWLNAGVMEEGKWSEMKTGT
   attributes:
   - key: translation_table
@@ -235,14 +247,20 @@ features:
   - key: partial
     value: 3'
   - key: phylogeny_subject_gene_ids
-    value: '2841323647'
+    value: img.gene:2841323647
   - key: phylogeny_percent_identity
     value: '79.86'
-  - key: phylogeny_lineage
-    value: Bacteria;Acidobacteriota;Terriglobia;Terriglobales;Acidobacteriaceae;Acidisarcina;Acidisarcina
-      polymorpha;Acidisarcina polymorpha SBC82
+  taxonomic_lineage:
+  - Bacteria
+  - Acidobacteriota
+  - Terriglobia
+  - Terriglobales
+  - Acidobacteriaceae
+  - Acidisarcina
+  - Acidisarcina polymorpha
+  - Acidisarcina polymorpha SBC82
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_2_c1_3_740
-  generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgan-11-5xxrm214.2
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_genemark.gff
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_structural_annotation.gff
@@ -262,13 +280,12 @@ features:
   - key: partial
     value: 3'
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_2_c1_3_866_ko_ec
-  generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgan-11-5xxrm214.2
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_ko_ec.gff
-  - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_imgap.info
   seqid: nmdc:wfmgas-11-19jh9v28.1_scf_2_c1_3_866
   source: lastal 1456
-  type: KO:K00986__EC:2.7.7.49
+  type: KEGG.ORTHOLOGY:K00986
   start: 1
   end: 288
   coordinate_system: protein
@@ -277,15 +294,21 @@ features:
   - nmdc:wfmgas-11-19jh9v28.1_scf_2_c1_3_866
   attributes:
   - key: subject_gene_ids
-    value: 2841323647;2841327450;2841327638
+    value: img.gene:2841323647
+  - key: subject_gene_ids
+    value: img.gene:2841327450
+  - key: subject_gene_ids
+    value: img.gene:2841327638
   - key: evalue
     value: '2.7e-166'
   - key: percent_identity
     value: '79.86'
   - key: alignment_length
     value: '288'
+  ontology_term:
+  - EC:2.7.7.49
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_1_c1_3_65
-  generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgan-11-5xxrm214.2
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_prodigal.gff
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_structural_annotation.gff
@@ -307,7 +330,7 @@ features:
   - key: partial
     value: 3'
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_2_c1_887_1104
-  generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgan-11-5xxrm214.2
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_rfam.gff
   seqid: nmdc:wfmgas-11-19jh9v28.1_scf_2_c1
@@ -321,14 +344,14 @@ features:
   attributes:
   - key: e-value
     value: '2.1e-53'
-  - key: model
-    value: RF02005
   - key: accession
     value: group-II-D1D4-6
   - key: note
     value: Group II catalytic intron D1-D4-6
+  dbxref:
+  - rfam:RF02005
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_344_c1_76_183
-  generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgan-11-5xxrm214.2
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_crt.gff
   seqid: nmdc:wfmgas-11-19jh9v28.1_scf_344_c1
@@ -350,7 +373,7 @@ features:
   - key: median_spacer_length
     value: '22'
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_344_c1_76_183_DR1
-  generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgan-11-5xxrm214.2
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_crt.gff
   seqid: nmdc:wfmgas-11-19jh9v28.1_scf_344_c1
@@ -363,7 +386,7 @@ features:
   parent:
   - nmdc:wfmgas-11-19jh9v28.1_scf_344_c1_76_183
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_344_c1_76_183_DR2
-  generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgan-11-5xxrm214.2
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_crt.gff
   seqid: nmdc:wfmgas-11-19jh9v28.1_scf_344_c1
@@ -376,7 +399,7 @@ features:
   parent:
   - nmdc:wfmgas-11-19jh9v28.1_scf_344_c1_76_183
 - feature_id: nmdc:wfmgas-11-19jh9v28.1_scf_344_c1_76_183_DR3
-  generated_by: nmdc:wfmgan-11-5xxrm214.2
+  was_generated_by: nmdc:wfmgan-11-5xxrm214.2
   source_files:
   - https://data.microbiomedata.org/data/nmdc:omprc-11-2t8ft192/nmdc:wfmgan-11-5xxrm214.2/nmdc_wfmgan-11-5xxrm214.2_crt.gff
   seqid: nmdc:wfmgas-11-19jh9v28.1_scf_344_c1

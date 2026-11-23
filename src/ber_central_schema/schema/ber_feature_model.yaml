@@ -26,10 +26,25 @@ prefixes:
   kb_cdm: http://kbase.github.io/cdm-schema/linkml/
   MIXS: https://w3id.org/mixs/
   edam: http://edamontology.org/
-  # Data id prefixes, with Bioregistry's spelling and expansion; nmdc matches nmdc-schema.
-  refseq: https://www.ncbi.nlm.nih.gov/protein/
+  # Data id prefixes. Where nmdc-schema declares a prefix, this module uses nmdc-schema's spelling
+  # and expansion, so CURIEs join with NMDC data (nmdc, NCBITaxon, PFAM, COG, KEGG.ORTHOLOGY, EC, CATH, SUPFAM, prov).
+  # Otherwise it uses Bioregistry's preferred prefix and expansion (https://bioregistry.io).
+  # refseq expands to NCBI's nucleotide pages, not Bioregistry's protein pages: NC_ accessions are
+  # nucleotide records (NCBI E-utilities, 2026-11-18: NC_001422.1 is in nuccore, not protein).
+  refseq: https://www.ncbi.nlm.nih.gov/nuccore/
   insdc: https://www.ebi.ac.uk/ena/data/view/
   nmdc: https://w3id.org/nmdc/
+  NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
+  NCBIGene: https://www.ncbi.nlm.nih.gov/gene/
+  PFAM: "https://bioregistry.io/pfam:"
+  COG: "https://bioregistry.io/cog:"
+  KEGG.ORTHOLOGY: "https://bioregistry.io/kegg.orthology:"
+  EC: "https://bioregistry.io/eccode:"
+  rfam: https://rfam.org/family/
+  CATH: "https://bioregistry.io/cath:"
+  SUPFAM: "https://bioregistry.io/supfam:"
+  img.gene: http://img.jgi.doe.gov/cgi-bin/w/main.cgi?section=GeneDetail&gene_oid=
+  prov: http://www.w3.org/ns/prov#
   biolink: https://w3id.org/biolink/vocab/
   # The IRI Biolink itself uses for GFF3 columns and tags (biolink-model 4.4.4).
   gff3: https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md#
@@ -65,7 +80,9 @@ classes:
       - translation_table
       - taxonomic_lineage
       - lineage_confidence
-      - generated_by
+      - lineage_gene_count
+      - lineage_was_generated_by
+      - was_generated_by
       - source_files
 
   ContigCollection:
@@ -88,7 +105,7 @@ classes:
       - collection_type
       - display_name
       - taxonomic_lineage
-      - generated_by
+      - was_generated_by
       - source_files
     slot_usage:
       collection_id:
@@ -122,12 +139,13 @@ classes:
       - phase
       - parent
       - attributes
-      - generated_by
+      - was_generated_by
       - source_files
       - is_selected
       - is_representative
       - product
-      - product_source
+      - product_sources
+      - taxonomic_lineage
       - display_name
       - note
       - dbxref
@@ -223,7 +241,7 @@ slots:
     slot_uri: bridge_central_schema:target_id
     title: Target ID
     required: true
-    description: What the hit aligned to, as the source names it, such as a Pfam accession or a reference gene ID.
+    description: What the hit aligned to, such as a Pfam accession or a reference gene ID, as a CURIE where the source gives an accession (PFAM:PF13358).
   target_start:
     slot_uri: bridge_central_schema:target_start
     title: Target start
@@ -319,7 +337,7 @@ slots:
     notes:
       - Multivalued because one metagenome contig belongs to its assembly and can also be binned
         into a MAG. Membership in a bin is a statement by the binning workflow, so the bin's
-        own generated_by names that workflow rather than the assembly.
+        own was_generated_by names that workflow rather than the assembly.
   collection_id:
     slot_uri: bridge_central_schema:collection_id
     title: Collection ID
@@ -386,6 +404,13 @@ slots:
     list_elements_ordered: true
     description: Ranked lineage path, domain to strain, one string per rank.
     notes:
+      - Used the same way on a ContigCollection, a Contig and a SequenceFeature (a gene's lineage
+        from the gene phylogeny file), never as a delimited string.
+      - Taxon names, one per rank, not taxon ids, because that is what the sources give. The names follow the
+        same taxonomy authority decision as BiologicalContext.taxon
+        (https://github.com/doe-bridge/bridge-central-schema/pull/51) and
+        BiologicalClassification.taxon_id
+        (https://github.com/doe-bridge/bridge-central-schema/pull/52).
       - Left as a list rather than named rank slots (domain, phylum, class, ...), because
         forcing a fixed depth breaks on any lineage reported at a different resolution.
         Confirmed 2026-09-18 on one real run, per-contig lineage (Scaffold Lineage tsv) and
@@ -394,11 +419,31 @@ slots:
   lineage_confidence:
     slot_uri: bridge_central_schema:lineage_confidence
     title: Lineage confidence
-    range: float
-    description: Confidence value reported alongside the lineage call.
-    notes:
-      - Meaning unverified against any pipeline's own documentation; treat the name as
-        descriptive, not confirmed.
+    range: double
+    minimum_value: 0
+    maximum_value: 1
+    description: Fraction of the contig's genes with a taxonomic hit whose lineage agrees with taxonomic_lineage.
+    comments:
+      - Third column of the scaffold lineage file (prefix_scaffold_lineage.tsv) from the NMDC metagenome annotation workflow, written by create_scaffold_lineage.py from the gene phylogeny file (https://github.com/microbiomedata/mg_annotation/blob/1bfcf898975cd2aa90906a54637d1380471c47c1/functional-annotation.wdl#L195).
+      - The script is part of JGI's IMG Annotation Pipeline (https://code.jgi.doe.gov/img/img-pipelines/img-annotation-pipeline/-/blob/5.3.0/bin/functional_annotation/create_scaffold_lineage.py, version 5.3.0, the version NMDC's workflow image installs).
+      - In NMDC files the value is per scaffold. Nearly every scaffold in NMDC metagenome assemblies is a single contig.
+      - taxonomic_lineage is the most specific rank at which at least 51% of those genes agree, or at least 3 genes when the contig has 4 to 9.
+      - Read it with lineage_gene_count. A short contig often has one gene with a hit, and then the value is 1.0.
+  lineage_was_generated_by:
+    slot_uri: bridge_central_schema:lineage_was_generated_by
+    is_a: was_generated_by
+    title: Lineage was generated by
+    description: The workflow execution that computed this contig's taxonomic_lineage, lineage_confidence and lineage_gene_count.
+    comments:
+      - Usually an annotation workflow execution, not the assembly that was_generated_by names. Its workflow version fixes the reference database release, e.g. IMG-NR 20240916 for NMDC mg_annotation v1.2.0 (https://github.com/microbiomedata/mg_annotation/blob/v1.2.0/functional-annotation.wdl#L9).
+  lineage_gene_count:
+    slot_uri: bridge_central_schema:lineage_gene_count
+    title: Lineage gene count
+    range: integer
+    minimum_value: 1
+    description: Number of the contig's genes with a taxonomic hit that lineage_confidence is computed from.
+    comments:
+      - The contig's rows in the gene phylogeny file (prefix_gene_phylogeny.tsv). The scaffold lineage file does not include it.
 
   feature_id:
     slot_uri: bridge_central_schema:feature_id
@@ -453,8 +498,8 @@ slots:
         TIGRFAM, COG). A blank value is expected, not an error.
       - Confirmed 2026-09-18 on a real run, a workflow's own Annotation Info File sidecar
         names the exact database versions (e.g. "TIGRFAM v15.0", "SMART 01_06_2016") even
-        where the individual GFF's own source column is empty; use `generated_by` plus that
-        sidecar for full provenance when this is blank.
+        where the individual GFF's own source column is empty. Those versions belong with the
+        workflow execution that was_generated_by names, not in each feature's source_files.
   type:
     slot_uri: bridge_central_schema:type
     exact_mappings:
@@ -465,13 +510,18 @@ slots:
       - Range left as a plain string rather than SO-constrained. Measured 2026-09-11, 7 of 14
         real NMDC GFF file types put a bare database accession here instead (Pfam, COG,
         TIGRFAM, SMART, and others); an SO-constrained range would reject real production
-        data. Unresolved from the 2026-09-11 kickoff, whether CURIEs should be required going
-        forward even though today's data does not comply.
+        data.
+      - Where the source gives a database accession, the value is written as a CURIE
+        (PFAM:PF13358, COG:COG1028), not the bare accession the GFF file has. One value only, as
+        in GFF3 column 3. A source that packs two accessions into this column
+        (KO:K00059__EC:1.1.1.100 in NMDC's ko_ec GFF) keeps the KO here and puts the EC number in
+        ontology_term.
       - Confirmed 2026-09-18, the inconsistency runs both directions. A real RFAM/INFERNAL
         ncRNA hit used the generic term "misc_feature" here and put its actual identity (an
         Rfam covariance model accession) in a lowercase `model`/`accession` attribute pair
         instead, an accession where an SO term is expected in one case, a generic placeholder
-        where an accession would be more specific in another.
+        where an accession would be more specific in another. The Rfam accession goes in dbxref
+        as a CURIE (rfam:RF02005).
   method:
     slot_uri: bridge_central_schema:method
     title: Method
@@ -597,9 +647,11 @@ slots:
     description: Additional source annotations, metadata, and evidence, including GFF tags not given their own slots.
     notes:
       - See the Attribute class description for why this stays generic rather than typed.
-  generated_by:
-    slot_uri: bridge_central_schema:generated_by
-    title: Generated by
+  was_generated_by:
+    slot_uri: prov:wasGeneratedBy
+    exact_mappings:
+      - nmdc:was_generated_by
+    title: Was generated by
     description: The workflow execution (or tool run) that produced this ContigCollection, Contig or SequenceFeature.
     notes:
       - Confirmed 2026-09-18 against a real biosample's full sequencing, a Contig and the
@@ -615,8 +667,8 @@ slots:
     multivalued: true
     description: Source artifact URLs supporting this record, including any annotation sidecars used.
     notes:
-      - A sidecar may come from a different workflow than generated_by, for example annotation
-        lineage on an assembled Contig. Preserve each artifact's workflow in its URL or manifest.
+      - A source file may come from a different workflow than was_generated_by, for example the
+        annotation lineage files on an assembled Contig, whose run lineage_was_generated_by names.
   is_selected:
     slot_uri: bridge_central_schema:is_selected
     title: Is selected
@@ -648,11 +700,17 @@ slots:
     description: Human-readable functional product name for a gene, e.g. "transposase".
     notes:
       - Populated once, on the gene-level feature; not repeated per functional-evidence hit.
-  product_source:
-    slot_uri: bridge_central_schema:product_source
-    title: Product source
-    description: What justified the product call, e.g. a COG accession or "Hypo-rule applied".
+  product_sources:
+    slot_uri: bridge_central_schema:product_sources
+    title: Product sources
+    multivalued: true
+    range: uriorcurie
+    description: The accessions that justified the product call, as CURIEs, e.g. COG:COG3415.
     notes:
+      - Sources pack several accessions into one text value (COG3415/COG3335). Converters split
+        them into one CURIE per value.
+      - IMG also writes rule names such as "Hypo-rule applied" in this column. Those are not
+        accessions and have no slot yet.
       - Measured 2026-09-18, identical byte for byte to the parallel Product Names sidecar
         file for every protein-coding gene checked so far. Use this slot or that file, never
         both, so the same product assignment is never recorded twice under two different
