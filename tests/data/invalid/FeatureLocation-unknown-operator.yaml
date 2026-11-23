@@ -1,13 +1,13 @@
 # A joined phiX174 location from Dataset-003 with location_operator 'union', not a LocationOperatorEnum value.
 location_operator: union
 parts:
-- seqid: refseq:NC_001422.1
+- seqid: nucleotide:NC_001422.1
   start: 3981
   end: 5386
   start_status: exact
   end_status: exact
   strand: +
-- seqid: refseq:NC_001422.1
+- seqid: nucleotide:NC_001422.1
   start: 1
   end: 136
   start_status: exact

@@ -1,7 +1,7 @@
 # A SequenceFeature with an undeclared slot; the feature model's classes are closed.
 features:
   - feature_id: cds-1
-    seqid: refseq:NC_000913.3
+    seqid: nucleotide:NC_000913.3
     type: CDS
     start: 1
     end: 30
