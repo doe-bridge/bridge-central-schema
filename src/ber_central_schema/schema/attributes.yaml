@@ -23,7 +23,7 @@ classes:
     description: One named value attached to a record by a consuming model.
     notes:
       - GFF column 9 is a minimal use case, alongside tabular annotations and metadata.
-        This module has no dependency on GFF, Feature, Contig, or a genomic coordinate system.
+        This module has no dependency on GFF, SequenceFeature, Contig, or a genomic coordinate system.
       - A key is not an identifier; repeated keys can remain separate entries in an ordered list.
         Consuming models choose attachment and cardinality. Keys are source names, not a controlled vocabulary.
       - Each value of a multivalued source attribute is its own Attribute entry, with the same key,
