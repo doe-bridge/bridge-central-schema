@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -399,10 +399,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#cardinality-and-requirements" class="md-nav__link">
+  <a href="#slot-characteristics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cardinality and Requirements
+        Slot Characteristics
       
     </span>
   </a>
@@ -529,9 +529,12 @@
 <td>Slot URI</td>
 <td><a href="https://w3id.org/ber-data/bridge-central-schema/value">bridge_central_schema:value</a></td>
 </tr>
+<tr>
+<td>### Cardinality and Requirements</td>
+<td></td>
+</tr>
 </tbody>
 </table>
-<h3 id="cardinality-and-requirements">Cardinality and Requirements</h3>
 <table>
 <thead>
 <tr>
@@ -544,12 +547,9 @@
 <td>Required</td>
 <td>Yes</td>
 </tr>
-<tr>
-<td>### Slot Characteristics</td>
-<td></td>
-</tr>
 </tbody>
 </table>
+<h3 id="slot-characteristics">Slot Characteristics</h3>
 <table>
 <thead>
 <tr>
@@ -591,8 +591,8 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">source</span><span class="se">&#39;&#39;</span><span class="s">s</span><span class="nv"> </span><span class="s">text</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">value,</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">string:</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">typed</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">normalized,</span>
-<span class="w">  </span><span class="s">with</span><span class="nv"> </span><span class="s">any</span><span class="nv"> </span><span class="s">escaping</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">source</span><span class="nv"> </span><span class="s">format</span><span class="nv"> </span><span class="s">defines</span><span class="nv"> </span><span class="s">decoded</span><span class="nv"> </span><span class="s">(a</span><span class="nv"> </span><span class="s">GFF3</span><span class="nv"> </span><span class="s">%2C</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">stored</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">comma).&#39;</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">source</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">text</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">value,</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">string:</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">typed</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">normalized,</span>
+<span class="w">  </span><span class="s">with</span><span class="nv"> </span><span class="s">any</span><span class="nv"> </span><span class="s">escaping</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">source</span><span class="nv"> </span><span class="s">format</span><span class="nv"> </span><span class="s">defines</span><span class="nv"> </span><span class="s">decoded</span><span class="nv"> </span><span class="s">(a</span><span class="nv"> </span><span class="s">GFF3</span><span class="nv"> </span><span class="s">%2C</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">stored</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">comma).'</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Value</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/ber-data/bridge-central-schema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
@@ -670,10 +670,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "header.autohide", "navigation.expand", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "header.autohide", "navigation.expand", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="../../assets/pymdownx-extras/extra-loader-B5CKpNQx.js"></script>
       

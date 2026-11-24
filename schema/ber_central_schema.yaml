@@ -934,7 +934,7 @@ classes:
     definition_uri: https://w3id.org/ber-data/bridge-central-schema/NamedThing
     description: Generic base for any identifiable BRIDGE entity.
     from_schema: https://w3id.org/ber-data/bridge-central-schema
-    mappings:
+    exact_mappings:
     - schema:Thing
     slots:
     - id
@@ -1059,7 +1059,7 @@ classes:
       with a typed value), which this pair can be projected onto later. key and value
       keep the source's text.
     from_schema: https://w3id.org/ber-data/bridge-central-schema/attributes
-    mappings:
+    exact_mappings:
     - bridge_central_schema:Attribute
     slots:
     - attribute__key
@@ -1106,9 +1106,8 @@ classes:
         slot_uri: bridge_central_schema:numeric_value
         range: double
     class_uri: bridge_central_schema:Attribute
-metamodel_version: 1.11.0
+metamodel_version: 1.12.0
 source_file: ber_central_schema.yaml
-source_file_date: '2026-11-18T17:47:30'
+source_file_date: '2026-11-24T21:50:53'
 source_file_size: 1215
-generation_date: '2026-11-18T17:47:41'
 
