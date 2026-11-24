@@ -101,7 +101,7 @@ Nothing is chosen yet; this is https://github.com/doe-bridge/bridge-central-sche
 1. Match nmdc-schema wherever it declares a prefix: `gold` and `emsl.project` expand to `https://bioregistry.io/gold:` and `https://bioregistry.io/emsl.project:` (https://github.com/microbiomedata/nmdc-schema/blob/270aefeda91443c6cbb6e8bfd340f6ec09e74b8c/src/schema/external_identifiers.yaml#L16). Benefit: a GOLD study in an NMDC record and in a BRIDGE record is the same IRI, so RDF and full-IRI joins match. Costs: two rules instead of one, and the IRIs go through a third-party resolver rather than the source's own.
 2. Bioregistry's `uri_format` for every source prefix. Benefit: one rule, and each IRI is the source's own resolver. Cost: GOLD and EMSL project IRIs differ from nmdc-schema's.
 
-I chose option 2 with every difference recorded in the edge-case table, and asked JGI on https://github.com/doe-bridge/bridge-central-schema/issues/15#issuecomment-6690980599 which expansion they want for `gold:`; `gold` keeps the nmdc-schema value until then.
+I chose option 1, which is rule 6, so that BRIDGE and NMDC ids are the same string and the same IRI. Every other difference from Bioregistry is recorded in the edge-case table. I also asked JGI on https://github.com/doe-bridge/bridge-central-schema/issues/15#issuecomment-6690980599 which expansion they want for `gold:`. `gold` keeps the nmdc-schema value.
 
 ### Asserted element URIs or default_prefix
 
