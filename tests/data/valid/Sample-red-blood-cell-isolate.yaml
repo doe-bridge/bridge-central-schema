@@ -1,0 +1,9 @@
+id: example:sample-rbc-001
+name: Red blood cell isolate from blood draw 1
+description: >-
+  Red blood cells separated from a blood sample by centrifugation. Not
+  representative of the blood, but representative of the person's red
+  blood cells.
+derived_from:
+  - example:sample-blood-001
+sample_of: example:person-001-red-blood-cells

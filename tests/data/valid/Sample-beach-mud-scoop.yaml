@@ -1,0 +1,4 @@
+id: example:sample-beach-mud-001
+name: Beach mud scoop 1
+description: One scoop of mud from the intertidal zone of a beach.
+sample_of: example:beach-001

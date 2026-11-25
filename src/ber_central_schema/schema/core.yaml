@@ -1,0 +1,149 @@
+---
+id: https://w3id.org/ber-data/bridge-central-schema/core
+name: core
+title: BRIDGE Central Schema core classes
+description: >-
+  Root classes and mixins that the BRIDGE domain modules build on: Thing,
+  NamedThing, Identified and Measurable, and the id, name and description
+  slots.
+license: Apache-2.0
+comments:
+  - >-
+    The schema is authored in LinkML and converted to SQL DDL for a Trino
+    lakehouse, so the root class is defined by what gets a row of its own in
+    a relational table, following the entity and relationship split of
+    entity-relationship modeling (Chen 1976).
+  - >-
+    Biolink Model has the same layering: an abstract root (biolink:Entity),
+    a child for database entities (biolink:NamedThing) and a sibling for
+    typed associations (biolink:Association). Thing differs from
+    biolink:Entity in leaving joining tables out.
+  - >-
+    As of linkml 1.11.1, gen-sqlddl creates a table for every abstract class
+    and mixin, and a slot whose range is an abstract class or a mixin gets a
+    foreign key to that empty table. Abstract classes and mixins here are
+    therefore not used as slot ranges. See
+    https://github.com/linkml/linkml/issues/4166 and
+    https://github.com/linkml/linkml/issues/1902.
+see_also:
+  - https://doi.org/10.1145/320434.320440
+  - https://biolink.github.io/biolink-model/
+  - https://github.com/linkml/linkml/issues/4166
+
+prefixes:
+  bridge_central_schema: https://w3id.org/ber-data/bridge-central-schema/
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  biolink: https://w3id.org/biolink/vocab/
+  sosa: http://www.w3.org/ns/sosa/
+  BFO: http://purl.obolibrary.org/obo/BFO_
+  dcterms: http://purl.org/dc/terms/
+default_prefix: bridge_central_schema
+default_range: string
+
+imports:
+  - linkml:types
+
+classes:
+
+  Thing:
+    abstract: true
+    description: >-
+      Anything about which the schema records facts in one whole row of its
+      own table, in a schema normalized to third normal form, other than a
+      table that only joins rows of other tables.
+    comments:
+      - >-
+        The root class. It has no slots of its own, so a class that is a
+        Thing does not have to have an identifier. Measurement is a Thing
+        but not Identified, because most measurements have no identifier of
+        their own.
+      - >-
+        A table that only joins other tables is one whose primary key is
+        made only of foreign keys to other tables. Entity-relationship
+        modeling calls these relationship tables or associative entities.
+      - >-
+        The definition says which things the schema keeps rows for. It does
+        not claim that the thing is a row.
+    aliases:
+      - entity
+      - entity type
+      - record subject
+    related_mappings:
+      - biolink:Entity
+      - schema:Thing
+      - BFO:0000001
+    see_also:
+      - https://doi.org/10.1145/320434.320440
+
+  Identified:
+    mixin: true
+    description: >-
+      A mixin for classes whose instances each have a required, unique
+      identifier.
+    slots:
+      - id
+    aliases:
+      - identifiable
+      - has identifier
+
+  NamedThing:
+    is_a: Thing
+    abstract: true
+    mixins:
+      - Identified
+    description: >-
+      A thing that has its own required, unique identifier.
+    comments:
+      - >-
+        NamedThing has no slots of its own. It takes id from the Identified
+        mixin.
+      - >-
+        Before this change NamedThing was the only class and had class_uri
+        schema:Thing. schema:Thing is now a related mapping on Thing.
+    aliases:
+      - identified thing
+      - named entity
+    close_mappings:
+      - biolink:NamedThing
+
+  Measurable:
+    mixin: true
+    description: >-
+      A mixin for classes whose instances can be the thing whose property a
+      measurement reports.
+    comments:
+      - >-
+        Measurable has no slots. It marks which classes can be the
+        feature_of_interest of a Measurement.
+      - >-
+        Measurement.feature_of_interest keeps range uriorcurie rather than
+        Measurable, because gen-sqlddl would turn a Measurable range into an
+        integer foreign key to an empty Measurable table.
+    aliases:
+      - feature of interest
+      - measured thing
+      - observable thing
+    close_mappings:
+      - sosa:FeatureOfInterest
+
+slots:
+  id:
+    identifier: true
+    slot_uri: schema:identifier
+    range: uriorcurie
+    description: A unique identifier for a thing.
+    aliases:
+      - identifier
+      - primary key
+    close_mappings:
+      - dcterms:identifier
+  name:
+    slot_uri: schema:name
+    description: A human-readable name for a thing.
+    aliases:
+      - label
+      - title
+  description:
+    slot_uri: schema:description
+    description: A human-readable description of a thing.

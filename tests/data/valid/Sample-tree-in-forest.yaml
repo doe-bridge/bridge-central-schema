@@ -1,0 +1,4 @@
+id: example:sample-tree-017
+name: Tree 17
+description: One tree selected from a monoculture forest stand to represent the stand.
+sample_of: example:forest-stand-003

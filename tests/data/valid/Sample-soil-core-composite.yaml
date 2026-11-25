@@ -1,0 +1,7 @@
+id: example:sample-soil-composite-001
+name: Composite of soil cores 1 to 3
+derived_from:
+  - example:sample-soil-core-001
+  - example:sample-soil-core-002
+  - example:sample-soil-core-003
+sample_of: example:plot-001

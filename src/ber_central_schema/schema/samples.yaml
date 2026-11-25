@@ -1,0 +1,137 @@
+---
+id: https://w3id.org/ber-data/bridge-central-schema/samples
+name: samples
+title: BRIDGE Samples Module
+description: >-
+  The Sample class and the two links every sample can carry: what it was
+  derived from, and what larger thing it represents.
+license: Apache-2.0
+comments:
+  - >-
+    Drafted at the 2026-11-11 Samples, Projects and Processes squad
+    hackathon. The definition leaves out any requirement that a sample be
+    material, as SOSA and ISO 19156 do.
+  - >-
+    Being representative is relative to a stated target. A sample records
+    where it came from (derived_from) separately from what it represents
+    (sample_of). A red blood cell isolate is derived from a blood sample and
+    represents the red blood cells of the person, not that person's blood.
+    A silt fraction is derived from a scoop of beach mud and represents the
+    silt of the beach. Whether the group adopts this stance is still open.
+  - >-
+    ODM2 records the same split: specimens are one type of sampling feature,
+    collection and fractionation are typed actions, and isDerivedFrom links
+    a specimen to its parent.
+  - >-
+    In statistics the sample is the whole set of selected units, and one
+    tree is a sampling unit. Here, one tree, one leaf or one scoop of mud is
+    a Sample.
+see_also:
+  - https://www.w3.org/TR/vocab-ssn/
+  - https://www.iso.org/standard/82463.html
+  - https://www.odm2.org/
+  - http://vocabulary.odm2.org/samplingfeaturetype/
+  - https://github.com/isamplesorg/metadata
+  - https://github.com/ess-dive-community/essdive-sample-id-metadata
+  - https://github.com/gbif/dwc-dp
+  - https://www.w3.org/TR/prov-o/
+
+prefixes:
+  bridge_central_schema: https://w3id.org/ber-data/bridge-central-schema/
+  linkml: https://w3id.org/linkml/
+  sosa: http://www.w3.org/ns/sosa/
+  prov: http://www.w3.org/ns/prov#
+  dwc: http://rs.tdwg.org/dwc/terms/
+  OBI: http://purl.obolibrary.org/obo/OBI_
+  RO: http://purl.obolibrary.org/obo/RO_
+  odm2sft: http://vocabulary.odm2.org/samplingfeaturetype/
+  odm2rel: http://vocabulary.odm2.org/relationshiptype/
+default_prefix: bridge_central_schema
+default_range: string
+
+imports:
+  - linkml:types
+  - core
+
+classes:
+
+  Sample:
+    is_a: NamedThing
+    mixins:
+      - Measurable
+    description: >-
+      A thing that is a part or member of a larger thing and that was
+      selected or collected so that what is learned from it can be
+      generalized to that larger thing.
+    comments:
+      - >-
+        A part can be a portion of one continuous thing, such as a leaf from
+        a tree or a scoop of mud from a beach. A member can be one
+        individual from a collection, such as a tree in a forest or a
+        bacterium in a colony.
+      - >-
+        A sample does not have to be material. A transect laid across a plot
+        can be a sample of the plot, as a soil core can.
+      - >-
+        Something taken from a sample that represents nothing, such as a
+        discarded supernatant or a colony picked because it looked unusual,
+        is an output of processing and not a Sample.
+    aliases:
+      - specimen
+      - subsample
+      - aliquot
+      - material sample
+      - sampling unit
+      - portion
+      - fraction
+    slots:
+      - name
+      - description
+      - derived_from
+      - sample_of
+    close_mappings:
+      - sosa:Sample
+    narrow_mappings:
+      - OBI:0000747
+      - OBI:0100051
+      - dwc:MaterialSample
+      - odm2sft:specimen
+
+slots:
+  derived_from:
+    description: >-
+      The samples this sample was taken or made from, such as the scoop of
+      mud a silt fraction was separated from, or the cores pooled into a
+      composite.
+    range: Sample
+    multivalued: true
+    aliases:
+      - subsample of
+      - child of
+      - parent sample
+    close_mappings:
+      - prov:wasDerivedFrom
+      - RO:0001000
+      - odm2rel:isDerivedFrom
+  sample_of:
+    description: >-
+      The larger thing this sample is intended to represent, such as a
+      beach, the silt of a beach, a forest, or the red blood cells of a
+      person.
+    range: uriorcurie
+    recommended: true
+    comments:
+      - >-
+        Range is uriorcurie rather than a class because the represented
+        thing can be of any type, and a polymorphic range would give the
+        SQL DDL a foreign key to an empty table.
+      - >-
+        Recommended rather than required because, as the SOSA definition
+        notes, the identity and even the type of the sampled thing may not
+        be known when observations are made.
+    aliases:
+      - sampled feature
+      - is sample of
+      - represents
+    exact_mappings:
+      - sosa:isSampleOf
