@@ -1,0 +1,1025 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://sierra-moxon.github.io/ber-central-schema/identifiers/">
+      
+      
+        <link rel="prev" href="../elements/">
+      
+      
+        <link rel="next" href="../about/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Identifiers - ber-central-schema</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+
+      
+    
+<script src="../assets/pymdownx-extras/material-extra-theme-2ek1P7jT.js" type="text/javascript"></script>
+<script src="../assets/pymdownx-extras/material-extra-3rdparty-BUCF4rjN.js" type="text/javascript"></script>
+
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
+    
+      <link rel="stylesheet" href="../assets/pymdownx-extras/extra-c6ab11540a.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#identifiers-and-prefixes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+
+<header class="md-header" data-md-component="header">
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="header.title"
+  >
+    <a
+      href="https://sierra-moxon.github.io/ber-central-schema/"
+      title="ber-central-schema"
+      class="md-header__button md-logo"
+      aria-label="ber-central-schema"
+    >
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ber-central-schema
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Identifiers
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon">
+          <a
+            href="javascript:toggleScheme();"
+            title="Light mode"
+            class="light-mode"
+          >
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+          </a>
+          <a
+            href="javascript:toggleScheme();"
+            title="Dark mode"
+            class="dark-mode"
+          >
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+          </a>
+          <a
+            href="javascript:toggleScheme();"
+            title="System preference"
+            class="system-mode"
+          >
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+          </a>
+           <a
+            href="javascript:toggleScheme();"
+            title="Unknown scheme"
+            class="unknown-mode"
+          >
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg>
+          </a>
+      </div>
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sierra-moxon/ber-central-schema" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ber-central-schema" class="md-nav__button md-logo" aria-label="ber-central-schema" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    ber-central-schema
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sierra-moxon/ber-central-schema" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../elements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identifiers
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identifiers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edge-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edge cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifier-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifier lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives considered
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alternatives considered">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-element-namespace-or-one-per-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One element namespace or one per module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ids-bridge-makes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ids BRIDGE makes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readable-or-opaque-local-parts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Readable or opaque local parts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rows-that-arrive-without-a-source-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rows that arrive without a source id
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bioregistry-expansions-everywhere-or-nmdc-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bioregistry expansions everywhere or nmdc-schema's
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asserted-element-uris-or-default_prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Asserted element URIs or default_prefix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-slot-naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key slot naming
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edge-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edge cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifier-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifier lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives considered
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alternatives considered">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-element-namespace-or-one-per-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One element namespace or one per module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ids-bridge-makes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ids BRIDGE makes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readable-or-opaque-local-parts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Readable or opaque local parts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rows-that-arrive-without-a-source-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rows that arrive without a source id
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bioregistry-expansions-everywhere-or-nmdc-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bioregistry expansions everywhere or nmdc-schema's
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asserted-element-uris-or-default_prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Asserted element URIs or default_prefix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-slot-naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key slot naming
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+
+  
+  
+
+
+<h1 id="identifiers-and-prefixes">Identifiers and prefixes</h1>
+<p>This page sets the prefix and identifier rules for the BRIDGE central schema, <a href="https://github.com/doe-bridge/bridge-central-schema">https://github.com/doe-bridge/bridge-central-schema</a>. <code>tests/test_prefixes.py</code> checks part of it. <code>test_no_prefix_has_two_expansions</code> and <code>test_data_prefixes_are_declared</code> pass against the schema on <code>main</code>. <code>test_every_module_uses_the_element_prefix</code>, <code>test_every_element_asserts_its_uri</code> and <code>test_every_class_has_a_type_slot</code> are marked expected to fail (a strict <code>xfail</code>) until the open pull requests move every module to the one namespace and <a href="https://github.com/doe-bridge/bridge-central-schema/issues/35">https://github.com/doe-bridge/bridge-central-schema/issues/35</a> is done; after that each of them has to pass. Rules for numeric values are a separate topic, on <a href="https://github.com/doe-bridge/bridge-central-schema/issues/36">https://github.com/doe-bridge/bridge-central-schema/issues/36</a>.</p>
+<p>A CURIE is the compact form of a URI, <code>prefix:local_part</code>, where the schema declares what the prefix expands to. Bioregistry, <a href="https://bioregistry.io">https://bioregistry.io</a>, is the registry of prefixes this schema follows.</p>
+<h2 id="rules">Rules</h2>
+<ol>
+<li>Every class, slot, enum and type this schema defines has a URI under one namespace, <code>bridge_central_schema</code>, which expands to <a href="https://w3id.org/ber-data/bridge-central-schema/">https://w3id.org/ber-data/bridge-central-schema/</a>, and every module sets <code>default_prefix: bridge_central_schema</code>. A module does not declare a namespace of its own. The measurements module on <code>main</code> still uses <code>bridge</code>; <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9">https://github.com/doe-bridge/bridge-central-schema/pull/9</a> changes it. Checked by <code>test_every_module_uses_the_element_prefix</code>.</li>
+<li>Each module's schema <code>id</code> is <code>https://w3id.org/ber-data/bridge-central-schema/&lt;module&gt;</code>, for example <a href="https://w3id.org/ber-data/bridge-central-schema/measurements">https://w3id.org/ber-data/bridge-central-schema/measurements</a>. A schema id is a full URL and not a CURIE, so the slash is fine; element CURIEs stay <code>bridge_central_schema:Measurement</code>.</li>
+<li>BRIDGE ids and namespaces stay under <a href="https://w3id.org/ber-data/">https://w3id.org/ber-data/</a>, even though the GitHub organization is now <code>doe-bridge</code>. Nothing under that path resolves yet; registering it is <a href="https://github.com/doe-bridge/bridge-central-schema/issues/26">https://github.com/doe-bridge/bridge-central-schema/issues/26</a>.</li>
+<li>Every element asserts its URI: <code>class_uri</code> on every class, <code>slot_uri</code> on every slot, and <code>meaning</code> on every enum value that has a term in an outside vocabulary. Checked by <code>test_every_element_asserts_its_uri</code>.</li>
+<li>Every class has a type slot, marked <code>designates_type: true</code>, and every row fills it with its class CURIE, such as <code>bridge_central_schema:Sample</code>. The slot's name is open on <a href="https://github.com/doe-bridge/bridge-central-schema/issues/35">https://github.com/doe-bridge/bridge-central-schema/issues/35</a>. Checked by <code>test_every_class_has_a_type_slot</code>.</li>
+<li>An id from a source system keeps the source's prefix. Where nmdc-schema (<a href="https://github.com/microbiomedata/nmdc-schema">https://github.com/microbiomedata/nmdc-schema</a>) declares the prefix, this schema uses nmdc-schema's spelling and expansion, so BRIDGE and NMDC ids are the same string and join without rewriting: <code>nmdc</code>, <code>NCBITaxon</code>, <code>gold</code>, <code>emsl.project</code>, <code>KEGG.ORTHOLOGY</code>, <code>PFAM</code>, <code>COG</code>, <code>EC</code>, <code>CATH</code>, <code>SUPFAM</code> and <code>doi</code>. Otherwise it uses Bioregistry's preferred prefix: <code>BERVO</code>, <code>NCBIGene</code>, <code>rfam</code>, <code>nucleotide</code>, <code>insdc</code>, <code>edam</code>, <code>qudt.unit</code>, <code>orcid</code> and <code>ror</code>. A source id is never re-minted under a BRIDGE prefix. An id from another BRIDGE project keeps that project's prefix, so registry entries from <a href="https://github.com/doe-bridge/lakehouse-registry">https://github.com/doe-bridge/lakehouse-registry</a> are <code>ber_registry:</code> ids. A source with no Bioregistry prefix gets one declared in this schema (<code>ameriflux</code>). An id with no prefix at all is written as a URI (<code>urn:uuid:</code> for BASALT), as described in the edge cases.</li>
+<li>A prefix that nmdc-schema declares expands as nmdc-schema expands it. Any other prefix expands to Bioregistry's <code>uri_format</code> with the <code>$1</code> removed. Each case where this schema differs from Bioregistry, or where Bioregistry's value needs a note, is in the table below and in a comment next to the declaration.</li>
+<li>A prefix name is never reused with a new expansion, within one release or across releases. <code>bridge</code> expands to <a href="https://w3id.org/ber-data/bridge-measurements/">https://w3id.org/ber-data/bridge-measurements/</a> on <code>main</code>, so no later prefix may be called <code>bridge</code>. <code>test_no_prefix_has_two_expansions</code> checks this within one schema; across releases it is a rule for review.</li>
+<li>No placeholder namespace. <code>example:</code> and the like appear in no schema and no example data; example data uses real public ids under their source's prefix.</li>
+<li><code>id</code> is a CURIE with a pattern: range <code>curie</code>, and a pattern that opens with the prefixes the schema declares for that table. Every CURIE in a slot of range <code>uriorcurie</code> or <code>curie</code> uses a declared prefix, checked by <code>test_data_prefixes_are_declared</code>. Other string slots can hold source text as written, such as a GenBank <code>db_xref</code> value, and are not checked.</li>
+<li>Curated terms keep readable ids for now: <code>bridge_property:air_temperature</code>, <code>bridge_unit:mm2</code>. Readable versus opaque is decided again in the follow-up to <a href="https://github.com/doe-bridge/bridge-central-schema/issues/30">https://github.com/doe-bridge/bridge-central-schema/issues/30</a>; see the alternatives below.</li>
+<li>These rules cover what <a href="https://github.com/turbomam/gold-schema">https://github.com/turbomam/gold-schema</a> and <a href="https://github.com/turbomam/feature-table-corpus">https://github.com/turbomam/feature-table-corpus</a> produce for BRIDGE, meaning their copies of BRIDGE schema files and the records they emit, and not their own source-description schemas.</li>
+<li>A DOI is stored in one form only, the CURIE <code>doi:10....</code>, with the pattern <code>^doi:10\.\d{2,9}/.*$</code> that nmdc-schema puts on <code>doi_value</code>. The loader accepts <code>https://doi.org/...</code>, <code>http://dx.doi.org/...</code>, <code>DOI:...</code> and a bare <code>10....</code> and rewrites each to that form, so the same DOI never appears under two IRIs.</li>
+<li>In a slot of range <code>uriorcurie</code>, a value is a full URI only when its scheme is followed by <code>//</code> or it is a URN (<code>urn:</code>). Any other <code>x:y</code> value is a CURIE, and its prefix must be declared. A URI scheme with no <code>//</code>, such as <code>mailto:</code>, is declared like a prefix if BRIDGE ever needs it.</li>
+</ol>
+<h2 id="edge-cases">Edge cases</h2>
+<p>Bioregistry values were read from <code>https://bioregistry.io/api/registry/&lt;prefix&gt;</code> on 2026-11-06. The third column is the value declared in the module that uses the prefix, on <code>main</code> or on the open pull request that adds it.</p>
+<table>
+<thead>
+<tr>
+<th>Prefix</th>
+<th>Bioregistry <code>uri_format</code></th>
+<th>What this schema uses now</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gold</code></td>
+<td><code>https://gold.jgi.doe.gov/resolver?id=$1</code></td>
+<td><code>https://bioregistry.io/gold:</code>, the same as nmdc-schema</td>
+<td>The two IRIs for <code>gold:Gs0114820</code> differ, so a change here would stop BRIDGE and NMDC records from matching in RDF or in a join on the full IRI. On 2026-11-06 the bioregistry.io IRI redirected to the GOLD resolver and the resolver to <code>https://gold.jgi.doe.gov/study?id=Gs0114820</code>. I asked JGI which expansion they want on <a href="https://github.com/doe-bridge/bridge-central-schema/issues/15#issuecomment-6690980599">https://github.com/doe-bridge/bridge-central-schema/issues/15#issuecomment-6690980599</a>; the schema keeps <code>https://bioregistry.io/gold:</code> until that is answered.</td>
+</tr>
+<tr>
+<td><code>emsl.project</code></td>
+<td><code>https://sc-data.emsl.pnnl.gov/?projectId=$1</code></td>
+<td>Not declared on <code>main</code></td>
+<td>nmdc-schema expands <code>emsl.project</code> to <code>https://bioregistry.io/emsl.project:</code>, and rule 6 follows nmdc-schema, so declare it with that value.</td>
+</tr>
+<tr>
+<td><code>KEGG.ORTHOLOGY</code></td>
+<td><code>http://www.kegg.jp/entry/$1</code>, preferred prefix <code>kegg.orthology</code></td>
+<td><code>KEGG.ORTHOLOGY</code>, expanding to <code>https://bioregistry.io/kegg.orthology:</code>, as nmdc-schema does</td>
+<td>NMDC's stored functional annotation ids are <code>KEGG.ORTHOLOGY:K...</code>, and BioContext and Biolink spell it the same way. identifiers.org and bioregistry.io resolved both spellings to the KEGG entry page on 2026-11-20.</td>
+</tr>
+<tr>
+<td><code>refseq</code></td>
+<td><code>https://www.ncbi.nlm.nih.gov/protein/$1</code></td>
+<td>Not used. RefSeq and GenBank nucleotide accessions are <code>nucleotide:</code> CURIEs in the feature model (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/5">https://github.com/doe-bridge/bridge-central-schema/pull/5</a>), such as <code>nucleotide:NC_001422.1</code></td>
+<td>RefSeq accessions are nucleotide records (<code>NC_</code>, <code>NM_</code> and others) or protein records (<code>NP_</code>, <code>WP_</code> and others), and Bioregistry's <code>refseq</code> expands to NCBI's protein pages for all of them. NCBI E-utilities on 2026-11-23 found NC_001422.1 in nuccore and not in protein. Bioregistry's <code>nucleotide</code> expands to <code>https://www.ncbi.nlm.nih.gov/nuccore/$1</code>, and on 2026-11-23 identifiers.org and bioregistry.io both resolved <code>nucleotide:NC_001422.1</code> to the nuccore page. A protein accession is an <code>NCBIProtein</code> CURIE, Bioregistry's preferred prefix for <code>ncbiprotein</code>.</td>
+</tr>
+<tr>
+<td><code>BERVO</code></td>
+<td><code>https://w3id.org/bervo/BERVO_$1</code></td>
+<td><code>bervo</code>, expanding to <code>https://w3id.org/bervo/</code>, with local parts such as <code>BERVO_0001370</code></td>
+<td>Bioregistry's spelling moves <code>BERVO_</code> out of the local part: <code>bervo:BERVO_0001370</code> becomes <code>BERVO:0001370</code>, and both expand to the same IRI. Every file that copies the observed property mappings needs the rewrite.</td>
+</tr>
+<tr>
+<td><code>schema</code></td>
+<td><code>https://schema.org/$1</code></td>
+<td><code>http://schema.org/</code></td>
+<td>Kept. It matches nmdc-schema and the LinkML metamodel (<a href="https://github.com/linkml/linkml-model">https://github.com/linkml/linkml-model</a>), and it names mapping targets rather than source records.</td>
+</tr>
+<tr>
+<td><code>biolink</code></td>
+<td><code>https://biolink.github.io/biolink-model/$1</code></td>
+<td><code>https://w3id.org/biolink/vocab/</code></td>
+<td>Kept. It is the namespace <code>biolink-model.yaml</code> declares for its own elements (<a href="https://github.com/biolink/biolink-model">https://github.com/biolink/biolink-model</a>), and nmdc-schema uses it. Mapping targets only.</td>
+</tr>
+<tr>
+<td><code>ameriflux</code></td>
+<td>none; AmeriFlux is not in Bioregistry</td>
+<td><code>https://ameriflux.lbl.gov/sites/siteinfo/</code>, so <code>ameriflux:US-Ha1</code> expands to the site page</td>
+<td>Declared only in this schema.</td>
+</tr>
+<tr>
+<td><code>urn:uuid</code></td>
+<td>none; <code>urn:uuid:</code> is the URN form of a UUID in RFC 9562, not a prefix</td>
+<td>BASALT ids written as URIs, such as <code>urn:uuid:5b0c6c1e-0000-4000-8000-000000000001</code></td>
+<td>BASALT's identifier slots have range <code>uuid</code> and no prefix (<a href="https://github.com/EMSL-Computing/BASALT-Schema/blob/f41b7f4a371d856ebd5357cff7209245559e92d7/src/basalt_schema/schema/study.yaml#L36">https://github.com/EMSL-Computing/BASALT-Schema/blob/f41b7f4a371d856ebd5357cff7209245559e92d7/src/basalt_schema/schema/study.yaml#L36</a>), and Bioregistry has no <code>uuid</code> prefix. A <code>urn:uuid:</code> value is a URI and not a CURIE, so a table that holds BASALT rows needs either a prefix for them or an <code>id</code> range that allows URIs; that goes with the row-id question on <a href="https://github.com/doe-bridge/bridge-central-schema/issues/28">https://github.com/doe-bridge/bridge-central-schema/issues/28</a>. The tests treat <code>http</code>, <code>https</code> and <code>urn</code> as URI schemes, not prefixes.</td>
+</tr>
+<tr>
+<td><code>insdc</code></td>
+<td><code>https://www.ebi.ac.uk/ena/data/view/$1</code></td>
+<td>Declared in the feature model, not used by its examples</td>
+<td>Bioregistry's <code>insdc</code> pattern does not match <code>NC_</code> accessions, which are RefSeq, so the feature model's contig ids moved to <code>nucleotide:</code>. Its feature ids are file-local keys with no prefix, such as <code>NC_001422.1_feature-1</code>. How BRIDGE makes ids is open on <a href="https://github.com/doe-bridge/bridge-central-schema/issues/28">https://github.com/doe-bridge/bridge-central-schema/issues/28</a>.</td>
+</tr>
+<tr>
+<td><code>doi</code></td>
+<td><code>https://doi.org/$1</code></td>
+<td>Not declared yet. No branch holds a DOI value</td>
+<td>nmdc-schema expands <code>doi</code> to <code>https://bioregistry.io/doi:</code>. Declare <code>doi</code> with that value, per rule 6, in the pull request that adds the first DOI slot.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="identifier-lifecycle">Identifier lifecycle</h2>
+<p>Create: reuse the source's id under the source's registered prefix, and mint only for things BRIDGE originates (Lesson 1 of McMurry et al. 2017, <a href="https://doi.org/10.1371/journal.pbio.2001414">https://doi.org/10.1371/journal.pbio.2001414</a>). Every id BRIDGE makes has a published pattern, with no <code>/</code> or <code>?</code> in the local part and a dot only for a version (Lesson 5 of the same paper). A new BRIDGE prefix is lowercase, is never issued per version, and is a subspace only when the resource has more than one entity type (<a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md">https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md</a>). Whether a row that arrives with no source id gets a minted id, a key derived from its fields, or no id is open; the alternatives below give the costs, and RFC 9562 section 6.13 cautions against name-based UUIDs as primary keys because the input values later change (<a href="https://www.rfc-editor.org/rfc/rfc9562#section-6.13">https://www.rfc-editor.org/rfc/rfc9562#section-6.13</a>).</p>
+<p>Modify: a label or definition edit keeps the id. For a change that does not break meaning, Lesson 6 of McMurry et al. 2017 (<a href="https://doi.org/10.1371/journal.pbio.2001414">https://doi.org/10.1371/journal.pbio.2001414</a>) recommends a machine-readable change history rather than a new id.</p>
+<p>Deprecate: an id is never deleted or reassigned (Lesson 7 of McMurry et al. 2017, <a href="https://doi.org/10.1371/journal.pbio.2001414">https://doi.org/10.1371/journal.pbio.2001414</a>). A deprecated curated term keeps resolving and names its replacement with IAO:0100001 (term replaced by), or lists alternatives with <code>consider</code>, as OBO ontologies do (<a href="https://oboacademy.github.io/obook/howto/obsolete-term/">https://oboacademy.github.io/obook/howto/obsolete-term/</a>). DataCite applies the same rule to DOIs, which get a tombstone page rather than deletion (<a href="https://support.datacite.org/docs/tombstone-pages">https://support.datacite.org/docs/tombstone-pages</a>).</p>
+<p>Merge: one id stays primary and the others become secondary ids that still resolve to the surviving row, as UniProt keeps every accession of merged entries (<a href="https://www.uniprot.org/help/accession_numbers">https://www.uniprot.org/help/accession_numbers</a>). The source ids of every merged row stay recorded on the surviving row.</p>
+<p>Split: each part gets a new id, and the old id stays, deprecated, pointing at every part, as UniProt does for demerged entries (<a href="https://www.uniprot.org/help/accession_numbers">https://www.uniprot.org/help/accession_numbers</a>).</p>
+<p>Version: a BRIDGE id carries no version, and a source's version suffix stays as the source writes it (<code>NC_001422.1</code>). A version belongs in an id only for a breaking change (Lesson 6 of McMurry et al. 2017), and DataCite recommends a new DOI only for a major change, linked to the old one with <code>IsNewVersionOf</code> (<a href="https://support.datacite.org/docs/versioning">https://support.datacite.org/docs/versioning</a>). Bioregistry issues no prefix per version (<a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md">https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md</a>).</p>
+<p>Resolve: every BRIDGE prefix resolves through w3id with a 302 redirect, because w3id's rules say a 301 cannot be taken back (<a href="https://github.com/perma-id/w3id.org/blob/master/docs/rules/htaccess/avoid-permanent-redirect.md">https://github.com/perma-id/w3id.org/blob/master/docs/rules/htaccess/avoid-permanent-redirect.md</a>). Registering <code>ids/ber-data</code> is <a href="https://github.com/doe-bridge/bridge-central-schema/issues/26">https://github.com/doe-bridge/bridge-central-schema/issues/26</a>.</p>
+<h2 id="alternatives-considered">Alternatives considered</h2>
+<h3 id="one-element-namespace-or-one-per-module">One element namespace or one per module</h3>
+<p>Earlier branches gave each module its own namespace: <code>bridge</code> for measurements, <code>battr</code> for attributes and <code>bfm</code> for the feature model.</p>
+<ol>
+<li>One namespace per module. Benefit: a module could be released on its own under its own URI. Costs: a reader has to know which module defined an element to write its CURIE, each namespace needs its own w3id redirect, and the same slot name can exist twice with two different URIs.</li>
+<li>One namespace, <code>bridge_central_schema</code>. Benefit: one CURIE form for every element and one redirect. Cost: slot names must be unique across modules, which <code>numeric_value</code> already broke (<a href="https://github.com/doe-bridge/bridge-central-schema/issues/36">https://github.com/doe-bridge/bridge-central-schema/issues/36</a>).</li>
+</ol>
+<p>I set rule 1 because no module of this schema is released as a standard on its own.</p>
+<h3 id="ids-bridge-makes">Ids BRIDGE makes</h3>
+<p>These are the options for ids BRIDGE itself issues: curated terms today, and possibly table rows later.</p>
+<ol>
+<li>One readable prefix per curated vocabulary, <code>bridge_property:</code> and <code>bridge_unit:</code>, which is the current state. @valerie-autumn-skye asked for <code>bridge_property:air_temperature</code> as an "intermediate" human-readable term mapped to BERVO (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273386207">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4273386207</a>), and <a href="https://github.com/doe-bridge/bridge-central-schema/issues/29">https://github.com/doe-bridge/bridge-central-schema/issues/29</a> adds <code>bridge_unit:</code> the same way. Benefits: the id is readable in data files and diffs, a term is added by pull request with no minting service, and the prefix names the table. Costs: one Bioregistry prefix and one w3id redirect per vocabulary, and the rename problem described under readable local parts below.</li>
+<li>One prefix with an opaque number and no type code. Benefits: one prefix and one redirect, and a rename never touches the id, which is what Lesson 4 of McMurry et al. 2017 recommends (<a href="https://doi.org/10.1371/journal.pbio.2001414">https://doi.org/10.1371/journal.pbio.2001414</a>). Costs: it reverses the readable ids already in use on <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9">https://github.com/doe-bridge/bridge-central-schema/pull/9</a> and in the issues above, a reviewer needs the label beside every id, and each pull request has to take the next free number, with a test that no number is used twice.</li>
+<li>One prefix with a type code in the local part, as nmdc-schema's <code>nmdc:sty-11-076c9980</code> (<a href="https://github.com/microbiomedata/nmdc-schema/blob/270aefeda91443c6cbb6e8bfd340f6ec09e74b8c/src/docs/identifiers.md">https://github.com/microbiomedata/nmdc-schema/blob/270aefeda91443c6cbb6e8bfd340f6ec09e74b8c/src/docs/identifiers.md</a>) and KBase CDM's <code>CDM:&lt;type&gt;-&lt;uuid4&gt;</code> (<a href="https://github.com/kbase/cdm-schema/blob/c1a59b9607abc85affe3d17f0239ef4e2b819f61/src/linkml/cdm_types.yaml#L26">https://github.com/kbase/cdm-schema/blob/c1a59b9607abc85affe3d17f0239ef4e2b819f61/src/linkml/cdm_types.yaml#L26</a>). Benefits: one prefix, and the id says which class it belongs to. Costs: type codes outlive their meaning; nmdc-schema's patterns still accept <code>omprc</code> next to the codes that replaced it when <code>OmicsProcessing</code> was split (<a href="https://github.com/microbiomedata/nmdc-schema/blob/270aefeda91443c6cbb6e8bfd340f6ec09e74b8c/src/schema/nmdc.yaml#L281">https://github.com/microbiomedata/nmdc-schema/blob/270aefeda91443c6cbb6e8bfd340f6ec09e74b8c/src/schema/nmdc.yaml#L281</a>). A random local part needs a minting service that records what it issued, as the minter in <a href="https://github.com/microbiomedata/nmdc-runtime">https://github.com/microbiomedata/nmdc-runtime</a> does.</li>
+<li>One prefix per table, extending option 1 to every table BRIDGE keys itself. Benefit: every table's pattern opens with one prefix. Costs: the number of prefixes and redirects grows with the number of tables, Bioregistry puts more than five prefixes at once through a bulk request that reviewers may send back as individual requests, and Bioregistry says subspacing should not be used unnecessarily (<a href="https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md">https://github.com/biopragmatics/bioregistry/blob/main/docs/CONTRIBUTING.md</a>).</li>
+<li>Bioregistry subspaces, such as <code>bridge.property</code> and <code>bridge.unit</code>. Benefit: this is Bioregistry's own way to partition one resource by entity type. Costs: each subspace is still a registered prefix, and Bioregistry's policy on subspaces is still open (<a href="https://github.com/biopragmatics/bioregistry/issues/65">https://github.com/biopragmatics/bioregistry/issues/65</a>).</li>
+</ol>
+<p>I chose option 1 for curated terms, for now, because the ids are already in use and were asked for in review. Whether they stay readable is decided again when the terms become table rows (<a href="https://github.com/doe-bridge/bridge-central-schema/issues/30">https://github.com/doe-bridge/bridge-central-schema/issues/30</a>). For table rows and features, options 2 to 5 stay open on <a href="https://github.com/doe-bridge/bridge-central-schema/issues/28">https://github.com/doe-bridge/bridge-central-schema/issues/28</a>.</p>
+<h3 id="readable-or-opaque-local-parts">Readable or opaque local parts</h3>
+<ol>
+<li>Readable local parts: <code>bridge_property:air_temperature</code>, <code>bridge_unit:mm2</code>. Benefits: a reader needs no lookup, and a reviewer can check a mapping row by eye. Costs: the label can be edited while the id stays, but then the id no longer says what the label says. Keeping them matching means deprecating the old id and creating a new one with a replacement, and a vocabulary whose names change often fills up with deprecated ids. UCUM codes hold characters a local part cannot take as they stand: <code>mg/L</code> and <code>[degF]</code> do not fit the <code>[a-z0-9_]+</code> pattern the measurements module uses for <code>bridge_property:</code> local parts, and Lesson 5 of McMurry et al. 2017 (<a href="https://doi.org/10.1371/journal.pbio.2001414">https://doi.org/10.1371/journal.pbio.2001414</a>) warns against <code>/</code> in a local id, so <code>bridge_unit:</code> needs an escaping rule from UCUM code to local part. Lesson 5 also advises that <code>_</code> or <code>:</code> occur no more than once per identifier, because an id such as <code>bridge_property:air_temperature</code> can also be read as <code>bridge:property_air_temperature</code>; a snake_case local part under a snake_case prefix breaks that advice.</li>
+<li>Opaque local parts: a number, with the label and definition in the row. Benefits: a rename is a row edit, no escaping rule is needed, and two terms cannot collide by name. Costs: the meaning is only in the row, numbers are allocated by hand in each pull request, and it reverses posted work.</li>
+</ol>
+<p>I chose readable for now (rule 11). The follow-up to <a href="https://github.com/doe-bridge/bridge-central-schema/issues/30">https://github.com/doe-bridge/bridge-central-schema/issues/30</a> decides again, and the question to answer first is how often curated term names will change.</p>
+<h3 id="rows-that-arrive-without-a-source-id">Rows that arrive without a source id</h3>
+<p>Measurement rows from a source such as ESS-DIVE, the planned <code>SourceMapping</code> rows, and features the converter makes from a GFF file have no id from their source.</p>
+<ol>
+<li>Keep the source's record id under the source's prefix whenever the source has one. @boehms asked whether the ESS-DIVE <code>measurement_id</code> is reflected in the source id (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4473191401">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4473191401</a>), and @ialarmedalien wrote on a bertron-schema pull request that each data source should use a prefix with its internal ids, with an "unofficial" reference as the fallback (<a href="https://github.com/doe-bridge/bertron-schema/pull/3#discussion_r1989866631">https://github.com/doe-bridge/bertron-schema/pull/3#discussion_r1989866631</a>). Benefit: nothing to mint. Cost: it covers only rows whose source has a record id.</li>
+<li>Mint a BRIDGE id on first load and record which source fields it came from, so the next load finds the same row. Benefit: the id survives a change in the source fields. Cost: making the id needs no coordination, since a random or sequential number will do, but finding the same row on the next load needs a stored mapping from source fields to id, and that store becomes something BRIDGE has to run.</li>
+<li>Build the id by hashing source fields, so any loader rebuilds it. Benefit: no state. Costs: RFC 9562 section 6.13 cautions against name-based UUIDs as primary keys because the inputs later change (<a href="https://www.rfc-editor.org/rfc/rfc9562#section-6.13">https://www.rfc-editor.org/rfc/rfc9562#section-6.13</a>), and rows that share every input field collide; at commit e431b4c of <a href="https://github.com/doe-bridge/bridge-central-schema/pull/9">https://github.com/doe-bridge/bridge-central-schema/pull/9</a>, <code>Measurement-005</code> and <code>Measurement-006</code> shared <code>source_system</code>, <code>source_record_id</code> and <code>source_field</code> and differed only in their values.</li>
+<li>No persistent id: the slot is optional and a row gets none when the source has none. @mslarae13 wrote that making an attribute's id optional "means we don't need fake IDs" (<a href="https://github.com/doe-bridge/bertron-schema/issues/37#issuecomment-3140659081">https://github.com/doe-bridge/bertron-schema/issues/37#issuecomment-3140659081</a>), and @dschristianson said ESS-DIVE could assign ids at ETL with "probably no guarantee that they would be stable between versions or persistent outside of the lakehouse" (<a href="https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4339981188">https://github.com/doe-bridge/bridge-central-schema/pull/9#discussion_r4339981188</a>). Benefit: no invented ids. Cost: a row with no id cannot be referenced from another table or from outside BRIDGE.</li>
+</ol>
+<p>Nothing is chosen yet; this is <a href="https://github.com/doe-bridge/bridge-central-schema/issues/28">https://github.com/doe-bridge/bridge-central-schema/issues/28</a>. Until then the converter-made feature ids stay <code>insdc:NC_001422.1:feature-1</code> and so on.</p>
+<h3 id="bioregistry-expansions-everywhere-or-nmdc-schemas">Bioregistry expansions everywhere or nmdc-schema's</h3>
+<ol>
+<li>Match nmdc-schema wherever it declares a prefix: <code>gold</code> and <code>emsl.project</code> expand to <code>https://bioregistry.io/gold:</code> and <code>https://bioregistry.io/emsl.project:</code> (<a href="https://github.com/microbiomedata/nmdc-schema/blob/270aefeda91443c6cbb6e8bfd340f6ec09e74b8c/src/schema/external_identifiers.yaml#L16">https://github.com/microbiomedata/nmdc-schema/blob/270aefeda91443c6cbb6e8bfd340f6ec09e74b8c/src/schema/external_identifiers.yaml#L16</a>). Benefit: a GOLD study in an NMDC record and in a BRIDGE record is the same IRI, so RDF and full-IRI joins match. Costs: two rules instead of one, and the IRIs go through a third-party resolver rather than the source's own.</li>
+<li>Bioregistry's <code>uri_format</code> for every source prefix. Benefit: one rule, and each IRI is the source's own resolver. Cost: GOLD and EMSL project IRIs differ from nmdc-schema's.</li>
+</ol>
+<p>I chose option 1, which is rule 6, so that BRIDGE and NMDC ids are the same string and the same IRI. Every other difference from Bioregistry is recorded in the edge-case table. I also asked JGI on <a href="https://github.com/doe-bridge/bridge-central-schema/issues/15#issuecomment-6690980599">https://github.com/doe-bridge/bridge-central-schema/issues/15#issuecomment-6690980599</a> which expansion they want for <code>gold:</code>. <code>gold</code> keeps the nmdc-schema value.</p>
+<h3 id="asserted-element-uris-or-default_prefix">Asserted element URIs or default_prefix</h3>
+<ol>
+<li>Rely on <code>default_prefix</code>, so LinkML derives <code>bridge_central_schema:Sample</code> from the class name. Benefit: fewer lines. Costs: the IRI is invisible in the YAML and in a diff, and changing a module's <code>default_prefix</code> changes every URI in it with no line of any element changing.</li>
+<li>Assert <code>class_uri</code>, <code>slot_uri</code> and <code>meaning</code> on every element. Benefits: each IRI shows in review and in generated artifacts, and a test catches an element that lost its URI. Cost: one line per element.</li>
+</ol>
+<p>I chose option 2 (<a href="https://github.com/doe-bridge/bridge-central-schema/issues/35">https://github.com/doe-bridge/bridge-central-schema/issues/35</a>).</p>
+<h2 id="key-slot-naming">Key slot naming</h2>
+<ol>
+<li><code>id</code> is used only for a row's own primary key.</li>
+<li>A foreign key is named for the thing it points to, with no <code>_id</code> suffix: <code>associated_studies</code>, <code>collected_at</code>, <code>organism</code>, <code>sample</code>, <code>observed_property</code>, <code>feature_of_interest</code>, <code>member_of</code> and <code>parent</code>. The exception is a name an outside standard fixes: the SSSOM mapping tables keep <code>subject_id</code>, <code>predicate_id</code> and <code>object_id</code>, so they can be written out as SSSOM files.</li>
+<li><code>_id</code> marks an identifier from outside, kept as data, with no table here to join to: <code>attribute_cv_id</code>, <code>target_id</code>, <code>source_record_id</code> and <code>measurement_id</code>.</li>
+</ol>
+<p>The feature model's <code>contig_id</code>, <code>collection_id</code> and <code>feature_id</code> become <code>id</code> once <a href="https://github.com/doe-bridge/bridge-central-schema/issues/28">https://github.com/doe-bridge/bridge-central-schema/issues/28</a> settles how a feature gets a CURIE, since <code>feature_id</code> today is unique only within one dataset.</p>
+<h2 id="open-questions">Open questions</h2>
+<ol>
+<li>What is the type slot called? The options are <code>type</code> everywhere, which means renaming the feature model's GFF3 <code>type</code> slot; another name everywhere; or <code>type</code> everywhere except the feature model. Tracked on <a href="https://github.com/doe-bridge/bridge-central-schema/issues/35">https://github.com/doe-bridge/bridge-central-schema/issues/35</a>.</li>
+<li>What does <code>gold:</code> expand to: the GOLD resolver, as Bioregistry has it, or <code>https://bioregistry.io/gold:</code>, as nmdc-schema has it? Asked of JGI on <a href="https://github.com/doe-bridge/bridge-central-schema/issues/15">https://github.com/doe-bridge/bridge-central-schema/issues/15</a>.</li>
+<li>How does BRIDGE make ids for rows that arrive without one, and for features? The answer settles the converter's <code>insdc:NC_001422.1:feature-1</code> ids, how BASALT's <code>urn:uuid:</code> ids fit an <code>id</code> slot of range <code>curie</code>, and when the feature model's three key slots become <code>id</code>. Tracked on <a href="https://github.com/doe-bridge/bridge-central-schema/issues/28">https://github.com/doe-bridge/bridge-central-schema/issues/28</a>.</li>
+<li>Do curated terms keep readable local parts or move to opaque ones? Decided in the follow-up to <a href="https://github.com/doe-bridge/bridge-central-schema/issues/30">https://github.com/doe-bridge/bridge-central-schema/issues/30</a>, after the group says how often term names will change.</li>
+<li>Who maintains the w3id registration for <code>ids/ber-data</code>? Tracked on <a href="https://github.com/doe-bridge/bridge-central-schema/issues/26">https://github.com/doe-bridge/bridge-central-schema/issues/26</a>.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+  
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        
+
+<footer class="md-footer">
+  
+    <nav
+      class="md-footer__inner md-grid"
+      aria-label="footer.title"
+    >
+      
+        <a
+          href="../elements/"
+          class="md-footer__link md-footer__link--prev"
+          rel="prev"
+        >
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Schema
+            </div>
+          </div>
+        </a>
+      
+      
+        <a
+          href="../about/"
+          class="md-footer__link md-footer__link--next"
+          rel="next"
+        >
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              About
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        with emoji by
+        <a href="https://github.com/twitter/twemoji" target="_blank" rel="noopener">
+          Twemoji
+        </a>
+      </div>
+      
+<div class="md-social">
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link", "header.autohide", "navigation.expand", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "search.suggest", "content.code.copy"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../assets/pymdownx-extras/extra-loader-B5CKpNQx.js"></script>
+      
+    
+  </body>
+</html>
