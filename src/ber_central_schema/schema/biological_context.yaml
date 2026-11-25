@@ -1,0 +1,290 @@
+id: https://w3id.org/ber-data/bridge-central-schema/biological_context
+name: biological_context
+title: BRIDGE Biological Context Module
+description: >-
+  Catalog records for the organisms, lines, strains, cultivars, accessions,
+  and populations that samples instantiate or represent, and the slots that
+  link a sample to its catalog record.
+license: Apache-2.0
+version: 0.0.1
+
+prefixes:
+  bridge_central_schema: https://w3id.org/ber-data/bridge-central-schema/
+  linkml: https://w3id.org/linkml/
+  NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
+  GENO: http://purl.obolibrary.org/obo/GENO_
+  MIAPPE: https://w3id.org/miappe/
+  PO: http://purl.obolibrary.org/obo/PO_
+
+default_prefix: bridge_central_schema
+default_range: string
+
+imports:
+  - linkml:types
+
+classes:
+
+  BiologicalContext:
+    description: >-
+      A catalog record for a biological identity that samples can
+      instantiate or represent: a taxon, strain, isolate, cultivar, variety,
+      landrace, ecotype, genebank accession, breeding line, mutant or
+      transgenic line, genotype, population, or community. A
+      BiologicalContext identifies a kind of organism or a collection of
+      organisms; it is not a material individual, and measurements target
+      samples, never a BiologicalContext.
+    attributes:
+      id:
+        identifier: true
+        range: uriorcurie
+        description: >-
+          A unique identifier for the record, as minted by the source
+          registry, stock center, genebank, or database.
+      name:
+        recommended: true
+        description: >-
+          The full name of the identity, as used by the source.
+        comments:
+          - MN106
+          - RIL 407
+          - Columbia (Col-0)
+          - Cupriavidus metallidurans CH34
+      symbol:
+        description: >-
+          A short symbol or abbreviated name for the identity.
+        comments:
+          - myc3-1
+      context_type:
+        range: BiologicalContextTypeEnum
+        required: true
+        description: >-
+          The kind of biological identity this record names.
+      taxon:
+        range: uriorcurie
+        description: >-
+          The most specific taxon identifier available for this identity.
+          For most plant lines this is a species-level NCBI Taxonomy
+          identifier; some microbial strains have strain-level identifiers.
+        comments:
+          - NCBITaxon:13288
+      genus:
+        description: Genus of the organism.
+      species:
+        description: Specific epithet of the organism.
+      synonyms:
+        multivalued: true
+        description: >-
+          Other names this identity is known by, including names used by
+          other registries and databases.
+      secondary_identifiers:
+        multivalued: true
+        description: >-
+          Identifiers for this identity in other registries and databases.
+        comments:
+          - "PI 650286"
+          - "Ames 32873"
+          - "GCA_911865555.2"
+      genetic_background:
+        range: BiologicalContext
+        description: >-
+          The line, strain, or ecotype relative to which this identity's
+          genetic differences are described; the identity's wild type.
+        comments:
+          - Col-0 for a SALK insertion line
+          - MN106 for an edited pennycress line
+      pedigree:
+        description: >-
+          The ancestry of this identity as free-text cross notation, as
+          reported by the source.
+        comments:
+          - "Hybrid of A x B lines"
+      parent_contexts:
+        range: BiologicalContext
+        multivalued: true
+        description: >-
+          The catalog records for this identity's parents, where the source
+          reports them as resolvable references rather than text.
+      member_of_populations:
+        range: BiologicalContext
+        multivalued: true
+        description: >-
+          Panels, mapping populations, or other defined sets of identities
+          this identity belongs to.
+      mutagen:
+        description: >-
+          The agent or method that produced this identity's genetic
+          differences from its background.
+        comments:
+          - EMS
+          - T-DNA insertion
+          - CRISPR/Cas9
+      genetic_modification:
+        description: >-
+          The alleles, lesions, insertions, or transgenes that distinguish
+          this identity from its genetic background, as reported by the
+          source.
+        comments:
+          - mlo-11 allele
+      ploidy:
+        range: PloidyEnum
+        description: The ploidy level of the genome.
+      estimated_genome_size_mb:
+        range: float
+        description: Estimated genome size of the organism, in megabases.
+      gc_content_percent:
+        range: float
+        description: Estimated GC content of the genome, as a percentage.
+      genome_assemblies:
+        multivalued: true
+        description: >-
+          Identifiers of genome assemblies that represent this identity.
+        comments:
+          - "GCA_911865555.2"
+          - "Phytozome Thlaspi arvense var. MN106 v4.1"
+      material_source_accession_number:
+        description: >-
+          The accession number of the germplasm or culture this identity
+          was obtained as, in the holding institute's catalog.
+        comments:
+          - "CS22561"
+      material_source_accession_name:
+        description: >-
+          The name registered for the accession at the holding institute.
+      material_source_institute_code:
+        description: >-
+          The code of the institute that holds the source accession, using
+          FAO WIEWS codes where they exist.
+        comments:
+          - "USA995"
+      material_source_institute_name:
+        description: The name of the institute that holds the source accession.
+      material_source_doi:
+        range: uriorcurie
+        description: A DOI assigned to the source accession.
+      material_source_other_identifiers:
+        multivalued: true
+        description: >-
+          Other identifiers for the source accession.
+      material_source_latitude:
+        range: float
+        description: >-
+          Latitude of the site where the source accession was originally
+          collected, in decimal degrees (WGS84).
+      material_source_longitude:
+        range: float
+        description: >-
+          Longitude of the site where the source accession was originally
+          collected, in decimal degrees (WGS84).
+      material_source_description:
+        description: >-
+          Free-text description of the origin of the source material.
+      description:
+        description: A human-readable description of the identity.
+
+slots:
+
+  biological_context:
+    range: BiologicalContext
+    description: >-
+      The catalog record for the organism, line, strain, cultivar,
+      accession, or population that a sample instantiates or represents.
+    comments:
+      - A potted plant of RIL 407 points at the RIL 407 record.
+      - >-
+        A soil community sample points at a community record when one
+        exists.
+
+  replicate_group:
+    description: >-
+      Samples that are biological replicates of one another share this
+      value.
+    comments:
+      - sbicolor_3d_root
+
+  tissue:
+    description: >-
+      The organ or type of tissue a sample consists of.
+    comments:
+      - 5 mm lateral root tips
+
+  tissue_ontology_term:
+    range: uriorcurie
+    description: >-
+      An ontology term for the plant structure or anatomical part a sample
+      consists of.
+    comments:
+      - PO:0025471
+
+  collection_date_time:
+    description: >-
+      The time a sample was collected, as an ISO 8601 instant or interval.
+    comments:
+      - "2025-08-10T14:00:00-07:00"
+
+enums:
+
+  BiologicalContextTypeEnum:
+    description: The kinds of biological identity a catalog record can name.
+    permissible_values:
+      taxon:
+        description: A named taxon at any rank, with no sub-taxon identity.
+      strain:
+        meaning: GENO:0000112
+        description: >-
+          A collection of organisms descended from one isolate or lineage
+          and treated as genetically uniform.
+      isolate:
+        description: >-
+          Organisms cultured from one environmental or clinical isolation
+          event.
+      cultivar:
+        description: A cultivated plant variety named by breeders.
+      variety:
+        description: A botanical variety or market variety.
+      subspecies:
+        description: A named subspecies.
+      ecotype:
+        description: >-
+          A naturally occurring population adapted to a locality, inbred
+          into a lab lineage.
+      landrace:
+        description: >-
+          A locally adapted, traditionally cultivated population not bred
+          as a formal cultivar.
+      accession:
+        description: >-
+          A deposit of germplasm or culture material held and numbered by a
+          genebank or collection.
+      line:
+        description: >-
+          A lineage defined by its cross history and selection, such as a
+          recombinant inbred line or breeding line.
+      variant:
+        description: >-
+          A mutant, edited, or transgenic derivative of a background line.
+      genotype:
+        meaning: GENO:0000536
+        description: >-
+          A described allelic composition on a genetic background.
+      population:
+        description: >-
+          A defined set of organisms or lines studied together, such as a
+          mapping population or diversity panel.
+      community:
+        description: >-
+          An assemblage of organisms of multiple taxa occupying one
+          habitat.
+
+  PloidyEnum:
+    description: The ploidy level of a genome.
+    permissible_values:
+      haploid:
+      diploid:
+      triploid:
+      tetraploid:
+      pentaploid:
+      hexaploid:
+      octoploid:
+      allopolyploid:
+      autopolyploid:
+      aneuploid:

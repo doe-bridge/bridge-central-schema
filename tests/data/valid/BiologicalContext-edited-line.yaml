@@ -1,0 +1,11 @@
+id: example:context-tt8-cr3
+name: tt8-cr3
+context_type: variant
+taxon: NCBITaxon:13288
+genus: Thlaspi
+species: arvense
+genetic_background: example:context-mn106
+mutagen: CRISPR/Cas9
+genetic_modification: tt8 knockout allele
+pedigree: "MN106 x (edited T0 line 3)"
+description: Edited pennycress line carrying a tt8 knockout in the MN106 background.
