@@ -91,11 +91,6 @@ def test_data_prefixes_are_declared():
     assert not undeclared
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="measurements.yaml on main uses default_prefix bridge; "
-    "https://github.com/doe-bridge/bridge-central-schema/pull/9 moves it to bridge_central_schema",
-)
 def test_every_module_uses_the_element_prefix():
     """Classes, slots and enums BRIDGE defines all sit in one namespace."""
     others = {
