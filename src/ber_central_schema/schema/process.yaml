@@ -1,0 +1,139 @@
+---
+id: https://w3id.org/ber-data/process
+name: process
+title: BRIDGE Process module
+description: >-
+  The BRIDGE Process module defines concepts and structures related to processes within the BRIDGE framework.
+license: Apache-2.0
+see_also:
+  - https://github.com/doe-bridge/bridge-central-schema
+  - https://github.com/doe-bridge/lakehouse-registry
+
+prefixes:
+  bridge_central_schema: https://w3id.org/ber-data/bridge-central-schema/
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  nmdc: https://w3id.org/nmdc/
+  basalt_schema: https://emsl-computing.github.io/BASALT-Schema/elements/
+
+default_prefix: bridge_central_schema
+default_range: string
+
+imports:
+  - linkml:types
+  - ber_central_schema
+
+classes:
+
+  # from squad meeting - "Process has a list of identifiers for its inputs and outputs, and a relationship with a key value table"
+  Process:
+    is_a: NamedThing
+    abstract: true
+    description: >-
+      A process within the BRIDGE framework, representing a sequence of actions or steps taken to achieve a specific outcome.
+    slots:
+      - has_input
+      - has_output
+      - process_category
+      - process_details
+    todos:
+      - >-
+        Is process_details = Attribute the right way to represent the requested key value table? 
+        Attribute doesn't have an ID slot (yet?) which violates contributing.md if we use it here
+
+  # from squad meeting - "3 subclasses with common process type enums"
+  MaterialTransformationProcess:
+    is_a: Process
+    description: >-
+      A process that transforms physical entities into other physical entities.
+    slot_usage:
+      process_category:
+        range: MaterialProcessingEnum
+    close_mappings:
+      - nmdc:MaterialProcessing
+      - basalt_schema:SampleProcessing
+  
+  DataGenerationProcess:
+    is_a: Process
+    description: >-
+      A process that generates data about physical entities.
+    slot_usage:
+      process_category:
+        range: DataGenerationEnum
+    close_mappings:
+      - nmdc:DataGeneration
+      - basalt_schema:DataGenerationActivity
+    todos:
+      - how does the idea of data generation as a process relate to the Measurement class?
+
+  DataTransformationProcess:
+    is_a: Process
+    description: >-
+      A process that transforms data.
+    slot_usage:
+      process_category:
+        range: DataTransformationEnum
+    close_mappings:
+      - nmdc:WorkflowExecution
+      - basalt_schema:DataProcessingActivity
+
+slots:
+  has_input:
+    description: >-
+      The entity input to the process.
+    range: NamedThing
+    multivalued: true
+    exact_mapping: nmdc:has_input
+
+  has_output:
+    description: >-
+      The output produced by the process.
+    range: NamedThing
+    multivalued: true
+    exact_mapping: nmdc:has_output
+
+  process_category:
+    description: >-
+      A label representing the type of process if it falls into a commonly used category.
+    range: string
+    multivalued: true
+
+  process_details:
+    description: >-
+      Additional details about the process.
+    range: Attribute
+    multivalued: true
+
+enums:
+  MaterialProcessingEnum:
+    description: >-
+      A set of labels for common processes that involve the transformation of physical materials.
+    permissible_values:
+      - extraction
+      - pooling
+      - mixing
+      - fractionation
+      - filtration
+    todos:
+      - add more PVs as we learn more about BRIDGE data partners
+  
+  DataGenerationEnum:
+    description: >-
+      A set of labels for common processes that involve the generation of data about physical entities.
+    permissible_values:
+      - nucleic_acid_sequencing
+      - mass_spectrometry
+      - imaging
+    todos:
+      - add more PVs as we learn more about BRIDGE data partners
+  
+  DataTransformationEnum:
+    description: >-
+      A set of labels for common processes that involve the transformation of data.
+    permissible_values:
+      - annotation
+      - assembly
+      - taxonomy_analysis
+      - molecular_formula_assignment
+    todos:
+      - add more PVs as we learn more about BRIDGE data partners
