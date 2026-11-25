@@ -1108,6 +1108,6 @@ classes:
     class_uri: bridge_central_schema:Attribute
 metamodel_version: 1.12.0
 source_file: ber_central_schema.yaml
-source_file_date: '2026-11-25T14:22:27'
+source_file_date: '2026-11-25T19:08:25'
 source_file_size: 1215
 
