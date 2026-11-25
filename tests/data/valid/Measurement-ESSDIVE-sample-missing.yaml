@@ -1,0 +1,14 @@
+# ESS-DIVE sample_concentrations, sample 12a, lead below detection limit.
+measurement_id: urn:uuid:8bb7888c-d80d-41b4-9e3a-49b267b8b917
+observed_property: bridge_property:lead_concentration
+feature_of_interest: urn:uuid:4647a56f-5911-4c74-aab0-809c8d68156f
+raw_value: "-9999"
+unit: ppb
+missing_value_reason: below_detection_limit
+value_role: measured
+measurement_method: "conc-lead: water sample was diluted with 1.4% acetic acid solution, run thru ion chromatograph with resin.; collection method: this is info on how the sample was collected"
+observed_time: "2023-06-12"
+source_system: ber_registry:essdive-sample-data
+source_record_id: doi=doi:essdive-1;file_pid=ess-dive-7181349edbd7b5b-20240130T002708988;source_row=13;source_column=5
+source_field: sample_concentrations.csv;lead_conc
+quality_flag: lead below detection limit
